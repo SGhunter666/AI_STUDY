@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_per_support"
+amount = 12
+amount_2 = 4
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "tactical_encirclement"
+display_name = "战术合围"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Support", "Arts", "Command")
+description = "造成 12 点术式伤害。 获得 +4 伤害 每 支援 牌 打出过 本回合。"
+rarity = "Rare"
+upgraded_id = "tactical_encirclement_plus"
+effects = [SubResource("1")]

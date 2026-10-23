@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+amount_2 = 0
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 1
+amount_2 = 0
+target = "self"
+condition = "player_has_block"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c27_luminous_help_27"
+display_name = "救援余辉"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Knight","Heal")
+description = "造成 5 点伤害。若拥有护盾，恢复 1 点生命。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "nearl_c27_luminous_help_27_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

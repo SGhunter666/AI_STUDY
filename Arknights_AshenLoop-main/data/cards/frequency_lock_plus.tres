@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "apply_resonance"
+amount = 3
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "frequency_lock_plus"
+display_name = "频锁+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Resonance")
+description = "施加 3 层共振 对 目标 并 每。"
+rarity = "Common"
+effects = [SubResource("1")]

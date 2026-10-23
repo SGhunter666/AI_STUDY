@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 11
+amount_2 = 3
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_will"
+amount = 2
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "grand_equation_plus"
+display_name = "大术式方程+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts", "WillSpend")
+description = "造成 11 术式 3 每 当前 意志。 消耗 2 意志。"
+rarity = "Rare"
+effects = [SubResource("1"), SubResource("2")]

@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 8
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_mon3tr"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage"
+amount = 8
+amount_2 = 0
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_b06_defensive_intercept_plus"
+display_name = "防线拦截+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Command","Block","Mon3tr")
+description = "获得 8 护盾。Mon3tr 失去 1 完整性并造成 8 点伤害（完整性≤2时伤害降低。）"
+rarity = "Starter"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

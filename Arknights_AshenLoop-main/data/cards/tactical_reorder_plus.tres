@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 3
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 1
+target = "self"
+condition = "played_arts"
+
+[resource]
+script = ExtResource("1")
+id = "tactical_reorder_plus"
+display_name = "战术重排+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support")
+description = "抽 3 张牌。 若 打出过 术式 本回合， 获得 1 意志。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

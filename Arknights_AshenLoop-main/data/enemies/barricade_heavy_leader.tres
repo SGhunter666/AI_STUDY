@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "barricade_heavy_leader"
+display_name = "路障重装头目"
+max_hp = 92
+gold_reward = 58
+tags = PackedStringArray("Elite","Reunion","Guard")
+ai_profile = "tank"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 8,
+"label": "盾反 8"
+}, {
+"type": "attack",
+"value": 12,
+"label": "路障冲撞 12"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "架设路障"
+}])

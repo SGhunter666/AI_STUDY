@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_radiance"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 3
+amount_2 = 0
+target = "self"
+condition = "player_has_block"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c25_radiant_guard_25"
+display_name = "微光壁"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Radiance","Shield")
+description = "获得 1 层光耀。若拥有护盾，获得 3 点护盾。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "nearl_c25_radiant_guard_25_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

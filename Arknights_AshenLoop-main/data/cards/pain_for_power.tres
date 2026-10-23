@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "lose_hp"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 1
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_next_card_cost_delta"
+amount = -1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "pain_for_power"
+display_name = "以痛换力"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Overload")
+description = "失去 2 点生命，获得 1 点意志，并使下一张牌费用 -1。"
+rarity = "Uncommon"
+upgraded_id = "pain_for_power_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]

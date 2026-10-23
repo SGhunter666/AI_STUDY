@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_energy"
+amount = 2
+target = "self"
+condition = "player_ammo_eq:0"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c20_empty_mag_push"
+display_name = "空仓压榨"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Burst")
+description = "若 弹药 = 0，获得 2 能量。"
+rarity = "Common"
+upgraded_id = "ex_c20_empty_mag_push_plus"
+effects = [SubResource("1")]
+conditional_effects = []

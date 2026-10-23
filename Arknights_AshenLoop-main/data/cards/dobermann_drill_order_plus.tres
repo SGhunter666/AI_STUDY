@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+status_id = "dobermann_drill_ready"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+condition = "cards_played_this_turn_gte:2"
+
+[resource]
+script = ExtResource("1")
+id = "dobermann_drill_order_plus"
+display_name = "杜宾训令+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tactic")
+description = "本回合下一张攻击牌或术式牌伤害 +5。若本回合已打出 2 张牌，抽 2 张牌。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

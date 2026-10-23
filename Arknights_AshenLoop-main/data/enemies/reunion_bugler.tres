@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "reunion_bugler"
+display_name = "整合运动号手"
+max_hp = 30
+gold_reward = 18
+tags = PackedStringArray("Reunion","Support")
+ai_profile = "debuffer"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "战号"
+}, {
+"type": "attack",
+"value": 6,
+"label": "短刃 6"
+}])

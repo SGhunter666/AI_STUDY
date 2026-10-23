@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "amiya_memory_fragment"
+title = "记忆碎片"
+body = "废墟里掉落着一块发光的记忆存储芯片，表面的罗德岛标志已经磨损。\n\n阿米娅认出了它——这是早期行动的存档。里面可能是珍贵的战术数据，也可能是她不愿面对的旧日影像。"
+tags = PackedStringArray("character:amiya")
+options = Array[Dictionary]([{
+"label": "完整读取记忆",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 4
+}, {
+"type": "add_card",
+"card_id": "resonance_burst"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_2"
+}]),
+"reward_cards": PackedStringArray("absolute_resonance","sevenfold_echo"),
+"result": "阿米娅承受了记忆中的情绪冲击，但从中提炼出了更强的共振术式。隐藏路线的进度被推进了。"
+}, {
+"label": "只读取战术数据",
+"effects": Array[Dictionary]([{
+"type": "upgrade_random_card"
+}, {
+"type": "gain_gold",
+"amount": 15
+}]),
+"reward_cards": PackedStringArray("tactical_briefing"),
+"result": "阿米娅跳过了个人部分，只提取了战斗记录。现有卡组得到了优化，还找到了一些可变卖的物资。"
+}, {
+"label": "封存芯片",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 12
+}, {
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("stabilize_line","mental_tuning"),
+"result": "阿米娅把芯片收进贴身口袋。有些记忆可以等一切结束后再面对。队伍获得了一次安静的休整。"
+}])

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_each_integrity_lost_gives_next_m"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_u16_structural_compensation"
+display_name = "机体代偿"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Mon3tr","Repair","Protocol")
+description = "每失去 1 点完整性，下一次 Mon3tr 攻击伤害 +1。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = "kaltsit_u16_structural_compensation_plus"
+effects = [SubResource("1")]
+conditional_effects = []

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_mon3tr_diagnostics"
+title = "Mon3tr 诊断"
+body = "废弃诊疗室还留着一台能启动的监测仪。屏幕亮起后，Mon3tr 的读数在数秒内铺满整面玻璃。\n\n凯尔希看完曲线，给出三个方案：修复、约束，或允许它在更危险的边缘作战。"
+tags = PackedStringArray("character:kaltsit")
+options = Array[Dictionary]([{
+"label": "执行保守修复",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "kaltsit_c23_repair_protocol"
+}]),
+"reward_cards": PackedStringArray("kaltsit_c04_stabilizing_injection","kaltsit_c16_command_recall","kaltsit_c28_field_supply"),
+"result": "监测仪的警报声被一项项压下去。Mon3tr 的外壳没有变亮，但损伤曲线明显平缓了。"
+}, {
+"label": "校准强制融毁阈值",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "kaltsit_r11_forced_meltdown"
+}]),
+"reward_cards": PackedStringArray("kaltsit_r02_meltdown_stabilizer","kaltsit_r03_integrity_expansion","kaltsit_u06_mon3tr_combo"),
+"result": "凯尔希没有把风险写得更好看。她只是把阈值调准，确保危险发生时不会被误判。"
+}, {
+"label": "暂时扩大完整性上限",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 18
+}, {
+"type": "add_card",
+"card_id": "kaltsit_r03_integrity_expansion"
+}]),
+"reward_cards": PackedStringArray("kaltsit_u11_overflow_shielding","kaltsit_c11_guard_stance","kaltsit_l01_mon3tr_full_release"),
+"result": "备用材料被装进核心框架。花费不低，但 Mon3tr 下一次承压时，不会那么快被逼到极限。"
+}])

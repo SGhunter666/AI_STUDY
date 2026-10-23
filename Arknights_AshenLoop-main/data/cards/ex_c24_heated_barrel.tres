@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 3
+status_id = "heated_barrel_damage"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 2
+status_id = "heated_barrel_hits"
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "heated_barrel_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c24_heated_barrel"
+display_name = "炽热枪口"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Burst")
+description = "每回合第一次进入 爆发 时，随机对敌人造成 3 伤害两次。"
+rarity = "Common"
+upgraded_id = "ex_c24_heated_barrel_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "alley_arsonist"
+display_name = "街区纵火者"
+max_hp = 32
+gold_reward = 19
+tags = PackedStringArray("Reunion","Burn")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 7,
+"label": "巷道纵火 7"
+}, {
+"type": "apply_curse",
+"curse": "burn",
+"value": 1,
+"label": "火势蔓延"
+}])

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "originium_fissure"
+title = "源石裂缝"
+body = "街面从中间裂开，源石粉尘贴着地面往外涌。侦测器叫个不停，但读数很整齐，说明这里的源石结构还没有完全乱掉。\n\n靠近记录，可以整理出新的战斗方案；直接取碎片，会更危险也更有价值；绕开则最稳。"
+options = Array[Dictionary]([{
+"label": "记录源石结构",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "resonance_mark"}, {"type": "add_card", "card_id": "phase_tap"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_c14_tagged_signal"}, {"type": "add_card", "card_id": "ex_u08_wide_tagging"}]),
+"reward_cards": PackedStringArray(),
+"result": "侦测数据被保存下来。回到安全距离后，工程干员把它整理成两段可用的作战方案。"
+}, {
+"label": "取走源石碎片",
+"effects": Array[Dictionary]([{"type": "add_module", "module_id": "originium_fragment"}, {"type": "add_card", "card_id": "burn"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_module", "module_id": "ex_m04_target_scope"}, {"type": "add_card", "card_id": "burn"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order"),
+"result": "碎片被封进铅盒。它能当作模块核心使用，也会把一张灼烧的麻烦一起带进牌组。"
+}, {
+"label": "绕开裂缝",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "avoided_fissure"}]),
+"reward_cards": PackedStringArray("tactical_calm"),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "小队绕开裂缝，从旁边的巷子离开。少拿了东西，但也少带了一份污染风险。"
+}])

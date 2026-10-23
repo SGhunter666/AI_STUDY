@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "peek_draw"
+amount = 4
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "pulse_scan_plus"
+display_name = "脉冲扫描+"
+cost = 0
+card_type = "Skill"
+description = "查看 4 牌 抽牌。"
+rarity = "Common"
+effects = [SubResource("1")]

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "lose_hp"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_energy"
+amount = 2
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "bloodline_casting_plus"
+display_name = "透支施术+"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Overload")
+description = "失去 2 点生命。获得 2 点能量。"
+rarity = "Basic"
+effects = [SubResource("1"), SubResource("2")]

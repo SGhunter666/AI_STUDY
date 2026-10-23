@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mortar_crossbow_operator"
+display_name = "迫击弩机操作员"
+max_hp = 35
+gold_reward = 20
+tags = PackedStringArray("Reunion","Ranged")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 12,
+"label": "迫击弩击 12"
+}, {
+"type": "attack",
+"value": 6,
+"label": "区域压制 6"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "迫击装填"
+}])

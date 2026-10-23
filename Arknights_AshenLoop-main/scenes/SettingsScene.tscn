@@ -1,0 +1,276 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1"]
+[ext_resource type="Texture2D" path="res://设置选项中的背景壁纸.png" id="2"]
+
+[node name="SettingsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundShade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.07, 0.22)
+
+[node name="LeftShade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.27
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.06, 0.72)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="LeftPanel" type="PanelContainer" parent="Margin"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+self_modulate = Color(1, 1, 1, 0.84)
+
+[node name="LeftMargin" type="MarginContainer" parent="Margin/LeftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="LeftBox" type="VBoxContainer" parent="Margin/LeftPanel/LeftMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/LeftPanel/LeftMargin/LeftBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "设置"
+
+[node name="Body" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 18
+text = "常见游戏设置选项。"
+
+[node name="ResolutionLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "分辨率"
+
+[node name="ResolutionOptions" type="OptionButton" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+
+[node name="DisplayModeLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "显示模式"
+
+[node name="DisplayModeOptions" type="OptionButton" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+
+[node name="LanguageLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "语言"
+
+[node name="LanguageOptions" type="OptionButton" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+
+[node name="UIScaleLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "界面缩放"
+
+[node name="UIScaleOptions" type="OptionButton" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+
+[node name="UIScaleCustomLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "自定义界面缩放"
+
+[node name="UIScaleCustomSlider" type="HSlider" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+min_value = 0.75
+max_value = 2.0
+step = 0.05
+value = 1.0
+
+[node name="UIScaleCustomValue" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "100%"
+
+[node name="FullscreenToggle" type="CheckBox" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "全屏"
+
+[node name="BorderlessToggle" type="CheckBox" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "无边框窗口"
+
+[node name="VSyncToggle" type="CheckBox" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "垂直同步"
+
+[node name="AutoEndTurnToggle" type="CheckBox" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "自动结束回合"
+
+[node name="BattleSpeedLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "战斗动画速度"
+
+[node name="BattleSpeedOptions" type="OptionButton" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+
+[node name="AbandonRunLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "放弃当前战斗"
+
+[node name="AbandonRunButton" type="Button" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_colors/font_color = Color(1.0, 0.66, 0.60, 1.0)
+theme_override_font_sizes/font_size = 20
+text = "放弃战斗"
+
+[node name="MasterLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "主音量"
+
+[node name="MasterSlider" type="HSlider" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+min_value = 0.0
+max_value = 100.0
+
+[node name="MasterValue" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "80%"
+
+[node name="MusicLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "音乐音量"
+
+[node name="MusicSlider" type="HSlider" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+min_value = 0.0
+max_value = 100.0
+
+[node name="MusicValue" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "70%"
+
+[node name="SfxLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "音效音量"
+
+[node name="SfxSlider" type="HSlider" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+min_value = 0.0
+max_value = 100.0
+
+[node name="SfxValue" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "75%"
+
+[node name="VoiceLabel" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "语音音量"
+
+[node name="VoiceSlider" type="HSlider" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+min_value = 0.0
+max_value = 100.0
+
+[node name="VoiceValue" type="Label" parent="Margin/LeftPanel/LeftMargin/LeftBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "85%"
+
+[node name="Footer" type="VBoxContainer" parent="Margin/LeftPanel/LeftMargin/LeftBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Back" type="Button" parent="Margin/LeftPanel/LeftMargin/LeftBox/Footer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 64)
+theme_override_font_sizes/font_size = 28
+text = "返回"
+
+[node name="ReturnMain" type="Button" parent="Margin/LeftPanel/LeftMargin/LeftBox/Footer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 64)
+theme_override_font_sizes/font_size = 26
+text = "返回主菜单"

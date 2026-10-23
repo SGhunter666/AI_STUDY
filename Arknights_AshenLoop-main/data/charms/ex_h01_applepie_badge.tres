@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_h01_applepie_badge"
+display_name = "苹果派徽章"
+description = "起始牌组额外加入 1 张 爆发。"
+slot_type = "charm"

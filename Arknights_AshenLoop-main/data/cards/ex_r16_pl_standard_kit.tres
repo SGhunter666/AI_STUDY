@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 3
+status_id = "pl_standard_kit_block"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "pl_standard_kit_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r16_pl_standard_kit"
+display_name = "企鹅物流标准件"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Support")
+description = "每回合第一次打出 支援 后，恢复 1 弹药 并获得 3 护盾。"
+rarity = "Rare"
+upgraded_id = "ex_r16_pl_standard_kit_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

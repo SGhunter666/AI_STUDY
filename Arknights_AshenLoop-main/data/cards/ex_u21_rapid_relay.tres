@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "fetch_low_cost_from_discard"
+amount = 1
+target = "self"
+meta = {"max_cost": 1}
+
+[resource]
+script = ExtResource("1")
+id = "ex_u21_rapid_relay"
+display_name = "速递换位"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tempo")
+description = "从弃牌堆拿回 1 张 1 费以下牌。"
+rarity = "Uncommon"
+upgraded_id = "ex_u21_rapid_relay_plus"
+effects = [SubResource("1")]
+conditional_effects = []

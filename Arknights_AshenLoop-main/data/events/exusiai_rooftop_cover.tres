@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "exusiai_rooftop_cover"
+title = "屋顶火力点"
+body = "临时梯架通向一排低楼屋顶。街对面的整合运动还没发现这个角度，只是巡逻节奏越来越密。\n\n能天使架好铳，问得很轻松：要现在打乱他们，还是把这个位置留到真正需要的时候。"
+tags = PackedStringArray("character:exusiai")
+options = Array[Dictionary]([{
+"label": "提前点名威胁目标",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("ex_c14_tagged_signal","ex_u22_air_cover","ex_c27_team_callout"),
+"result": "几个危险目标被标在通讯里。等队伍进入街区时，第一轮压力会轻很多。"
+}, {
+"label": "保存位置，换更强火力",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 15
+}, {
+"type": "add_module",
+"module_id": "ex_m04_target_scope"
+}]),
+"reward_cards": PackedStringArray("ex_r11_angelic_storm","ex_r07_execution_drill","ex_u17_combo_rhythm"),
+"result": "你们用一小笔物资换来更好的瞄具。能天使没有立刻开火，只把准星停在最该被记住的位置。"
+}, {
+"label": "制造噪声，诱导敌人离位",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}, {
+"type": "set_flag",
+"flag": "double_next_reward"
+}]),
+"reward_cards": PackedStringArray("ex_c17_burst_order","ex_c22_rapid_reload","ex_u03_reload_plan"),
+"result": "爆响把巡逻队引向另一条街。下一战会更乱，但只要打赢，能拿到的东西也更多。"
+}])

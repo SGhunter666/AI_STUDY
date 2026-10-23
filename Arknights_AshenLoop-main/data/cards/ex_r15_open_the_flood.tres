@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "enter_burst"
+amount = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_ammo"
+amount = 3
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r15_open_the_flood"
+display_name = "极限开火"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Burst", "AmmoGain")
+description = "失去 2 生命，恢复 3 弹药，准备 爆发：下回合进入爆发。"
+rarity = "Rare"
+upgraded_id = "ex_r15_open_the_flood_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

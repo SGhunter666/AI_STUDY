@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 10
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 10
+target = "enemy"
+condition = "echo_active"
+
+[resource]
+script = ExtResource("1")
+id = "mirrored_wave"
+display_name = "镜波"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Echo")
+description = "造成 10 点术式伤害。 若回响 已激活， 造成 10 更多。"
+rarity = "Rare"
+upgraded_id = "mirrored_wave_plus"
+effects = [SubResource("1"), SubResource("2")]

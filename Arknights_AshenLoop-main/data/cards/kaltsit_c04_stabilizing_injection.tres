@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 3
+amount_2 = 3
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 4
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c04_stabilizing_injection"
+display_name = "稳态注射"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Medical","Heal","Block")
+description = "治疗 3 点生命，获得 4 护盾，修复 Mon3tr 1 点完整性。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c04_stabilizing_injection_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

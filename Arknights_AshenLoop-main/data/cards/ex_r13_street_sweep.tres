@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_all"
+amount = 3
+target = "enemy"
+condition = "player_ammo_gte:2"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 4
+amount_2 = 1
+target = "enemy"
+condition = "player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r13_street_sweep"
+display_name = "街区扫射"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Shot", "AOE", "MultiHit", "Burst", "AmmoUse")
+description = "消耗 2 弹药，对所有敌人造成 3 伤害两次；若有 爆发，三次。"
+rarity = "Rare"
+upgraded_id = "ex_r13_street_sweep_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

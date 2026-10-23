@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "command_delay"
+display_name = "指令延迟"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse")
+description = "无法打出。 抽到时： 第一张 支援 牌 打出 本回合 支援。"
+rarity = "Curse"
+ethereal = true

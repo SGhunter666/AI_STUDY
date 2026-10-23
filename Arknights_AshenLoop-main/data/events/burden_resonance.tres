@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "burden_resonance"
+title = "压力反应"
+body = "连续几次救援和高压决策后，医疗记录出现了异常：心率偏高，源石反应也比平时更明显。\n\n这不是一段漂亮的觉悟，只是身体和精神都在报警。你可以把这股压力硬转成战斗力，也可以先压住状态，或者把它交给战术网络分摊到整支队伍的节奏里。"
+conditions = PackedStringArray("any:accept_burden_1,accept_burden_2")
+options = Array[Dictionary]([{
+"label": "硬转成战斗力",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 6
+}, {
+"type": "add_card",
+"card_id": "resonance_burst"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_3"
+}]),
+"reward_cards": PackedStringArray("absolute_resonance", "sevenfold_echo"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 6
+}, {
+"type": "add_card",
+"card_id": "ex_b06_burst_entry"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_3"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm", "ex_r14_endless_chain"),
+"result": "压力被硬压进下一次攻击。代价立刻体现在生命值上，但隐藏路线的进度也被继续推进。"
+}, {
+"label": "压制波动",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 10
+}, {
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("mental_tuning", "stabilize_line"),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload", "ex_c25_pl_supply_drop"),
+"result": "医疗干员让队伍停了十分钟。状态稳住了，下一场开局也会更平缓。"
+}, {
+"label": "引导到战术网络",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "signal_booster"
+}, {
+"type": "set_flag",
+"flag": "floor_first_support_double"
+}]),
+"reward_cards": PackedStringArray("tactical_briefing"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m05_penguin_invoice"
+}, {
+"type": "set_flag",
+"flag": "floor_first_support_double"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover"),
+"result": "压力没有压在一个人身上，而是被整理进支援流程。本层第一张支援牌会被额外执行一次。"
+}])

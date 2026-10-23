@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "enter_burst"
+amount = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "multi_shot_extra_hits_turn"
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "multi_shot_extra_hits_turn"
+target = "self"
+
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u13_all_guns_go_plus"
+display_name = "全开火力+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Burst")
+description = "准备 爆发：下回合进入爆发。本回合所有多段 射击 +1 次命中，并抽 1。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4")]
+conditional_effects = []

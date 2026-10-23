@@ -1,0 +1,293 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/encyclopedia_scene.gd" id="1"]
+[ext_resource type="Texture2D" path="res://新的主页面背景壁纸.jpg" id="2"]
+
+[node name="EncyclopediaScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.04, 0.06, 0.66)
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 144.0
+offset_bottom = 88.0
+z_index = 4
+text = "<"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 28.0
+offset_right = 160.0
+offset_bottom = 80.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.98, 0.93, 0.73, 1)
+text = "百科大全"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 104
+theme_override_constants/margin_right = 96
+theme_override_constants/margin_bottom = 82
+
+[node name="Scroll" type="ScrollContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 1
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Root" type="VBoxContainer" parent="Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 28
+
+[node name="HeaderPanel" type="PanelContainer" parent="Margin/Scroll/Root"]
+custom_minimum_size = Vector2(0, 196)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="Margin/Scroll/Root/HeaderPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 22
+
+[node name="HeaderBox" type="VBoxContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="HeaderEyebrow" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox"]
+layout_mode = 2
+mouse_filter = 2
+text = "罗德岛档案"
+
+[node name="HeaderTitle" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox"]
+layout_mode = 2
+mouse_filter = 2
+text = "百科总览"
+
+[node name="HeaderBody" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox"]
+layout_mode = 2
+mouse_filter = 2
+autowrap_mode = 3
+text = "在这里整理卡牌、模块、敌人和作战记录。"
+
+[node name="HeaderStatsRow" type="HBoxContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="CardsChip" type="PanelContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/CardsChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/CardsChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "卡牌 0"
+
+[node name="ModulesChip" type="PanelContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/ModulesChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/ModulesChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "模块 0"
+
+[node name="MonstersChip" type="PanelContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/MonstersChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/MonstersChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "敌人 0"
+
+[node name="HistoryChip" type="PanelContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/HistoryChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Margin/Scroll/Root/HeaderPanel/HeaderMargin/HeaderBox/HeaderStatsRow/HistoryChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "记录 0"
+
+[node name="PrimaryLabel" type="Label" parent="Margin/Scroll/Root"]
+layout_mode = 2
+mouse_filter = 2
+text = "核心档案"
+
+[node name="TopRow" type="GridContainer" parent="Margin/Scroll/Root"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+columns = 2
+theme_override_constants/separation = 24
+
+[node name="CardsEntry" type="Button" parent="Margin/Scroll/Root/TopRow"]
+custom_minimum_size = Vector2(240, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "卡牌总览"
+
+[node name="ModulesEntry" type="Button" parent="Margin/Scroll/Root/TopRow"]
+custom_minimum_size = Vector2(240, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "模块收藏"
+
+[node name="LabEntry" type="Button" parent="Margin/Scroll/Root/TopRow"]
+custom_minimum_size = Vector2(240, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "药剂研究所"
+
+[node name="MonsterEntry" type="Button" parent="Margin/Scroll/Root/TopRow"]
+custom_minimum_size = Vector2(240, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "怪物图鉴"
+
+[node name="SecondaryLabel" type="Label" parent="Margin/Scroll/Root"]
+layout_mode = 2
+mouse_filter = 2
+text = "作战记录与说明"
+
+[node name="BottomRow" type="GridContainer" parent="Margin/Scroll/Root"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+columns = 3
+theme_override_constants/separation = 28
+
+[node name="StatsEntry" type="Button" parent="Margin/Scroll/Root/BottomRow"]
+custom_minimum_size = Vector2(260, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "角色数据"
+
+[node name="GlossaryEntry" type="Button" parent="Margin/Scroll/Root/BottomRow"]
+custom_minimum_size = Vector2(260, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "术语说明"
+
+[node name="HistoryEntry" type="Button" parent="Margin/Scroll/Root/BottomRow"]
+custom_minimum_size = Vector2(260, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "历史记录"
+
+[node name="DetailPanel" type="PanelContainer" parent="Margin/Scroll/Root"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 118)
+mouse_filter = 2
+
+[node name="DetailMargin" type="MarginContainer" parent="Margin/Scroll/Root/DetailPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 18
+
+[node name="DetailLabel" type="Label" parent="Margin/Scroll/Root/DetailPanel/DetailMargin"]
+layout_mode = 2
+mouse_filter = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 22
+text = "查看你在这次旅途中已经解锁的系统内容。"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/TopRow/CardsEntry" to="." method="_on_cards_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/TopRow/ModulesEntry" to="." method="_on_modules_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/TopRow/LabEntry" to="." method="_on_lab_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/TopRow/MonsterEntry" to="." method="_on_monsters_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/BottomRow/StatsEntry" to="." method="_on_stats_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/BottomRow/GlossaryEntry" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="Margin/Scroll/Root/BottomRow/HistoryEntry" to="." method="_on_history_pressed"]

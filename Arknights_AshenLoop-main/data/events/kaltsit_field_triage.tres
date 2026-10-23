@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_field_triage"
+title = "现场分诊"
+body = "临时医疗点设在塌了一半的车站里。凯尔希翻过两份病历，直接划掉了其中一项不必要的处理流程。\n\n时间不多，药更少。她没有安慰任何人，只把能活下来的方案摆在桌面上。"
+tags = PackedStringArray("character:kaltsit")
+options = Array[Dictionary]([{
+"label": "优先稳定作战人员",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 10
+}]),
+"reward_cards": PackedStringArray("kaltsit_c04_stabilizing_injection","kaltsit_c28_field_supply","kaltsit_c05_medical_record"),
+"result": "处理顺序被重新排好，止血和镇痛先落到还要上前线的人身上。没人喜欢这个决定，但它有效。"
+}, {
+"label": "保留药剂给 Mon3tr",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "kaltsit_u02_auto_repair"
+}]),
+"reward_cards": PackedStringArray("kaltsit_c23_repair_protocol","kaltsit_u11_overflow_shielding","kaltsit_c11_guard_stance"),
+"result": "凯尔希收起一支药剂，像收起一条备用命令。Mon3tr 没有发声，只是站得更近。"
+}, {
+"label": "用数据换取更强指令",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 4
+}, {
+"type": "add_module",
+"module_id": "kaltsits_log"
+}]),
+"reward_cards": PackedStringArray("kaltsit_c10_command_calibration","kaltsit_u06_mon3tr_combo","kaltsit_r02_meltdown_stabilizer"),
+"result": "她把新的战场数据写入终端。诊断结论并不温和，但下一次指令会更精确。"
+}])

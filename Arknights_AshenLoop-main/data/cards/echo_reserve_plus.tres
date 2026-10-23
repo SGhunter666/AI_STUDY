@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "channel_echo_next_turn"
+amount = 75
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "echo_reserve_plus"
+display_name = "回声预留+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Channel","Echo")
+description = "引导： 下回合 获得 回响 75%。"
+rarity = "Uncommon"
+effects = [SubResource("1")]

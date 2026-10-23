@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage"
+amount = 44
+amount_2 = 1
+target = "enemy"
+condition = "mon3tr_integrity_gte:5"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr_to_value"
+amount = 10
+amount_2 = 0
+target = "self"
+condition = "not_mon3tr_integrity_gte:5"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage"
+amount = 24
+amount_2 = 1
+target = "enemy"
+condition = "not_mon3tr_integrity_gte:5"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_l05_inhuman_thing_plus"
+display_name = "非人之物+"
+cost = 3
+card_type = "Skill"
+tags = PackedStringArray("Mon3tr","Repair")
+description = "升级：数值变为 44 / 24。"
+rarity = "Legendary"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

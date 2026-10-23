@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 10
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_ammo"
+amount = 1
+target = "self"
+condition = "played_support_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u19_pl_cover_screen"
+display_name = "企鹅物流掩护"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support")
+description = "获得 10 护盾；若本回合打出过 支援，恢复 1 弹药。"
+rarity = "Uncommon"
+upgraded_id = "ex_u19_pl_cover_screen_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

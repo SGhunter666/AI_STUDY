@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_h02_oath_pin"
+display_name = "誓约别针"
+description = "每场战斗第一次获得光耀时，额外获得 2 点护盾。"
+slot_type = "charm"

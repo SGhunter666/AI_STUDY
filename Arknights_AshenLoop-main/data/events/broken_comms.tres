@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "broken_comms"
+title = "战场断讯"
+body = "通讯车停在街口，天线被弹片削掉半截。终端上的地图时亮时灭，几个节点只剩一团噪点。\n\n工程干员说能修，但要拆备用件，也要花钱。强行推进也不是不行，只是下一层的路线情报会更少。还有一个折中的办法：临时拉高信号功率，撑过接下来的行动。"
+options = Array[Dictionary]([{
+"label": "支付 30 金币修复",
+"effects": Array[Dictionary]([{"type": "lose_gold", "amount": 30}, {"type": "add_module", "module_id": "worn_terminal"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "lose_gold", "amount": 30}, {"type": "add_module", "module_id": "ex_m13_airdrop_beacon"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan"),
+"result": "备用件换上后，频道重新接通。地图仍不完整，但至少不会再把整条街都糊成噪点。"
+}, {
+"label": "强行推进",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "next_floor_fewer_events"}]),
+"reward_cards": PackedStringArray("pressure_wave"),
+"reward_cards_exusiai": PackedStringArray("ex_c14_tagged_signal"),
+"result": "小队没有停留。断掉的频道被留在身后，下一层的情报也因此少了一截。"
+}, {
+"label": "临时增幅信号",
+"effects": Array[Dictionary]([{"type": "add_module", "module_id": "signal_booster"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_module", "module_id": "ex_m05_penguin_invoice"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c27_team_callout"),
+"result": "功率被临时拉高，耳机里终于能听清前线回报。这个方案撑不了太久，但足够让支援先接上。"
+}])

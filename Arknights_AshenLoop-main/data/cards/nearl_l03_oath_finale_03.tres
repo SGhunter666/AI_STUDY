@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_radiance"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 12
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_l03_oath_finale_03"
+display_name = "终誓"
+cost = 3
+card_type = "Power"
+tags = PackedStringArray("Vow","Radiance","Counter")
+description = "获得 1 层光耀。本回合获得反击 12。"
+rarity = "Legendary"
+exhausts = false
+upgraded_id = "nearl_l03_oath_finale_03_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

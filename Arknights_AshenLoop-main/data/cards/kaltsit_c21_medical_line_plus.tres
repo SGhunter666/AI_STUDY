@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_first_medical_each_turn_gives_4_"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c21_medical_line_plus"
+display_name = "医疗防线+"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Medical","Protocol","Block")
+description = "升级：护盾提高至 4。"
+rarity = "Common"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

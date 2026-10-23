@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 6
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "target_has_resonance"
+
+[resource]
+script = ExtResource("1")
+id = "harmonic_cut"
+display_name = "谐律切断"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Resonance")
+description = "造成 6 术式。 若 目标 共振， 抽 1 张牌。"
+rarity = "Common"
+upgraded_id = "harmonic_cut_plus"
+effects = [SubResource("1"), SubResource("2")]

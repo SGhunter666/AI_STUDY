@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "footprints_on_ashes"
+title = "灰烬上的脚印"
+body = "街面铺着一层白灰，里面有一串很新的脚印。它没有通向避难点，也没有绕开战区，而是直直偏离了地图标出的路线。\n\n侦察干员认为这可能是隐藏通道，也可能是陷阱。你可以追过去，也可以把线索交给情报组换取眼前收益，或者先标记坐标离开。"
+options = Array[Dictionary]([{
+"label": "沿着脚印走",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "accept_burden_1"}]),
+"reward_cards": PackedStringArray("ashen_guilt"),
+"reward_cards_exusiai": PackedStringArray("ex_b06_burst_entry"),
+"result": "脚印通向一段没有标在地图上的旧通道。你没有走到底，但隐藏路线的轮廓清楚了一点。"
+}, {
+"label": "拿走稀有牌情报",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "terminal_appeal"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_r07_execution_drill"}]),
+"reward_cards": PackedStringArray(),
+"result": "情报组接手了坐标，回报是一张更稀有的战术记录。隐藏线索被换成了眼前能打出去的牌。"
+}, {
+"label": "标记位置后离开",
+"effects": Array[Dictionary]([{"type": "add_gold", "amount": 35}]),
+"reward_cards": PackedStringArray(),
+"result": "坐标被标在地图边缘。队伍继续前进，带走的是一小笔情报补贴，而不是答案。"
+}])

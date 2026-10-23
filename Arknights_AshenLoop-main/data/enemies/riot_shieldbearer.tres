@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "riot_shieldbearer"
+display_name = "暴乱持盾者"
+max_hp = 38
+gold_reward = 20
+tags = PackedStringArray("Reunion","Guard")
+ai_profile = "tank"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 9,
+"label": "碾压 9"
+}, {
+"type": "attack",
+"value": 8,
+"label": "盾击 8"
+}])

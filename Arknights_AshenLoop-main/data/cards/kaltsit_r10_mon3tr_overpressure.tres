@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage"
+amount = 20
+amount_2 = 1
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_mon3tr"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r10_mon3tr_overpressure"
+display_name = "Mon3tr 暴压"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Mon3tr","Repair")
+description = "Mon3tr 造成 20 点伤害，然后失去 2 点完整性（完整性≤2时伤害降低。）"
+rarity = "Rare"
+exhausts = false
+upgraded_id = "kaltsit_r10_mon3tr_overpressure_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

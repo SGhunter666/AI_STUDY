@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "evacuation_aftermath"
+title = "撤离余波"
+body = "下一层入口，通讯兵递来一份后续报告。上一场撤离没有随着节点结算结束，它正在变成补给、舆论和前线压力。\n\n如果之前保全了平民，后方有人愿意帮忙维护补给线；如果优先了主力，前线推进更快但敌人也跟得更紧；如果分队行动，两边都还撑着，只是损耗没有消失。"
+conditions = PackedStringArray("any:evacuation_kind,evacuation_efficient,evacuation_split")
+options = Array[Dictionary]([{
+"label": "巩固补给线",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 12
+}, {
+"type": "set_flag",
+"flag": "double_next_reward"
+}]),
+"reward_cards": PackedStringArray("rescue_corridor", "medical_evac_route"),
+"reward_cards_exusiai": PackedStringArray("ex_u19_pl_cover_screen", "ex_c25_pl_supply_drop"),
+"result": "后方补给线被重新固定。队伍恢复了一些状态，下一份奖励也会因为补给稳定而更丰厚。"
+}, {
+"label": "利用推进优势",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "elite_coordination"
+}, {
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}]),
+"reward_cards": PackedStringArray("final_vector", "coordinated_strike"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_r07_execution_drill"
+}, {
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm", "ex_c17_burst_order"),
+"result": "主力继续压进，战术优势被扩大。敌人也开始加速集结，下一场会更硬。"
+}, {
+"label": "维持弹性部署",
+"effects": Array[Dictionary]([{
+"type": "add_gold",
+"amount": 25
+}, {
+"type": "set_flag",
+"flag": "preview_two_nodes"
+}]),
+"reward_cards": PackedStringArray("strategic_rotation"),
+"reward_cards_exusiai": PackedStringArray("ex_u17_combo_rhythm", "ex_u03_reload_plan"),
+"result": "分队保持了机动，侦察视野也被拉开。地图上会额外显示几个可预览节点。"
+}])

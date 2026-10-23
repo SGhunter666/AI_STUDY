@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "intelligence_convergence"
+title = "情报汇流"
+body = "终端把两份资料叠在一起：一份是凯尔希留下的路线标注，一份是从 W 的广播里截出的信号片段。单看都不完整，合起来却能对上几处伏击位置。\n\n情报只能用一次。你可以把它交给战术组还原部署，也可以提取里面的战斗节奏做成牌，或者直接共享给全队，换取更稳的资源分配。"
+conditions = PackedStringArray("any:preview_two_nodes,w_intents_clear")
+options = Array[Dictionary]([{
+"label": "深入分析部署",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "rhodes_tactical_console"
+}, {
+"type": "set_flag",
+"flag": "next_battle_start_will_3"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m09_cluster_calibrator"
+}, {
+"type": "set_flag",
+"flag": "next_battle_start_energy_1"
+}]),
+"reward_cards": PackedStringArray("tactical_encirclement"),
+"reward_cards_exusiai": PackedStringArray("ex_u08_wide_tagging"),
+"result": "战术组还原出大半张部署图。下一场战斗开局会更清楚，不必等敌人先动手才反应。"
+}, {
+"label": "提取战斗节奏",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "frequency_lock"
+}, {
+"type": "add_card",
+"card_id": "phase_tap"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_u17_combo_rhythm"
+}, {
+"type": "add_card",
+"card_id": "ex_c14_tagged_signal"
+}]),
+"reward_cards": PackedStringArray("harmonic_spike", "echo_lattice"),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order", "ex_u14_chain_trigger", "ex_u11_headline_rhythm"),
+"result": "信号被拆成两段可执行的战斗节奏。它们加入牌组，之后会直接影响出牌顺序。"
+}, {
+"label": "分享给全队",
+"effects": Array[Dictionary]([{
+"type": "add_gold",
+"amount": 35
+}, {
+"type": "set_flag",
+"flag": "double_elite_reward"
+}]),
+"reward_cards": PackedStringArray("voice_of_the_team"),
+"reward_cards_exusiai": PackedStringArray("ex_r20_skyline_call"),
+"result": "情报被发到各小队终端。没人拿到完整答案，但每个人都少踩一个坑，本层精英战回报也会提高。"
+}])

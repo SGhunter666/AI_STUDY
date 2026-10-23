@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharacterData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "exusiai"
+display_name = "能天使"
+max_hp = 70
+starting_energy = 3
+combat_resource_name = "弹药"
+resource_max = 6
+passive_id = "angel_of_bullets"
+starter_deck = PackedStringArray("ex_b01_burst_shot", "ex_b01_burst_shot", "ex_b02_cover_step", "ex_b02_cover_step", "ex_b03_quick_reload", "ex_b04_target_ping", "ex_b05_crossfire_ping", "ex_b06_burst_entry", "ex_b07_mag_swap", "ex_b08_angled_volley")
+starter_charms = PackedStringArray("ex_h01_applepie_badge", "ex_h02_fast_sling")

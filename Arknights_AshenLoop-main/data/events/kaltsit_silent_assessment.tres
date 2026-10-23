@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_silent_assessment"
+title = "凯尔希的静默评估"
+body = "凯尔希把行动记录推到桌面中央，没有责备，也没有安慰。记录里标出了三处问题：牌组冗余、决策延迟、以及一次不必要的承伤。\n\n她等你看完，才说：选一项先处理。"
+options = Array[Dictionary]([{
+"label": "移除一张牌",
+"effects": Array[Dictionary]([{"type": "remove_card", "card_id": "guard_pulse"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "remove_card", "card_id": "ex_b02_cover_step"}]),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "一张拖慢节奏的牌被移出牌组。记录上的第一处红线被划掉了。"
+}, {
+"label": "接受冷静分析",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "clear_intent"}]),
+"reward_cards": PackedStringArray("clear_intent"),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_u11_headline_rhythm"}]),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan"),
+"result": "凯尔希把分析结果转成一张可执行的牌。下一次判断敌方意图时，你会更从容。"
+}, {
+"label": "付出体力换稀有模块",
+"effects": Array[Dictionary]([{"type": "lose_hp", "amount": 5}, {"type": "add_module", "module_id": "pain_converter"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "lose_hp", "amount": 5}, {"type": "add_module", "module_id": "ex_m12_chainfire_recorder"}]),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order"),
+"result": "模块接入时带来一阵刺痛。它不舒服，但会把承伤转成真正有用的战斗资源。"
+}])

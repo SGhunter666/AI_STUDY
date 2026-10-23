@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "execution_demolitionist"
+display_name = "处刑爆破专家"
+max_hp = 82
+gold_reward = 60
+tags = PackedStringArray("Elite","Reunion","Bomb")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "apply_curse",
+"curse": "blast_countdown",
+"value": 1,
+"label": "处刑装药"
+}, {
+"type": "attack",
+"value": 15,
+"label": "远程引爆 15"
+}])

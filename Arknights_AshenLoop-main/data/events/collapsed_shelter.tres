@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "collapsed_shelter"
+title = "坍塌的避难所"
+body = "一个地下避难所的顶板在余震中塌了一角。灰尘里传来微弱的呼救声。\n\n里面有人被困住了。救出来需要时间和工具，也可能让队伍受伤。但放任不管，这些人会在几小时内窒息。"
+options = Array[Dictionary]([{
+"label": "全力救援",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 5
+}, {
+"type": "set_flag",
+"flag": "self_damage_rescue_4"
+}, {
+"type": "gain_gold",
+"amount": 20
+}]),
+"reward_cards": PackedStringArray("sevenfold_echo","absolute_resonance"),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm","ex_r14_endless_chain"),
+"result": "你们徒手挖开了碎石。被困的人被抬出来时已经奄奄一息，但他们活着。有人塞给你一袋金币作为答谢。隐藏路线的进度被推进了。"
+}, {
+"label": "用工具谨慎挖掘",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 15
+}, {
+"type": "heal",
+"amount": 8
+}, {
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("stabilize_line","mental_tuning"),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload","ex_c25_pl_supply_drop"),
+"result": "你们用撬棍和千斤顶稳住了结构，逐块移开碎石。耗时较长但无人受伤。被困者送给你们一些医疗补给。"
+}, {
+"label": "标记位置继续前进",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "hesitation"
+}, {
+"type": "gain_gold",
+"amount": 10
+}]),
+"reward_cards": PackedStringArray("tactical_briefing"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover"),
+"result": "你记下坐标，通知了后方的救援队。队伍继续前进，但这次选择会在心里留下犹豫。一张迟疑牌加入了牌组。"
+}])

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "enter_burst"
+amount = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r20_skyline_call"
+display_name = "空域呼叫"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Support", "Burst")
+description = "准备 爆发：下回合进入爆发。从 支援 池中生成 1 张临时 支援 到手牌。"
+rarity = "Rare"
+upgraded_id = "ex_r20_skyline_call_plus"
+effects = [SubResource("1")]
+conditional_effects = []

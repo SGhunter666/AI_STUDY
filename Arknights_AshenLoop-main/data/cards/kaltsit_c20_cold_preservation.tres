@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_integrity_loss_reduction"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c20_cold_preservation"
+display_name = "低温保存"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Mon3tr","Repair")
+description = "本回合下一次 Mon3tr 完整性损失减少 2 点。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c20_cold_preservation_plus"
+effects = [SubResource("1")]
+conditional_effects = []

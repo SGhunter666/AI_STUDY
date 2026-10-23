@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 4
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c14_critical_reinforcement"
+display_name = "临界补强"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Repair")
+description = "若完整性不高于 2，修复 Mon3tr 4 点完整性；否则修复 2 点。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c14_critical_reinforcement_plus"
+effects = [SubResource("1")]
+conditional_effects = []

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "frostbite_stalker"
+display_name = "冻伤潜伏者"
+max_hp = 33
+gold_reward = 20
+tags = PackedStringArray("Reunion","Frost")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 7,
+"label": "寒冷切击 7"
+}, {
+"type": "attack",
+"value": 11,
+"label": "冻霜伏击 11"
+}])

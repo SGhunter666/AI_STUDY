@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "frost_disaster_vanguard"
+display_name = "寒灾先遣统领"
+max_hp = 226
+gold_reward = 125
+tags = PackedStringArray("Boss","Frost")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "低温区"
+}, {
+"type": "attack",
+"value": 14,
+"label": "寒灾指令 14"
+}, {
+"type": "attack",
+"value": 10,
+"label": "寒冷惩罚 10"
+}])

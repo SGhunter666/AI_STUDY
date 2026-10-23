@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 7
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+target = "enemy"
+condition = "played_support_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "coordinated_strike"
+display_name = "协同打击"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Command")
+description = "造成 7 点伤害。 若 打出过 支援 本回合， 造成 5 更多。"
+rarity = "Common"
+upgraded_id = "coordinated_strike_plus"
+effects = [SubResource("1"), SubResource("2")]

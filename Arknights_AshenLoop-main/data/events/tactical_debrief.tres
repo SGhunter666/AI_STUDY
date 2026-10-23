@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tactical_debrief"
+title = "战术复盘室"
+body = "临时复盘室里还亮着两块屏幕，上一场交火的轨迹被定格在最混乱的十几秒。谁先动、哪张牌卡手、哪次支援晚了一拍，都能看出来。\n\n这不是写报告的时间，而是改下一场打法的时间。"
+options = Array[Dictionary]([{
+"label": "升级一张关键牌",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "rest_upgrade_credit"}]),
+"reward_cards": PackedStringArray("thought_acceleration","field_command"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan","ex_c17_burst_order"),
+"result": "关键牌被标进升级清单。下一次休整时，它会被优先处理。"
+}, {
+"label": "挑选支援方案",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "emergency_order"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_c27_team_callout"}]),
+"reward_cards": PackedStringArray("tactical_network","unified_battleplan"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover","ex_r20_skyline_call"),
+"result": "支援方案被重新排过顺序。新的指令牌加入牌组，方便你把后续行动接起来。"
+}, {
+"label": "清掉杂讯",
+"effects": Array[Dictionary]([{"type": "remove_card", "card_id": "mental_noise"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "remove_card", "card_id": "hesitation"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "那段只会干扰判断的记录被删掉。牌组少了一点噪声，手牌也会更干净。"
+}])

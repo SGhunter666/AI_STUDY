@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 11
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "cleanse_debuff"
+amount = 99
+target = "self"
+condition = "played_support_this_turn_gte:2"
+
+[resource]
+script = ExtResource("1")
+id = "medical_evac_route_plus"
+display_name = "医疗撤离路线+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Heal")
+description = "回复 11 点生命。 若 打出过 2 支援 牌 本回合，。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

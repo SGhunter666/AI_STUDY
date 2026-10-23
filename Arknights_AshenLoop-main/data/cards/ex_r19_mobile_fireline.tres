@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 8
+amount_2 = 0
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 8
+amount_2 = 1
+target = "enemy"
+condition = "played_support_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r19_mobile_fireline"
+display_name = "机动火线"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Support", "Shot", "AmmoUse")
+description = "消耗 1 弹药，造成 8 伤害；若本回合打出过 支援，再打 8。"
+rarity = "Rare"
+upgraded_id = "ex_r19_mobile_fireline_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

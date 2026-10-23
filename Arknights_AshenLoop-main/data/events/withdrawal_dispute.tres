@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "withdrawal_dispute"
+title = "撤离争议"
+body = "撤离路线被坍塌物堵住，平民队伍挤在路口，主力小队则在另一侧等待推进。两边都在催，通讯里全是重叠的声音。\n\n保平民会拖慢任务；保主力能拿到资源和速度；分队行动能两边都顾一点，但小队要自己承担损耗。"
+options = Array[Dictionary]([{
+"label": "保全平民",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "evacuation_kind"}]),
+"reward_cards": PackedStringArray("medical_evac_route"),
+"reward_cards_exusiai": PackedStringArray("ex_u19_pl_cover_screen"),
+"result": "平民先被送过路口。撤离慢了，但这条线至少没有在你面前断掉。"
+}, {
+"label": "优先主力",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "evacuation_efficient"}, {"type": "add_gold", "amount": 40}]),
+"reward_cards": PackedStringArray("final_vector","grand_equation"),
+"reward_cards_exusiai": PackedStringArray("ex_r07_execution_drill", "ex_r20_skyline_call"),
+"result": "主力路线被优先打通，推进效率很高。被延后的撤离名单也被写进了记录。"
+}, {
+"label": "分队行动",
+"effects": Array[Dictionary]([{"type": "lose_hp", "amount": 5}, {"type": "set_flag", "flag": "evacuation_split"}]),
+"reward_cards": PackedStringArray("elite_coordination"),
+"reward_cards_exusiai": PackedStringArray("ex_u17_combo_rhythm"),
+"result": "队伍拆成两组同时行动。两边都没崩，但你的队伍先付了这份压力。"
+}])

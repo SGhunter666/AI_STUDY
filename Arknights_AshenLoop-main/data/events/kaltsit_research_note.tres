@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_research_note"
+title = "研究笔记"
+body = "一张散落的研究笔记上，凯尔希认出了自己的笔迹。是关于 Mon3tr 稳定性的早期推演。\n\n笔记末尾写着一个未完成的公式——如果补全，可能强化 Mon3tr 的作战能力；如果销毁，则避免它落入他人之手。"
+tags = PackedStringArray("character:kaltsit")
+options = Array[Dictionary]([{
+"label": "补全公式",
+"effects": Array[Dictionary]([{
+"type": "add_charm",
+"charm_id": "operators_thread"
+}]),
+"reward_cards": PackedStringArray("tactical_briefing","discipline_note"),
+"result": "凯尔希在笔记边缘写下了最后几个符号。公式成立——Mon3tr 的作战协议得到了强化，获得了一枚干员线程模块。"
+}, {
+"label": "优化现有协议",
+"effects": Array[Dictionary]([{
+"type": "upgrade_random_card"
+}, {
+"type": "heal",
+"amount": 8
+}]),
+"reward_cards": PackedStringArray("stabilize_line"),
+"result": "凯尔希没有补全公式，而是参考其中的思路优化了现有卡组。一次小幅休整让队伍恢复了状态。"
+}, {
+"label": "销毁笔记",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}, {
+"type": "gain_gold",
+"amount": 15
+}]),
+"reward_cards": PackedStringArray("tactical_calm"),
+"result": "凯尔希划了根火柴。笔记化为灰烬，知识不会被敌人利用。下一场敌人会因为你的提前准备而变弱，路上还捡到了些散落的金币。"
+}])

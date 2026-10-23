@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_h04_diagnostic_chip"
+display_name = "诊断芯片"
+description = "写入战场读数的诊断芯片。无额外战斗效果，但能作为本局构筑记录保留。"
+slot_type = "charm"

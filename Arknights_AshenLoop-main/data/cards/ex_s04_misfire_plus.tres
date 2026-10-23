@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_next_tag_damage_bonus"
+amount = -3
+tag = "Shot"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_s04_misfire_plus"
+display_name = "哑火+"
+cost = 1
+card_type = "Status"
+tags = PackedStringArray("Status")
+description = "你的下一张 射击 牌 -3 伤害；消耗。"
+rarity = "Status"
+exhausts = true
+effects = [SubResource("1")]
+conditional_effects = []

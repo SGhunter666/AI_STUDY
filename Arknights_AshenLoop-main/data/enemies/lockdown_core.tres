@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lockdown_core"
+display_name = "纯粹源石"
+max_hp = 146
+gold_reward = 90
+tags = PackedStringArray("Boss","Siege")
+ai_profile = "tank"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 10,
+"label": "封锁重击 10"
+}, {
+"type": "attack",
+"value": 6,
+"label": "屏障火力 6"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "收容脉冲"
+}])

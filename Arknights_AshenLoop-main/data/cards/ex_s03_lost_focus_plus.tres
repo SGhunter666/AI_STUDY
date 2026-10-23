@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "mark_apply_penalty_this_turn"
+
+[resource]
+script = ExtResource("1")
+id = "ex_s03_lost_focus_plus"
+display_name = "失焦+"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse")
+description = "本回合你施加的 标记 -1；消耗。"
+rarity = "Curse"
+ethereal = true
+effects = [SubResource("1")]
+conditional_effects = []

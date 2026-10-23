@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "add_random_supports_to_hand_free"
+amount = 3
+amount_2 = 3
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "landship_wide_order_plus"
+display_name = "全舰级命令+"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tactic")
+description = "发现 告 并 3 临时 0-费用 支援 牌 你的手牌。"
+rarity = "Legendary"
+effects = [SubResource("1")]

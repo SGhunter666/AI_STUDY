@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "amiya_resonance_triage"
+title = "共振分诊"
+body = "医疗帐篷里，源石读数在同一刻抬高。伤员的呼吸、远处的爆炸声和阿米娅掌心的微光几乎连成一条线。\n\n医疗干员没有催促，只把记录板递过来：先稳定伤员，还是把这次异常读数转成下一场作战的准备。"
+tags = PackedStringArray("character:amiya")
+options = Array[Dictionary]([{
+"label": "先稳定伤员",
+"effects": Array[Dictionary]([{
+"type": "heal_percent",
+"amount": 18
+}]),
+"reward_cards": PackedStringArray("medical_evac_route","stabilize_line","discipline_note"),
+"result": "药剂推入静脉后，帐篷里终于安静下来。有人重新睡着，有人还能站起来替队伍搬一次弹药箱。"
+}, {
+"label": "记录共振波形",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "resonance_anchor"
+}]),
+"reward_cards": PackedStringArray("resonance_mark","phase_tap","focus_pulse"),
+"result": "异常波形被钉在记录仪里。下一次能量波动不会更温柔，但阿米娅至少知道该从哪里接住它。"
+}, {
+"label": "把压力转成战术窗口",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 4
+}, {
+"type": "set_flag",
+"flag": "next_battle_start_will_3"
+}]),
+"reward_cards": PackedStringArray("burn_will","controlled_overload","tactical_network"),
+"result": "她没有把疼痛说出口，只把命令提前下达。下一场战斗开始时，小队会更快进入状态。"
+}])

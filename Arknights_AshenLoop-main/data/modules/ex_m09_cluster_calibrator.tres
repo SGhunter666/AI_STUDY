@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m09_cluster_calibrator"
+display_name = "集束校准器"
+rarity = "Uncommon"
+description = "对有 标记 的敌人造成伤害时，额外 +1。"

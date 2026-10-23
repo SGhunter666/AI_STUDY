@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "temporary_ward"
+title = "临时隔离病房"
+body = "一间小店被改成临时病房。柜台上摆着药剂、绷带和没拆封的止血贴，数量一眼就能数完。\n\n医疗干员报出名单：有平民，有伤员，也有还能回到前线的人。补给不够，病房和下一场战斗只能各让一步，或者其中一边先被照顾。"
+options = Array[Dictionary]([{
+"label": "花费 20 金币稳定病房",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 20
+}, {
+"type": "set_flag",
+"flag": "accept_burden_1"
+}]),
+"reward_cards": PackedStringArray("discipline_note","tactical_calm"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop","ex_c27_team_callout"),
+"result": "钱换来了药和电池。病房的灯稳住了，医疗干员终于能把最危险的几个人先处理完。"
+}, {
+"label": "平均分配药品",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "enemy_hp_bonus_1"
+}]),
+"reward_cards": PackedStringArray("pulse_scan","focus_pulse"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan","ex_c14_tagged_signal"),
+"result": "药被拆成几份，谁都拿到一点，谁也不够安心。下一场敌人会更难缠，因为你们把准备时间留在了病房。"
+}, {
+"label": "把药留给前线",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "hesitation"
+}, {
+"type": "add_module",
+"module_id": "signal_booster"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "hesitation"
+}, {
+"type": "add_module",
+"module_id": "ex_m11_storm_permit"
+}]),
+"reward_cards": PackedStringArray("burn_will"),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order", "ex_c22_rapid_reload"),
+"result": "前线包拿走后，小队的下一场准备充足了。病房没有抱怨，只是帘子后面安静得太快。"
+}])

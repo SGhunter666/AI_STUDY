@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_per_target_resonance_consume_all"
+amount = 4
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "collapse_frequency_plus"
+display_name = "频域崩塌+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Resonance")
+description = "消耗目标全部共振，每层造成 4 点术式伤害。"
+rarity = "Uncommon"
+effects = [SubResource("1")]

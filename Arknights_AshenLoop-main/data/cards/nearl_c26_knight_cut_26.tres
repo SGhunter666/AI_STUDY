@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_if_block_bonus"
+amount = 8
+amount_2 = 2
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c26_knight_cut_26"
+display_name = "骑士短击"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Knight")
+description = "造成 8 点伤害；若拥有护盾，额外造成 2 点伤害。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "nearl_c26_knight_cut_26_plus"
+effects = [SubResource("1")]
+conditional_effects = []

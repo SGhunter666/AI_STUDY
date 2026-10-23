@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m05_first_counter_block"
+display_name = "回击护臂"
+rarity = "Common"
+description = "每场战斗第一次反击后获得 4 点护盾。"

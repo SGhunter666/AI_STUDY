@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_s06_clinical_fatigue"
+display_name = "临床疲劳"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse","Medical","Draw")
+description = "本回合少抽 1 张牌。消耗。"
+rarity = "Curse"
+exhausts = true
+upgraded_id = ""
+effects = []
+conditional_effects = []

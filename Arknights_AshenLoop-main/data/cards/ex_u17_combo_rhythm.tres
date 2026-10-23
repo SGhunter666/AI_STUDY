@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "combo_rhythm_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u17_combo_rhythm"
+display_name = "连段节奏"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Burst", "Tempo")
+description = "本回合每打出第 3 张牌，抽 1。"
+rarity = "Uncommon"
+upgraded_id = "ex_u17_combo_rhythm_plus"
+effects = [SubResource("1")]
+conditional_effects = []

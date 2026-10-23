@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "enter_burst"
+amount = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "next_shot_cost_reduction"
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "next_shot_cost_reduction_charges"
+target = "self"
+
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_b06_burst_entry_plus"
+display_name = "爆发入场+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Burst")
+description = "准备 爆发：下回合能量 +2、抽牌 +2。本回合下一张 射击 费用 -1，并抽 1。"
+rarity = "Starter"
+effects = [SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4")]
+conditional_effects = []

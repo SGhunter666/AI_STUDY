@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 7
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "cleanse_debuff"
+amount = 1
+target = "self"
+condition = "played_support_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "stabilize_line"
+display_name = "稳定战线"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support")
+description = "获得 7 护盾。 若支援 打出过 本回合， 1。"
+rarity = "Basic"
+upgraded_id = "stabilize_line_plus"
+effects = [SubResource("1"), SubResource("2")]

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+condition = "target_has_mark"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "apply_mark"
+amount = 2
+target = "enemy"
+condition = "not_player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c11_alternating_aim"
+display_name = "交替瞄准"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Mark", "Tempo")
+description = "若目标有 标记，抽 2；否则施加 2 标记。"
+rarity = "Common"
+upgraded_id = "ex_c11_alternating_aim_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

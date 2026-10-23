@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 8
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "add_card_to_hand"
+card_id = "overloaded_nerves"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nerve_burn"
+display_name = "神经灼烧"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload")
+description = "造成 8 点术式伤害。 加入 1 过载神经 你的手牌。"
+rarity = "Uncommon"
+upgraded_id = "nerve_burn_plus"
+effects = [SubResource("1"), SubResource("2")]

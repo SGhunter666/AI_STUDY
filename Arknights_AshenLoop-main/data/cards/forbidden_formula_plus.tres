@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 21
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "add_card_to_discard"
+card_id = "burn"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "forbidden_formula_plus"
+display_name = "禁式+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload")
+description = "造成 21 点术式伤害。将 1 张灼痕加入你的弃牌堆。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

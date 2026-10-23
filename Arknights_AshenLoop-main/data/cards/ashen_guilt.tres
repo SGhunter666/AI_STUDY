@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ashen_guilt"
+display_name = "灰烬愧意"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse")
+description = "无法打出。 回合结束： 若 生命 本回合， 1 生命。"
+rarity = "Curse"
+ethereal = true

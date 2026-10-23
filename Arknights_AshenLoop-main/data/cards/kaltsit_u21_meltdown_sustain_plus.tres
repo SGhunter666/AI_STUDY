@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 4
+amount_2 = 0
+target = "self"
+condition = "mon3tr_meltdown"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 2
+amount_2 = 0
+target = "self"
+condition = "not_mon3tr_meltdown"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+amount_2 = 0
+target = "self"
+condition = "mon3tr_meltdown"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_u21_meltdown_sustain_plus"
+display_name = "融毁维持+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Meltdown","Draw")
+description = "升级：融毁中修复 Mon3tr 4 点完整性。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = [SubResource("3")]

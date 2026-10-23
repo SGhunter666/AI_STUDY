@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "operator_assembly"
+title = "干员集会"
+body = "几支小队在楼梯间短暂汇合。有人带来了新的支援口令，有人递来刚整理好的升级清单，还有人把一套便携阵列放在地上等你签收。\n\n大家都很忙，没人能停留太久。你只能选一种东西带走。"
+options = Array[Dictionary]([{
+"label": "接受支援牌",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "dobermann_drill_order"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_c27_team_callout"}]),
+"reward_cards": PackedStringArray("exusiai_cover_fire","greythroat_suppression"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover","ex_u19_pl_cover_screen"),
+"result": "新的支援口令被写进牌组。下一次需要协同火力时，它会比临场喊话可靠得多。"
+}, {
+"label": "升级支援链",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "support_upgrade_credit"}]),
+"reward_cards": PackedStringArray("unified_battleplan"),
+"reward_cards_exusiai": PackedStringArray("ex_r20_skyline_call"),
+"result": "你没有立刻拿新装备，而是把升级名额留给支援链。后续整备时，这条线会被优先处理。"
+}, {
+"label": "收下阵列模块",
+"effects": Array[Dictionary]([{"type": "add_module", "module_id": "support_grid"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_module", "module_id": "ex_m16_heaven_circuit"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_u19_pl_cover_screen"),
+"result": "便携阵列接上终端后，支援信号稳定了不少。它占地方，但确实能减少之后的断连。"
+}])

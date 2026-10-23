@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "originium_aftershock"
+title = "源石余震"
+body = "离开回声走廊后，侦测器仍然每隔几分钟轻响一次。医疗干员检查后确认，不是新的感染源，而是上一处源石结构留下的残余反应。\n\n这东西可以利用，也可以处理。强行转化会伤身，但能换来更多战斗手段；把它压进模块里更稳；彻底净化则能恢复状态，只是前面拿到的源石机会也到此为止。"
+conditions = PackedStringArray("any:tune_resonance_apply", "not:avoided_fissure")
+options = Array[Dictionary]([{
+"label": "转化残余反应",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 4
+}, {
+"type": "add_card",
+"card_id": "resonance_harvest"
+}, {
+"type": "set_flag",
+"flag": "tune_resonance_apply"
+}]),
+"reward_cards": PackedStringArray("singing_fracture", "mirrored_wave"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 4
+}, {
+"type": "add_card",
+"card_id": "ex_u08_wide_tagging"
+}, {
+"type": "set_flag",
+"flag": "next_battle_start_energy_1"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_u14_chain_trigger", "ex_r09_terminal_lock"),
+"result": "残余反应被强行转进战斗序列。身体吃了一点亏，但下一场能用的战斗手段也更多了。"
+}, {
+"label": "封进模块外壳",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ashen_thread"
+}, {
+"type": "set_flag",
+"flag": "channel_upgrade_credit"
+}]),
+"reward_cards": PackedStringArray("echo_conduit"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m04_target_scope"
+}, {
+"type": "set_flag",
+"flag": "support_upgrade_credit"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_c14_tagged_signal"),
+"result": "工程干员把反应压进模块外壳。它不再乱跳，还能让后续的引导升级更容易安排。"
+}, {
+"label": "彻底净化",
+"effects": Array[Dictionary]([{
+"type": "heal_percent",
+"amount": 20
+}, {
+"type": "set_flag",
+"flag": "avoided_fissure"
+}]),
+"reward_cards": PackedStringArray("clear_intent"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan"),
+"result": "净化流程花了些时间。状态恢复了，侦测器也安静下来，只是那份额外收益也被一起清掉了。"
+}])

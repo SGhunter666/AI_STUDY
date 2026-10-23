@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 5
+amount_2 = 3
+target = "enemy"
+condition = "player_ammo_gte:2"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 2
+target = "self"
+condition = "player_ammo_gte:2"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+amount_2 = 0
+target = "enemy"
+condition = "ammo_restored_this_turn"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r02_precision_suppression_plus"
+display_name = "精确压制+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Shot", "MultiHit", "AmmoUse")
+description = "每次 5。"
+rarity = "Rare"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

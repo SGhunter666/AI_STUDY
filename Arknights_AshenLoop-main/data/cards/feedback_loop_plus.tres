@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_echo"
+amount = 50
+target = "self"
+condition = "target_has_resonance"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "apply_resonance"
+amount = 3
+target = "enemy"
+condition = "target_has_resonance"
+
+[resource]
+script = ExtResource("1")
+id = "feedback_loop_plus"
+display_name = "反馈回路+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Resonance", "Echo")
+description = "若 目标 共振， 获得 回响 并 施加 3 更多 共振。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]

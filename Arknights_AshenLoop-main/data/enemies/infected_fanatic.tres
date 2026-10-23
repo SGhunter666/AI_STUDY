@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "infected_fanatic"
+display_name = "感染狂徒"
+max_hp = 42
+gold_reward = 22
+tags = PackedStringArray("Infected","Reunion")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 11,
+"label": "狂乱重击 11"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "血性狂热"
+}])

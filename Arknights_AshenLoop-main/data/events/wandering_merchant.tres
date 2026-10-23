@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "wandering_merchant"
+title = "游商的旧帐篷"
+body = "一个披着破旧雨衣的游商在废墟间支起帐篷，挂着几件蒙尘的货物。\n\n\"这不是偷的，\"他说，\"是从死人身上捡的。死人不需要这些东西，活人需要。价格公道，童叟无欺——但我不收欠条。\""
+options = Array[Dictionary]([{
+"label": "购买护符（40 金币）",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 40
+}, {
+"type": "add_charm",
+"charm_id": "rhodes_pin"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 40
+}, {
+"type": "add_charm",
+"charm_id": "ex_h01_applepie_badge"
+}]),
+"effects_kaltsit": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 40
+}, {
+"type": "add_charm",
+"charm_id": "kaltsit_h01_clinical_tag"
+}]),
+"reward_cards": PackedStringArray("tactical_briefing"),
+"result": "游商递过来一枚旧徽章，擦了擦灰。\"罗德岛的人留下的，\"他说，\"现在归你了。\""
+}, {
+"label": "购买卡牌（25 金币）",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 25
+}, {
+"type": "add_card",
+"card_id": "resonance_burst"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 25
+}, {
+"type": "add_card",
+"card_id": "ex_b06_burst_entry"
+}]),
+"reward_cards": PackedStringArray("burn_will"),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order"),
+"result": "游商从箱底翻出一张作战指令，字迹模糊但思路清晰。\"这个能让你打得更狠一点。\""
+}, {
+"label": "听他讲情报",
+"effects": Array[Dictionary]([{
+"type": "lose_gold",
+"amount": 10
+}, {
+"type": "set_flag",
+"flag": "floor_first_support_double"
+}]),
+"reward_cards": PackedStringArray("tactical_calm"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "游商收下金币，压低声音：\"前面那层有个补给点被遗弃了，支援物资还留着。本层第一张支援牌会被额外执行一次。\""
+}])

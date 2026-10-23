@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+status_id = "forbidden_crown_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "forbidden_crown"
+display_name = "禁忌冠冕"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Overload", "Arts")
+description = "能力。 你的术式 牌 造成 +4 伤害。 回合结束： 获得 1 过载。"
+rarity = "Rare"
+upgraded_id = "forbidden_crown_plus"
+effects = [SubResource("1")]

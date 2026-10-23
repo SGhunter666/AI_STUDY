@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_return_1_command_from_discard_to"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c16_command_recall"
+display_name = "指令回收"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Command")
+description = "从弃牌堆将 1 张指令牌返回手牌；其本回合费用 -1。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c16_command_recall_plus"
+effects = [SubResource("1")]
+conditional_effects = []

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+target = "enemy"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 3
+target = "enemy"
+condition = "target_has_resonance"
+
+[resource]
+script = ExtResource("1")
+id = "split_tone_plus"
+display_name = "分裂音+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Resonance")
+description = "造成 5 术式 两次。 若 目标 共振， 造成 3 更多。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]

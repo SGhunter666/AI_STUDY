@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_mon3tr_auto_repair_bonus"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+amount_2 = 0
+target = "self"
+status_id = "mon3tr_perpetual_maintenance_active"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+amount_2 = 0
+target = "self"
+status_id = "mon3tr_perpetual_maintenance_draw"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_l07_perpetual_maintenance_plus"
+display_name = "永续维护+"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Mon3tr","Meltdown","Protocol")
+description = "升级：每回合第一次自动修复时抽 1 张牌。"
+rarity = "Legendary"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

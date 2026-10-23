@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_support_draw_trigger"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "field_command"
+display_name = "战场指令"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tactic")
+description = "第一张 支援 打出 本回合 抽牌 1。"
+rarity = "Basic"
+upgraded_id = "field_command_plus"
+effects = [SubResource("1")]

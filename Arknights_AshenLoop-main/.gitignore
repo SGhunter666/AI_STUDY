@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+.import/
+/android/
+build/
+backups/
+*.tmp
+.DS_Store
+.claude/
+__pycache__/
+*.pyc
+tmp/
+test_output.txt
+/godot
+/godot.exe

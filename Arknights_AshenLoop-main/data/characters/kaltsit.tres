@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharacterData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit"
+display_name = "凯尔希"
+max_hp = 72
+starting_energy = 4
+combat_resource_name = "完整性"
+resource_max = 10
+passive_id = "mon3tr_protocol"
+starter_deck = PackedStringArray("kaltsit_b01_surgical_strike","kaltsit_b01_surgical_strike","kaltsit_b02_tactical_guard","kaltsit_b02_tactical_guard","kaltsit_b03_field_treatment","kaltsit_b04_structure_repair","kaltsit_b04_structure_repair","kaltsit_b05_mon3tr_command","kaltsit_b05_mon3tr_command","kaltsit_b07_clinical_scheduling")
+starter_charms = PackedStringArray()
+unlock_flags = PackedStringArray()

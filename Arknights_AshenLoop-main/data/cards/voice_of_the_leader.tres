@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+status_id = "voice_of_the_leader_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "voice_of_the_leader"
+display_name = "领袖之声"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Support")
+description = "能力。本场战斗中，每打出第 2 张支援牌，生成 1 张临时 0 费术式牌。"
+rarity = "Legendary"
+upgraded_id = "voice_of_the_leader_plus"
+effects = [SubResource("1")]

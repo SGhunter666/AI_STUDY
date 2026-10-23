@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "slug_broodmother"
+display_name = "增殖源石虫母体"
+max_hp = 36
+gold_reward = 24
+tags = PackedStringArray("Originium","Slug","Support")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "虫群呼唤"
+}, {
+"type": "attack",
+"value": 8,
+"label": "母体撕咬 8"
+}])

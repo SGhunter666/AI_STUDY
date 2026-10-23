@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_energy"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u05_tactical_beat"
+display_name = "战术节拍"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Tempo")
+description = "若你本回合已打出 2 张牌，获得 1 能量并抽 1。"
+rarity = "Uncommon"
+upgraded_id = "ex_u05_tactical_beat_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

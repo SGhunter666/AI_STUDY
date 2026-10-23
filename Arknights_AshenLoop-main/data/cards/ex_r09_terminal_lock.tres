@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 4
+status_id = "first_shot_vs_mark_bonus_static"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "terminal_lock_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r09_terminal_lock"
+display_name = "终点锁头"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Mark")
+description = "带 标记 的敌人受到你的第一张 射击 时，额外再受 4 伤害。"
+rarity = "Rare"
+upgraded_id = "ex_r09_terminal_lock_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

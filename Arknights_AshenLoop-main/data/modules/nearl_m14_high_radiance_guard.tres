@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m14_high_radiance_guard"
+display_name = "高光护阵"
+rarity = "Rare"
+description = "拥有至少 4 层光耀时，获得护盾额外 +1。"

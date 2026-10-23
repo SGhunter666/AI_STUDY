@@ -1,0 +1,147 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/event_scene_v2.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/event_bg.jpg" id="2"]
+
+[node name="EventScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundShade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.06, 0.46)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = 42.0
+offset_right = -54.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+self_modulate = Color(1, 1, 1, 1)
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="HeaderPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="Panel/Margin/VBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 12
+
+[node name="HeaderVBox" type="VBoxContainer" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Eyebrow" type="Label" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 15
+text = "事件档案"
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 30
+text = "事件"
+
+[node name="InfoPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 156)
+layout_mode = 2
+
+[node name="InfoMargin" type="MarginContainer" parent="Panel/Margin/VBox/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="BodyScroll" type="ScrollContainer" parent="Panel/Margin/VBox/InfoPanel/InfoMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Body" type="Label" parent="Panel/Margin/VBox/InfoPanel/InfoMargin/BodyScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+text = "正文"
+
+[node name="ContentScroll" type="ScrollContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Options" type="VBoxContainer" parent="Panel/Margin/VBox/ContentScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="FooterPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+
+[node name="FooterMargin" type="MarginContainer" parent="Panel/Margin/VBox/FooterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="FooterRow" type="HBoxContainer" parent="Panel/Margin/VBox/FooterPanel/FooterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="FooterHint" type="Label" parent="Panel/Margin/VBox/FooterPanel/FooterMargin/FooterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_alignment = 1
+autowrap_mode = 3
+text = "提示"
+
+[node name="Confirm" type="Button" parent="Panel/Margin/VBox/FooterPanel/FooterMargin/FooterRow"]
+custom_minimum_size = Vector2(220, 52)
+layout_mode = 2
+disabled = true
+text = "继续"

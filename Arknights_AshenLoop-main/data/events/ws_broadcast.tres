@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ws_broadcast"
+title = "W 的广播"
+body = "通讯频道被人抢占。静电声后，W 的声音从耳机里钻出来，轻得像一句玩笑，背景里却能听见爆炸前的计时声。\n\n她故意留下了坐标、触发频率和几段假信号。追过去，多半会踩进她布好的局；慢慢拆，也许能看懂她下一次想做什么；直接离开，则能保住当前状态。"
+options = Array[Dictionary]([{
+"label": "追踪信号并逼出冲突",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ashen_thread"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_3"
+}]),
+"reward_cards": PackedStringArray("burn_will","overclock_arts"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m15_gunfire_halo"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_3"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm", "ex_c17_burst_order"),
+"result": "你顺着信号追过去，果然撞上伏击。队伍带回了能用的东西，也带回了一身爆炸余波。"
+}, {
+"label": "拆解广播规律",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "w_intents_clear"
+}]),
+"reward_cards": PackedStringArray("pulse_scan"),
+"reward_cards_exusiai": PackedStringArray("ex_u11_headline_rhythm"),
+"result": "广播被拆成几段可读的模式。W 仍然危险，但她的下一步不再完全像运气。"
+}, {
+"label": "转身离开",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "lost_hidden_progress"
+}]),
+"reward_cards": PackedStringArray("rescue_corridor"),
+"reward_cards_exusiai": PackedStringArray("ex_u19_pl_cover_screen"),
+"result": "小队没有接她的邀请。撤离很顺利，只是那串坐标被你划掉时，所有人都知道里面可能藏着东西。"
+}])

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_radiance"
+amount = 1
+amount_2 = 0
+target = "self"
+condition = "player_has_block"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 3
+amount_2 = 0
+target = "self"
+condition = "player_has_block"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 5
+amount_2 = 0
+target = "self"
+condition = "not_player_has_block"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_b10_modest_glow_plus"
+display_name = "微光守则+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Radiance","Shield")
+description = "若拥有护盾，获得 1 层光耀并获得 3 点护盾；否则获得 5 点护盾。"
+rarity = "Starter"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

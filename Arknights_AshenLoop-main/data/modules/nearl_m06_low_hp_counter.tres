@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m06_low_hp_counter"
+display_name = "残线锋芒"
+rarity = "Common"
+description = "生命不高于 40% 时，反击伤害 +2。"

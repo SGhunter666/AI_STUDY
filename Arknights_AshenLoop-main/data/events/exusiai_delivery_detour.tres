@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "exusiai_delivery_detour"
+title = "企鹅物流绕行单"
+body = "一张被雨水泡软的派送单贴在路牌上，收件地址正好落在交火区背后。能天使扫了一眼编号，确认那不是普通货物。\n\n箱子里可能是补给，也可能是麻烦。更糟的是，委托人写着：请务必准时。"
+tags = PackedStringArray("character:exusiai")
+options = Array[Dictionary]([{
+"label": "先抢回货箱",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 18
+}]),
+"reward_cards": PackedStringArray("ex_c25_pl_supply_drop","ex_c27_team_callout","ex_u03_reload_plan"),
+"result": "货箱被从废车底下拖出来，封条还在。里面的补给够用，账单也够企鹅物流再笑一阵。"
+}, {
+"label": "把路线改成屋顶穿行",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "preview_two_nodes"
+}]),
+"reward_cards": PackedStringArray("ex_u22_air_cover","ex_c14_tagged_signal","ex_c17_burst_order"),
+"result": "能天使沿着广告牌和消防梯重新标路线。下一段地图不再只看街面，危险和机会都会更早暴露。"
+}, {
+"label": "拆开备用弹匣箱",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m03_fast_feeder"
+}]),
+"reward_cards": PackedStringArray("ex_c22_rapid_reload","ex_u17_combo_rhythm","ex_r07_execution_drill"),
+"result": "弹匣一排排卡进战术包，重量刚刚好。能天使吹了声口哨，像是下一场交火已经提前开始。"
+}])

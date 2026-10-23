@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m14_hunter_clearance"
+display_name = "精准猎杀许可"
+rarity = "Rare"
+description = "对带 标记 的敌人的第一张 射击 无视 50% 护盾。"

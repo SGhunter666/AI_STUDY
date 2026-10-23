@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 6
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "played_shot_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c26_cover_glide"
+display_name = "掩护滑行"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tempo")
+description = "抽 1，获得 6 护盾；若本回合打出过 射击，再抽 1。"
+rarity = "Common"
+upgraded_id = "ex_c26_cover_glide_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

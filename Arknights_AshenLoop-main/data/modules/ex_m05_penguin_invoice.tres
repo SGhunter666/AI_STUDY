@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m05_penguin_invoice"
+display_name = "企鹅物流票据"
+rarity = "Common"
+description = "每回合第一次打出 支援 后，获得 1 护盾并恢复 1 弹药。"

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 8
+target = "self"
+condition = "player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u24_cross_cover_plus"
+display_name = "交叉掩护+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tempo")
+description = "获得 8 护盾。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

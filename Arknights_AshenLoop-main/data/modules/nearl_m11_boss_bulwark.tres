@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m11_boss_bulwark"
+display_name = "强敌壁垒"
+rarity = "Rare"
+description = "Boss 战第一回合开始时额外获得 8 点护盾。"

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_first_medical_each_turn_discount"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_u13_tactical_ecosystem"
+display_name = "战术生态"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Command","Medical","Protocol")
+description = "每回合第一张医疗牌使下一张指令牌费用 -1；第一张指令牌使下一张医疗牌费用 -1。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = "kaltsit_u13_tactical_ecosystem_plus"
+effects = [SubResource("1")]
+conditional_effects = []

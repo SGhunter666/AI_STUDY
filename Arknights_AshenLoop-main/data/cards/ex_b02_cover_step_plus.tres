@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 7
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "played_shot_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_b02_cover_step_plus"
+display_name = "掩体步+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Tempo")
+description = "7 护盾。"
+rarity = "Starter"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

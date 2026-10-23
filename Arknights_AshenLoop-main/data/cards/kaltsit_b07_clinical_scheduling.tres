@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw_discount_medical_command"
+amount = 2
+amount_2 = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_b07_clinical_scheduling"
+display_name = "临床调度"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Draw","Medical")
+description = "抽 2 张牌；首张抽到的医疗或指令牌本回合费用 -1。"
+rarity = "Starter"
+exhausts = false
+upgraded_id = "kaltsit_b07_clinical_scheduling_plus"
+effects = [SubResource("1")]
+conditional_effects = []

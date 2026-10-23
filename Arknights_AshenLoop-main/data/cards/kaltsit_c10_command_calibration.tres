@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_next_tag_damage_bonus"
+amount = 4
+amount_2 = 0
+target = "self"
+tag = "Command"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c10_command_calibration"
+display_name = "指令校准"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Command")
+description = "本回合下一张指令牌伤害 +4。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c10_command_calibration_plus"
+effects = [SubResource("1")]
+conditional_effects = []

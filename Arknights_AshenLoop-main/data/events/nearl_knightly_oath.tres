@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_knightly_oath"
+title = "骑士誓言"
+body = "墙面上还贴着褪色的竞技海报，写着胜利、荣誉和一堆早就没人相信的漂亮话。\n\n临光停下脚步，把手按在盾缘。她不是为了海报里的词停下，而是为了确认自己接下来要守住什么。"
+tags = PackedStringArray("character:nearl")
+options = Array[Dictionary]([{
+"label": "重申守护的界线",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "nearl_m01_first_guard"
+}]),
+"reward_cards": PackedStringArray("nearl_c06_line_guard","nearl_r06_last_defense_06","nearl_u17_radiant_bulwark_17"),
+"result": "她把盾重新扣紧。誓言没有让街区变安全，但让每个人都知道该站到哪里。"
+}, {
+"label": "把誓言化成反击",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "nearl_m02_counter_edge"
+}]),
+"reward_cards": PackedStringArray("nearl_c18_counter_order_18","nearl_u07_guarded_counter_07","nearl_r01_great_counter_01"),
+"result": "临光向前一步，盾面擦过地面。她不需要喊口号，敌人会在下一次进攻里听懂。"
+}, {
+"label": "以更高代价换取日冕般的突破",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 6
+}, {
+"type": "add_card",
+"card_id": "nearl_r03_radiant_lance_03"
+}]),
+"reward_cards": PackedStringArray("nearl_u02_radiance_check_02","nearl_c22_field_vow_22","nearl_r06_last_defense_06"),
+"result": "光从盾缘亮起，短促却锋利。她知道这会消耗体力，但有些路只能靠正面打开。"
+}])

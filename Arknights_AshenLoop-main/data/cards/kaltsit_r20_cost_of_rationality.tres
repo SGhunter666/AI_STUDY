@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 3
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "lose_hp"
+amount = 3
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r20_cost_of_rationality"
+display_name = "理性代价"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Draw")
+description = "失去 3 点生命，抽 2 张牌，修复 Mon3tr 3 点完整性。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = "kaltsit_r20_cost_of_rationality_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

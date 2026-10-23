@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 3
+amount_2 = 2
+target = "enemy"
+condition = "player_ammo_gte:1&player_has_burst"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 4
+amount_2 = 0
+target = "enemy"
+condition = "not_player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c18_storm_tap"
+display_name = "风暴连点"
+cost = 0
+card_type = "Attack"
+tags = PackedStringArray("Shot", "Burst", "AmmoUse")
+description = "若你有 爆发，消耗 1 弹药，造成 3 伤害两次；否则造成 4 一次。"
+rarity = "Common"
+upgraded_id = "ex_c18_storm_tap_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

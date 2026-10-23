@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 4
+amount_2 = 4
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c18_protective_treatment"
+display_name = "保护性治疗"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Medical","Heal","Block")
+description = "治疗 4 点生命，并获得等同于治疗量一半的护盾。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c18_protective_treatment_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

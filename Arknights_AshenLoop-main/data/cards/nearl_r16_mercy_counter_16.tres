@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 14
+amount_2 = 0
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 2
+amount_2 = 0
+target = "self"
+condition = "player_has_block"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 5
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_r16_mercy_counter_16"
+display_name = "仁慈反击"
+cost = 3
+card_type = "Attack"
+tags = PackedStringArray("Counter","Heal")
+description = "造成 14 点伤害。若拥有护盾，恢复 2 点生命。本回合获得反击 5。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = "nearl_r16_mercy_counter_16_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

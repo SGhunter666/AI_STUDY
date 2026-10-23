@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 17
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 10
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_r08_high_wall_08_plus"
+display_name = "日冕壁垒+"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Shield","Counter","Barrier")
+description = "获得 17 点护盾。本回合获得反击 10。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

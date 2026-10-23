@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "panic_static"
+display_name = "恐慌静电"
+cost = 99
+card_type = "Curse"
+description = "无法打出。 抽到时： 你的第一张 牌 本回合 费用 +1。"
+rarity = "Curse"
+ethereal = true

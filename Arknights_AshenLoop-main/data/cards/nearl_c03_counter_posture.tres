@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 4
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c03_counter_posture"
+display_name = "反击姿态"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Counter")
+description = "本回合获得反击 4。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "nearl_c03_counter_posture_plus"
+effects = [SubResource("1")]
+conditional_effects = []

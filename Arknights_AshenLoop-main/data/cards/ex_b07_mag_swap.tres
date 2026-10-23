@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_ammo"
+amount = 2
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_b07_mag_swap"
+display_name = "弹匣切换"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("AmmoGain", "Tempo")
+description = "弃 1，恢复 2 弹药。"
+rarity = "Starter"
+upgraded_id = "ex_b07_mag_swap_plus"
+effects = [SubResource("1")]
+conditional_effects = []

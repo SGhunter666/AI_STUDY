@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_mon3tr_low_integrity_no_penalty"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_u14_low_integrity_stabilizer_plus"
+display_name = "低血稳定+"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Mon3tr","Repair","Protocol")
+description = "升级：临界时回合开始额外修复 1 点完整性。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

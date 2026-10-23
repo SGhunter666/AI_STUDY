@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 10
+amount_2 = 10
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 5
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r09_lifeline_reconstruction"
+display_name = "生命线重构"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Medical","Heal")
+description = "治疗 10 点生命，修复 Mon3tr 5 点完整性。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = "kaltsit_r09_lifeline_reconstruction_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

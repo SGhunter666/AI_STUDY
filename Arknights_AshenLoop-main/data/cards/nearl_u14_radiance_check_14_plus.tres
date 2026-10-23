@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 8
+amount_2 = 0
+target = "self"
+condition = "player_radiance_gte:2"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 4
+amount_2 = 0
+target = "self"
+condition = "not_player_radiance_gte:2"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_u14_radiance_check_14_plus"
+display_name = "光耀回环+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Radiance","Counter")
+description = "若拥有至少 2 层光耀，本回合获得反击 8；否则获得反击 4。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

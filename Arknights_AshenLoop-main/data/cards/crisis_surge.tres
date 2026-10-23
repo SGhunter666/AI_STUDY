@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 1
+target = "self"
+condition = "not_player_hp_lte_percent:50"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 2
+target = "self"
+condition = "player_hp_lte_percent:50"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+condition = "player_hp_lte_percent:50"
+
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2")
+effect_type = "gain_energy"
+amount = 1
+target = "self"
+condition = "player_hp_lte_percent:50"
+
+[resource]
+script = ExtResource("1")
+id = "crisis_surge"
+display_name = "危机激化"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("WillGain")
+description = "若高于 50% 生命， 获得 1 意志。 否则 获得 2 意志， 抽 2 张牌， 并 获得 1 能量。"
+rarity = "Common"
+upgraded_id = "crisis_surge_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4")]

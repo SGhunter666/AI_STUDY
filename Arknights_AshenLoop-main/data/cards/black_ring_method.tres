@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_plus_overload"
+amount = 10
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "black_ring_method"
+display_name = "黑环术式"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload")
+description = "造成 10 点术式伤害。 造成 额外 伤害 等于 你的过载。"
+rarity = "Uncommon"
+upgraded_id = "black_ring_method_plus"
+effects = [SubResource("1")]

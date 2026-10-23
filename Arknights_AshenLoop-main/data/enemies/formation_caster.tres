@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "formation_caster"
+display_name = "群聚术阵师"
+max_hp = 84
+gold_reward = 62
+tags = PackedStringArray("Elite","Arts","Reunion")
+ai_profile = "caster"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "术式法阵"
+}, {
+"type": "attack",
+"value": 6,
+"label": "法阵脉冲 6"
+}, {
+"type": "attack",
+"value": 12,
+"label": "聚焦术式 12"
+}])

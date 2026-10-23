@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_evacuation_line"
+title = "撤离线上的盾"
+body = "人群被堵在临时路障前，后方的爆炸声越来越近。临光没有催他们快走，只把盾立在队伍和街口之间。\n\n这条线可以守，也可以推进。区别在于，谁先承担第一轮冲击。"
+tags = PackedStringArray("character:nearl")
+options = Array[Dictionary]([{
+"label": "立盾等人群通过",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 8
+}, {
+"type": "add_module",
+"module_id": "nearl_m03_opening_barrier"
+}]),
+"reward_cards": PackedStringArray("nearl_c02_small_guard","nearl_c06_line_guard","nearl_u17_radiant_bulwark_17"),
+"result": "撤离队伍从盾后通过。临光最后才后退，肩甲上多出几道划痕，但队伍重新稳住了。"
+}, {
+"label": "用反击打开通路",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "nearl_u07_guarded_counter_07"
+}]),
+"reward_cards": PackedStringArray("nearl_c18_counter_order_18","nearl_r01_great_counter_01","nearl_u04_shielded_assault_04"),
+"result": "敌人的第一波冲撞被正面接下，下一秒便被反推回去。人群看见通路，开始自己向前跑。"
+}, {
+"label": "把光耀留给最后一段",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("nearl_u02_radiance_check_02","nearl_r03_radiant_lance_03","nearl_c22_field_vow_22"),
+"result": "她没有立刻爆发，而是把力量留在队伍最容易散开的路口。下一场交战开始时，这份耐心会先一步生效。"
+}])

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m07_spare_pouch"
+display_name = "备用腰包"
+rarity = "Uncommon"
+description = "最大 弹药 +1。"

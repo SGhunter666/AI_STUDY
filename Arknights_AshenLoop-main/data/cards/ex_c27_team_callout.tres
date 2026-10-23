@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 2
+status_id = "team_callout_block"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "team_callout_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c27_team_callout"
+display_name = "友军呼应"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support")
+description = "本回合每打出 1 张 射击，获得 2 护盾。"
+rarity = "Common"
+upgraded_id = "ex_c27_team_callout_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

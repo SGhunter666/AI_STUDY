@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "overloaded_nerves"
+display_name = "过载神经"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Status", "Overload")
+description = "无法打出。 回合结束： 获得 1 过载。 下一次， 抽 1 张牌 额外 牌。"
+rarity = "Status"
+ethereal = true

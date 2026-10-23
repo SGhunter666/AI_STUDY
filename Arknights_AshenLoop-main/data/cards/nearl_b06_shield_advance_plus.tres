@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+amount_2 = 0
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 4
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_b06_shield_advance_plus"
+display_name = "持盾推进+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Shield","Knight","Barrier")
+description = "造成 5 点伤害。获得 4 点护盾。"
+rarity = "Starter"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

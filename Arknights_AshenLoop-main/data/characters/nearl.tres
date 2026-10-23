@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharacterData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl"
+display_name = "临光"
+max_hp = 80
+starting_energy = 4
+combat_resource_name = "意志"
+resource_max = 10
+passive_id = "luminous_guard"
+starter_deck = PackedStringArray("nearl_b01_knight_strike","nearl_b01_knight_strike","nearl_b02_guard_pulse","nearl_b02_guard_pulse","nearl_b03_radiant_strike","nearl_b04_radiant_oath","nearl_b05_counter_guard","nearl_b06_shield_advance","nearl_b07_hold_the_line","nearl_b08_luminous_command")
+starter_charms = PackedStringArray("nearl_h01_kazimierz_badge","nearl_h02_oath_pin")
+unlock_flags = PackedStringArray()

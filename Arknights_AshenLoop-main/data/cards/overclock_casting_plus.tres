@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_next_tag_damage_bonus"
+amount = 8
+tag = "Arts"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_overload"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "overclock_casting_plus"
+display_name = "超频施放+"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Arts", "Overload")
+description = "本回合下一张术式牌伤害 +8。获得 1 层过载。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

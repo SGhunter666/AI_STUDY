@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 10
+amount_2 = 0
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage_consume_all_mark"
+amount = 10
+amount_2 = 4
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "ex_l06_final_calibration_plus"
+display_name = "最终矫正+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Mark", "Finisher", "AmmoUse")
+description = "每层 4。"
+rarity = "Legendary"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_healing_overflow_repairs_mon3tr"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_u12_overflow_repair"
+display_name = "溢出转修复"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Mon3tr","Medical","Heal","Repair","Protocol","Overflow")
+description = "治疗溢出会修复 Mon3tr。"
+rarity = "Uncommon"
+exhausts = false
+upgraded_id = "kaltsit_u12_overflow_repair_plus"
+effects = [SubResource("1")]
+conditional_effects = []

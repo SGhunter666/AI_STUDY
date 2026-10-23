@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 24
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 16
+target = "enemy"
+condition = "player_hp_lte_percent:30"
+
+[resource]
+script = ExtResource("1")
+id = "last_argument_plus"
+display_name = "最后论证+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload")
+description = "造成 24 点术式伤害。 若生命 30% 或 低， 造成 16 更多。"
+rarity = "Rare"
+effects = [SubResource("1"), SubResource("2")]

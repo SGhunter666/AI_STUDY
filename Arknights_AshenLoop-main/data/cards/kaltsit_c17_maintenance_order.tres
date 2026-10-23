@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 2
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage_by_integrity"
+amount = 0
+amount_2 = 0
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c17_maintenance_order"
+display_name = "维护命令"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Mon3tr","Repair")
+description = "修复 Mon3tr 2 点完整性，然后 Mon3tr 造成等同于当前完整性的伤害。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c17_maintenance_order_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

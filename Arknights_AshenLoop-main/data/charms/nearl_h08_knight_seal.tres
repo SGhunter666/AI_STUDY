@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_h08_knight_seal"
+display_name = "骑士封印"
+description = "高光耀时反击构筑更容易成型。"
+slot_type = "charm"

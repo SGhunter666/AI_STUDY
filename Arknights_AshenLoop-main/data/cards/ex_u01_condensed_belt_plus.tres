@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_max_ammo_bonus"
+amount = 2
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u01_condensed_belt_plus"
+display_name = "压缩弹链+"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("AmmoGain")
+description = "弹药 上限 +2。"
+rarity = "Uncommon"
+effects = [SubResource("1")]
+conditional_effects = []

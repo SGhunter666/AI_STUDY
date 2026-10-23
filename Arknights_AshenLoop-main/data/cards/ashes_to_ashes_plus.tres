@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_all_plus_overload"
+amount = 13
+target = "all_enemies"
+
+[resource]
+script = ExtResource("1")
+id = "ashes_to_ashes_plus"
+display_name = "灰归灰+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload", "AOE")
+description = "对所有敌人造成 13 点术式伤害， 你的当前 过载。"
+rarity = "Rare"
+effects = [SubResource("1")]

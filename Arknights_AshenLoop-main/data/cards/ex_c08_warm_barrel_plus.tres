@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_ammo"
+amount = 1
+target = "self"
+condition = "player_has_burst"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "player_has_burst"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "next_shot_damage_bonus"
+target = "self"
+condition = "player_has_burst"
+
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "next_shot_damage_bonus_charges"
+target = "self"
+condition = "player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c08_warm_barrel_plus"
+display_name = "弹道热身+"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Tempo", "Burst")
+description = "并使下一张 射击 +1 伤害。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4")]
+conditional_effects = []

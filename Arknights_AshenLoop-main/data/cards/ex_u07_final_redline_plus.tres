@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 6
+amount_2 = 0
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage_plus_mark"
+amount = 6
+amount_2 = 1
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u07_final_redline_plus"
+display_name = "终点红线+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Shot", "Mark", "Finisher", "AmmoUse")
+description = "基础 10。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "shattered_focus"
+display_name = "破碎专注"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse")
+description = "无法打出。 抽到时： 1 意志。"
+rarity = "Curse"
+ethereal = true

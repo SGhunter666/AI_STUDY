@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "reunion_medic"
+display_name = "整合医疗协助员"
+max_hp = 33
+gold_reward = 18
+tags = PackedStringArray("Reunion","Support")
+ai_profile = "debuffer"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "紧急治疗"
+}, {
+"type": "attack",
+"value": 6,
+"label": "防卫射击 6"
+}])

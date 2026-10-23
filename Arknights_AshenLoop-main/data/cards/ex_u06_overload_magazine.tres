@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "fill_ammo"
+amount = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "overload_magazine_discard_pending"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u06_overload_magazine"
+display_name = "过量上膛"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("AmmoGain")
+description = "恢复到满 弹药，但本回合结束后弃 1。"
+rarity = "Uncommon"
+upgraded_id = "ex_u06_overload_magazine_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

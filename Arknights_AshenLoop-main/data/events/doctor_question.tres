@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "doctor_question"
+title = "博士的提问"
+body = "临时指挥点里，博士没有立刻下命令。屏幕上同时亮着三类请求：伤员转运、目标突破、以及一条风险更高但回报更大的路线。\n\n博士只问你一句：接下来，行动的优先级是什么？这个回答会影响之后奖励更偏向哪类牌。"
+options = Array[Dictionary]([{
+"label": "偏向理想",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "doctor_ideal"}]),
+"reward_cards": PackedStringArray("medical_evac_route","stabilize_line"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop","ex_u22_air_cover"),
+"result": "行动记录被标为救援优先。之后的奖励会更容易出现治疗和支援牌。"
+}, {
+"label": "偏向效率",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "doctor_efficiency"}]),
+"reward_cards": PackedStringArray("final_vector","grand_equation"),
+"reward_cards_exusiai": PackedStringArray("ex_r07_execution_drill","ex_r11_angelic_storm"),
+"result": "行动记录被标为效率优先。之后的奖励会更容易偏向爆发和高价值选项。"
+}, {
+"label": "偏向承担",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "doctor_burden"}, {"type": "set_flag", "flag": "accept_burden_3"}]),
+"reward_cards": PackedStringArray("shared_burden","controlled_overload"),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order","ex_r14_endless_chain"),
+"result": "行动记录被标为高风险承担。之后的奖励会更容易出现透支、爆发和代价型选择。"
+}])

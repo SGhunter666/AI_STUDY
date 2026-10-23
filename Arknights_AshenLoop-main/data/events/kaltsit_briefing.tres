@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_briefing"
+title = "凯尔希的战术简报"
+body = "部署窗口关闭前，凯尔希递来一份简报。纸面很薄，内容却不轻：新增感染源、敌方巡逻变动、两处可能的伏击点，全都被标了出来。\n\n她没有替你选路，只指出继续盲目前进会付出什么代价。你可以换路线情报，走稳态方案，或者牺牲一点眼前节奏，换取更稀有的支援。"
+options = Array[Dictionary]([{
+"label": "索取路线情报",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "preview_two_nodes"
+}]),
+"reward_cards": PackedStringArray("pulse_scan","signal_relay"),
+"reward_cards_exusiai": PackedStringArray("ex_c14_tagged_signal","ex_u11_headline_rhythm"),
+"result": "路线情报被写进地图。前面仍然危险，但你至少能提前看见两处节点。"
+}, {
+"label": "选择冷静路线",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "tactical_calm"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_u03_reload_plan"
+}]),
+"reward_cards": PackedStringArray(),
+"result": "小队按简报调整节奏。它不会替你赢下战斗，但能让下一次开局少一点慌乱。"
+}, {
+"label": "用节奏换取稀有支援",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "command_sync"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_c27_team_callout"
+}]),
+"reward_cards": PackedStringArray("discipline_note"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover"),
+"result": "你接受了较慢的部署方案，换来更精准的支援路线。凯尔希只点了一下头，表示记录已更新。"
+}])

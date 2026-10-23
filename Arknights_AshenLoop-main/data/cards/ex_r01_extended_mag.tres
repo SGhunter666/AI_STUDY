@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_max_ammo_bonus"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "battle_start_bonus_ammo"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r01_extended_mag"
+display_name = "扩容弹匣"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("AmmoGain")
+description = "弹药 上限 +2；战斗开始时额外恢复 1 弹药。"
+rarity = "Rare"
+upgraded_id = "ex_r01_extended_mag_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

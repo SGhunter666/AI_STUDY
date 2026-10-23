@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 20
+amount_2 = 0
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_counter"
+amount = 8
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_l05_knight_answer_05"
+display_name = "骑士的回答"
+cost = 3
+card_type = "Attack"
+tags = PackedStringArray("Knight","Counter")
+description = "造成 20 点伤害。本回合获得反击 8。"
+rarity = "Legendary"
+exhausts = false
+upgraded_id = "nearl_l05_knight_answer_05_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 36
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "apply_status"
+amount = 2
+status_id = "vulnerable"
+target = "enemy"
+condition = "player_will_gte:5"
+
+[resource]
+script = ExtResource("1")
+id = "final_vector_plus"
+display_name = "终向量+"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts")
+description = "造成 36 术式。 若意志 >= 5， 施加 2 易伤。"
+rarity = "Rare"
+effects = [SubResource("1"), SubResource("2")]

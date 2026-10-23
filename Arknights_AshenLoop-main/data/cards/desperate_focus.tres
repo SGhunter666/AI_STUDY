@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "lose_hp"
+amount = 4
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 3
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "desperate_focus"
+display_name = "绝境专注"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Will")
+description = "失去 4 点生命。 抽 3 张牌。"
+rarity = "Common"
+upgraded_id = "desperate_focus_plus"
+effects = [SubResource("1"), SubResource("2")]

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_radiance"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 6
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c22_field_vow_22_plus"
+display_name = "护盾交错+"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Radiance","Vow")
+description = "获得 1 层光耀。获得 6 点护盾。"
+rarity = "Common"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

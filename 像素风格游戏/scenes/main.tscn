@@ -1,0 +1,346 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/fx_layer.gd" id="2_fx"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="3_hud"]
+[ext_resource type="Texture2D" path="res://assets/scene/sky.png" id="4_sky"]
+[ext_resource type="Texture2D" path="res://assets/scene/skyline_far.png" id="5_far"]
+[ext_resource type="Texture2D" path="res://assets/scene/skyline_near.png" id="6_near"]
+[ext_resource type="Texture2D" path="res://assets/scene/ground.png" id="7_ground"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(320, 30)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="WorldView" type="SubViewportContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture_filter = 1
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="WorldView"]
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="World" type="Node2D" parent="WorldView/SubViewport"]
+
+[node name="Sky" type="Sprite2D" parent="WorldView/SubViewport/World"]
+centered = false
+texture = ExtResource("4_sky")
+
+[node name="SkylineFar" type="Sprite2D" parent="WorldView/SubViewport/World"]
+centered = false
+position = Vector2(0, 94)
+texture = ExtResource("5_far")
+
+[node name="SkylineNear" type="Sprite2D" parent="WorldView/SubViewport/World"]
+centered = false
+position = Vector2(0, 106)
+texture = ExtResource("6_near")
+
+[node name="Ground" type="StaticBody2D" parent="WorldView/SubViewport/World"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="WorldView/SubViewport/World/Ground"]
+centered = false
+position = Vector2(0, 150)
+texture = ExtResource("7_ground")
+
+[node name="Shape" type="CollisionShape2D" parent="WorldView/SubViewport/World/Ground"]
+position = Vector2(160, 165)
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="Mechas" type="Node2D" parent="WorldView/SubViewport/World"]
+
+[node name="Projectiles" type="Node2D" parent="WorldView/SubViewport/World"]
+
+[node name="FX" type="Node2D" parent="WorldView/SubViewport/World"]
+script = ExtResource("2_fx")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_hud")
+
+[node name="FrameL" type="ColorRect" parent="HUD"]
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 260.0
+offset_bottom = 44.0
+color = Color(0.04, 0.05, 0.09, 1)
+
+[node name="BgL" type="ColorRect" parent="HUD"]
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 258.0
+offset_bottom = 42.0
+color = Color(0.16, 0.18, 0.25, 1)
+
+[node name="GhostL" type="ColorRect" parent="HUD"]
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 252.0
+offset_bottom = 40.0
+color = Color(0.94, 0.75, 0.28, 1)
+
+[node name="FillL" type="ColorRect" parent="HUD"]
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 252.0
+offset_bottom = 40.0
+color = Color(0.39, 0.88, 1, 1)
+
+[node name="FrameR" type="ColorRect" parent="HUD"]
+offset_left = 380.0
+offset_top = 24.0
+offset_right = 620.0
+offset_bottom = 44.0
+color = Color(0.04, 0.05, 0.09, 1)
+
+[node name="BgR" type="ColorRect" parent="HUD"]
+offset_left = 382.0
+offset_top = 26.0
+offset_right = 618.0
+offset_bottom = 42.0
+color = Color(0.16, 0.18, 0.25, 1)
+
+[node name="GhostR" type="ColorRect" parent="HUD"]
+offset_left = 388.0
+offset_top = 28.0
+offset_right = 616.0
+offset_bottom = 40.0
+color = Color(0.94, 0.75, 0.28, 1)
+
+[node name="FillR" type="ColorRect" parent="HUD"]
+offset_left = 388.0
+offset_top = 28.0
+offset_right = 616.0
+offset_bottom = 40.0
+color = Color(1, 0.48, 0.33, 1)
+
+[node name="MeterFrameL" type="ColorRect" parent="HUD"]
+offset_left = 20.0
+offset_top = 46.0
+offset_right = 260.0
+offset_bottom = 56.0
+color = Color(0.04, 0.05, 0.09, 1)
+
+[node name="MeterBgL" type="ColorRect" parent="HUD"]
+offset_left = 22.0
+offset_top = 47.0
+offset_right = 258.0
+offset_bottom = 55.0
+color = Color(0.12, 0.14, 0.2, 1)
+
+[node name="MeterFillL" type="ColorRect" parent="HUD"]
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 252.0
+offset_bottom = 54.0
+color = Color(0.18, 0.62, 0.79, 1)
+
+[node name="MeterFrameR" type="ColorRect" parent="HUD"]
+offset_left = 380.0
+offset_top = 46.0
+offset_right = 620.0
+offset_bottom = 56.0
+color = Color(0.04, 0.05, 0.09, 1)
+
+[node name="MeterBgR" type="ColorRect" parent="HUD"]
+offset_left = 382.0
+offset_top = 47.0
+offset_right = 618.0
+offset_bottom = 55.0
+color = Color(0.12, 0.14, 0.2, 1)
+
+[node name="MeterFillR" type="ColorRect" parent="HUD"]
+offset_left = 388.0
+offset_top = 48.0
+offset_right = 616.0
+offset_bottom = 54.0
+color = Color(0.76, 0.33, 0.22, 1)
+
+[node name="PipL1" type="ColorRect" parent="HUD"]
+offset_left = 24.0
+offset_top = 60.0
+offset_right = 34.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="PipL2" type="ColorRect" parent="HUD"]
+offset_left = 38.0
+offset_top = 60.0
+offset_right = 48.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="PipL3" type="ColorRect" parent="HUD"]
+offset_left = 52.0
+offset_top = 60.0
+offset_right = 62.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="PipR1" type="ColorRect" parent="HUD"]
+offset_left = 606.0
+offset_top = 60.0
+offset_right = 616.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="PipR2" type="ColorRect" parent="HUD"]
+offset_left = 592.0
+offset_top = 60.0
+offset_right = 602.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="PipR3" type="ColorRect" parent="HUD"]
+offset_left = 578.0
+offset_top = 60.0
+offset_right = 588.0
+offset_bottom = 70.0
+color = Color(0.17, 0.18, 0.25, 1)
+
+[node name="ComboL" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 300.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.39, 0.88, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+
+[node name="ComboR" type="Label" parent="HUD"]
+offset_left = 340.0
+offset_top = 72.0
+offset_right = 616.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(1, 0.48, 0.33, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 2
+
+[node name="NameL" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 252.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.39, 0.88, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "蓝方 · 玩家 1"
+
+[node name="HpL" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 252.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "100 / 100"
+horizontal_alignment = 2
+
+[node name="NameR" type="Label" parent="HUD"]
+offset_left = 388.0
+offset_top = 2.0
+offset_right = 616.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(1, 0.48, 0.33, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "红方 · 电脑"
+horizontal_alignment = 2
+
+[node name="HpR" type="Label" parent="HUD"]
+offset_left = 388.0
+offset_top = 2.0
+offset_right = 616.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "100 / 100"
+
+[node name="Message" type="Label" parent="HUD"]
+offset_left = 0.0
+offset_top = 112.0
+offset_right = 640.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(1, 0.93, 0.68, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/line_spacing = 6
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 27
+text = "准备"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BurstL" type="Label" parent="HUD"]
+visible = false
+offset_left = 24.0
+offset_top = 106.0
+offset_right = 300.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 0.72, 0.28, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 17
+text = "按 ; 爆气挣脱！"
+
+[node name="BurstR" type="Label" parent="HUD"]
+visible = false
+offset_left = 340.0
+offset_top = 106.0
+offset_right = 616.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 0.72, 0.28, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 17
+text = "按 M 爆气挣脱！"
+horizontal_alignment = 2
+
+[node name="HintL" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 320.0
+offset_right = 320.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.62, 0.72, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "A/D 移动   W 跳跃   J 斩击   K 防御   L 能量炮"
+
+[node name="HintR" type="Label" parent="HUD"]
+offset_left = 320.0
+offset_top = 320.0
+offset_right = 616.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.86, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "←/→ 移动   ↑ 跳跃   . 斩击   / 防御   , 能量炮"
+horizontal_alignment = 2
+
+[node name="HintC" type="Label" parent="HUD"]
+offset_left = 0.0
+offset_top = 341.0
+offset_right = 640.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(0.47, 0.53, 0.65, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "重击 U / O：前后摇极大但能破防，破防后对手 1.3 秒举不起盾     翻滚 蓝方 Shift · 红方 N     ; / M 爆气     R 重开     ESC 主菜单"
+horizontal_alignment = 1

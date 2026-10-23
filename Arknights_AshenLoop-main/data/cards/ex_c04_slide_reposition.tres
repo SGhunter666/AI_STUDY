@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 2
+status_id = "next_shot_damage_bonus"
+target = "self"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 1
+status_id = "next_shot_damage_bonus_charges"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c04_slide_reposition"
+display_name = "滑步换位"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Tempo")
+description = "抽 1；本回合下一张 射击 牌 +2 伤害。"
+rarity = "Common"
+upgraded_id = "ex_c04_slide_reposition_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

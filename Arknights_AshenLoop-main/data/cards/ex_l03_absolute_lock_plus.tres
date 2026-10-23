@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "mark_decay_locked"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 12
+status_id = "first_shot_vs_mark_bonus_static"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_l03_absolute_lock_plus"
+display_name = "绝对锁定+"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Mark")
+description = "额外 12 伤害。"
+rarity = "Legendary"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

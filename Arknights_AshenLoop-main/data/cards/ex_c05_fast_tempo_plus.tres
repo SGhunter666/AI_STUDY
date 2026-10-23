@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "fast_tempo_active"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "fast_tempo_guard"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c05_fast_tempo_plus"
+display_name = "快节奏+"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Tempo")
+description = "并获得 1 护盾。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

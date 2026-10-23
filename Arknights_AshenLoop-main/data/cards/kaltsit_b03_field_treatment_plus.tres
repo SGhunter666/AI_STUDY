@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal_or_block_if_full"
+amount = 7
+amount_2 = 7
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_b03_field_treatment_plus"
+display_name = "现场治疗+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Medical","Heal")
+description = "治疗 7 点生命；若生命已满，改为获得 7 护盾。"
+rarity = "Starter"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

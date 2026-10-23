@@ -1,0 +1,279 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/shop_scene.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/shop_bg.png" id="2"]
+
+[node name="ShopScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundShade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.06, 0.52)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 116.0
+offset_top = 48.0
+offset_right = -116.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+self_modulate = Color(1, 1, 1, 0.92)
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="HeaderPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="Panel/Margin/VBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="HeaderVBox" type="VBoxContainer" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Eyebrow" type="Label" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "前线整备货架"
+
+[node name="TopRow" type="HBoxContainer" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "前线商店"
+
+[node name="GoldChip" type="PanelContainer" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox/TopRow"]
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+
+[node name="GoldMargin" type="MarginContainer" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox/TopRow/GoldChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="GoldLabel" type="Label" parent="Panel/Margin/VBox/HeaderPanel/HeaderMargin/HeaderVBox/TopRow/GoldChip/GoldMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "金币 99"
+
+[node name="InfoPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="InfoMargin" type="MarginContainer" parent="Panel/Margin/VBox/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="Info" type="Label" parent="Panel/Margin/VBox/InfoPanel/InfoMargin"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+text = "说明"
+
+[node name="ControlsPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+
+[node name="ControlsMargin" type="MarginContainer" parent="Panel/Margin/VBox/ControlsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="ControlsBox" type="VBoxContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MetaRow" type="HBoxContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FloorChip" type="PanelContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/FloorChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/FloorChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "第 1 层"
+
+[node name="DeckChip" type="PanelContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/DeckChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/DeckChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "卡组 0"
+
+[node name="ModuleChip" type="PanelContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/ModuleChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/ModuleChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "模块 0"
+
+[node name="CharmChip" type="PanelContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChipMargin" type="MarginContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/CharmChip"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="ChipLabel" type="Label" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/MetaRow/CharmChip/ChipMargin"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "护符 0"
+
+[node name="FilterRow" type="HBoxContainer" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CardsFilter" type="Button" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/FilterRow"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "卡牌"
+
+[node name="ModulesFilter" type="Button" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/FilterRow"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "模块"
+
+[node name="CharmsFilter" type="Button" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/FilterRow"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "护符"
+
+[node name="ServicesFilter" type="Button" parent="Panel/Margin/VBox/ControlsPanel/ControlsMargin/ControlsBox/FilterRow"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "服务"
+
+[node name="ContentScroll" type="ScrollContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ShopList" type="VBoxContainer" parent="Panel/Margin/VBox/ContentScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/v_separation = 14
+
+[node name="FooterPanel" type="PanelContainer" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+
+[node name="FooterMargin" type="MarginContainer" parent="Panel/Margin/VBox/FooterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="FooterRow" type="HBoxContainer" parent="Panel/Margin/VBox/FooterPanel/FooterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="FooterHint" type="Label" parent="Panel/Margin/VBox/FooterPanel/FooterMargin/FooterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_alignment = 1
+autowrap_mode = 3
+text = "提示"
+
+[node name="Continue" type="Button" parent="Panel/Margin/VBox/FooterPanel/FooterMargin/FooterRow"]
+layout_mode = 2
+size_flags_horizontal = 1
+custom_minimum_size = Vector2(0, 54)
+text = "继续"
+
+[connection signal="pressed" from="Panel/Margin/VBox/FooterPanel/FooterMargin/FooterRow/Continue" to="." method="_on_continue_pressed"]

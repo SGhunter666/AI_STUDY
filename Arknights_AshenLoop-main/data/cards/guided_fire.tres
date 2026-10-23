@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 5
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "guided_fire"
+display_name = "引导火力"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts")
+description = "造成 5 点术式伤害 两次。"
+rarity = "Common"
+upgraded_id = "guided_fire_plus"
+effects = [SubResource("1"), SubResource("2")]

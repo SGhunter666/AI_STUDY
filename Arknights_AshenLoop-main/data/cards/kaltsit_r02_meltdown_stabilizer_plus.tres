@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 3
+amount_2 = 0
+target = "self"
+status_id = "mon3tr_meltdown_exit_threshold"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_meltdown_stabilizer_plus"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r02_meltdown_stabilizer_plus"
+display_name = "熔毁稳定器+"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Repair","Meltdown","Protocol")
+description = "升级：每回合第一次低于 3 完整性时，先修复 2 点再检查融毁退出。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

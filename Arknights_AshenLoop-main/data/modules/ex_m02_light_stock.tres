@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m02_light_stock"
+display_name = "轻量枪托"
+rarity = "Common"
+description = "你每回合第一张 射击 +2 伤害。"

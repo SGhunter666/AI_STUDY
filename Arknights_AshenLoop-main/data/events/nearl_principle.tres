@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_principle"
+title = "临光的原则"
+body = "塌掉的检查站挡住半条街。护栏后有人还醒着，声音被灰尘呛得断断续续；另一边，任务目标正在失去窗口。\n\n临光已经开始搬开第一块钢板。她没有要求你同意，只说了一句：能救的人就在眼前。现在要决定的是，小队把时间花在哪里。"
+options = Array[Dictionary]([{
+"label": "站在临光这边",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 10
+}, {
+"type": "add_module",
+"module_id": "nearl_crest"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_2"
+}]),
+"reward_cards": PackedStringArray("emergency_shield","rescue_corridor"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 10
+}, {
+"type": "add_module",
+"module_id": "ex_m05_penguin_invoice"
+}, {
+"type": "set_flag",
+"flag": "accept_burden_2"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_u19_pl_cover_screen", "ex_c25_pl_supply_drop"),
+"result": "人被拖出来时还在发抖。小队受了伤，推进也慢了，但没有人需要假装没听见那几声呼救。"
+}, {
+"label": "优先完成作战目标",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 80
+}]),
+"reward_cards": PackedStringArray("focus_pulse"),
+"reward_cards_exusiai": PackedStringArray("ex_c10_precision_puncture", "ex_r07_execution_drill"),
+"result": "任务目标保住了，补给也没有额外消耗。只是离开检查站后，队伍里很久没人说话。"
+}, {
+"label": "选择折中路线",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "double_elite_reward"
+}]),
+"reward_cards": PackedStringArray("tactical_reorder"),
+"reward_cards_exusiai": PackedStringArray("ex_u17_combo_rhythm"),
+"result": "小队拆成两组，勉强把两边都拖住了。没人能说这是最好的答案，但至少不是最坏的。"
+}])

@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ruined_supply_convoy"
+title = "残骸补给车队"
+body = "一支补给车队在街道拐角被伏击，车厢翻倒，物资散落一地。\n\n你能看见未损坏的弹药箱和医疗包，但引擎还在冒烟，随时可能引爆。贪婪会付出代价，谨慎则可能错失良机。"
+options = Array[Dictionary]([{
+"label": "快速搬运物资",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 35
+}, {
+"type": "lose_hp",
+"amount": 4
+}]),
+"reward_cards": PackedStringArray("discipline_note","tactical_calm"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop","ex_c27_team_callout"),
+"result": "你抢在爆炸前搬走了大部分物资。一枚弹片擦伤了手臂，但金币和补给都到手了。"
+}, {
+"label": "排除引爆风险",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 15
+}, {
+"type": "add_module",
+"module_id": "signal_booster"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 15
+}, {
+"type": "add_module",
+"module_id": "ex_m05_penguin_invoice"
+}]),
+"reward_cards": PackedStringArray("pulse_scan","focus_pulse"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan","ex_c14_tagged_signal"),
+"result": "你切断了点火线路，引擎熄火。物资不多，但拿到了一个能用的信号增幅器。"
+}, {
+"label": "放过车队继续前进",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 6
+}]),
+"reward_cards": PackedStringArray("stabilize_line"),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "风险太高，你选择绕行。队伍保持完整状态，继续向下一个节点推进。"
+}])

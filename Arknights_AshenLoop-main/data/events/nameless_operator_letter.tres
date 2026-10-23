@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nameless_operator_letter"
+title = "无名干员的遗书"
+body = "破碎护甲下面压着一封信，封口没有粘好，收件人的名字被血和灰糊住一半。\n\n信很短，前半写给家人，后半写给还会继续作战的人。它没有要求谁去复仇，只拜托后来者把这里发生过的事记下来。"
+options = Array[Dictionary]([{
+"label": "带走最后愿望",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "legendary_offer_next_reward"}]),
+"reward_cards": PackedStringArray("voice_of_the_leader","ashes_remember"),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm", "ex_r20_skyline_call"),
+"result": "信被收进防水袋。它不会让下一场更轻松，但会让之后的奖励出现更高价值的选择。"
+}, {
+"label": "优先稳定队伍",
+"effects": Array[Dictionary]([{"type": "heal", "amount": 15}, {"type": "lose_gold", "amount": 40}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "你没有继续停留在信上，而是先把活着的人稳住。治疗完成了，物资也少了一笔。"
+}, {
+"label": "把名字记下来",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "accept_burden_2"}, {"type": "add_charm", "charm_id": "embershard"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "set_flag", "flag": "accept_burden_2"}, {"type": "add_charm", "charm_id": "ex_h08_angel_shard"}]),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order"),
+"result": "名字被补进行动记录。随信留下的碎片被做成护符，提醒小队这不是一串匿名伤亡数字。"
+}])

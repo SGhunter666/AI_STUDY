@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharacterData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "amiya"
+display_name = "阿米娅"
+max_hp = 72
+starting_energy = 4
+combat_resource_name = "意志"
+resource_max = 10
+passive_id = "leader_of_rhodes"
+starter_deck = PackedStringArray("arts_bolt","arts_bolt","guard_pulse","guard_pulse","mental_tuning","field_command","resonance_mark","focused_ray","tactical_briefing","stabilize_line")
+starter_charms = PackedStringArray("rabbit_emblem","rhodes_pin")
+unlock_flags = PackedStringArray()

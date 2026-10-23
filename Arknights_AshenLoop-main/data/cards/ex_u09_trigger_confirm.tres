@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "target_has_mark"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u09_trigger_confirm"
+display_name = "扳机确认"
+cost = 0
+card_type = "Skill"
+tags = PackedStringArray("Mark", "Tempo")
+description = "若目标有 标记，本回合下一张 射击 费用 -1 并抽 1。"
+rarity = "Uncommon"
+upgraded_id = "ex_u09_trigger_confirm_plus"
+effects = [SubResource("1")]
+conditional_effects = []

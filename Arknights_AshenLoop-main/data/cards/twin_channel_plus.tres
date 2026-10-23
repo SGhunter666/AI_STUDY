@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "channel_will_draw"
+amount = 3
+amount_2 = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "twin_channel_plus"
+display_name = "两段引导+"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Channel","WillGain")
+description = "获得 2 意志。 引导： 下回合 获得 3 意志 并 抽 1 张牌。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]

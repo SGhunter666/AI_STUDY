@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m07_shield_draft"
+display_name = "盾牌调度"
+rarity = "Uncommon"
+description = "奖励中更容易出现临光护盾牌。"

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 18
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 18
+target = "enemy"
+condition = "player_will_gte_or_overload_gte:5:3"
+
+[resource]
+script = ExtResource("1")
+id = "ember_judgement"
+display_name = "余烬裁定"
+cost = 3
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Overload", "WillSpend")
+description = "造成 18 点术式伤害。 若意志 至少 5 或 过载 至少 3， 造成 18 更多。"
+rarity = "Legendary"
+upgraded_id = "ember_judgement_plus"
+effects = [SubResource("1")]
+conditional_effects = [SubResource("2")]

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 7
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 3
+target = "enemy"
+condition = "player_will_gte:2"
+
+[resource]
+script = ExtResource("1")
+id = "arc_sliver"
+display_name = "弧光切片"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts")
+description = "造成 7 术式。 若意志 >= 2， 造成 3 更多。"
+rarity = "Common"
+upgraded_id = "arc_sliver_plus"
+effects = [SubResource("1"), SubResource("2")]

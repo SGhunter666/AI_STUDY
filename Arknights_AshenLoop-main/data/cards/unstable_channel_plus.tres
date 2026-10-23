@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "channel_damage_will"
+amount = 16
+amount_2 = 3
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_overload"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "unstable_channel_plus"
+display_name = "不稳定引导+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Channel", "Overload")
+description = "引导： 下回合 造成 16 术式 伤害 对 目标 并 获得 3 意志。 获得 1 过载。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

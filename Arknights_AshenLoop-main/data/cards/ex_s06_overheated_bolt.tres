@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 0
+status_id = "overheated_bolt_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_s06_overheated_bolt"
+display_name = "过热枪机"
+cost = 1
+card_type = "Status"
+tags = PackedStringArray("Status")
+description = "本回合每次消耗 弹药 后受到 1 伤害；消耗。"
+rarity = "Status"
+exhausts = true
+upgraded_id = "ex_s06_overheated_bolt_plus"
+effects = [SubResource("1")]
+conditional_effects = []

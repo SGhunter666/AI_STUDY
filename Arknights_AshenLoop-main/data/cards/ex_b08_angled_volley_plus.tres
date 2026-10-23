@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_all"
+amount = 5
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_b08_angled_volley_plus"
+display_name = "斜角齐射+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Shot", "AOE", "AmmoUse")
+description = "5 伤害。"
+rarity = "Starter"
+effects = [SubResource("1")]
+conditional_effects = []

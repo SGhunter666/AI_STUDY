@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 8
+target = "self"
+condition = "player_hp_lte_percent:40"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "reduce_overload"
+amount = 3
+target = "self"
+condition = "player_hp_lte_percent:40"
+
+[resource]
+script = ExtResource("1")
+id = "survival_reflex_plus"
+display_name = "求生反射+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Overload", "Heal")
+description = "若生命 40% 或 低， 回复 8 点生命 并 降低 过载 3。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]

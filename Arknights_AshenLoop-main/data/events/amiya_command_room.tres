@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "amiya_command_room"
+title = "临时指挥室"
+body = "楼道尽头的办公室还亮着灯。战术地图被压在玻璃板下，红笔标出的撤离线已经被改过三次。\n\n阿米娅站在桌边听完各队汇报。有人需要支援，有人需要命令更果断，也有人只想知道下一步到底还能不能等。"
+tags = PackedStringArray("character:amiya")
+options = Array[Dictionary]([{
+"label": "把支援先派给前线",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "signal_relay"
+}]),
+"reward_cards": PackedStringArray("tactical_network","rescue_corridor","discipline_note"),
+"result": "通讯员重新分配频段，最危险的一条街区先收到了回应。前线没有欢呼，只是把下一次交火拖进了可控范围。"
+}, {
+"label": "压住节奏，重排撤离路线",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 8
+}, {
+"type": "set_flag",
+"flag": "preview_two_nodes"
+}]),
+"reward_cards": PackedStringArray("stabilize_line","medical_evac_route","focus_pulse"),
+"result": "新的路线绕开了两处交火点。队伍慢了一点，但伤员能跟上，地图上也多出几条可以提前判断的支线。"
+}, {
+"label": "接受更重的指挥负担",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 5
+}, {
+"type": "set_flag",
+"flag": "accept_burden_2"
+}]),
+"reward_cards": PackedStringArray("controlled_overload","burn_will","resonance_mark"),
+"result": "阿米娅把几份互相冲突的请求接到自己手里。决定来得更快了，代价也更清楚地压在她身上。"
+}])

@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 4
+amount_2 = 2
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 4
+target = "enemy"
+condition = "target_mark_gte:3"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c12_snap_critical"
+display_name = "短点暴击"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Shot", "Mark", "AmmoUse")
+description = "消耗 1 弹药，造成 4 伤害两次；若目标有 3+ 标记，第二段 +4。"
+rarity = "Common"
+upgraded_id = "ex_c12_snap_critical_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

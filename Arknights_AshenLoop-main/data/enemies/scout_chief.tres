@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scout_chief"
+display_name = "战术侦察领袖"
+max_hp = 145
+gold_reward = 70
+tags = PackedStringArray("Boss","Reunion")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 11,
+"label": "首领打击 11"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "信号干扰"
+}, {
+"type": "attack",
+"value": 14,
+"label": "协同推进 14"
+}])

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "repair_mon3tr"
+amount = 1
+amount_2 = 0
+target = "self"
+condition = "not_mon3tr_meltdown"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_mon3tr"
+amount = 2
+amount_2 = 0
+target = "self"
+condition = "mon3tr_meltdown"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_s07_unstable_meltdown"
+display_name = "不稳定融毁"
+cost = 1
+card_type = "Status"
+tags = PackedStringArray("Status","Mon3tr","Repair","Meltdown")
+description = "若处于融毁，Mon3tr 失去 2 点完整性；否则修复 Mon3tr 1 点完整性。消耗。"
+rarity = "Status"
+exhausts = true
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

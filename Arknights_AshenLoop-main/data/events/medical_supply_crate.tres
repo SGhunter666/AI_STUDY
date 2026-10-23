@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "medical_supply_crate"
+title = "医疗补给箱"
+body = "倒塌的运输箱卡在路边，锁已经摔开。里面还有止血剂、无菌束带和一套便携医疗包。\n\n数量不多，但都是能立刻用上的东西。你可以现在治疗，也可以留下护符，或者拆成一套更长期的模块。"
+options = Array[Dictionary]([{
+"label": "立刻治疗",
+"effects": Array[Dictionary]([{"type": "heal", "amount": 18}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "伤口被迅速处理，队伍状态回升。箱子里能立刻用的药也基本见底了。"
+}, {
+"label": "留下无菌束带",
+"effects": Array[Dictionary]([{"type": "add_charm", "charm_id": "sterile_strap"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "add_charm", "charm_id": "ex_h04_delivery_badge"}]),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "无菌束带被收进随身装备。它不会立刻止痛，但之后的治疗会更稳。"
+}, {
+"label": "分装补给并带走模块",
+"effects": Array[Dictionary]([{"type": "heal", "amount": 8}, {"type": "add_module", "module_id": "field_medic_pack"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "heal", "amount": 8}, {"type": "add_module", "module_id": "ex_m03_fast_feeder"}]),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan"),
+"result": "医疗包被拆成可携模块。现在恢复一点，后面也能继续提供帮助。"
+}])

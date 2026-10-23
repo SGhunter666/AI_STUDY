@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "acid_originium_slug"
+display_name = "酸液源石虫"
+max_hp = 24
+gold_reward = 16
+tags = PackedStringArray("Originium","Slug","Acid")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 6,
+"label": "酸液啃咬 6"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "酸液喷吐"
+}])

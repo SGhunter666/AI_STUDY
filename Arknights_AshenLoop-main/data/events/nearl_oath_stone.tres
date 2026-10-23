@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_oath_stone"
+title = "誓言之石"
+body = "半埋在瓦砾中的是一块刻有骑士誓言的石碑，字迹被烟熏黑但依然可辨。\n\n瑕光停下脚步。这是她曾立誓的某种回响——关于守护、关于责任、关于何时该放下盾牌拿起剑。"
+tags = PackedStringArray("character:nearl")
+options = Array[Dictionary]([{
+"label": "重申守护誓言",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "field_command_badge"
+}, {
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("stabilize_line","discipline_note"),
+"result": "瑕光单膝跪地，低声念出誓言。盾牌的重量重新落在肩上，但这次她知道为何而守。下一场开局会更平稳。"
+}, {
+"label": "转为进攻姿态",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 3
+}, {
+"type": "add_card",
+"card_id": "resonance_burst"
+}]),
+"reward_cards": PackedStringArray("burn_will","sevenfold_echo"),
+"result": "瑕光握紧剑柄。誓言没有消失，但此刻她选择做那个挥剑的人。付出了一点生命代价，换来了更强的攻击术式。"
+}, {
+"label": "记录碑文继续前进",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 20
+}, {
+"type": "upgrade_random_card"
+}]),
+"reward_cards": PackedStringArray("tactical_briefing"),
+"result": "瑕光拓下碑文，收进背包。这是证据，也是记忆。路上捡到了一些散落的值钱物件。"
+}])

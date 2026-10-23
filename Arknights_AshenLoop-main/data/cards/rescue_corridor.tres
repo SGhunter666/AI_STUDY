@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 6
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_gold"
+amount = 10
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "rescue_corridor"
+display_name = "救援走廊"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Rescue")
+description = "获得 6 护盾。 10 金币 打出。"
+rarity = "Common"
+upgraded_id = "rescue_corridor_plus"
+effects = [SubResource("1"), SubResource("2")]

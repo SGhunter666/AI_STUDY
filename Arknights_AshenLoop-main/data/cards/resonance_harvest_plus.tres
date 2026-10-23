@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw_per_resonant_enemy_reduce_drawn_arts"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "resonance_harvest_plus"
+display_name = "共振收割+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Resonance")
+description = "抽 1 张牌 牌 每 敌人 带有 共振。 术式 牌 抽到时 费用 1 减少 本回合。 抽 1 张牌 额外。"
+rarity = "Rare"
+effects = [SubResource("1"), SubResource("2")]

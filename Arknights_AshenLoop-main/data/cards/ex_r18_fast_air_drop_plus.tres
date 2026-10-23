@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "add_random_cards_to_hand_free"
+amount = 1
+target = "self"
+meta = {"tags_any": ["Reload", "AmmoGain"], "pool_size": 4}
+
+[resource]
+script = ExtResource("1")
+id = "ex_r18_fast_air_drop_plus"
+display_name = "快速空投+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "AmmoGain")
+description = "发现 4 张。"
+rarity = "Rare"
+effects = [SubResource("1")]
+conditional_effects = []

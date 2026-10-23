@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 8
+amount_2 = 0
+target = "enemy"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 1
+target = "self"
+condition = "player_ammo_gte:1"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 10
+amount_2 = 0
+target = "enemy"
+condition = "target_mark_gte:5"
+
+[resource]
+script = ExtResource("1")
+id = "ex_r07_execution_drill"
+display_name = "处刑穿孔"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Shot", "Mark", "Finisher", "AmmoUse")
+description = "消耗 1 弹药，造成 8 伤害；若目标有 5+ 标记，再造成 10。"
+rarity = "Rare"
+upgraded_id = "ex_r07_execution_drill_plus"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

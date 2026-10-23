@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+status_id = "command_overflow_active"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "command_overflow"
+display_name = "指挥过载"
+cost = 2
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tactic")
+description = "本回合， 你的支援 牌 结算 基础 效果 两次。"
+rarity = "Uncommon"
+upgraded_id = "command_overflow_plus"
+effects = [SubResource("1")]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "broken_horn_token"
+display_name = "断角徽饰"
+description = "每当过载， 获得 4 护盾。"
+slot_type = "charm"

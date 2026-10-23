@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m12_upgraded_counter"
+display_name = "精修护手"
+rarity = "Rare"
+description = "升级牌给予反击时，反击额外 +1。"

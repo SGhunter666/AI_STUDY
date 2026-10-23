@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 5
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_c06_line_guard"
+display_name = "战线护持"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Shield")
+description = "获得 5 点护盾。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "nearl_c06_line_guard_plus"
+effects = [SubResource("1")]
+conditional_effects = []

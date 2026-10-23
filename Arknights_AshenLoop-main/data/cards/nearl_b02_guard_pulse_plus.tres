@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 7
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_b02_guard_pulse_plus"
+display_name = "守护脉冲+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Shield","Barrier")
+description = "获得 7 点护盾。"
+rarity = "Starter"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

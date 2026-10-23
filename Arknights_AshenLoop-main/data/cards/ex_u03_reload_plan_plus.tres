@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "queue_reload"
+amount = 4
+timing = "turn_end"
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_u03_reload_plan_plus"
+display_name = "装填规划+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Reload", "Tempo")
+description = "抽 2。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

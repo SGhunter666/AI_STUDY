@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "heal"
+amount = 8
+amount_2 = 8
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "mon3tr_damage"
+amount = 11
+amount_2 = 1
+target = "enemy"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r14_reverse_treatment_plus"
+display_name = "反向治疗+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Mon3tr","Medical","Heal")
+description = "升级：治疗 8 点生命；满血时 Mon3tr 造成 11 点伤害。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

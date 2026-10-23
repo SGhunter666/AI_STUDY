@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ex_m15_gunfire_halo"
+display_name = "枪火光环"
+rarity = "Legendary"
+description = "在 爆发 中，你所有 射击 牌 +2 伤害。"

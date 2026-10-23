@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "embershard"
+display_name = "余烬片"
+description = "每当 消耗 3+ 意志， 获得 回响 50%。"
+slot_type = "charm"

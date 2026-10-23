@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mental_fluctuation"
+title = "心智波动"
+body = "战斗结束后，频道终于安静下来。你摘下耳机，却还是站在原地没动。\n\n医疗干员问是否需要休息，你摇了摇头。问题不在伤口，而在刚才那些声音还留在脑子里：求援、爆炸、敌人的嘶喊，还有自己下达命令时的停顿。"
+options = Array[Dictionary]([{
+"label": "压住波动",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "next_battle_start_will_3"}, {"type": "add_card", "card_id": "mental_noise"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "set_flag", "flag": "next_battle_start_energy_1"}, {"type": "add_card", "card_id": "hesitation"}]),
+"reward_cards_exusiai": PackedStringArray("ex_b06_burst_entry"),
+"result": "你把情绪压进下一场行动，开局资源会更充足。那些没处理完的噪声也被一起带进牌组。"
+}, {
+"label": "清理诅咒",
+"effects": Array[Dictionary]([{"type": "remove_card", "card_id": "hesitation"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "小队花时间做了心理整理。那张拖慢决断的干扰牌被移出牌组。"
+}, {
+"label": "承认负担",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "accept_burden_3"}, {"type": "add_card", "card_id": "shared_burden"}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{"type": "set_flag", "flag": "accept_burden_3"}, {"type": "add_card", "card_id": "ex_c17_burst_order"}]),
+"reward_cards_exusiai": PackedStringArray("ex_r14_endless_chain"),
+"result": "你没有再说没事。压力被承认以后，终于能被整理成可用的行动方案。"
+}])

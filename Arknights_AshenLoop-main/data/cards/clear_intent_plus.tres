@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 2
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "gain_will"
+amount = 2
+target = "self"
+condition = "hand_contains_tag_gte:Arts:2"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "hand_contains_tag_gte:Arts:2"
+
+[resource]
+script = ExtResource("1")
+id = "clear_intent_plus"
+display_name = "明晰意志+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("WillGain")
+description = "抽 2 张牌。 若你的手牌 至少 2 术式 牌， 获得 2 意志 并 抽 1 张牌 更多。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]

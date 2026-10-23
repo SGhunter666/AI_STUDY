@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吴恩达机器学习 · 精简复习笔记（重点 · 考点 · 代码 · 公式）</title>
+<style>
+:root{
+--bg:#0e0b0c;--bg2:#161013;--bg3:#1d1518;--ink:#efe4e1;--muted:#a29193;--rule:#2e2226;
+--red:#e5484d;--rose:#ff5a52;--gold:#d4a72c;--green:#57ab5a;--blue:#6ea8fe;
+--sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+--serif:Georgia,"Noto Serif SC","Source Han Serif SC",serif;
+--math:"STIX Two Math","Cambria Math","Times New Roman",Georgia,serif;
+--mono:Consolas,"JetBrains Mono","Cascadia Code",monospace;
+}
+.c1{--ac:#ff5a52;--acs:#ffb1a9}
+.c2{--ac:#ff9a3c;--acs:#ffcf9a}
+.c3{--ac:#e05a9c;--acs:#ff9ed0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.9 var(--sans)}
+::selection{background:#4a1519;color:#ffe6e4}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,#ff5a52,#ff9a3c,#e05a9c)}
+/* TOC */
+#toc{position:fixed;top:0;left:0;bottom:0;width:236px;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--rule);padding:22px 10px 60px;z-index:40;scrollbar-width:thin;scrollbar-color:#38292d transparent}
+#toc .brand{font:700 16px/1.4 var(--serif);padding:2px 12px 0}
+#toc .brand small{display:block;font:400 9.5px/1.9 var(--mono);color:var(--muted);letter-spacing:.14em}
+#toc .part{font:700 10px/1 var(--mono);letter-spacing:.16em;color:#8a777a;margin:18px 12px 4px;padding-top:6px;border-top:1px solid var(--rule)}
+#toc a.it{display:block;padding:4.5px 12px;border-radius:7px;font:600 12.8px/1.5 var(--sans);color:var(--ink);text-decoration:none}
+#toc a.it small{font:400 10px var(--mono);color:var(--muted);margin-right:7px}
+#toc a.it:hover,#toc a.it.on{background:#251a1e;box-shadow:inset 2.5px 0 0 var(--rose)}
+#toc a.fx{display:block;padding:3px 12px 3px 24px;font-size:11.8px;color:var(--muted);text-decoration:none;border-radius:6px}
+#toc a.fx:hover{color:var(--gold)}
+main{margin-left:236px}
+.wrap{max-width:920px;margin:0 auto;padding:36px 42px 110px}
+/* hero */
+.hero{padding:6px 0 26px;border-bottom:1px solid var(--rule)}
+.kicker{font:700 11.5px/1 var(--mono);letter-spacing:.3em;color:var(--red);margin-bottom:14px}
+.hero h1{font:700 38px/1.25 var(--serif)}
+.hero h1 em{font-style:normal;color:var(--rose)}
+.hero .sub{color:var(--muted);margin-top:10px;font-size:14px}
+.hero .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--rule);background:var(--bg2);color:var(--muted);font:500 11.5px var(--mono);padding:3px 12px;border-radius:999px}
+/* part band */
+.partband{margin:56px 0 4px;padding:18px 26px;border:1px solid var(--rule);border-radius:14px;background:linear-gradient(120deg,#141011,#1a1114);position:relative;overflow:hidden}
+.partband::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac)}
+.partband .pn{font:800 10.5px/1 var(--mono);letter-spacing:.3em;color:var(--ac)}
+.partband h2{font:700 22px/1.35 var(--serif);margin-top:8px}
+.partband h2 small{font:400 12px var(--mono);color:var(--muted);margin-left:10px}
+.partband .pdesc{color:var(--muted);font-size:13px;margin-top:6px}
+/* chapter */
+.chapter{padding-top:44px;margin-top:10px}
+.ch-head{position:relative;padding:10px 0 14px;border-bottom:2px solid var(--rule)}
+.ch-num{position:absolute;right:0;top:-6px;font:800 64px/1 var(--serif);color:var(--ac);opacity:.15;user-select:none}
+.ch-kicker{font:700 10px/1 var(--mono);letter-spacing:.2em;color:var(--ac)}
+.ch-head h2{font:700 25px/1.3 var(--serif);margin-top:8px}
+/* duo panels */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px}
+.panel{border:1px solid var(--rule);border-radius:12px;background:var(--bg2);padding:14px 18px 10px}
+.panel h3{font:700 13px/1 var(--mono);letter-spacing:.14em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.kp h3{color:var(--acs)}
+.exam h3{color:#ff8a8a}
+.exam{background:#1d1216;border-color:#542730}
+.panel ul{list-style:none}
+.panel li{padding:5px 0 5px 18px;position:relative;font-size:13.8px;line-height:1.75;border-top:1px dashed #2a2024}
+.panel li:first-child{border-top:none}
+.kp li::before{content:"◆";position:absolute;left:0;top:6px;font-size:9px;color:var(--ac)}
+.exam li::before{content:"✱";position:absolute;left:0;top:6px;font-size:11px;color:var(--rose)}
+.panel li b{color:#fff}
+.panel li mark{background:none;color:var(--gold);font-weight:650}
+.panel li code{font:600 12px var(--mono);color:var(--blue)}
+/* equation */
+.eq{display:flex;align-items:center;gap:14px;background:linear-gradient(180deg,#181215,#141013);border:1px solid var(--rule);border-left:3px solid var(--ac);border-radius:10px;padding:9px 18px;margin:12px 0}
+.eq .mth{flex:1;text-align:center;font-family:var(--math);font-size:16px;line-height:1.65;color:#f2e8e2;overflow-x:auto;white-space:nowrap;padding:2px 0}
+.eq .no{font:11px var(--mono);color:var(--muted);white-space:nowrap}
+.mth sub,.mth sup{font-size:.68em}
+var{font-family:var(--math);font-style:italic;color:#ecdcc9}
+/* code */
+.code{background:#120d0f;border:1px solid #382a2d;border-radius:10px;margin:14px 0;overflow:hidden}
+.code .chd{display:flex;align-items:center;gap:10px;background:#1c1316;border-bottom:1px solid #382a2d;padding:7px 14px}
+.code .chd .cn{font:700 12px var(--mono);color:var(--acs);letter-spacing:.02em}
+.code .chd .ci{font:italic 400 11.5px var(--serif);color:#8d7679}
+.code .chd .cx{margin-left:auto;font:700 10.5px var(--mono);color:#fff;background:#7a2231;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.code pre{padding:12px 16px;overflow-x:auto;font:12.8px/1.8 var(--mono);color:#e9dcd8}
+.kw{color:#ff7b72}.fn{color:#d2a8ff}.nm{color:#79c0ff}.cm{color:#8b8386;font-style:italic}.st{color:#a5d6ff}
+/* formula notes */
+.fnotes{margin-top:46px;border:1px solid var(--rule);border-radius:16px;background:var(--bg2);padding:22px 26px}
+.fnotes>h2{font:700 20px/1.4 var(--serif);display:flex;align-items:center;gap:10px}
+.fnotes>h2 .fb{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.fnotes .fsub{color:var(--muted);font-size:12.5px;margin:4px 0 16px}
+.fx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fx{background:linear-gradient(180deg,#191316,#141013);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:10px;padding:11px 15px}
+.fx .fx-name{font:700 13px/1.4 var(--sans);color:#ffe3b0;display:flex;justify-content:space-between;gap:8px}
+.fx .fx-name .fx-no{font:700 10px var(--mono);color:var(--muted);letter-spacing:.08em}
+.fx .fx-math{font-family:var(--math);font-size:14.5px;color:#f2e8e2;text-align:center;padding:6px 2px 4px;overflow-x:auto;white-space:nowrap}
+.fx .fx-note{font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed #2a2024;padding-top:6px;margin-top:2px}
+.fx .fx-note b{color:var(--gold)}
+table.tb{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+table.tb th{font:700 12px var(--mono);color:var(--acs);text-align:left;padding:6px 10px;border-bottom:2px solid var(--rule);letter-spacing:.04em}
+table.tb td{padding:6px 10px;border-bottom:1px solid #241b1f;vertical-align:top}
+table.tb td:first-child{color:var(--acs);font-weight:600;white-space:nowrap}
+table.tb tr:last-child td{border-bottom:none}
+.twrap{border:1px solid var(--rule);border-radius:10px;background:var(--bg2);padding:4px 10px;margin:12px 0;overflow-x:auto}
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--rule);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:1080px){.duo,.fx-grid{grid-template-columns:1fr}}
+@media (max-width:860px){#toc{display:none}main{margin-left:0}.wrap{padding:24px 18px 90px}.ch-num{display:none}}
+@media print{#toc,#bar{display:none}main{margin:0}.wrap{max-width:none;padding:0}#part2,#part3{page-break-before:always}.duo{break-inside:avoid}.ch-head,.partband,.fnotes>h2{break-after:avoid}.eq,.fx,.code,.panel{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<nav id="toc">
+  <div class="brand"><span style="color:var(--red)">●</span> 吴恩达 ML 精简笔记<small>ML SPECIALIZATION · 3 COURSES</small></div>
+  <div class="part">COURSE 1 · 监督学习</div>
+  <a class="it" href="#ch1"><small>01</small>导论与线性回归</a>
+  <a class="it" href="#ch2"><small>02</small>多变量回归</a>
+  <a class="it" href="#ch3"><small>03</small>逻辑回归与正则化</a>
+  <a class="fx" href="#fx1">★ 公式笔记 · Course 1</a>
+  <div class="part">COURSE 2 · 高级算法</div>
+  <a class="it" href="#ch4"><small>04</small>神经网络</a>
+  <a class="it" href="#ch5"><small>05</small>网络训练</a>
+  <a class="it" href="#ch6"><small>06</small>模型评估与改进</a>
+  <a class="it" href="#ch7"><small>07</small>决策树与集成</a>
+  <a class="fx" href="#fx2">★ 公式笔记 · Course 2</a>
+  <div class="part">COURSE 3 · 无监督/RL</div>
+  <a class="it" href="#ch8"><small>08</small>聚类与异常检测</a>
+  <a class="it" href="#ch9"><small>09</small>推荐系统与 PCA</a>
+  <a class="it" href="#ch10"><small>10</small>强化学习</a>
+  <a class="fx" href="#fx3">★ 公式笔记 · Course 3</a>
+</nav>
+
+<main><div class="wrap">
+
+<header class="hero">
+  <p class="kicker">MACHINE LEARNING SPECIALIZATION · CHEAT NOTES</p>
+  <h1>吴恩达机器学习 <em>精简复习笔记</em></h1>
+  <p class="sub">只保留三类东西：<b>知识重点</b>、<b>考试要点</b>、<b>代码演示</b>。三个 Course 末尾各附一页「公式笔记」，考前刷这一份就够。</p>
+  <div class="chips">
+    <span class="chip">C1 监督学习：回归与分类</span><span class="chip">C2 高级学习算法</span><span class="chip">C3 无监督·推荐·强化学习</span><span class="chip">共 10 章 · 30+ 公式卡</span>
+  </div>
+</header>
+
+<!-- ==================== COURSE 1 ==================== -->
+<section class="partband c1" id="part1">
+  <p class="pn">COURSE 1 / 3</p>
+  <h2>监督学习：回归与分类<small>Supervised ML · Regression &amp; Classification</small></h2>
+  <p class="pdesc">线性回归 → 梯度下降 → 多变量 → 逻辑回归 → 过拟合与正则化。这是整套课程的数学地基。</p>
+</section>
+
+<!-- ============ CH1 ============ -->
+<section class="chapter c1" id="ch1">
+  <header class="ch-head"><span class="ch-num">01</span>
+    <p class="ch-kicker">COURSE 1 · WEEK 1–2</p>
+    <h2>导论与单变量线性回归</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li><b>机器学习定义</b>（Mitchell）：任务 T、经验 E、性能 P——用 E 改善 P。</li>
+      <li><b>监督学习</b>：有标签；<mark>回归</mark>＝预测连续值，<mark>分类</mark>＝预测离散类别。无监督：聚类、降维。</li>
+      <li>训练集记号：样本 <var>x⁽ⁱ⁾</var>、目标 <var>y⁽ⁱ⁾</var>、样本数 <var>m</var>。</li>
+      <li>线性回归模型 <var>f<sub>w,b</sub>(x) = wx + b</var>；训练＝<b>arg min J(w,b)</b>。</li>
+      <li>平方误差代价 J 是 <var>(w,b)</var> 的<b>凸函数</b>（碗形）→ 梯度下降必达全局最优。</li>
+      <li>「批量(batch)」梯度下降：每步用<b>全部</b> m 个样本算梯度。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li><b>同步更新</b>：w、b 必须用旧值同时更新；先用新 w 去算 b 的梯度＝错。</li>
+      <li><var>α</var> 太大 → 震荡/发散；太小 → 慢。接近极小值时步幅<b>自动变小</b>（坡度变缓）。</li>
+      <li>收敛判据是<b>梯度＝0</b>，不是 J＝0。</li>
+      <li>回归 vs 分类看<b>输出是否连续</b>（房价→回归，垃圾邮件→分类）。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">J(w, b) = <sup>1</sup>&frasl;<sub>2m</sub> Σ<sub>i=1..m</sub> ( f<sub>w,b</sub>(x⁽ⁱ⁾) − y⁽ⁱ⁾ )²</span><span class="no">代价函数</span></div>
+  <div class="eq"><span class="mth">repeat {&nbsp; w := w − α·<sup>∂J</sup>&frasl;<sub>∂w</sub> ;&nbsp;&nbsp; b := b − α·<sup>∂J</sup>&frasl;<sub>∂b</sub>&nbsp; }&nbsp;&nbsp;⇒&nbsp;&nbsp; w := w − α·<sup>1</sup>&frasl;<sub>m</sub> Σ (f(x⁽ⁱ⁾)−y⁽ⁱ⁾)·x⁽ⁱ⁾</span><span class="no">梯度下降</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">linear_regression.py</span><span class="ci">代价 + 批量梯度下降（同步更新）</span><span class="cx">NumPy</span></div>
+    <pre><span class="kw">def</span> <span class="fn">compute_cost</span>(x, y, w, b):
+    m = len(x)
+    <span class="kw">return</span> np.sum((w*x + b - y)**<span class="nm">2</span>) / (<span class="nm">2</span>*m)
+
+<span class="kw">def</span> <span class="fn">gradient_descent</span>(x, y, w, b, alpha, iters):
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(iters):
+        err = w*x + b - y                <span class="cm"># 残差基于旧参数 → 天然同步更新</span>
+        w -= alpha * np.sum(err*x) / len(x)
+        b -= alpha * np.sum(err)   / len(x)
+    <span class="kw">return</span> w, b</pre>
+  </div>
+</section>
+
+<!-- ============ CH2 ============ -->
+<section class="chapter c1" id="ch2">
+  <header class="ch-head"><span class="ch-num">02</span>
+    <p class="ch-kicker">COURSE 1 · WEEK 2–3</p>
+    <h2>多变量线性回归</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>多特征模型：<var>f<sub>w,b</sub>(x) = w·x + b = w₁x₁ + … + w<sub>n</sub>x<sub>n</sub> + b</var>。</li>
+      <li><b>向量化</b>：<code>np.dot(w,x)</code> 快于 Python for 循环（并行 + 缓存友好）。</li>
+      <li><b>特征缩放</b>：各特征量纲悬殊时（如 x₁∈[0,2000], x₂∈[1,5]）等高线变椭圆 → 收敛慢；缩放后近圆形 → 快。</li>
+      <li><mark>z-score 标准化</mark>：<var>(x−μ)/σ</var>，目标范围约 [−1, 1] 即可。</li>
+      <li><b>学习率调试</b>：J 应逐迭代下降；上升/震荡 → <var>α</var>÷10；太慢 → <var>α</var>×3。</li>
+      <li><b>特征工程</b>：长×宽→面积；<b>多项式回归</b>：用 x, x², x³ 作特征拟合曲线。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li>z-score 公式必须<b>手算会</b>：给 μ、σ 算标准化值（高频选择题）。</li>
+      <li>判断「要不要缩放」：看特征<b>取值范围差几个数量级</b>。</li>
+      <li>J 曲线上升 ⇒ <mark>α 过大</mark>，第一反应是减小 α。</li>
+      <li>多项式回归中 xⁿ 范围爆炸 ⇒ <b>更需要</b>特征缩放。</li>
+    </ul></div>
+  </div>
+  <div class="code">
+    <div class="chd"><span class="cn">multivariate.py</span><span class="ci">向量化 + z-score + 多元梯度下降</span><span class="cx">NumPy</span></div>
+    <pre><span class="kw">def</span> <span class="fn">zscore</span>(X):                          <span class="cm"># 逐列标准化</span>
+    <span class="kw">return</span> (X - X.mean(axis=<span class="nm">0</span>)) / X.std(axis=<span class="nm">0</span>)
+
+<span class="kw">def</span> <span class="fn">gd_multi</span>(X, y, w, b, alpha, iters):
+    m = X.shape[<span class="nm">0</span>]
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(iters):
+        err = X @ w + b - y              <span class="cm"># f = w·x + b，向量化</span>
+        w -= alpha * (X.T @ err) / m
+        b -= alpha * err.mean()
+    <span class="kw">return</span> w, b</pre>
+  </div>
+</section>
+
+<!-- ============ CH3 ============ -->
+<section class="chapter c1" id="ch3">
+  <header class="ch-head"><span class="ch-num">03</span>
+    <p class="ch-kicker">COURSE 1 · WEEK 3</p>
+    <h2>逻辑回归、过拟合与正则化</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li><b>Sigmoid</b>：<var>g(z) = 1/(1+e<sup>−z</sup>)</var>，输出解释为 <var>P(y=1|x)</var>。</li>
+      <li><b>决策边界</b>：<var>w·x + b = 0</var>；多项式特征 → 非线性边界。</li>
+      <li><b>交叉熵损失</b>（分段）：y=1 时 <var>−log f</var>，y=0 时 <var>−log(1−f)</var>。</li>
+      <li><b>过拟合</b>（高方差）：训练好、泛化差；<b>欠拟合</b>（高偏差）：训练都差。</li>
+      <li>对策：①更多数据 ②减少特征 ③<mark>正则化</mark>（保留全部特征、缩小参数）。</li>
+      <li>正则化项 <var>λ/(2m)·Σw<sub>j</sub>²</var>：<b>只罚 w 不罚 b</b>。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li>逻辑回归<b>不用平方误差</b>：非凸，梯度下降会陷入局部最优。</li>
+      <li>损失直觉：<var>f→0 而 y=1 ⇒ L→∞</var>（ confidently wrong 惩罚最重）。</li>
+      <li>逻辑回归的梯度更新公式与线性回归<b>形状完全相同</b>，只是 f 换成 sigmoid。</li>
+      <li><var>λ</var> 过大 → 所有 w→0 → <mark>欠拟合</mark>（接近常数预测）；λ=0 → 无正则化。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">J(w, b) = −<sup>1</sup>&frasl;<sub>m</sub> Σ [ y⁽ⁱ⁾·log f(x⁽ⁱ⁾) + (1−y⁽ⁱ⁾)·log(1−f(x⁽ⁱ⁾)) ] &nbsp;+&nbsp; <sup>λ</sup>&frasl;<sub>2m</sub> Σ<sub>j=1..n</sub> w<sub>j</sub>²</span><span class="no">正则化逻辑回归</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">logistic.py</span><span class="ci">sigmoid + 正则化交叉熵 + 梯度下降</span><span class="cx">NumPy</span></div>
+    <pre><span class="kw">def</span> <span class="fn">sigmoid</span>(z):
+    <span class="kw">return</span> <span class="nm">1</span> / (<span class="nm">1</span> + np.exp(-z))
+
+<span class="kw">def</span> <span class="fn">cost_logreg</span>(X, y, w, b, lam=<span class="nm">0</span>):
+    f = <span class="fn">sigmoid</span>(X @ w + b)
+    ce = -np.mean(y*np.log(f) + (<span class="nm">1</span>-y)*np.log(<span class="nm">1</span>-f))
+    <span class="kw">return</span> ce + lam/(<span class="nm">2</span>*len(y)) * np.sum(w**<span class="nm">2</span>)   <span class="cm"># 不含 b</span>
+
+<span class="kw">def</span> <span class="fn">gd_logreg</span>(X, y, w, b, alpha, iters, lam=<span class="nm">0</span>):
+    m = len(y)
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(iters):
+        err = <span class="fn">sigmoid</span>(X @ w + b) - y
+        w -= alpha * (X.T @ err + lam*w) / m   <span class="cm"># 只多出 lam*w 一项</span>
+        b -= alpha * err.mean()
+    <span class="kw">return</span> w, b</pre>
+  </div>
+</section>
+
+<!-- ============ COURSE 1 公式笔记 ============ -->
+<section class="fnotes c1" id="fx1">
+  <h2><span class="fb"></span>Course 1 · 公式笔记</h2>
+  <p class="fsub">回归与分类的 10 个核心公式。⭐＝必背。</p>
+  <div class="fx-grid">
+    <div class="fx"><div class="fx-name">⭐ 线性回归模型<span class="fx-no">F1.1</span></div><div class="fx-math">f<sub>w,b</sub>(x) = w·x + b</div><div class="fx-note">n 维特征时 w·x 为向量内积。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 平方误差代价<span class="fx-no">F1.2</span></div><div class="fx-math">J(w,b) = <sup>1</sup>&frasl;<sub>2m</sub> Σ (f(x⁽ⁱ⁾) − y⁽ⁱ⁾)²</div><div class="fx-note">系数 ½ 纯为求导消 2；<b>凸函数</b>。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 线性回归梯度更新<span class="fx-no">F1.3</span></div><div class="fx-math">w<sub>j</sub> := w<sub>j</sub> − α·<sup>1</sup>&frasl;<sub>m</sub> Σ (f−y⁽ⁱ⁾)·x<sub>j</sub>⁽ⁱ⁾&nbsp;&nbsp;;&nbsp;&nbsp;b := b − α·<sup>1</sup>&frasl;<sub>m</sub> Σ (f−y⁽ⁱ⁾)</div><div class="fx-note">对所有参数<b>同步</b>更新。</div></div>
+    <div class="fx"><div class="fx-name">⭐ Sigmoid<span class="fx-no">F1.4</span></div><div class="fx-math">g(z) = 1 / (1 + e<sup>−z</sup>)</div><div class="fx-note">z→∞ ⇒ g→1；z=0 ⇒ g=0.5。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 逻辑回归分段损失<span class="fx-no">F1.5</span></div><div class="fx-math">L(f,y) = −log(f) &nbsp;if y=1;&nbsp; −log(1−f) &nbsp;if y=0</div><div class="fx-note">等价简并式：<b>−y·log f −(1−y)·log(1−f)</b>。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 逻辑回归代价<span class="fx-no">F1.6</span></div><div class="fx-math">J = −<sup>1</sup>&frasl;<sub>m</sub> Σ[ y·log f + (1−y)·log(1−f) ]</div><div class="fx-note">凸；梯度形式与线性回归<b>全同</b>。</div></div>
+    <div class="fx"><div class="fx-name">z-score 特征缩放<span class="fx-no">F1.7</span></div><div class="fx-math">x<sub>j</sub>′ = (x<sub>j</sub> − μ<sub>j</sub>) / σ<sub>j</sub></div><div class="fx-note">μ=均值，σ=标准差；让各特征量纲可比。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 正则化线性回归<span class="fx-no">F1.8</span></div><div class="fx-math">J = <sup>1</sup>&frasl;<sub>2m</sub> Σ(f−y)² + <sup>λ</sup>&frasl;<sub>2m</sub> Σ w<sub>j</sub>²</div><div class="fx-note">w 的更新多出 <b>+(λ/m)w</b> 项（权重衰减）。</div></div>
+    <div class="fx"><div class="fx-name">正则化逻辑回归<span class="fx-no">F1.9</span></div><div class="fx-math">J = 交叉熵 + <sup>λ</sup>&frasl;<sub>2m</sub> Σ w<sub>j</sub>²</div><div class="fx-note">同一个 λ 框架套两种模型。</div></div>
+    <div class="fx"><div class="fx-name">⭐ λ 的权衡<span class="fx-no">F1.10</span></div><div class="fx-math">λ→0 : 无正则(过拟合)&nbsp;&nbsp;;&nbsp;&nbsp;λ 过大 : w→0 (欠拟合)</div><div class="fx-note">正则化<b>从不惩罚 b</b>——考试原题。</div></div>
+  </div>
+</section>
+
+<!-- ==================== COURSE 2 ==================== -->
+<section class="partband c2" id="part2">
+  <p class="pn">COURSE 2 / 3</p>
+  <h2>高级学习算法<small>Advanced Learning Algorithms</small></h2>
+  <p class="pdesc">神经网络、训练技巧、偏差/方差诊断、决策树与随机森林——求职面试与考试双高频区。</p>
+</section>
+
+<!-- ============ CH4 ============ -->
+<section class="chapter c2" id="ch4">
+  <header class="ch-head"><span class="ch-num">04</span>
+    <p class="ch-kicker">COURSE 2 · WEEK 1</p>
+    <h2>神经网络与前向传播</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>神经元：<var>a = g(w·x + b)</var>；一层＝一组神经元同时计算。</li>
+      <li><b>前向传播</b>逐层计算：<var>a<sup>[l]</sup> = g(W<sup>[l]</sup>a<sup>[l−1]</sup> + b<sup>[l]</sup>)</var>。</li>
+      <li><b>矩阵维度</b>：<var>W<sup>[l]</sup> ∈ ℝ<sup>n^[l]×n^[l−1]</sup></var>，<var>b<sup>[l]</sup> ∈ ℝ<sup>n^[l]</sup></var>。</li>
+      <li>三层典型结构：输入层 → 隐藏层（提取特征）→ 输出层。</li>
+      <li>TensorFlow：<code>Sequential([Dense(25,'sigmoid'), …])</code>；<code>Dense</code>＝一层。</li>
+      <li>每个神经元都在<b>看上一层的全部输出</b>——层的本质是矩阵乘法＋激活。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li>给网络结构求 <var>W<sup>[2]</sup></var> 的 shape：<mark>(本层神经元数, 上层神经元数)</mark>。</li>
+      <li>没有激活函数（g=恒等）⇒ 多层网络塌缩为<b>线性回归</b>——激活引入非线性。</li>
+      <li>「隐藏层」＝既非输入也非输出的层；<b>层数不算输入层</b>（常见陷阱题）。</li>
+      <li>前向传播手算题：一层层代 <var>g(Wx+b)</var>，别跳步。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">a<sup>[2]</sup> = g( W<sup>[2]</sup> · a<sup>[1]</sup> + b<sup>[2]</sup> ),&nbsp;&nbsp; a<sup>[1]</sup> = g( W<sup>[1]</sup> · x + b<sup>[1]</sup> )</span><span class="no">前向传播</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">forward_prop.py</span><span class="ci">TF 搭网络 + NumPy 手写一层</span><span class="cx">TF · NumPy</span></div>
+    <pre><span class="kw">import</span> tensorflow <span class="kw">as</span> tf
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(<span class="nm">25</span>, activation=<span class="st">'sigmoid'</span>),
+    tf.keras.layers.Dense(<span class="nm">15</span>, activation=<span class="st">'sigmoid'</span>),
+    tf.keras.layers.Dense(<span class="nm">1</span>,  activation=<span class="st">'sigmoid'</span>),   <span class="cm"># 二分类输出</span>
+])
+
+<span class="cm"># NumPy 手写 dense 层：W 形如 (n_out, n_in)</span>
+<span class="kw">def</span> <span class="fn">dense</span>(a_in, W, b, g):
+    <span class="kw">return</span> g(a_in @ W.T + b)
+
+a1 = <span class="fn">dense</span>(X, W1, b1, sigmoid)     <span class="cm"># 逐层前向传播</span>
+a2 = <span class="fn">dense</span>(a1, W2, b2, sigmoid)</pre>
+  </div>
+</section>
+
+<!-- ============ CH5 ============ -->
+<section class="chapter c2" id="ch5">
+  <header class="ch-head"><span class="ch-num">05</span>
+    <p class="ch-kicker">COURSE 2 · WEEK 2</p>
+    <h2>激活函数、Softmax 与训练细节</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>训练三步曲：<code>compile(loss)</code> → <code>fit(X,y,epochs)</code> → <code>predict</code>。</li>
+      <li>激活函数：<mark>ReLU</mark> <var>max(0,z)</var>；sigmoid；linear <var>g(z)=z</var>；softmax。</li>
+      <li><b>Softmax</b>：<var>a<sub>j</sub> = e<sup>z_j</sup>/Σ<sub>k</sub>e<sup>z_k</sup></var>，输出 K 类概率分布（和为 1）。</li>
+      <li>多分类损失：稀疏交叉熵 <var>−log a<sub>y</sub></var>。</li>
+      <li><b>Adam</b>：自适应缩放各参数学习率（大梯度小步、小梯度大步），α 好调。</li>
+      <li>反向传播＝<b>计算图上的链式法则</b>，算出 ∂J/∂w（TensorFlow 自动完成）。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li><b>输出层激活选择表（必考）</b>：二分类 sigmoid；回归（±∞）linear；非负回归 ReLU；多分类 softmax。</li>
+      <li>隐藏层<b>默认 ReLU</b>：计算快 + 不易梯度饱和。</li>
+      <li>softmax 所有输出相加恒为 <mark>1</mark>；单个 z 增大 → 自身概率↑、其余↓。</li>
+      <li><code>from_logits=True</code>：输出层写 <b>linear</b>，数值更稳，预测时再 softmax。</li>
+      <li>Adam vs 普通 GD：不同参数<b>各自不同</b>的有效学习率。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">a<sub>1</sub>,…,a<sub>K</sub> = softmax(z)<sub>j</sub> = e<sup>z<sub>j</sub></sup> / Σ<sub>k=1..K</sub> e<sup>z<sub>k</sub></sup>&nbsp;&nbsp;&nbsp;&nbsp;L(f, y) = −log a<sub>y</sub></span><span class="no">softmax + 交叉熵</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">softmax_mnist.py</span><span class="ci">多分类 + Adam + from_logits</span><span class="cx">TensorFlow</span></div>
+    <pre><span class="kw">from</span> tensorflow.keras <span class="kw">import</span> Sequential, Dense
+<span class="kw">from</span> tensorflow.keras.losses <span class="kw">import</span> SparseCategoricalCrossentropy
+
+model = Sequential([
+    Dense(<span class="nm">25</span>, activation=<span class="st">'relu'</span>),
+    Dense(<span class="nm">15</span>, activation=<span class="st">'relu'</span>),
+    Dense(<span class="nm">10</span>, activation=<span class="st">'linear'</span>),          <span class="cm"># 输出 logits</span>
+])
+model.compile(loss=SparseCategoricalCrossentropy(from_logits=<span class="st">True</span>),
+              optimizer=tf.keras.optimizers.Adam(<span class="nm">1e-3</span>))
+model.fit(X, y, epochs=<span class="nm">20</span>)
+
+p = tf.nn.softmax(model(X)).numpy()     <span class="cm"># 预测时手动 softmax</span></pre>
+  </div>
+</section>
+
+<!-- ============ CH6 ============ -->
+<section class="chapter c2" id="ch6">
+  <header class="ch-head"><span class="ch-num">06</span>
+    <p class="ch-kicker">COURSE 2 · WEEK 3</p>
+    <h2>模型评估、偏差/方差与改进策略</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>数据三分：<mark>train 60% / cv 20% / test 20%</mark>；用 <b>cv 集</b>选模型，<b>test 只碰一次</b>。</li>
+      <li><b>高偏差</b>（欠拟合）：train 误差 ≈ cv 误差，且都<b>高于基线</b>。</li>
+      <li><b>高方差</b>（过拟合）：train 误差低，cv 误差<b>显著更高</b>。</li>
+      <li>基线＝人类/竞品水平；差距才有意义。</li>
+      <li>改进路径：更大网络→治偏差；更多数据→治方差；正则化↑→治方差。</li>
+      <li><b>迁移学习</b>：预训练模型＋小数据 → 只重训输出层/最后几层。</li>
+      <li>倾斜数据看 <b>P / R / F1</b>，不看 accuracy。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li>诊断题套路：先看 <mark>train 误差</mark>（高→高偏差），再看 <mark>cv−train 差距</mark>（大→高方差）。</li>
+      <li>高偏差时「加数据」<b>没用</b>——经典陷阱选项。</li>
+      <li><var>F1 = 2PR/(P+R)</var> 手算（P=TP/(TP+FP)，R=TP/(TP+FN)）。</li>
+      <li>正样本占比 0.1% 时，全预测负类 accuracy=99.9% 但毫无价值。</li>
+      <li>迁移学习适用：新任务输出层不同、数据少、与预训练域相近。</li>
+    </ul></div>
+  </div>
+  <div class="twrap"><table class="tb">
+    <tr><th>症状</th><th>train err</th><th>cv err</th><th>处方</th></tr>
+    <tr><td>高偏差</td><td>高</td><td>≈ train（高）</td><td>更大网络 · 加特征 · 降 λ</td></tr>
+    <tr><td>高方差</td><td>低</td><td>远高于 train</td><td>更多数据 · 减特征 · 升 λ</td></tr>
+    <tr><td>两者皆高</td><td>高</td><td>更高</td><td>先治偏差，再迭代</td></tr>
+  </table></div>
+  <div class="code">
+    <div class="chd"><span class="cn">diagnose.py</span><span class="ci">60/20/20 划分 + 用 cv 选多项式阶数</span><span class="cx">sklearn</span></div>
+    <pre><span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+
+X_tr, X_tmp, y_tr, y_tmp = train_test_split(X, y, test_size=<span class="nm">0.4</span>)
+X_cv, X_te, y_cv, y_te = train_test_split(X_tmp, y_tmp, test_size=<span class="nm">0.5</span>)
+
+<span class="kw">for</span> d <span class="kw">in</span> [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>]:                       <span class="cm"># 用 cv 集选模型，不碰 test</span>
+    poly = PolynomialFeatures(d).fit(X_tr)
+    m = LinearRegression().fit(poly.transform(X_tr), y_tr)
+    <span class="fn">print</span>(d, <span class="st">f"cv={m.score(poly.transform(X_cv), y_cv):.3f}"</span>)
+
+P, R = TP/(TP+FP), TP/(TP+FN)           <span class="cm"># 倾斜数据</span>
+F1 = <span class="nm">2</span>*P*R / (P + R)</pre>
+  </div>
+</section>
+
+<!-- ============ CH7 ============ -->
+<section class="chapter c2" id="ch7">
+  <header class="ch-head"><span class="ch-num">07</span>
+    <p class="ch-kicker">COURSE 2 · WEEK 4</p>
+    <h2>决策树、随机森林与 XGBoost</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>决策树：每节点选<b>信息增益最大</b>的特征切分，递归到纯/达停止条件。</li>
+      <li><b>熵</b>：<var>H(p) = −p·log₂p −(1−p)·log₂(1−p)</var>；p=0.5 时最大=1。</li>
+      <li><b>信息增益</b> ＝ 父节点熵 − 加权子节点熵（权重=样本占比）。</li>
+      <li>类别特征 → <b>one-hot</b>；连续特征 → 阈值二分；回归树 → 按<b>方差减少</b>分裂。</li>
+      <li><b>随机森林</b>：bagging（有放回抽 m 个样本）＋每节点<b>随机特征子集</b>（√n），多树投票。</li>
+      <li><b>XGBoost</b>：boosting——新树专注拟合<b>前一棵树的残差</b>。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li><b>熵计算必考</b>：H(0.5)=1，H(0)=H(1)=0，H(0.8)≈0.72。</li>
+      <li>信息增益手算：先算父熵，再算左右子熵加权平均，<mark>相减</mark>。</li>
+      <li>随机森林 &gt; 单树：集成<b>降低方差</b>、不易过拟合。</li>
+      <li>bagging vs boosting：并行独立 vs <b>串行纠错</b>。</li>
+      <li>XGBoost 为什么强：正则化 + 早停 + 并行优化，表格数据首选。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">IG = H(p<sub>node</sub>) − ( w<sup>left</sup>·H(p<sup>left</sup>) + w<sup>right</sup>·H(p<sup>right</sup>) ),&nbsp;&nbsp; w = <sup>n<sub>子</sub></sup>&frasl;<sub>n<sub>父</sub></sub></span><span class="no">信息增益</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">trees.py</span><span class="ci">熵 / 信息增益手算 + 随机森林</span><span class="cx">NumPy · sklearn</span></div>
+    <pre><span class="kw">def</span> <span class="fn">H</span>(p):                                 <span class="cm"># 二分类熵</span>
+    <span class="kw">return</span> <span class="nm">0</span> <span class="kw">if</span> p <span class="kw">in</span> (<span class="nm">0</span>, <span class="nm">1</span>) <span class="kw">else</span> -p*np.log2(p) - (<span class="nm">1</span>-p)*np.log2(<span class="nm">1</span>-p)
+
+<span class="kw">def</span> <span class="fn">info_gain</span>(p_root, p_l, p_r, w_l):
+    <span class="kw">return</span> <span class="fn">H</span>(p_root) - w_l*<span class="fn">H</span>(p_l) - (<span class="nm">1</span>-w_l)*<span class="fn">H</span>(p_r)
+
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+rf = RandomForestClassifier(n_estimators=<span class="nm">100</span>, max_features=<span class="st">'sqrt'</span>)
+rf.fit(X_train, y_train)                 <span class="cm"># bagging + 特征子集</span>
+
+<span class="kw">import</span> xgboost <span class="kw">as</span> xgb                  <span class="cm"># 表格数据首选</span>
+bst = xgb.XGBClassifier().fit(X_train, y_train)</pre>
+  </div>
+</section>
+
+<!-- ============ COURSE 2 公式笔记 ============ -->
+<section class="fnotes c2" id="fx2">
+  <h2><span class="fb"></span>Course 2 · 公式笔记</h2>
+  <p class="fsub">前向传播、softmax、熵与信息增益、P/R/F1——考试计算题全在这一页。</p>
+  <div class="fx-grid">
+    <div class="fx"><div class="fx-name">⭐ 前向传播<span class="fx-no">F2.1</span></div><div class="fx-math">a<sup>[l]</sup> = g( W<sup>[l]</sup> a<sup>[l−1]</sup> + b<sup>[l]</sup> )</div><div class="fx-note">l 层输入 = 上层输出 a<sup>[l−1]</sup>。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 参数维度<span class="fx-no">F2.2</span></div><div class="fx-math">W<sup>[l]</sup> : (n<sup>[l]</sup> × n<sup>[l−1]</sup>)&nbsp;&nbsp;;&nbsp;&nbsp;b<sup>[l]</sup> : (n<sup>[l]</sup>)</div><div class="fx-note">shape 判断题直接套。</div></div>
+    <div class="fx"><div class="fx-name">ReLU<span class="fx-no">F2.3</span></div><div class="fx-math">g(z) = max(0, z)</div><div class="fx-note">隐藏层默认；快、无右端饱和。</div></div>
+    <div class="fx"><div class="fx-name">⭐ Softmax<span class="fx-no">F2.4</span></div><div class="fx-math">a<sub>j</sub> = e<sup>z<sub>j</sub></sup> / Σ<sub>k</sub> e<sup>z<sub>k</sub></sup></div><div class="fx-note">Σa<sub>j</sub> = 1；配合稀疏交叉熵。</div></div>
+    <div class="fx"><div class="fx-name">多分类交叉熵<span class="fx-no">F2.5</span></div><div class="fx-math">L = −log a<sub>y</sub>&nbsp;&nbsp;(J = <sup>1</sup>&frasl;<sub>m</sub> Σ L)</div><div class="fx-note">只看真实类别的概率。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 熵<span class="fx-no">F2.6</span></div><div class="fx-math">H(p) = −p·log₂p − (1−p)·log₂(1−p)</div><div class="fx-note">H(0.5)=1 最大；H(0)=H(1)=0。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 信息增益<span class="fx-no">F2.7</span></div><div class="fx-math">IG = H(父) − [ w<sub>L</sub>H(左) + w<sub>R</sub>H(右) ]</div><div class="fx-note">决策树每步最大化的量。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 精确率 / 召回率<span class="fx-no">F2.8</span></div><div class="fx-math">P = TP/(TP+FP)&nbsp;&nbsp;;&nbsp;&nbsp;R = TP/(TP+FN)</div><div class="fx-note">P 治「误报」，R 治「漏报」。</div></div>
+    <div class="fx"><div class="fx-name">⭐ F1<span class="fx-no">F2.9</span></div><div class="fx-math">F1 = 2PR / (P + R)</div><div class="fx-note">P、R 的调和平均，倾斜数据主指标。</div></div>
+    <div class="fx"><div class="fx-name">输出层激活速查<span class="fx-no">F2.10</span></div><div class="fx-math">二分类→sigmoid&nbsp;; 回归→linear&nbsp;; 非负→ReLU&nbsp;; K类→softmax</div><div class="fx-note">选择题原题库。</div></div>
+  </div>
+</section>
+
+<!-- ==================== COURSE 3 ==================== -->
+<section class="partband c3" id="part3">
+  <p class="pn">COURSE 3 / 3</p>
+  <h2>无监督学习、推荐系统与强化学习<small>Unsupervised, Recommenders &amp; RL</small></h2>
+  <p class="pdesc">K-means、高斯异常检测、协同过滤、PCA，最后以 MDP 与 DQN 收官。</p>
+</section>
+
+<!-- ============ CH8 ============ -->
+<section class="chapter c3" id="ch8">
+  <header class="ch-head"><span class="ch-num">08</span>
+    <p class="ch-kicker">COURSE 3 · WEEK 1</p>
+    <h2>K-means 聚类与异常检测</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li><b>K-means 两步循环</b>：① 分配——每个样本归最近质心 <var>c⁽ⁱ⁾ = argmin‖x−μ‖</var>；② 移动——质心＝簇内均值。</li>
+      <li>代价：<var>J = (1/m)Σ‖x⁽ⁱ⁾−μ<sub>c(i)</sub>‖²</var>，两步都在降 J。</li>
+      <li>初始化：随机挑 K 个训练样本；<b>跑 50–1000 次取 J 最小</b>。</li>
+      <li>选 K：肘部法则（不总有效）/ 下游任务评估。</li>
+      <li><b>异常检测</b>：拟合 <var>p(x)</var>，<var>p(x) &lt; ε</var> 判异常。</li>
+      <li>高斯模型：<var>p(x) = Π<sub>j</sub> p(x<sub>j</sub>; μ<sub>j</sub>, σ<sub>j</sub>²)</var>，各维独立。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li>K-means 必收敛（J 单调不增），但<b>不保证全局最优</b>——靠多次初始化。</li>
+      <li>高斯公式手算 + <mark>σ 大 → 曲矮胖</mark>，σ 小 → 曲瘦高。</li>
+      <li><b>选异常检测 vs 监督学习</b>（高频）：负样本<b>极少</b>且未来异常<b>模式未知</b> → 异常检测；两类样本都多 → 监督学习。</li>
+      <li>非高斯特征 → <b>log 变换</b>再看直方图。</li>
+      <li>ε 靠 <b>P/R 权衡</b>（真异常 vs 误报）调。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">p(x<sub>j</sub>) = <sup>1</sup>&frasl;<sub>√(2π)·σ<sub>j</sub></sub> · exp( −<sup>(x<sub>j</sub>−μ<sub>j</sub>)²</sup>&frasl;<sub>2σ<sub>j</sub>²</sub> )&nbsp;&nbsp;&nbsp;&nbsp;p(x) = Π<sub>j=1..n</sub> p(x<sub>j</sub>)</span><span class="no">高斯密度</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">unsupervised.py</span><span class="ci">KMeans + 高斯异常检测</span><span class="cx">sklearn · NumPy</span></div>
+    <pre><span class="kw">from</span> sklearn.cluster <span class="kw">import</span> KMeans
+km = KMeans(n_clusters=<span class="nm">3</span>, n_init=<span class="nm">10</span>).fit(X)      <span class="cm"># n_init=多次初始化</span>
+labels, centers = km.labels_, km.cluster_centers_
+
+<span class="kw">def</span> <span class="fn">gaussian</span>(x, mu, sig):                       <span class="cm"># 一维高斯</span>
+    <span class="kw">return</span> np.exp(-(x-mu)**<span class="nm">2</span>/(<span class="nm">2</span>*sig**<span class="nm">2</span>)) / (np.sqrt(<span class="nm">2</span>*np.pi)*sig)
+
+mu, sig = X.mean(axis=<span class="nm">0</span>), X.std(axis=<span class="nm">0</span>)           <span class="cm"># 各维独立估计</span>
+p = np.prod(<span class="fn">gaussian</span>(X, mu, sig), axis=<span class="nm">1</span>)
+anomaly = p &lt; <span class="nm">0.002</span>                             <span class="cm"># 阈值 ε 由 P/R 调</span></pre>
+  </div>
+</section>
+
+<!-- ============ CH9 ============ -->
+<section class="chapter c3" id="ch9">
+  <header class="ch-head"><span class="ch-num">09</span>
+    <p class="ch-kicker">COURSE 3 · WEEK 2</p>
+    <h2>协同过滤、内容过滤与 PCA</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li><b>协同过滤</b>：用户参数 <var>w</var> 与物品特征 <var>x</var> <b>同时学习</b>（评分矩阵已知，特征未知）。</li>
+      <li>代价：只对<b>已评分</b> (r=1) 的 (user,item) 对求和，＋双方正则项。</li>
+      <li><b>均值归一化</b>：新用户（无评分）预测＝全站均值，避免全 0。</li>
+      <li><b>基于内容过滤</b>：物品特征 x 已知（如电影题材），学用户参数；深度版：两个网络提 <var>v<sub>u</sub>, v<sub>m</sub></var>，点积打分。</li>
+      <li><b>PCA</b>：找 k 个正交方向，投影方差最大 / 重构误差最小。</li>
+      <li>流程：中心化 → 协方差 <var>Σ=(1/m)X<sup>T</sup>X</var> → 特征向量 → <var>z = U<sub>reduce</sub><sup>T</sup>x</var>。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li><b>协同过滤 vs 内容过滤</b>：特征已知→内容；特征要学→协同（一句话必考）。</li>
+      <li>均值归一化的动机：<mark>冷启动用户给均值</mark>而非零。</li>
+      <li>PCA 选 k：<b>保留 ≥99% 方差</b>（(ΣS[:k])/ΣS ≥ 0.99）。</li>
+      <li>PCA 用途：加速、可视化、降噪；<b>不推荐</b>用于防过拟合（正则化更好）。</li>
+      <li>PCA 必须先<b>中心化</b>（缩放可选但常见）。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">J(w,x) = Σ<sub>r(i,j)=1</sub> ( w<sup>(j)</sup>·x⁽ⁱ⁾ + b<sup>(j)</sup> − y<sup>(i,j)</sup> )² + λ( ΣΣw² + ΣΣx² )</span><span class="no">协同过滤代价</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">reco_pca.py</span><span class="ci">协同过滤梯度下降 + PCA 三步</span><span class="cx">NumPy</span></div>
+    <pre><span class="cm"># 协同过滤：W(用户) 与 X(物品) 同时梯度下降，R∈{0,1} 标记已评分</span>
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(iters):
+    e = R * (X @ W.T + b - Y)            <span class="cm"># 只算已评分位置</span>
+    W -= alpha * (e.T @ X + lam * W)
+    X -= alpha * (e @ W   + lam * X)
+
+<span class="cm"># PCA：中心化 → SVD → 取前 k 维</span>
+Xc = X - X.mean(axis=<span class="nm">0</span>)
+U, S, Vt = np.linalg.svd(Xc)
+Z = Xc @ Vt[:k].T                        <span class="cm"># 压缩：z = Uᵀx</span>
+X_rec = Z @ Vt[:k]                       <span class="cm"># 重构</span>
+keep = S[:k].sum() / S.sum()             <span class="cm"># 保留方差比，目标 ≥ 0.99</span></pre>
+  </div>
+</section>
+
+<!-- ============ CH10 ============ -->
+<section class="chapter c3" id="ch10">
+  <header class="ch-head"><span class="ch-num">10</span>
+    <p class="ch-kicker">COURSE 3 · WEEK 3</p>
+    <h2>强化学习：MDP、Q-Learning 与 DQN</h2>
+  </header>
+  <div class="duo">
+    <div class="panel kp"><h3>◆ 知识重点</h3><ul>
+      <li>四元组框架：状态 S、动作 A、奖励 R、折扣 <var>γ</var>；策略 <var>π(a|s)</var>。</li>
+      <li><b>回报</b>：<var>R₁ + γR₂ + γ²R₃ + …</var>；γ=0.9 → 10 步后权重 &lt; 1/3。</li>
+      <li><b>状态值</b> <var>V(s) = max<sub>a</sub> Q(s,a)</var>；<b>最优策略</b> <var>π(s)=argmax Q</var>。</li>
+      <li><b>Bellman 方程</b>：<var>Q(s,a) = R(s,a) + γ·max<sub>a′</sub> Q(s′,a′)</var>。</li>
+      <li>随机环境 → 取<b>期望</b>；连续状态（如月球着陆器）→ <b>DQN</b>。</li>
+      <li>DQN 训练目标：<var>y = R + γ·max<sub>a′</sub> Q<sub>target</sub>(s′,a′)</var>，拟合 <var>Q(s,a)</var>。</li>
+      <li>技巧：<b>ε-greedy</b> 探索（ε 随时间衰减）、小批经验回放、目标网络定期同步。</li>
+    </ul></div>
+    <div class="panel exam"><h3>✱ 考试要点</h3><ul>
+      <li><b>折扣回报手算</b>（必考）：γ=0.5、奖励 [1, 2, 3] → 1+0.5·2+0.25·3=2.75。</li>
+      <li>γ 越小越<b>短视</b>；γ=0.99 → 看约百步，γ=0.9 → 看约十步。</li>
+      <li>Bellman 应用题：给 Q 表算 <var>Q(s,a)</var> 或 <var>V(s)</var>。</li>
+      <li><var>Q(s,a)</var> 含义＝在 s 做 a、之后<b>一直最优</b>的期望回报。</li>
+      <li>ε-greedy：概率 ε 随机（探索），其余贪心 argmax（利用）。</li>
+    </ul></div>
+  </div>
+  <div class="eq"><span class="mth">Q(s,a) = R(s,a) + γ·max<sub>a′</sub> Q(s′,a′)&nbsp;&nbsp;&nbsp;&nbsp;⇒&nbsp;&nbsp;&nbsp;&nbsp;π*(s) = argmax<sub>a</sub> Q(s,a)</span><span class="no">Bellman 方程</span></div>
+  <div class="code">
+    <div class="chd"><span class="cn">q_learning.py</span><span class="ci">表格型 Q-learning + DQN 训练核心</span><span class="cx">NumPy · TF</span></div>
+    <pre><span class="cm"># 表格型：离散小状态空间</span>
+Q = np.zeros((n_states, n_actions))
+<span class="kw">for</span> ep <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">3000</span>):
+    s = env.reset()
+    <span class="kw">for</span> t <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">100</span>):
+        a = np.random.choice(A) <span class="kw">if</span> np.random.rand() &lt; eps <span class="kw">else</span> Q[s].argmax()
+        s2, r, done = env.step(a)
+        Q[s,a] += alpha * (r + gamma*Q[s2].max()*(<span class="kw">not</span> done) - Q[s,a])
+        s = s2
+        <span class="kw">if</span> done: <span class="kw">break</span>
+    eps *= <span class="nm">0.995</span>                          <span class="cm"># 探索率衰减</span>
+
+<span class="cm"># DQN 核心：网络拟合 Q(s,·)，目标来自目标网络</span>
+q_net   = Sequential([Dense(<span class="nm">64</span>, <span class="st">'relu'</span>), Dense(<span class="nm">64</span>, <span class="st">'relu'</span>), Dense(n_act)])
+tgt_net = tf.keras.models.clone_model(q_net)       <span class="cm"># 定期同步</span>
+y = r + gamma * tgt_net(s2).max(axis=<span class="nm">1</span>) * (<span class="nm">1</span> - done)   <span class="cm"># Bellman 目标</span></pre>
+  </div>
+</section>
+
+<!-- ============ COURSE 3 公式笔记 ============ -->
+<section class="fnotes c3" id="fx3">
+  <h2><span class="fb"></span>Course 3 · 公式笔记</h2>
+  <p class="fsub">聚类、高斯、协同过滤、PCA 与强化学习——最后一页收官公式。</p>
+  <div class="fx-grid">
+    <div class="fx"><div class="fx-name">⭐ K-means 代价<span class="fx-no">F3.1</span></div><div class="fx-math">J = <sup>1</sup>&frasl;<sub>m</sub> Σ ‖x⁽ⁱ⁾ − μ<sub>c(i)</sub>‖²</div><div class="fx-note">分配、移动两步均单调降 J。</div></div>
+    <div class="fx"><div class="fx-name">质心更新<span class="fx-no">F3.2</span></div><div class="fx-math">μ<sub>k</sub> = mean{ x⁽ⁱ⁾ : c⁽ⁱ⁾ = k }</div><div class="fx-note">簇内样本均值。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 高斯密度<span class="fx-no">F3.3</span></div><div class="fx-math">p(x) = <sup>1</sup>&frasl;<sub>√(2π)σ</sub> e<sup>−(x−μ)²/2σ²</sup></div><div class="fx-note">μ 定位置，σ 定胖瘦。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 异常判据<span class="fx-no">F3.4</span></div><div class="fx-math">p(x) = Π<sub>j</sub> p(x<sub>j</sub>; μ<sub>j</sub>, σ<sub>j</sub>²) &lt; ε</div><div class="fx-note">ε 由 P/R 权衡决定。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 协同过滤代价<span class="fx-no">F3.5</span></div><div class="fx-math">J = Σ<sub>r=1</sub>(w·x + b − y)² + λ(Σw² + Σx²)</div><div class="fx-note">w、x <b>同时</b>梯度下降。</div></div>
+    <div class="fx"><div class="fx-name">PCA 压缩 / 重构<span class="fx-no">F3.6</span></div><div class="fx-math">z = U<sub>reduce</sub><sup>T</sup> x&nbsp;&nbsp;;&nbsp;&nbsp;x̂ = U<sub>reduce</sub> z</div><div class="fx-note">先中心化；方向＝协方差特征向量。</div></div>
+    <div class="fx"><div class="fx-name">⭐ PCA 选 k<span class="fx-no">F3.7</span></div><div class="fx-math">Σ<sub>k</sub>S / ΣS ≥ 0.99</div><div class="fx-note">保留 99% 方差所需的最小 k。</div></div>
+    <div class="fx"><div class="fx-name">⭐ 折扣回报<span class="fx-no">F3.8</span></div><div class="fx-math">G = R₀ + γR₁ + γ²R₂ + …</div><div class="fx-note">γ=0.9≈看十步；手算必考。</div></div>
+    <div class="fx"><div class="fx-name">⭐ Bellman 方程<span class="fx-no">F3.9</span></div><div class="fx-math">Q(s,a) = R(s,a) + γ·max<sub>a′</sub> Q(s′,a′)</div><div class="fx-note">V(s)=max Q；π*=argmax Q。</div></div>
+    <div class="fx"><div class="fx-name">⭐ Q-learning 更新<span class="fx-no">F3.10</span></div><div class="fx-math">Q(s,a) ← Q + α[ R + γ·max<sub>a′</sub>Q(s′,a′) − Q ]</div><div class="fx-note">DQN：Q 换成神经网络，配 ε-greedy。</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>吴恩达 Machine Learning Specialization · 精简复习笔记（重点 / 考点 / 代码 / 公式）</span>
+  <span>C1 回归分类 · C2 高级算法 · C3 无监督推荐RL</span>
+</footer>
+
+</div></main>
+
+<script>
+// 阅读进度条
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  document.getElementById('bar').style.width =
+    (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, {passive:true});
+// TOC 高亮当前章节
+const links = [...document.querySelectorAll('#toc a.it')];
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, {rootMargin:'-15% 0px -70% 0px'});
+document.querySelectorAll('.chapter').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

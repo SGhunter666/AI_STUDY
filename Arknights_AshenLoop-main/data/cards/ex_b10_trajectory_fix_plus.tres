@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 3
+target = "self"
+condition = "target_has_mark"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "apply_mark"
+amount = 3
+target = "enemy"
+condition = "not_player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_b10_trajectory_fix_plus"
+display_name = "弹道修正+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Mark", "Tempo")
+description = "抽 3 / 施加 3。"
+rarity = "Starter"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

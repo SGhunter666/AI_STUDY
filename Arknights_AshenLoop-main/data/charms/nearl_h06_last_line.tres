@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_h06_last_line"
+display_name = "最后阵线"
+description = "低生命时更容易获得护盾与反击牌。"
+slot_type = "charm"

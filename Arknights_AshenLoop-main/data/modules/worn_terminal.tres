@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "worn_terminal"
+display_name = "旧通讯终端"
+rarity = "Rare"
+description = "事件节点额外出现第三个选项。"

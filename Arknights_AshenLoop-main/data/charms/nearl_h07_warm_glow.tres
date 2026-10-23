@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_h07_warm_glow"
+display_name = "温光缎带"
+description = "反击后小回复构筑更稳定。"
+slot_type = "charm"

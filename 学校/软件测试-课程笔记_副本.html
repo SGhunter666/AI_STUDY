@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软件测试 · 课程笔记（Week 1 + LO1–LO5）</title>
+<style>
+:root{
+  --paper:#F7F3E8; --paper2:#FFFDF6; --paper3:#F0EADA;
+  --ink:#23201A; --ink2:#5C564A; --ink3:#8A8272;
+  --rule:#DCD3BE; --rule2:#C8BD9F;
+  --p1:#0E7A72; --p1bg:#E3EFEA;
+  --p2:#B0521B; --p2bg:#F4E7DA;
+  --p3:#6C4A9C; --p3bg:#EAE4F2;
+  --p4:#566E20; --p4bg:#EBEFDD;
+  --p5:#24518C; --p5bg:#E2EAF3;
+  --p6:#8C3A3A; --p6bg:#F3E2E2;
+  --serif:"Noto Serif SC","Songti SC",STSong,"Source Han Serif SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:"SF Mono",Menlo,Consolas,"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--paper);color:var(--ink);font:15.5px/1.95 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(120,105,70,.045) 27px,rgba(120,105,70,.045) 28px);}
+::selection{background:#F2D8A7;color:#3A2E10}
+a{color:inherit;text-decoration:none}
+strong{color:#111;font-weight:650}
+em{font-style:normal;color:var(--p5);font-family:var(--serif);font-weight:600}
+.wrap{max-width:940px;margin:0 auto;padding:0 26px}
+
+/* ---------- progress & nav ---------- */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3),var(--p4),var(--p5),var(--p6));z-index:99}
+#nav{position:sticky;top:0;z-index:90;background:rgba(247,243,232,.94);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--rule2)}
+#nav .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:9px 18px}
+#nav .brand{font:700 15px/1.2 var(--serif);white-space:nowrap;letter-spacing:.02em}
+#nav .brand small{display:block;font:400 9.5px/1.5 var(--mono);color:var(--ink3);letter-spacing:.14em}
+#chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+#chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;font:600 11px/1 var(--mono);color:var(--ink2);border:1px solid var(--rule2);
+  border-radius:99px;padding:5px 9px;background:var(--paper2);transition:.15s;cursor:pointer}
+.chip:hover{border-color:var(--ink2);color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:0}
+.chip.gp{border:none;background:none;color:var(--ink3);font-weight:700;padding:5px 2px;cursor:default}
+.chip.gp[data-t]{cursor:pointer}
+.chip.gp[data-t]:hover{color:var(--ink)}
+
+/* ---------- cover ---------- */
+#cover{padding:74px 0 8px}
+.kicker{font:700 11px/1 var(--mono);letter-spacing:.34em;color:var(--p5);text-transform:uppercase}
+#cover h1{font:900 52px/1.18 var(--serif);margin:16px 0 6px;letter-spacing:.01em}
+#cover h1 .amp{font-style:italic;font-weight:400;color:var(--p2)}
+#cover .sub{font:400 17px/1.7 var(--serif);color:var(--ink2);max-width:640px}
+#cover .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.mtag{font:600 11.5px/1.4 var(--mono);border:1px solid var(--rule2);border-radius:6px;padding:5px 10px;background:var(--paper2);color:var(--ink2)}
+.mtag b{color:var(--ink)}
+.lede{margin:34px 0 6px;padding:20px 24px;background:var(--paper2);border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:0 10px 10px 0;font-size:14.5px;color:var(--ink2)}
+.lede b{color:var(--ink)}
+
+/* ---------- knowledge map ---------- */
+#kmap{margin:36px 0 10px}
+#kmap .figbox{background:var(--paper2);border:1px solid var(--rule);border-radius:12px;padding:18px 14px 8px}
+#kmap svg{width:100%;height:auto;display:block}
+figcaption{font:12.5px/1.7 var(--serif);color:var(--ink2);text-align:center;padding:10px 14px 6px}
+figcaption b{color:var(--ink)}
+
+/* ---------- part divider ---------- */
+.part{margin:78px 0 8px;display:grid;grid-template-columns:112px 1fr;gap:22px;align-items:stretch;
+  border:1.5px solid;border-radius:14px;overflow:hidden}
+.part .rn{display:flex;align-items:center;justify-content:center;font:900 56px/1 var(--serif);font-style:italic}
+.part .bd{padding:24px 26px 20px 4px}
+.part h2{font:800 27px/1.3 var(--serif)}
+.part .en{font:italic 400 13px/1.6 var(--serif);color:var(--ink2);letter-spacing:.04em;margin-top:2px}
+.part .ls{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.part .ls span{font:600 11px/1.5 var(--mono);border:1px solid;border-radius:6px;padding:3px 9px;background:var(--paper2)}
+.pt1{border-color:var(--p1)}.pt1 .rn{color:var(--p1);background:var(--p1bg)}.pt1 h2{color:var(--p1)}.pt1 .ls span{color:var(--p1);border-color:var(--p1)}
+.pt2{border-color:var(--p2)}.pt2 .rn{color:var(--p2);background:var(--p2bg)}.pt2 h2{color:var(--p2)}.pt2 .ls span{color:var(--p2);border-color:var(--p2)}
+.pt3{border-color:var(--p3)}.pt3 .rn{color:var(--p3);background:var(--p3bg)}.pt3 h2{color:var(--p3)}.pt3 .ls span{color:var(--p3);border-color:var(--p3)}
+.pt4{border-color:var(--p4)}.pt4 .rn{color:var(--p4);background:var(--p4bg)}.pt4 h2{color:var(--p4)}.pt4 .ls span{color:var(--p4);border-color:var(--p4)}
+.pt5{border-color:var(--p5)}.pt5 .rn{color:var(--p5);background:var(--p5bg)}.pt5 h2{color:var(--p5)}.pt5 .ls span{color:var(--p5);border-color:var(--p5)}
+.pt6{border-color:var(--p6)}.pt6 .rn{color:var(--p6);background:var(--p6bg)}.pt6 h2{color:var(--p6)}.pt6 .ls span{color:var(--p6);border-color:var(--p6)}
+.part .wk{font:700 10.5px/1 var(--mono);letter-spacing:.22em;margin-bottom:9px}
+.pt1 .wk{color:var(--p1)}.pt2 .wk{color:var(--p2)}.pt3 .wk{color:var(--p3)}.pt4 .wk{color:var(--p4)}.pt5 .wk{color:var(--p5)}.pt6 .wk{color:var(--p6)}
+
+/* ---------- lecture ---------- */
+.lec{margin-top:64px;border-top:2.5px solid var(--ink);padding-top:26px}
+.lec .hd{display:flex;gap:22px;align-items:flex-start}
+.lec .no{font:900 54px/1 var(--serif);font-style:italic;flex:0 0 auto;padding-top:4px}
+.lec .hd h2{font:800 25px/1.4 var(--serif)}
+.lec .hd .en{font:italic 400 14px/1.6 var(--serif);color:var(--ink2)}
+.lec .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.lec .tags span{font:600 10.5px/1.5 var(--mono);border-radius:5px;padding:2.5px 9px;border:1px solid var(--rule2);background:var(--paper2);color:var(--ink2)}
+.lc1 .no{color:var(--p1)} .lc2 .no{color:var(--p2)} .lc3 .no{color:var(--p3)} .lc4 .no{color:var(--p4)} .lc5 .no{color:var(--p5)} .lc6 .no{color:var(--p6)}
+.lo{margin:18px 0 8px;background:var(--paper3);border-radius:10px;padding:14px 18px}
+.lo .t{font:700 11px/1 var(--mono);letter-spacing:.22em;color:var(--ink2);margin-bottom:9px}
+.lo ul{list-style:none;display:grid;gap:6px}
+.lo li{font-size:13.5px;line-height:1.7;padding-left:34px;position:relative;color:#3E3A2E}
+.lo li::before{content:attr(data-k);position:absolute;left:0;top:2px;font:700 10px/1 var(--mono);color:var(--paper);
+  background:var(--ink3);border-radius:4px;padding:3px 5px}
+.lc1 .lo li::before{background:var(--p1)} .lc2 .lo li::before{background:var(--p2)} .lc3 .lo li::before{background:var(--p3)}
+.lc4 .lo li::before{background:var(--p4)} .lc5 .lo li::before{background:var(--p5)} .lc6 .lo li::before{background:var(--p6)}
+.lec .guide{font:italic 400 14.5px/1.85 var(--serif);color:var(--ink2);margin:14px 0 4px;padding-left:14px;border-left:3px solid var(--rule2)}
+
+/* ---------- subsections & body ---------- */
+.ss{margin-top:34px}
+.ss>h3{font:800 18.5px/1.5 var(--serif);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--rule)}
+.ss>h3 .n{font:italic 700 15px/1 var(--serif);color:var(--ink3);margin-right:9px}
+.lc1 .ss>h3 .n{color:var(--p1)}.lc2 .ss>h3 .n{color:var(--p2)}.lc3 .ss>h3 .n{color:var(--p3)}
+.lc4 .ss>h3 .n{color:var(--p4)}.lc5 .ss>h3 .n{color:var(--p5)}.lc6 .ss>h3 .n{color:var(--p6)}
+.ss h4{font:700 15.5px/1.6 var(--serif);margin:18px 0 6px}
+.ss h4::before{content:"◆";font-size:9px;vertical-align:2px;margin-right:8px;color:var(--ink3)}
+p{margin:8px 0}
+ul.dot{margin:8px 0 8px 4px;list-style:none}
+ul.dot li{padding-left:20px;position:relative;margin:5px 0}
+ul.dot li::before{content:"–";position:absolute;left:2px;color:var(--ink3)}
+ul.dot ul{list-style:none;margin:4px 0 0 6px}
+ul.dot ul li{padding-left:18px;position:relative;font-size:14px;color:var(--ink2)}
+ul.dot ul li::before{content:"·";position:absolute;left:2px;color:var(--ink3)}
+code{font:600 12.5px/1.6 var(--mono);background:var(--paper3);border:1px solid var(--rule);border-radius:4px;padding:1px 6px;color:#3D3828}
+
+/* ---------- components ---------- */
+.term{margin:14px 0;padding:15px 19px;background:var(--paper2);border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:0 10px 10px 0}
+.term .lb{font:700 9.5px/1 var(--mono);letter-spacing:.28em;color:var(--ink3)}
+.term .w{font:italic 700 16.5px/1.5 var(--serif);margin:5px 0 3px}
+.term .d{font-size:14px;color:#4A4536}
+.tip{margin:16px 0;padding:13px 17px 13px 20px;position:relative;background:var(--paper3);border-radius:10px}
+.tip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:10px 0 0 10px;background:var(--ink)}
+.tip .lb{font:700 9.5px/1 var(--mono);letter-spacing:.28em;color:var(--ink2)}
+.tip p{font-size:14px;color:#443F31;margin:5px 0 0}
+.ask{margin:20px 0;border:1.6px dashed var(--ink3);border-radius:12px;padding:17px 20px 15px;position:relative;background:var(--paper2)}
+.ask .lb{display:inline-block;font:700 9.5px/1 var(--mono);letter-spacing:.24em;color:var(--paper);background:var(--ink3);border-radius:4px;padding:4px 8px;margin-bottom:9px}
+.ask .q{font:italic 600 15.5px/1.7 var(--serif)}
+.ask .hint{font-size:13.5px;color:var(--ink2);margin-top:8px}
+.ask .hint::before{content:"☞ ";}
+.tbx{width:100%;border-collapse:collapse;margin:16px 0;background:var(--paper2);font-size:13.5px;line-height:1.7;border-radius:10px;overflow:hidden;border:1px solid var(--rule2)}
+.tbx caption{caption-side:top;text-align:left;font:italic 600 13px/1.5 var(--serif);color:var(--ink2);padding:0 2px 7px}
+.tbx th{font:700 12px/1.5 var(--mono);text-align:left;padding:9px 13px;background:var(--paper3);border-bottom:2px solid var(--rule2);color:var(--ink)}
+.tbx td{padding:8.5px 13px;border-bottom:1px solid var(--rule);vertical-align:top;color:#3E3A2E}
+.tbx tr:last-child td{border-bottom:none}
+.tbx td:first-child{font-weight:650;color:var(--ink)}
+.fig{margin:20px 0}
+.fig .imgw{background:var(--paper2);border:1px solid var(--rule2);border-radius:10px;padding:12px;text-align:center}
+.fig img{max-width:100%;height:auto;border-radius:4px}
+.fig.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fig.duo .fcell .imgw{height:100%}
+.fig .cap{font:12.5px/1.75 var(--serif);color:var(--ink2);text-align:center;padding:9px 6px 2px}
+.fig .cap b{color:var(--ink)}
+.fig .src{display:block;font:10.5px/1 var(--mono);color:var(--ink3);margin-top:5px;letter-spacing:.06em}
+.memo{margin:26px 0 6px;padding-top:18px;border-top:1.5px dashed var(--rule2)}
+.memo .t{font:700 11px/1 var(--mono);letter-spacing:.3em;color:var(--ink2);margin-bottom:13px}
+.memo .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.memo .c{background:var(--paper2);border:1px solid var(--rule);border-radius:10px;padding:13px 15px;font-size:13.5px;line-height:1.75;color:#3E3A2E;position:relative}
+.memo .c b{display:block;font:italic 700 14.5px/1.4 var(--serif);margin-bottom:3px}
+.memo .c::before{content:attr(data-n);position:absolute;top:11px;right:13px;font:italic 700 17px/1 var(--serif);color:var(--rule2)}
+.formula{margin:14px auto;padding:12px 18px;background:var(--paper3);border-radius:10px;text-align:center;
+  font:italic 600 15px/1.8 var(--serif)}
+.formula .cm{display:block;font:400 12px/1.6 var(--sans);color:var(--ink2);font-style:normal}
+.arrowlist{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;font-weight:600}
+.arrowlist span{background:var(--paper2);border:1px solid var(--rule2);border-radius:6px;padding:4px 11px}
+.arrowlist i{color:var(--ink3);font-style:normal}
+
+/* ---------- syllabus & tutorial cards ---------- */
+#syllabus{margin:34px 0 6px}
+#syllabus h3{font:800 18px/1.4 var(--serif)}
+#syllabus .sub2{font:italic 400 13px/1.7 var(--serif);color:var(--ink2);margin:2px 0 10px}
+.tbx tr.rw1 td:first-child{box-shadow:inset 4px 0 0 var(--p1);color:var(--p1)}
+.tbx tr.rw2 td:first-child{box-shadow:inset 4px 0 0 var(--p2);color:var(--p2)}
+.tbx tr.rw3 td:first-child{box-shadow:inset 4px 0 0 var(--p3);color:var(--p3)}
+.tbx tr.rw4 td:first-child{box-shadow:inset 4px 0 0 var(--p4);color:var(--p4)}
+.tbx tr.rw5 td:first-child{box-shadow:inset 4px 0 0 var(--p5);color:var(--p5)}
+.tbx tr.rw6 td:first-child{box-shadow:inset 4px 0 0 var(--p6);color:var(--p6)}
+.tut{margin-top:56px;border:1.6px dashed var(--ink3);border-radius:14px;background:var(--paper2);padding:24px 28px 18px;position:relative}
+.tut::before{content:"TUTORIAL · 双周教程";position:absolute;top:-9px;left:22px;background:var(--paper);padding:0 9px;font:700 9.5px/1.6 var(--mono);letter-spacing:.2em;color:var(--ink2)}
+.tut .hd{display:flex;gap:20px;align-items:flex-start}
+.tut .no{font:900 42px/1 var(--serif);font-style:italic;flex:0 0 auto;padding-top:2px}
+.tut .hd h3{font:800 21px/1.45 var(--serif)}
+.tut .hd .en{font:italic 400 13px/1.6 var(--serif);color:var(--ink2)}
+.tut .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.tut .tags span{font:600 10.5px/1.5 var(--mono);border-radius:5px;padding:2.5px 9px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink2)}
+.tut .quot{margin:14px 0 0;padding:12px 18px;background:var(--paper3);border-left:3.5px solid var(--ink);border-radius:0 10px 10px 0;font:italic 600 14.5px/1.75 var(--serif);color:var(--ink)}
+.tut .quot small{display:block;font:400 12.5px/1.7 var(--sans);font-style:normal;color:var(--ink2);margin-top:2px}
+.tut .ss{margin-top:20px}
+@media(max-width:760px){.tut{padding:18px 16px 14px}}
+
+/* ---------- appendix ---------- */
+#cheat{margin-top:84px;border-top:3px double var(--ink);padding-top:34px}
+#cheat h2{font:800 30px/1.3 var(--serif);text-align:center}
+#cheat .sub{text-align:center;font:italic 400 14px/1.6 var(--serif);color:var(--ink2);margin-top:4px}
+.gloss{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:24px}
+.gloss .g{border-bottom:1px dotted var(--rule2);padding:8px 2px;font-size:13.5px;line-height:1.75}
+.gloss .g b{font:italic 700 14px/1.4 var(--serif);display:block}
+.gloss .g span{color:var(--ink2)}
+footer{margin:70px 0 44px;text-align:center;font:12.5px/2 var(--serif);color:var(--ink3);border-top:1px solid var(--rule);padding-top:26px}
+#top{position:fixed;right:22px;bottom:26px;width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;font:700 16px/1 var(--serif);cursor:pointer;opacity:0;
+  pointer-events:none;transition:.25s;box-shadow:0 4px 14px rgba(40,30,10,.25);z-index:80}
+#top.show{opacity:.92;pointer-events:auto}
+@media(max-width:760px){
+  #cover h1{font-size:36px}
+  .part{grid-template-columns:74px 1fr;gap:12px}
+  .part .rn{font-size:38px}
+  .lec .no{font-size:40px}
+  .memo .grid,.gloss,.fig.duo{grid-template-columns:1fr}
+  .wrap{padding:0 16px}
+}
+@media print{#nav,#top,#bar{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<nav id="nav"><div class="in">
+  <div class="brand">软件测试<small>TESTING&nbsp;&amp;&nbsp;ANALYSIS</small></div>
+  <div id="chips">
+    <span class="chip gp" data-t="w1">W1</span><span class="chip" data-t="l01">L01</span><span class="chip" data-t="l02">L02</span>
+    <span class="chip gp" data-t="lo1">LO1</span><span class="chip" data-t="l03">L03</span><span class="chip" data-t="l04">L04</span><span class="chip" data-t="disc">讨论</span><span class="chip" data-t="l25">L25</span><span class="chip" data-t="t1">T1</span>
+    <span class="chip gp" data-t="lo2">LO2</span><span class="chip" data-t="l20">L20</span><span class="chip" data-t="l26">L26</span><span class="chip" data-t="l05">L05</span><span class="chip" data-t="l21">L21</span><span class="chip" data-t="t2">T2</span>
+    <span class="chip gp" data-t="lo3">LO3</span><span class="chip" data-t="l10">L10</span><span class="chip" data-t="l11">L11</span><span class="chip" data-t="l12">L12</span><span class="chip" data-t="l14">L14</span><span class="chip" data-t="t3">T3</span>
+    <span class="chip gp" data-t="lo4">LO4</span><span class="chip" data-t="l09">L09</span><span class="chip" data-t="l16">L16</span><span class="chip" data-t="l22">L22</span><span class="chip" data-t="t4">T4</span>
+    <span class="chip gp" data-t="lo5">LO5</span><span class="chip" data-t="l23">L23</span><span class="chip" data-t="l24">L24</span><span class="chip" data-t="l27">L27</span><span class="chip" data-t="t5">T5</span>
+    <span class="chip gp" data-t="cheat">✦</span><span class="chip" data-t="cheat">速查</span>
+  </div>
+</div></nav>
+
+<div class="wrap">
+
+<!-- ==================== COVER ==================== -->
+<header id="cover">
+  <div class="kicker">Course Notes · Year 3 · Software Testing</div>
+  <h1>软件测试<span class="amp"> · </span>课程笔记</h1>
+  <p class="sub">覆盖全部 19 讲 Lecture、1 次 Discussion 与 5 份双周教程（T1–T5）——按课程的六个单元组织：从验证与确认的基本框架，到覆盖准则、组合测试、基于模型与缺陷的测试，再到测试过程管理、ISO/IEC/IEEE 29119 标准、工具支持与测试自动化。</p>
+  <div class="meta">
+    <span class="mtag">教材 <b>Pezzè &amp; Young</b> · Software Testing and Analysis (2007)</span>
+    <span class="mtag">标准 <b>ISO/IEC/IEEE 29119</b> 系列</span>
+    <span class="mtag">补充 <b>Sommerville</b> · GitLab CI</span>
+    <span class="mtag">Week 1 + <b>LO1–LO5</b> · 19 讲 + 5 教程</span>
+  </div>
+  <div class="lede">
+    <b>如何使用这份笔记：</b>正文按课程的<b>六个双周单元</b>（Week 1 导论 + LO1–LO5）组织，与每两周一个的教程节奏对齐。每讲开头列出学习目标，正文按主题重组（而非逐页复述幻灯片），<b>术语卡</b>收录必须能默写的定义，<b>课堂提问</b>是原课件中的 Wooclap 互动题，<b>考点</b>标注值得反复咀嚼的结论，每讲末尾的<b>速记卡</b>适合考前快速过一遍；每个单元末尾的<b>教程卡（T1–T5）</b>汇总该 LO 的双周任务与作品集评分标准。文末附全课程<b>考前速查表</b>。
+  </div>
+
+  <!-- knowledge map -->
+  <div id="kmap">
+    <div class="figbox">
+      <svg viewBox="0 0 880 312" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif">
+        <defs>
+          <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A8272"/></marker>
+        </defs>
+        <!-- W1 -->
+        <g>
+          <rect x="20" y="26" width="260" height="118" rx="10" fill="#E3EFEA" stroke="#0E7A72" stroke-width="1.4"/>
+          <text x="150" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#0E7A72">Week 1 · 导论</text>
+          <text x="150" y="76" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L01 软件测试概览 · L02 框架</text>
+          <text x="150" y="94" text-anchor="middle" font-size="10.5" fill="#3E3A2E">V&amp;V 坐标系 · 不可判定性</text>
+          <text x="150" y="114" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">fault → error → failure</text>
+        </g>
+        <!-- LO1 -->
+        <g>
+          <rect x="310" y="26" width="260" height="118" rx="10" fill="#F4E7DA" stroke="#B0521B" stroke-width="1.4"/>
+          <text x="440" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#B0521B">LO1 · 第 2–3 周 · 需求与测试</text>
+          <text x="440" y="76" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L03 六大原则 · L04 过程中的活动</text>
+          <text x="440" y="94" text-anchor="middle" font-size="10.5" fill="#3E3A2E">讨论 · 需求与规格 · L25 29119 概览</text>
+          <text x="440" y="114" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">T1 · 需求清单与测试策略</text>
+        </g>
+        <!-- LO2 -->
+        <g>
+          <rect x="600" y="26" width="260" height="118" rx="10" fill="#EAE4F2" stroke="#6C4A9C" stroke-width="1.4"/>
+          <text x="730" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#6C4A9C">LO2 · 第 4–5 周 · 规划</text>
+          <text x="730" y="76" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L20 规划监控 · L26 29119-3 示例</text>
+          <text x="730" y="94" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L05 有限模型 · L21 集成与构件</text>
+          <text x="730" y="114" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">T2 · 测试计划与插桩</text>
+        </g>
+        <!-- LO3 -->
+        <g>
+          <rect x="20" y="170" width="260" height="118" rx="10" fill="#EBEFDD" stroke="#566E20" stroke-width="1.4"/>
+          <text x="150" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#566E20">LO3 · 第 6–7 周 · 技术与方法</text>
+          <text x="150" y="220" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L10 功能 · L11 组合</text>
+          <text x="150" y="238" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L12 结构 · L14 基于模型</text>
+          <text x="150" y="258" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">T3 · MVP 证据与测试结果</text>
+        </g>
+        <!-- LO4 -->
+        <g>
+          <rect x="310" y="170" width="260" height="118" rx="10" fill="#E2EAF3" stroke="#24518C" stroke-width="1.4"/>
+          <text x="440" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#24518C">LO4 · 第 8–9 周 · 评估与局限</text>
+          <text x="440" y="220" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L09 充分性 · L16 基于缺陷</text>
+          <text x="440" y="238" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L22 系统验收回归</text>
+          <text x="440" y="258" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">T4 · 过程评估与目标水平</text>
+        </g>
+        <!-- LO5 -->
+        <g>
+          <rect x="600" y="170" width="260" height="118" rx="10" fill="#F3E2E2" stroke="#8C3A3A" stroke-width="1.4"/>
+          <text x="730" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#8C3A3A">LO5 · 第 10–11 周 · 评审与自动化</text>
+          <text x="730" y="220" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L23 工具支持 · L24 测试文档</text>
+          <text x="730" y="238" text-anchor="middle" font-size="10.5" fill="#3E3A2E">L27 自动化与代码评审</text>
+          <text x="730" y="258" text-anchor="middle" font-size="9.5" fill="#6B6455" font-style="italic">T5 · 评审准则与 CI 设计</text>
+        </g>
+        <line x1="284" y1="85" x2="306" y2="85" stroke="#8A8272" stroke-width="1.3" marker-end="url(#ah)"/>
+        <line x1="574" y1="85" x2="596" y2="85" stroke="#8A8272" stroke-width="1.3" marker-end="url(#ah)"/>
+        <path d="M730,146 V158 H150 V164" fill="none" stroke="#8A8272" stroke-width="1.3" marker-end="url(#ah)"/>
+        <line x1="284" y1="229" x2="306" y2="229" stroke="#8A8272" stroke-width="1.3" marker-end="url(#ah)"/>
+        <line x1="574" y1="229" x2="596" y2="229" stroke="#8A8272" stroke-width="1.3" marker-end="url(#ah)"/>
+      </svg>
+    </div>
+    <figcaption><b>课程知识地图</b>——六个单元环环相扣：W1 先建立「测试是什么、为何不可完美」的世界观；随后每个双周单元完成从需求到自动化的一环——需求分析 → 规划 → 技术方法 → 评估局限 → 评审与自动化，每单元末尾配一张教程卡（T1–T5）。</figcaption>
+  </div>
+</header>
+
+<!-- ==================== SYLLABUS ==================== -->
+<div id="syllabus">
+  <h3>课程导览 · 六个双周单元</h3>
+  <p class="sub2">课程按学习成果（LO）组织为五个双周单元，前加一周导论；每个单元：第一周个人准备，第二周导师带教，产出一节作品集（portfolio）。</p>
+  <table class="tbx">
+    <caption>Course Structure · Weeks 1–11 · 两讲 / 周</caption>
+    <tr><th style="width:14%">周次</th><th style="width:11%">单元</th><th style="width:19%">主题</th><th style="width:34%">讲次</th><th>教程 · 作品集</th></tr>
+    <tr class="rw1"><td>Week 1</td><td>导论</td><td>Introduction</td><td>L01 概览 · L02 框架</td><td>—</td></tr>
+    <tr class="rw2"><td>Weeks 2–3</td><td>LO1</td><td>需求与测试</td><td>L03 原则 · L04 过程 · 讨论课 · L25 29119 概览</td><td>T1 · 需求清单与测试策略</td></tr>
+    <tr class="rw3"><td>Weeks 4–5</td><td>LO2</td><td>规划分析与测试</td><td>L20 规划 · L26 29119-3 示例 · L05 有限模型 · L21 集成</td><td>T2 · 测试计划与插桩</td></tr>
+    <tr class="rw4"><td>Weeks 6–7</td><td>LO3</td><td>技术与方法</td><td>L10 功能（+分类划分示例）· L11 组合 · L12 结构 · L14 模型（+文法测试录像课）</td><td>T3 · MVP 证据与测试结果</td></tr>
+    <tr class="rw5"><td>Weeks 8–9</td><td>LO4</td><td>评估与局限</td><td>L09 充分性 · L16 基于缺陷 · L22 系统验收回归</td><td>T4 · 过程评估与目标水平</td></tr>
+    <tr class="rw6"><td>Weeks 10–11</td><td>LO5</td><td>评审与自动化</td><td>L23 工具支持 · L24 测试文档 · L27 自动化与评审（Ch18 仅阅读）</td><td>T5 · 评审准则与 CI 设计</td></tr>
+  </table>
+</div>
+
+<!-- ==================== WEEK 1 · INTRODUCTION ==================== -->
+<section class="part pt1" id="w1">
+  <div class="rn">Ⅰ</div>
+  <div class="bd">
+    <div class="wk">WEEK 1 · INTRODUCTION</div>
+    <h2>导论：测试是什么</h2>
+    <p class="en">Introduction — what software quality is, and the framework in which all testing and analysis lives.</p>
+    <div class="ls"><span>L01 软件测试概览</span><span>L02 测试与分析的框架</span></div>
+  </div>
+</section>
+
+<article class="lec lc1" id="l01">
+  <div class="hd">
+    <div class="no">01</div>
+    <div>
+      <h2>软件测试概览</h2>
+      <p class="en">Software Testing Overview · Pezzè &amp; Young Ch.1</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 1</span><span>SQA 三大目标</span><span>V&amp;V 初识</span><span>五个工程问题</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">描述软件质量在规格说明、设计/构造与运行三个阶段中的角色</li>
+      <li data-k="B">概述主要的软件验证与确认（V&amp;V）活动</li>
+      <li data-k="C">识别选择与组合不同质量保证技术的关键准则</li>
+    </ul>
+  </div>
+  <p class="guide">第一讲回答一个元问题：软件质量保证（SQA）在整个工程过程中扮演什么角色？答案以「五个基本工程问题」为骨架展开。</p>
+
+  <div class="ss">
+    <h3><span class="n">1.1</span>工程过程中的质量</h3>
+    <p>工程过程关注三件事：产品<b>适用</b>（fit for purpose）、过程<b>可复现</b>、过程<b>可反思改进</b>。落到软件上就是一对经典口号：</p>
+    <ul class="dot">
+      <li><b>Validation（确认）</b>——build the <em>right thing</em>：满足真实使用需要；</li>
+      <li><b>Verification（验证）</b>——build the thing <em>right</em>：构建出的东西符合你的意图（规格）。</li>
+    </ul>
+    <p>软件深嵌于组织与人们的生活，需求持续变化，因此过程必须<b>响应式</b>：Agile、DevOps、持续集成/部署（CI/CD）。SQA 越来越深地嵌入工程全过程——<b>质量缺陷发现得越晚，修复成本越高</b>。两种典型嵌入实践：</p>
+    <ul class="dot">
+      <li><b>测试驱动开发（TDD）</b>：测试（大致）就是规格说明；</li>
+      <li><b>DevOps</b>：用运行数据持续确认需求、发现需求变化、识别质量问题。</li>
+    </ul>
+    <h4>案例：Proto-AirBnB 的身份验证</h4>
+    <p>早期用户群彼此高度信任（沙发客）；扩张到更大人群后诈骗上升 → <b>用运行数据做 validation</b>，发现缺失的需求「用户必须被准确识别」→ 开发规格与测试 → 部署新版 → 运行数据显示诈骗下降。闭环：需求识别 → 测试构造 → 已验证产品 → 部署并采集运行数据。</p>
+    <div class="ask">
+      <span class="lb">课堂提问 · WOOCOLAP</span>
+      <p class="q">"What sorts of problems arise from uploading passport images?"（要求用户上传护照图像并核验，会带来哪些问题？）</p>
+      <p class="hint">隐私与数据泄露风险、身份盗用、核验服务的可用性与误判、各国法律差异——一个好的功能需求可能引入新的质量属性要求（安全、隐私、合规）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">1.2</span>软件为何难测：挑战清单</h3>
+    <ul class="dot">
+      <li><b>利益相关者众多且需求冲突</b>（同一系统对不同人群意味着不同期望）；</li>
+      <li><b>依赖不可靠的基础设施</b>：库、操作系统、通信链路随时可能在脚下变化；</li>
+      <li><b>复杂且可被利用的错误</b>：缓冲区溢出、数组差一错误（如 UoE ISG 邮件事故）；</li>
+      <li><b>开放性</b>：面对广泛的潜在用户与滥用者——服务大部分时间正常，却可能因依赖服务故障、DoS 攻击或 SQL 注入而失效。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点</span>
+      <p>物理蕴含 ≠ 软件蕴含：电梯安全载重 1000 kg ⇒ 任何更小载荷都安全；但软件「对输入 x 正确」<b>不蕴含</b>「对任何更简单的输入正确」。软件的正确性没有这种单调性，这是测试不能「举一反三」的根本原因。</p>
+    </div>
+    <p>新技术是双刃剑：NL/AI 模型能减少一类录入错误，但带来过度依赖或训练数据偏见等新问题；机器学习引入大量伦理问题；设计不良的 web 服务易受资源类攻击。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">1.3</span>五个基本工程问题（全课骨架）</h3>
+    <table class="tbx">
+      <caption>Five Basic Engineering Questions</caption>
+      <tr><th style="width:34%">问题</th><th>核心回答</th></tr>
+      <tr><td>Q1 · SQA 在开发过程中的角色？</td><td>从<b>项目发起到退役</b>全程参与：可行性研究阶段就要做风险分析、各阶段质量度量、演进评估、质量活动成本估算；世界在变 → 规格在变 → 质量必须持续维护。</td></tr>
+      <tr><td>Q2 · 如何在众多技术中选择？</td><td>没有单一技术适用于所有目的。按「对不同特征的有效性 / 在项目不同时点的适用性 / 目的差异 / 成本与保证的权衡」选择。例：航空标准要求故障率低于 <b>10<sup>-9</sup>/飞行小时</b>——关键特征必须投入高资源。</td></tr>
+      <tr><td>Q3 · 产品「就绪（ready）」意味着什么？</td><td>fit for purpose：故障链 fault→error（错误状态）→failure；规格常含可度量的依赖性属性（availability、MTBF、reliability）。DevOps 下「通过对应全部需求的测试集」即就绪。</td></tr>
+      <tr><td>Q4 · 演化中如何维持质量？</td><td>QA 机制随规格持续更新；QA 机制在一定程度上「就是」文档，甚至可用于证明合规。</td></tr>
+      <tr><td>Q5 · 过程本身如何改进？</td><td>若多个项目的产品都不达标：可能是规格→QA 技术的翻译有缺陷、QA 过程实施有问题、或资源不足；同时应消除浪费（重复、高资源技术用在低资源够用的地方）。</td></tr>
+    </table>
+    <h4>依赖性的三种度量（Dependability Metrics）</h4>
+    <div class="term"><div class="lb">TERM · 术语</div><div class="w">Availability / MTBF / Reliability</div>
+      <div class="d"><b>可用性</b>：以运行时间 vs 停机时间衡量服务质量；<b>平均无故障时间 MTBF</b>：两次故障间的平均时间；<b>可靠性</b>：所有尝试操作中成功完成的比例（正确性的统计近似，100% 可靠 = 正确）。</div>
+    </div>
+    <div class="tip"><span class="lb">考点 · 可靠性取决于度量单位</span>
+      <p>Web 应用用户需 50 次交互才到信用卡扣款，前 49 步永远完美，但一半的扣款金额错误：按<b>交互</b>计只有 1/100 失败 → 99% 可靠；按<b>会话</b>计只有 50% 可靠。<b>「系统的可靠性是多少」必须先问「以什么为单位」。</b></p>
+    </div>
+    <h4>DevOps 过程改进的四步循环</h4>
+    <div class="arrowlist"><span>① 监控（异常报告+行为数据）</span><i>→</i><span>② 分析定位反复出现的异常</span><i>→</i><span>③ 数据不足以定位？改进监控与分析</span><i>→</i><span>④ 实施过程改进并回验历史案例</span></div>
+    <p>实例：监控发现 SQL 注入尝试 → 分析找出可能丢数据的具体情形 → 行动计划：标记易受注入的组件，强制系统级 SQL 注入测试。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">1.4</span>小结与速记</h3>
+    <p>SQA 的<b>三大目标</b>：改进软件产品、评估软件产品质量、改进质量过程本身。需要组合多种技术；选择取决于组织与应用领域；成本效益取决于技术能否随产品演化<b>复用</b>；规划与监控是评估与精化质量过程的必要手段。</p>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>Validation vs Verification</b>做对的东西 vs 把东西做对——后续每一讲都在这个坐标系里。</div>
+        <div class="c" data-n="2"><b>质量缺陷越晚发现越贵</b>SQA 从可行性研究开始，贯穿到退役；DevOps 用运行数据闭环 validation。</div>
+        <div class="c" data-n="3"><b>可靠性依赖度量单位</b>99%（按交互）与 50%（按会话）可以是同一个系统。</div>
+        <div class="c" data-n="4"><b>五大问题即课程地图</b>角色→技术选择→就绪标准→演化质量→过程改进。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc1" id="l02">
+  <div class="hd">
+    <div class="no">02</div>
+    <div>
+      <h2>测试与分析的框架</h2>
+      <p class="en">A Framework for Testing and Analysis · Pezzè &amp; Young Ch.2</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 2</span><span>V&amp;V</span><span>不可判定性</span><span>Safe / Sound / Complete</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">识别测试与分析活动的维度与权衡</li>
+      <li data-k="B">区分确认（validation）与验证（verification）活动</li>
+      <li data-k="C">识别常见测试与分析方法的局限与潜力</li>
+    </ul>
+  </div>
+  <p class="guide">本讲确立全局坐标系：V&amp;V 两条轴，以及一条冷静的定理级结论——我们想要的大部分性质在一般情况下不可判定。</p>
+
+  <div class="ss">
+    <h3><span class="n">2.1</span>Validation vs Verification（正式版）</h3>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture02_p06.png" alt="V模型：验证与确认活动"></div>
+      <div class="cap"><b>经典 V 模型中的验证与确认活动</b>：左侧自顶向下是规格与设计的分解（实际需求→系统规格→子系统设计→单元规格），右侧自底向上是实现与集成（单元→子系统→系统集成→交付包）。横向配对的活动依次为模块测试、集成测试、系统测试、用户验收（α/β 测试）；左侧竖向的 Review/Analysis 保证规格本身的质量。<span class="src">图源：Lecture 02, slide 6 · Pezzè &amp; Young</span></div>
+    </div>
+    <ul class="dot">
+      <li><b>Validation</b>：软件系统满足用户的真实需要吗？（把技术系统连接到<b>利益相关者的世界</b>；含可用性测试、用户反馈）</li>
+      <li><b>Verification</b>：软件系统满足需求规格吗？（把技术系统连接到<b>或松或严的规格陈述</b>；含测试、审查、静态分析）</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 验证还是确认取决于规格本身</span>
+      <p>电梯需求「按下 i 层请求按钮后，可用电梯须在 <b>soon</b> 内到达」——不可验证（但可确认）；改为「<b>30 秒内</b>到达」——可验证。不可度量的形容词（快、友好、健壮）让验证退化为确认。改写需求时注意 30 秒在高峰期可能物理上不可达——可验证性有时要付出过度承诺的代价。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">2.2</span>你不可能总是得到想要的：不可判定性</h3>
+    <p>理想中的判定器：对<b>性质（Property）</b>与<b>程序（Program）</b>给出确定的 Pass/Fail <b>判定（Decision）</b>，且该判定由一个可靠的<b>过程（Procedure）</b>自动执行。但正确性性质是<b>不可判定（undecidable）</b>的——停机问题几乎可以嵌入任何感兴趣的性质中。</p>
+    <p>有时可以得到：限制性质与程序的形式后可以找到判定过程（某些领域存在这样的限制）。例如 SPARK Ada 禁止无界循环与异常处理——异常处理会引入大量过程间控制流路径，形式验证需要沿所有路径追踪性质，没有大量人工工作无法精确完成。<b>限制语言，换来可判定。</b></p>
+    <h4>两种「不精确」：得到你需要的</h4>
+    <table class="tbx">
+      <caption>Inaccuracy — 测试与分析的互补不精确性</caption>
+      <tr><th style="width:30%">类型</th><th style="width:34%">含义</th><th>对应技术</th></tr>
+      <tr><td>乐观不精确<br><em>optimistic</em></td><td>可能放过一些并不满足性质的程序（不能检出所有违规）</td><td><b>测试</b>——通过 ≠ 正确</td></tr>
+      <tr><td>悲观不精确<br><em>pessimistic</em></td><td>即使程序满足性质，也不保证接受它（可能误报）</td><td><b>自动程序分析</b>——报警 ≠ 有错</td></tr>
+    </table>
+    <p>第三条路：<b>简化性质</b>（simplified properties），降低性质的自由度使其可检查。</p>
+    <div class="term"><div class="lb">TERM · 术语（高频考点）</div><div class="w">Safe / Sound / Complete</div>
+      <div class="d"><b>Safe（安全）</b>：无乐观不精确——只接受正确的程序；<b>Sound（可靠）</b>：分析程序 P 关于公式 F，仅当 P 确实满足 F 时才返回 true（真报警必真，可能有漏报）；<b>Complete（完备）</b>：只要 P 确实满足 F 就总是返回 true（无漏报，可能有误报）。Sound + Complete 同时成立 = 精确判定。</div>
+    </div>
+    <div class="tip"><span class="lb">考点</span>
+      <p>记忆锚点：<b>Sound = 不说谎（说的都真）；Complete = 不漏报（真的都说）</b>。测试是 neither sound nor complete；多数静态分析 sound 但不 complete；工业分析工具常「宁可误报」换取 soundness 的子集（safe approximations）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">2.3</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>V&amp;V 二分</b>确认连「人的世界」，验证连「规格世界」；V 模型横向配对测试级别。</div>
+        <div class="c" data-n="2"><b>不可判定性</b>停机问题可嵌入几乎所有性质 → 无全自动万能工具。</div>
+        <div class="c" data-n="3"><b>乐观 vs 悲观不精确</b>测试漏报，分析误报——两者天然互补。</div>
+        <div class="c" data-n="4"><b>Sound / Complete</b>说的都真 / 真的都说；safe = 无乐观不精确。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== LO1 · WEEKS 2-3 ==================== -->
+<section class="part pt2" id="lo1">
+  <div class="rn">Ⅱ</div>
+  <div class="bd">
+    <div class="wk">WEEKS 2–3 · LEARNING OUTCOME 1</div>
+    <h2>需求与测试</h2>
+    <p class="en">Requirements and Tests — “Analyze requirements to determine appropriate testing strategies.”</p>
+    <div class="ls"><span>L03 基本原则</span><span>L04 过程中的活动</span><span>讨论 · 需求与规格</span><span>L25 ISO 29119 概览</span><span>T1 教程</span></div>
+  </div>
+</section>
+
+<article class="lec lc2" id="l03">
+  <div class="hd">
+    <div class="no">03</div>
+    <div>
+      <h2>基本原则</h2>
+      <p class="en">Basic Principles · Pezzè &amp; Young Ch.3</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 3</span><span>六大原则</span><span>Sensitivity</span><span>Partition / Redundancy / Restriction</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释分析与测试（A&amp;T）基本原则为何有用且重要</li>
+      <li data-k="B">给出原则应用的实例</li>
+    </ul>
+  </div>
+  <p class="guide">六条原则是评估一切测试技术的「元尺子」——每学一个新技术，都问它体现了哪几条原则。</p>
+
+  <div class="ss">
+    <h3><span class="n">3.1</span>三大通用工程原则</h3>
+    <table class="tbx">
+      <tr><th style="width:22%">原则</th><th>含义</th><th style="width:34%">例子</th></tr>
+      <tr><td>Partition<br>划分</td><td>分而治之，且保证组件间交互简单</td><td>结构化与功能性测试选择准则都靠划分输入空间驱动采样</td></tr>
+      <tr><td>Visibility<br>可见性</td><td>让信息（至少对测试者/开发者）可及，能判断「做得怎么样」</td><td>选简单/标准的内部数据格式便于单元测试（如用好的 JSON 编辑器）</td></tr>
+      <tr><td>Feedback<br>反馈</td><td>用经验调优开发过程</td><td>TDD 中测试驱动开发；检查清单来自历史错误</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 可见性 Visibility ≠ 可观察性 Observability</span>
+      <p>可见性是<b>过程级</b>概念：X-visibility = 判断「我们在 X 上进展如何」的能力（进度可见性、质量可见性）；最大挑战是<b>早期评估</b>——在规格与设计阶段就判断产品质量。相关但不同：可观察性是程序/系统级概念。</p>
+    </div>
+    <p>Feedback 的双面性：项目间学习最好在开发<b>相似产品</b>时发生；过去经验也可能妨碍解决新问题（过度聚焦上次的惨痛教训）。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">3.2</span>三大 A&amp;T 专属原则</h3>
+    <div class="term"><div class="lb">TERM · 术语</div><div class="w">Sensitivity 敏感性</div>
+      <div class="d">好的测试选择准则应当「敏感」：无论为验证某需求选中哪些具体测试，结果都应一致。<b>可靠准则（reliable criterion）</b>：程序在一个被选测试上失败 ⟺ 在所有被选测试上失败——「宁可每次都失败，也不要偶尔失败」。反例：系统因固定存储区过小而失败，某准则选出的测试数据有的溢出有的不溢出 → 违反敏感性；修复：把「数据量」本身作为分类维度，保证同类的测试行为一致。</div>
+    </div>
+    <div class="term"><div class="lb">TERM · 术语</div><div class="w">Redundancy / Diversity 冗余与多样性</div>
+      <div class="d">用<b>独立的</b>冗余检查更早、更高效地捕获特定故障，即「把意图显式化」：静态类型检查之于动态类型检查；需求规格的确认之于最终软件的确认；测试与代码内断言常常搭配使用以增加信心。</div>
+    </div>
+    <div class="term"><div class="lb">TERM · 术语</div><div class="w">Restriction 限制/简化</div>
+      <div class="d">通过<b>限制编码方式</b>或<b>修改需求</b>（或两者）把难题变易题。<b>弱化规格可能更易检查</b>：一般性地证明指针使用正确不可能，但「Java 指针先初始化后使用」易于强制；<b>强化规格也可能更易检查</b>：动态类型语言中运行期类型错误一般不可判定排除，但静态类型语言的更强约束轻松可查。</div>
+    </div>
+    <div class="tip"><span class="lb">考点 · 弱规格易查 &amp; 强规格易查</span>
+      <p>两条方向相反却都成立的例子必须记牢：指针正确性（不可判定）→「先初始化后用」（弱化，可查）；动态类型错误（不可判定）→ 静态类型系统（强化，可查）。限制既可放松也可收紧规格，关键是被查性质的<b>自由度</b>下降。</p>
+    </div>
+    <h4>Partition 在验证中的应用</h4>
+    <p>硬测试/验证问题可通过对输入空间的适当划分处理：结构化与功能性测试选择准则识别代码或规格的划分（划分驱动输入空间采样）；验证技术按特征折叠输入空间，把同质数据分组确定划分。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">3.3</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 六原则总表</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>Sensitivity 敏感性</b>宁可每次都失败，不要有时失败（reliable criteria）。</div>
+        <div class="c" data-n="2"><b>Redundancy 冗余</b>静态类型、需求确认、断言——显式化意图，早发现。</div>
+        <div class="c" data-n="3"><b>Restriction 限制</b>限制编码或改需求，把不可解变成可解。</div>
+        <div class="c" data-n="4"><b>Partition 划分</b>分而治之，划分驱动采样（后续 EP/组合测试的理论根）。</div>
+        <div class="c" data-n="5"><b>Visibility 可见性</b>判断进展的能力；最难在早期（规格/设计阶段）。</div>
+        <div class="c" data-n="6"><b>Feedback 反馈</b>检查清单、错误分类学、设计指南——经验制度化。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc2" id="l04">
+  <div class="hd">
+    <div class="no">04</div>
+    <div>
+      <h2>软件过程中的测试与分析活动</h2>
+      <p class="en">Test and Analysis Activities within a Software Process · Pezzè &amp; Young Ch.4</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 4</span><span>质量过程</span><span>依赖性质量</span><span>组织因素</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">识别质量如何融入开发过程</li>
+      <li data-k="B">建立质量过程的全景图</li>
+      <li data-k="C">识别质量过程的主要特性：<b>可见性、活动前置、反馈</b></li>
+    </ul>
+  </div>
+  <p class="guide">金句开路："Testing is not a phase, but a <em>lifestyle</em>"——质量不是开发完后的一个阶段，而是从需求工程到交付演化全程编织进过程的活动。</p>
+
+  <div class="ss">
+    <h3><span class="n">4.1</span>质量过程与权衡</h3>
+    <ul class="dot">
+      <li><b>质量不能事后添加</b>：质量是一组相互依赖活动的产物；分析与测试至关重要但远不充分；质量取决于软件过程的每一部分。</li>
+      <li><b>质量过程（quality process）</b>：以保障足够依赖性为主要焦点的一组活动与职责——为选择安排活动、考虑与其他重要目标的交互权衡提供框架。</li>
+    </ul>
+    <table class="tbx">
+      <caption>权衡示例：高依赖性 vs 上市时间</caption>
+      <tr><th style="width:30%">场景</th><th>更优选择</th></tr>
+      <tr><td>大众市场产品</td><td>紧凑日程下达到「相当高」的依赖性 &gt; 漫长日程下的超高质量</td></tr>
+      <tr><td>关键医疗设备</td><td>漫长日程下达到超高的依赖性 &gt; 紧凑日程下的「相当高」依赖性</td></tr>
+    </table>
+    <div class="ask">
+      <span class="lb">课堂提问 · WOOCOLAP ×2</span>
+      <p class="q">"Is mobile phone software high dependability?" / "What aspects of mobile phone software need to be high dependability?"（手机软件算高依赖性系统吗？哪些方面需要高依赖性？）</p>
+      <p class="hint">依赖性不是整机的单一属性——通话/紧急呼叫（emergency call）与基带软件需要高依赖性，而相册滤镜不需要。<b>按特征讨论依赖性</b>，而不是按产品。</p>
+    </div>
+    <h4>质量过程的三大性质</h4>
+    <ul class="dot">
+      <li><b>Completeness 完整性</b>：对每类重要故障都规划了合适的检测活动；</li>
+      <li><b>Timeliness 及时性</b>：故障在<b>高杠杆点</b>（尽可能早）被发现；</li>
+      <li><b>Cost-effectiveness 成本效益</b>：按成本与效果选择活动——成本要在整个开发周期与产品寿命上考量，主导因素通常是<b>活动在多次变更周期中重复执行的成本</b>。</li>
+    </ul>
+    <p><b>过程可见性</b>：能回答「我们的进度与计划相比如何」。若不进行最终测试就无法对质量建立强信心，则可见性不足。做法：尽早设计测试用例（不是 just-in-time）；对代码前的制品用分析技术；使用<b>代理度量（proxy measures）</b>——设计检查发现的故障数不是可靠性的真实度量，但可作为早期质量警示指标。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">4.2</span>质量目标与依赖性家族</h3>
+    <ul class="dot">
+      <li>过程质量（可见性…）与产品质量；后者分内部质量（可维护性…）与外部质量；</li>
+      <li>外部质量再分：<b>有用性</b>（usability、performance、security、portability、interoperability）与<b>依赖性</b>（correctness、reliability、safety、robustness）。</li>
+    </ul>
+    <table class="tbx">
+      <caption>Dependability 四姊妹</caption>
+      <tr><th style="width:20%">性质</th><th>定义</th></tr>
+      <tr><td>Correctness 正确性</td><td>程序与规格一致；对非平凡系统很少可行</td></tr>
+      <tr><td>Reliability 可靠性</td><td>对某「行为单位」正确运行的似然性；相对规格与<b>使用剖面</b>；正确性的统计近似</td></tr>
+      <tr><td>Safety 安全性</td><td>预防危害（hazards）</td></tr>
+      <tr><td>Robustness 健壮性</td><td>极端条件下的可接受（降级）行为</td></tr>
+    </table>
+    <p><b>交通灯案例</b>：正确性/可靠性 = 按正确模式与中央调度放行；健壮性/安全性 = 尽可能提供降级功能、绝不亮冲突绿灯——<b>闪黄灯好过没有灯，没有灯好过冲突的绿灯</b>。</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture04_p19.png" alt="依赖性质量的维恩关系"></div>
+      <div class="cap"><b>依赖性质量的关系（Venn 图）</b>：Reliable 但 not correct——故障很少发生；Correct 但 not safe——<b>规格本身不充分</b>（做得对的东西本身是错的）；Safe 但 not robust——可能发生烦人的故障；Robust 但 not safe——<b>可能发生灾难性故障</b>（不崩溃地做坏事最危险）。<span class="src">图源：Lecture 04, slide 19 · Pezzè &amp; Young</span></div>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">4.3</span>三类 A&amp;T 活动</h3>
+    <table class="tbx">
+      <tr><th style="width:22%">活动</th><th>特点与适用</th></tr>
+      <tr><td>Inspection 审查</td><td>可用于<b>几乎任何文档</b>（需求、架构与详细设计、测试计划与用例、源代码）；附带收益：传播良好实践、建立共享质量标准；耗时多、变更后复审贵 → 主要用于其他技术<b>不适用</b>或<b>覆盖不足</b>之处</td></tr>
+      <tr><td>Automatic static analysis<br>自动静态分析</td><td>适用面较窄（只能用于形式化表示，不能用于自然语言文档）；可用则以<b>机器周期换人力</b>，特别划算</td></tr>
+      <tr><td>Testing 测试</td><td>传统上晚执行，TDD 使其可早期扮演大角色；<b>尽早生成测试</b>的好处：① 与代码独立生成（规格在分析师脑中新鲜）② 生成过程暴露规格的不一致与不完整 ③ 测试可充当规格的汇编供程序员使用</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">4.4</span>组织因素：谁来做测试？</h3>
+    <table class="tbx">
+      <caption>职责分配示例</caption>
+      <tr><th style="width:36%">活动</th><th>分配建议</th></tr>
+      <tr><td>单元测试</td><td>开发团队（需要代码细节知识）；质量团队<b>控制结果</b>（结构覆盖率）</td></tr>
+      <tr><td>集成/系统/验收测试</td><td>质量团队；开发团队提供脚手架与测试预言（oracles）</td></tr>
+      <tr><td>审查与走查</td><td>混合团队</td></tr>
+      <tr><td>回归测试</td><td>质量与维护团队</td></tr>
+      <tr><td>过程改进</td><td>与所有团队协作的外部专家</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 激励机制如何毁掉项目（Case A / B）</span>
+      <p><b>Case A</b>：开发按 LOC/人月计酬、质量归质量团队 → 开发只顾产量不顾质量，质量团队资源不足 → 低质量产品+项目失败。<b>Case B</b>：开发团队同时负责开发与质量控制 → 解决了 A 的问题，但团队可能挤占测试时间 → 交付未充分测试的产品+项目失败。<b>结论：考核机制必须同时绑定产量与质量，且为测试预留受保护的时间。</b></p>
+    </div>
+    <p>改进过程：长命错误（long-lasting errors）常见——过程应结构化地识别最关键的持久故障、追溯其高频成因、调整开发与质量过程以消除。大组织常见开发/质量分设团队；极限编程（XP）则主张角色不可分；轮岗是折中选项。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">4.5</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>Testing is a lifestyle</b>质量是相互依赖活动的产物，不是收尾阶段。</div>
+        <div class="c" data-n="2"><b>三性质</b>完整性 / 及时性 / 成本效益；可见性靠 proxy measures 提前。</div>
+        <div class="c" data-n="3"><b>依赖性四姊妹</b>正确·可靠·安全·健壮；闪黄灯 &gt; 没灯 &gt; 冲突绿灯。</div>
+        <div class="c" data-n="4"><b>组织即质量</b>Case A/B：只考核产量或时间表都会失败。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc2" id="disc">
+  <div class="hd">
+    <div class="no">✎</div>
+    <div>
+      <h2>讨论课 · 需求与规格（第 2 周）</h2>
+      <p class="en">Discussion — Requirements &amp; Specification · Elevator Case</p>
+    </div>
+  </div>
+  <div class="tags"><span>讨论课</span><span>电梯案例</span><span>可测试的需求</span></div>
+  <p class="guide">以电梯为白板，练习把「模糊的需求直觉」变成「可测试的规格陈述」——这是 L02「可验证性」的实战版。</p>
+  <div class="ss">
+    <h3><span class="n">✎.1</span>电梯案例的讨论线索</h3>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Discussion_p02.png" alt="电梯案例：8 层建筑" style="max-width:70%"></div>
+      <div class="cap"><b>讨论场景：一部 8 层楼的电梯</b><span class="src">图源：Discussion, slide 2</span></div>
+    </div>
+    <ul class="dot">
+      <li><b>利益相关者（Stakeholders）</b>：是谁？各自关心什么？（乘客、物业、维护公司、消防、无障碍使用者……不同人眼中「好电梯」不同）</li>
+      <li><b>功能需求三分类</b>：Safety（安全）、Correctness（正确性）、Liveness（活性——该发生的事最终会发生，如「请求最终会被响应」）；</li>
+      <li><b>可度量的属性</b>：各种 "-ilities" 如何变得可测试？资源使用、性能、弹性（resilience——它可度量吗，还是功能属性？）；</li>
+      <li><b>细化规格</b>：电梯机械结构是机械设计；<b>电梯控制器需要知道什么</b>才能核验这些规格？（传感器状态、门状态、载荷、当前位置/方向、未完成请求队列……）；</li>
+      <li><b>迁移练习</b>：IoT 门锁、LEARN 这类大型虚拟学习环境、校园导览 App——各自找出利益相关者与可度量需求。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点</span>
+      <p>讨论课核心方法：<b> Stakeholder → 需求 → 可度量属性 → 控制器可见的信息</b>。每一步都在缩小「需求陈述」与「可验证规格」之间的差距。</p>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc2" id="l25">
+  <div class="hd">
+    <div class="no">25</div>
+    <div>
+      <h2>ISO/IEC/IEEE 29119 概览</h2>
+      <p class="en">ISO/IEC/IEEE 29119 Overview · Software and Systems Engineering — Software Testing</p>
+    </div>
+  </div>
+  <div class="tags"><span>标准</span><span>29119-1 概念</span><span>V&amp;V 方法谱系</span><span>测试设计技术</span><span>测试模型</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">了解 29119 系列标准的<b>结构</b>与定位：概念与定义、测试过程、测试文档、测试技术</li>
+      <li data-k="B">能把课程学过的技术<b>对号入座</b>到标准的 V&amp;V 方法与测试设计技术分类中</li>
+      <li data-k="C">理解标准中的<b>测试管理过程 / 动态测试过程 / 测试模型</b>的抽象框架</li>
+    </ul>
+  </div>
+  <p class="guide">29119 是现行国际软件测试标准系列（ISO + IEC + IEEE 三家联合，英国标准即 BS ISO/IEC/IEEE 29119）。本讲把标准的官方分类树提前挂出来——既建立 test basis、required behaviour、test model 等贯穿全课程的核心词汇（LO1 作品集直接使用），也给后面要学的各项技术一张「对号入座」的总表。</p>
+
+  <div class="ss">
+    <h3><span class="n">25.1</span>标准家族与 V&amp;V 方法谱系</h3>
+    <ul class="dot">
+      <li><b>Part 1: Concepts &amp; Definitions</b>（2022 版）——概念与术语（本讲主线）；</li>
+      <li><b>Part 2: Test Processes</b>——测试过程（组织级 / 测试管理 / 动态测试）；</li>
+      <li><b>Part 3: Test Documentation</b>——测试文档（L26 专门讲）；</li>
+      <li><b>Part 4: Test Techniques</b>——测试设计技术；</li>
+      <li><b>Part 5: Keyword-Driven Testing</b>——关键字驱动测试。</li>
+    </ul>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture25_p02.png" alt="V&V 方法与实践分类树"></div>
+      <div class="cap"><b>V&amp;V 方法与实践（标准分类树）</b>：<b>静态测试</b>=评审、模型验证、静态分析；<b>动态测试</b>=基于规格 / 基于结构 / 基于经验；另两大支：<b>演示</b>（原型、用户试验、样机）与 <b>V&amp;V 分析</b>（形式化方法〔模型检验、正确性证明〕、仿真、评估〔质量度量〕）。<span class="src">图源：Lecture 25, slide 3</span></div>
+    </div>
+    <p>标准把「测试途径的选择」拆成四个正交的维度——<b>层级</b>（在哪测）、<b>实践</b>（怎么测）、<b>类型</b>（测什么性质）、<b>设计技术</b>（怎么设计用例）：</p>
+    <table class="tbx">
+      <caption>Test Approach Choices（途径选择）四维度</caption>
+      <tr><th style="width:22%">维度</th><th>选项（节选）</th></tr>
+      <tr><td>测试层级 Levels</td><td>单元 → 集成 → 系统 → 系统集成 → 验收；验收再分：用户验收 UAT、运行验收 OAT、出厂验收 FAT、Alpha、Beta、生产验证</td></tr>
+      <tr><td>测试实践 Practices</td><td>基于模型、脚本化、探索式、基于经验、手工、A/B、背靠背、数学化、模糊测试 fuzz、关键字驱动、自动化（录制回放型 / 数据驱动型）</td></tr>
+      <tr><td>测试类型 Types</td><td>功能、可访问性、兼容性、转换、灾难恢复、可安装性、互操作、本地化、可维护性、性能族（性能/负载/压力/容量/恢复）、可移植、规程、可靠性、安全、可用性</td></tr>
+      <tr><td>静态测试 Static</td><td>评审（ISO/IEC 20246）、静态分析、模型验证</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">25.2</span>测试设计技术：全课程对号入座</h3>
+    <table class="tbx">
+      <caption>Test Design Techniques（标准 Part 4 分类）——中列即本笔记对应讲次</caption>
+      <tr><th style="width:30%">类别</th><th>技术</th><th style="width:16%">本笔记</th></tr>
+      <tr><td rowspan="3">基于规格<br>Specification-based</td><td>等价类划分、分类树、边界值分析、语法测试</td><td>L10 功能测试</td></tr>
+      <tr><td>组合测试（全组合 / 成对 / 每选择 / 基选择）、判定表、因果图</td><td>L11 组合测试 · L14</td></tr>
+      <tr><td>状态迁移、场景、用例、随机、蜕变 metamorphic、基于需求</td><td>L14 模型测试</td></tr>
+      <tr><td rowspan="2">基于结构<br>Structure-based</td><td>语句、分支、判定、分支条件、分支条件组合、<b>MC/DC</b></td><td>L12 结构测试</td></tr>
+      <tr><td>数据流测试：all-definitions / all-C-uses / all-P-uses / all-uses / all-DU-paths</td><td>L12 数据流族</td></tr>
+      <tr><td>基于经验<br>Experience-based</td><td>错误推测 error guessing</td><td>L10/L16</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 蜕变测试 metamorphic testing</span>
+      <p>标准新收录的技术：没有可靠<b>预言（oracle）</b>时（如机器学习系统），利用<b>蜕变关系</b>——输入按某种关系变化时输出应满足的关系——来判定测试通过与否。这是「oracle 问题」的标准答案之一。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">25.3</span>两个核心过程模型</h3>
+    <div class="fig duo">
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture25_p07.png" alt="测试管理过程"></div>
+        <div class="cap"><b>测试管理过程（29119-2）</b>：测试策略与规划 →（产出测试计划）→ 测试监控与控制 →（测试结果）→ 测试完成 →（测试完成报告）；监控反馈「测试计划更新」，向上游发出「测试状态报告」。<span class="src">图源：Lecture 25, slide 7</span></div>
+      </div>
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture25_p08.png" alt="动态测试过程"></div>
+        <div class="cap"><b>动态测试过程</b>：测试设计与实现 →（测试规格）→ 测试执行；并行的「测试环境与数据管理」→（环境就绪报告）→ 执行；发现失效 → 测试事件报告 → 回到执行复测。<span class="src">图源：Lecture 25, slide 8</span></div>
+      </div>
+    </div>
+    <p><b>过程的实例化（instantiation）</b>：标准给出的是通用过程模板——通用「测试管理过程」按项目实例化为「项目测试管理过程」，它 <i>manage</i> 着验收/系统/集成测试过程；通用「动态测试过程」实例化为各模块的组件测试过程……同一个抽象过程在不同层级反复落地。</p>
+    <p><b>项目中的测试</b>：项目管理过程与测试管理过程双向交互——下行：控制指令 + 项目计划；上行：完成报告 + 测试状态报告。测试不是孤岛，而是嵌入项目管理的受控子过程。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">25.4</span>测试模型：概念的骨架</h3>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture25_p11.png" alt="29119 测试模型类图"></div>
+      <div class="cap"><b>测试模型（Figure 8）</b>：<b>测试依据</b>定义<b>所需行为</b>→ 建模为<b>测试模型</b>；<b>测试策略</b>含<b>测试完成准则</b>→ 定义<b>所需测试覆盖</b>（决定测试模型的抽象层次与<b>测试覆盖项</b>的形式）；覆盖项被<b>测试用例</b>行使；用例组成<b>测试规程</b>，规程组成<b>测试套件</b>。<span class="src">图源：Lecture 25, slide 11</span></div>
+    </div>
+    <div class="arrowlist">
+      <span>测试依据 Test basis</span><i>→</i><span>所需行为</span><i>→</i><span>测试模型</span><i>→</i><span>覆盖项</span><i>→</i><span>测试用例</span><i>→</i><span>测试规程</span><i>→</i><span>测试套件</span>
+    </div>
+    <p>这张类图把课程主线<b>规格 → 模型 → 覆盖准则 → 用例</b>形式化了：所需覆盖决定「测试模型要多抽象」，覆盖项是从模型里切出来的「要被覆盖的东西」（状态、转换、DU 对、等价类……），用例则逐一行使这些覆盖项——与 L09「充分性准则驱动选择」完全同构。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">25.5</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>五部分</b>1 概念定义 / 2 测试过程 / 3 测试文档 / 4 测试技术 / 5 关键字驱动。</div>
+        <div class="c" data-n="2"><b>V&amp;V 谱系</b>静态（评审/静态分析/模型验证）+ 动态（规格/结构/经验）+ 演示 + 分析（形式化/仿真/评估）。</div>
+        <div class="c" data-n="3"><b>两过程</b>管理过程=策略规划→监控控制→完成；动态过程=设计实现→执行（+环境管理→事件报告→复测）。</div>
+        <div class="c" data-n="4"><b>测试模型链</b>依据→行为→模型→（策略定）覆盖→覆盖项→用例→规程→套件。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TUTORIAL T1 · LO1 ============ -->
+<article class="tut lc2" id="t1">
+  <div class="hd">
+    <div class="no">T1</div>
+    <div>
+      <h3>教程卡 · 需求与测试</h3>
+      <p class="en">Tutorial LO1 · Requirements and Tests · Weeks 2–3</p>
+    </div>
+  </div>
+  <div class="tags"><span>第 2 周个人准备</span><span>第 3 周导师课</span><span>Reading: Y&amp;P Ch2–3 · ISO/IEC 29119-1 Fig.8 · 29119-2 p.44</span></div>
+  <div class="quot">“Analyze requirements to determine appropriate testing strategies.”<small>LO1 —— 分析需求，确定合适的测试策略。作品集本节要给出一组「足够多样」的需求，并分析各自需要怎样的测试。</small></div>
+
+  <div class="ss">
+    <h3><span class="n">✎</span>准备周任务：给 ACC 写一组多样的需求</h3>
+    <p>以简化的<b>自适应巡航控制（ACC）</b>为例：输入 = 当前车速 / 前方障碍距离 / 设定速度；输出 = 加速、刹车、不动。约一小时完成：</p>
+    <ul class="dot">
+      <li>先列出<b>利益相关者</b>——除主用户外还有谁？（类比：点单 App 的主用户是顾客，但送餐骑手也是用户）</li>
+      <li>从每个利益相关者视角写 <b>1–3 条</b>自然语言需求，可以不精确，但要<b>类型多样</b>：
+        <ul>
+          <li>功能性：安全性质（系统不能做某事）· 正确性 · 活性（总能回到 ready 态）· security；</li>
+          <li>可度量质量属性：资源占用（内存 / 计算时间）· -ility（可靠性、易用性、可用性…）· 时序（响应时间）。</li>
+        </ul>
+      </li>
+      <li>然后为自己的课程项目软件做同样的事，形成多样化的需求集合与对应的测试思路。</li>
+    </ul>
+    <p style="font-size:13px;color:var(--ink2)">规格概念提示：test basis 与 required behaviour 是测试模型的两大要素（L25）——需求多样性直接决定测试多样性。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">1.1–1.4</span>评分标准（每项 0–5 分）</h3>
+    <table class="tbx">
+      <tr><th style="width:30%">子标准</th><th>要交付什么</th></tr>
+      <tr><td>1.1 需求的范围</td><td>按类型分组的<b>需求清单</b>文档（存 GitLab）——功能需求、可度量质量属性、定性需求都有覆盖；<b>类型多样性是灵魂</b>。</td></tr>
+      <tr><td>1.2 需求的层级</td><td>系统 / 集成 / 单元——现阶段以系统级为主，可指出将来必然需要的单元与集成测试。</td></tr>
+      <tr><td>1.3 为所选属性确定测试方法</td><td>哪些方法合适、哪些不合适，给出宽泛但有据的说明。</td></tr>
+      <tr><td>1.4 评估测试方法的恰当性</td><td>指出局限——例如缺数据导致无法在真实负载下做性能测试。</td></tr>
+    </table>
+    <div class="tip"><span class="lb">作品集提示</span>
+      <p>需求<b>宜精不宜多</b>：少量彼此差异大的需求 + 每条对应的测试思路，比一张长清单更能拿分。后续所有 LO 都在这份需求上生长。</p>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== LO2 · WEEKS 4-5 ==================== -->
+<section class="part pt3" id="lo2">
+  <div class="rn">Ⅲ</div>
+  <div class="bd">
+    <div class="wk">WEEKS 4–5 · LEARNING OUTCOME 2</div>
+    <h2>规划分析与测试</h2>
+    <p class="en">Planning Analysis and Test — “Design and implement comprehensive test plans with instrumented code.”</p>
+    <div class="ls"><span>L20 规划与监控</span><span>L26 29119-3 示例</span><span>L05 有限模型</span><span>L21 集成与构件</span><span>T2 教程</span></div>
+  </div>
+</section>
+
+<article class="lec lc3" id="l20">
+  <div class="hd">
+    <div class="no">20</div>
+    <div>
+      <h2>规划与监控质量过程</h2>
+      <p class="en">Planning and Monitoring the Process · Pezzè &amp; Young Ch.20</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 20</span><span>策略 vs 计划</span><span>关键路径</span><span>ODC</span><span>RCA</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释<b>监控</b>在规划中的角色；区分<b>策略</b>与<b>计划</b>，说明计划如何由策略派生</li>
+      <li data-k="B">给定计划，举出其中可能出现的<b>风险</b>；在质量过程中识别监控的角色</li>
+      <li data-k="C">解释<b>团队组织</b>在规划中的角色</li>
+    </ul>
+  </div>
+  <p class="guide">一条经济学定律串起全讲：<b>故障从被引入到被检测的间隔越久，检测与修复成本越高</b>。规划的全部意义，就是安排一组「匹配的」中间验证活动，让重要的故障在引入后不久就暴露。</p>
+
+  <div class="ss">
+    <h3><span class="n">20.1</span>规划、监控与可见性</h3>
+    <ul class="dot">
+      <li><b>规划（Planning）</b>：排期（哪些步骤、什么顺序）＋分配资源（谁来做）＋为监控设计清晰的<b>里程碑</b>；</li>
+      <li><b>监控（Monitoring）</b>：度量关键过程属性，对照计划判断进展；</li>
+      <li><b>可见性（visibility）</b>：好计划必须可监控——能读出关键指标、能论证「我们此刻在计划的什么位置」。</li>
+    </ul>
+    <p>质量过程<b>跟随</b>它所嵌入的软件过程：瀑布 → V 模型（单元测试随实现开始、集成前结束）；XP/敏捷 → 强调单元测试与快速迭代验收；DevOps CI/CD → 用运行数据做 validation。三个教材案例过程：</p>
+    <table class="tbx">
+      <caption>三种示例质量过程</caption>
+      <tr><th style="width:26%">过程</th><th>关键活动</th></tr>
+      <tr><td>Cleanroom</td><td>增量开发：功能/使用规格 → 形式化设计 + 正确性验证 + 统计测试用例生成 → 统计测试 → 用 MTTF 统计做质量认证，改进反馈闭环。<b>禁止单元测试</b></td></tr>
+      <tr><td>SRET<br>软件可靠性工程测试</td><td>定义「必要的」可靠性 → 开发运行剖面 → 准备测试 → 执行测试 → 解释失效数据，贯穿需求/设计/实现/系统与验收测试</td></tr>
+      <tr><td>XP</td><td>用户故事 → 评审/精化/排序 → 结对编程 + 单元测试（test-first）→ 全部单元测试通过 → 验收测试；验收失败 → 写新验收测试再循环</td></tr>
+      <tr><td>DevOps</td><td>新功能 + 新监控代码 + 支撑部署的测试一起交付；采集真实行为数据评估质量、以「真实世界」数据做统计测试；用监控数据识别质量问题、反哺开发</td></tr>
+    </table>
+    <div class="ask">
+      <span class="lb">课堂提问 · WOOCOLAP</span>
+      <p class="q">"What do you think are the vulnerabilities of DevOps?"（DevOps 有哪些脆弱性？）</p>
+      <p class="hint">依赖的基础设施与供应链本身可能失效；部署越快，问题传播越快；自动化给人「已验证」的错觉，削弱人工判断；监控代码自身也需要质量保证——闭环的每一环都是新的故障面。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.2</span>对中间产物做验证</h3>
+    <p><b>质量规划的关键原则</b>：检测修复成本随「故障引入→检测」的时间差增长（完美无缺则时间差为零）。因此高效的质量计划包含一组<b>匹配的中间 V&amp;V 活动</b>，在重要故障引入后<b>短时间内</b>发现大部分（资源有限 → 必须聚焦重要故障）；V&amp;V 步骤取决于中间工作产品及其<b>预期缺陷</b>。对中间产物的三类验证：</p>
+    <table class="tbx">
+      <tr><th style="width:30%">验证类型</th><th>做法</th></tr>
+      <tr><td>内部一致性检查</td><td>符合定义「良构」制品的结构规则。<b>杠杆点</b>：把语法/语义规则定义得足够精确，让常见错误自动变成可检出的违规；结构规则 + 框架常能简化测试</td></tr>
+      <tr><td>外部一致性检查</td><td>与相关制品一致——通常是对「先前的 / 更高层的」规格的符合性</td></tr>
+      <tr><td>正确性猜想<br>correctness conjectures</td><td>为其他工作产品的外部一致性检查打基础；常推动当前产品的精化</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.3</span>策略与计划</h3>
+    <table class="tbx">
+      <caption>Strategy vs Plan——最常考的对照</caption>
+      <tr><th style="width:22%"></th><th>策略 Strategy</th><th>计划 Plan</th></tr>
+      <tr><td>范围</td><td>整个组织</td><td>单个项目</td></tr>
+      <tr><td>结构与内容</td><td>基于多项目积累的经验与政策</td><td>由策略规定的标准结构</td></tr>
+      <tr><td>演化速度</td><td>随组织与政策变化，<b>缓慢</b></td><td>适应项目需要，<b>快速</b></td></tr>
+    </table>
+    <p>策略是<b>组织资产</b>：显式的知识体比「孤岛式的个人能力/隐性知识」更有价值——可改进、可复用、不因骨干流失而脆弱；帮助避免重复错误、保持过程一致性、提高开发效率。<b>让策略适配组织</b>要考虑：结构与规模（大组织设独立质量组、更依赖文档；小组织角色重叠）；总体过程（Cleanroom 要求统计测试、禁止单元测试，配紧形式规格；XP 规定 test-first + 结对编程，配流动规格与快速演进）；应用领域（安全关键领域可能强制认证文档，如 RTCA/DO-178B 航空标准要求 <b>MC/DC 覆盖</b>——结构性测试的一种，呼应 L12）。</p>
+    <h4>策略的要素 与 计划要回答的问题</h4>
+    <div class="fig duo">
+      <div class="fcell">
+        <table class="tbx" style="margin:0">
+          <tr><th>策略的要素</th></tr>
+          <tr><td>适用于全部/多数产品的<b>公共质量需求</b>（含清晰定义与度量）</td></tr>
+          <tr><td>质量过程通常产出的<b>文档集合</b>（内容与关系）</td></tr>
+          <tr><td>总体过程规定的<b>活动</b>、标准工具与实践</td></tr>
+          <tr><td><b>人员配置</b>与角色职责指南（避免 technical debt 技术债）</td></tr>
+        </table>
+      </div>
+      <div class="fcell">
+        <table class="tbx" style="margin:0">
+          <tr><th>计划回答的问题</th></tr>
+          <tr><td>开展哪些质量活动？</td></tr>
+          <tr><td>活动之间、质量活动与开发活动之间的<b>依赖</b>？</td></tr>
+          <tr><td>需要什么<b>资源</b>、如何分配？</td></tr>
+          <tr><td>如何监控<b>过程</b>与<b>产品</b>？（活动顺序可有弹性，只要依赖被尊重）</td></tr>
+        </table>
+      </div>
+    </div>
+    <p><b>计划的主要元素</b>：待验证项与特性（范围与目标）、活动与资源、资源对活动的约束、遵循的方法途径、方法与工具、评估结果的准则。<b>质量目标</b>表述为产品满足的属性，必须包含项目期间可监控的度量（例：新版本必须先经<b>金丝雀测试</b>——逐步扩大用户群——才能全量发布）；早期信息不全 → 初始计划基于不完整信息、增量精化。</p>
+    <h4>任务进度与关键路径</h4>
+    <p>任务进度起初基于策略与过往经验，随过程推进把大任务拆成子任务并精化，包含质量活动之间及其与开发活动之间的依赖。调度准则：<b>稳定的工作节奏</b>与持续评估而不拖延开发；活动<b>尽早</b>排；提高过程可见性。</p>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Critical Path / Critical Dependence</div>
+      <div class="d"><b>关键路径</b>：必须顺序完成、总时长最长的活动链。<b>关键依赖</b>：关键路径上的任务被紧接着排在另一关键任务之后。对策：把关键任务及其依赖任务尽早排（留出时差）；<b>分解</b>关键路径上的任务，把能提前做的子任务拆出来先做。</div>
+    </div>
+    <div class="fig duo">
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture20_p25.png" alt="关键进度表"></div>
+        <div class="cap"><b>关键进度表（改进前）</b>：「设计并执行子系统测试」「设计并执行系统测试」整段排在编码之后——测试设计与测试执行都躺在关键路径上。</div>
+      </div>
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture20_p27.png" alt="有限资源下的改进进度表"></div>
+        <div class="cap"><b>资源受限的改进版</b>：把「设计子系统/系统测试」从关键路径上拆出来，与「编码与集成」<b>并行</b>，关键路径上只剩测试的<b>执行</b>；用户文档也提前并行。<span class="src">图源：Lecture 20, slides 25–27</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.4</span>风险规划与应急计划</h3>
+    <p>风险<b>无法消除</b>，但可以评估、控制、监控。两大类：通用管理风险（人员、技术、进度）与质量风险（开发、执行、需求）。代表性风险与控制策略：</p>
+    <table class="tbx">
+      <tr><th style="width:15%">类别</th><th style="width:42%">示例风险</th><th>控制策略</th></tr>
+      <tr><td rowspan="2">人员</td><td>骨干流失 / 人员资质不足</td><td>交叉培训避免对个人过度依赖；继续教育；尽早识别技能缺口；有竞争力的薪酬晋升；把培训时间排进进度</td></tr>
+      <tr><td>进度</td><td>单元测试不足 → 集成测试代价与延误超预期；评审会议难排期成为瓶颈</td><td>跟踪并奖励高质量单元测试（以集成期低故障密度为证）；每周固定「评审优先」时段；分布式/异步评审降低面对面频率</td></tr>
+      <tr><td>技术</td><td>COTS 组件接口不熟 → 故障率高；自动化工具不达预期</td><td>为不熟悉的接口预留测试时间；先在低风险试点/原型中引入新工具；记录并宣传常见错误与正确用法</td></tr>
+      <tr><td>开发</td><td>交付测试组的软件质量差；提交代码库前单元测试/分析不足</td><td>及早预警与反馈；对设计/代码/测试套件做评审；单元级强制覆盖（或其他）准则；把开发与评审和奖励制度挂钩</td></tr>
+      <tr><td>执行</td><td>执行成本超计划；测试资源稀缺</td><td>尽量缩小需整机执行的部分；评审架构、提升可测试性；增加中间反馈；投资脚手架</td></tr>
+      <tr><td>需求</td><td>高保证关键需求推高费用与不确定性</td><td>与同等关键度的历史项目比较测试工作量、避免低估；平衡测试与分析；隔离关键部分、关注点与属性</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 应急计划 Contingency Plan</span>
+      <p><b>初始计划的一部分</b>：可能出什么错？我们如何察觉、如何恢复？随计划一起演化，源自风险分析；为坏消息预先定义行动——Plan B 越早备好越好。计划本身也演进：初步计划 → 第一版发布 → 第二版发布 → 最终计划，期间随时可能插入<b>应急计划</b>。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.5</span>过程监控与改进：ODC 与 RCA</h3>
+    <p>过程监控要<b>尽早发现与计划的偏差</b>并纠正——前提是计划现实、组织良好、有清晰无歧义的里程碑与准则。<b>过程可见到什么程度，就能监控到什么程度</b>。汇总数据要「按类比评估」：</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture20_p42.png" alt="按构建号统计的故障趋势"></div>
+      <div class="cap"><b>按类比评估汇总数据</b>：横轴构建号、纵轴故障数，按严重度分级。预期形态：中期达峰后逐级下降、Critical 先归零。若曲线不达峰（测试不足）或后段不降（修复验证失败）→ 过程出了问题，这正是「类比」的诊断价值。<span class="src">图源：Lecture 20, slide 42</span></div>
+    </div>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Orthogonal Defect Classification（ODC）</div>
+      <div class="d"><b>正交缺陷分类</b>：为超大项目设计的精确分类模式，把海量细节蒸馏成可管理信息。两步——<b>故障分类</b>（检出时记录：暴露故障的活动、触发器、对客户的影响；修复时记录：修复目标、故障类型、来源 in-house/库/外购/外包、代码年龄 新/旧/重写/再修复）＋<b>故障分析</b>（看分布随时间/活动的变化）。</div>
+    </div>
+    <h4>ODC 触发器（按活动分组）</h4>
+    <table class="tbx">
+      <tr><th style="width:30%">活动</th><th>触发器</th></tr>
+      <tr><td>评审 / 代码检视</td><td>设计一致性、逻辑/流程、向后兼容、内部文档、横向兼容</td></tr>
+      <tr><td>功能（黑盒）测试</td><td>覆盖、变体、顺序、交互</td></tr>
+      <tr><td>结构（白盒）测试</td><td>简单路径、复杂路径</td></tr>
+      <tr><td>系统测试</td><td>并发、负载/压力、语言依赖、恢复/异常、副作用、启动/重启、罕见情形、硬件/软件配置、受阻测试</td></tr>
+      <tr><td>影响（impact）</td><td>可安装性、可用性、完整性/安全、标准、性能、可靠性、维护、可访问性、可维护性、能力、迁移、需求、文档</td></tr>
+    </table>
+    <h4>ODC 故障分析四例（判断「过程是否正常」）</h4>
+    <ul class="dot">
+      <li><b>故障类型 × 活动分布</b>：算法故障主要应由单元测试发现——若单元期占比异常小、集成期异常大 → 单元测试设计不良 / 集成测试没聚焦接口故障；</li>
+      <li><b>触发器 × 时间分布</b>（现场测试）：简单用法对应故障应早现、复杂用法晚现、新故障揭示率渐近下降——若晚期仍大量涌现「简单用法」故障 → 样本不代表用户群；持续增长 → 系统测试可能失败了；</li>
+      <li><b>代码年龄分布</b>：故障应集中在新代码与重写代码——移植后「基代码」故障增多 → 可移植性测试不足；</li>
+      <li><b>故障类别 × 时间</b>：缺失型（missing）故障占比应渐降（功能在补齐），冗余型（extraneous）可能缓升——缺失型回升 = 产品不稳定信号；冗余型突增 = 维护出了问题。</li>
+    </ul>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Root Cause Analysis（RCA）</div>
+      <div class="d"><b>根因分析</b>：识别并消除<b>过程故障</b>的技术（源自核电工业）。四步：故障是什么（按严重度+种类分类，类别可演化）→ 何时发生/何时发现 → 为什么发生（把代表性故障层层回溯到「根因」，经验法则：<b>连问六次为什么</b>）→ 如何预防。与 ODC 的区别：RCA <b>聚焦少数最重要的故障类</b>，ODC 比较多类趋势。</div>
+    </div>
+    <table class="tbx">
+      <caption>故障严重度分级（RCA 分类用）</caption>
+      <tr><th style="width:18%">级别</th><th style="width:38%">描述</th><th>示例</th></tr>
+      <tr><td>Critical</td><td>产品不可用</td><td>程序崩溃</td></tr>
+      <tr><td>Severe</td><td>部分特性不可用且无变通办法</td><td>无法导入旧版保存的文件</td></tr>
+      <tr><td>Moderate</td><td>需变通办法，损害效率/可靠性/便利</td><td>Postscript 导出不可用，可用打印替代但损失可用性与效率</td></tr>
+      <tr><td>Cosmetic</td><td>轻微不便</td><td>界面自定义颜色受限，违反规格但影响甚微</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · Pareto 法则（80/20）与 RCA 追踪示例</span>
+      <p>20% 的代码贡献 80% 的故障——<b>故障倾向聚集在少数模块</b>，识别潜在问题模块可大幅提高检测的成本效益；少数故障类占主导，消除其成因对过程与产品质量影响巨大。<b>回溯链示例</b>（内存泄漏）：异常处理器忘记释放内存 ← 程序员难以确定清理什么（信息缺失）← 资源管理方案只考虑正常控制流（设计错误）← <b>根因：异常条件在设计后期才被想到</b>。预防从轻量（设计评审清单加一项「异常条件」）到重量（需求分析与设计各步显式考虑异常）。目标不是完美，而是<b>高性价比的改进</b>——excellence is the enemy of the good。</p>
+    </div>
+    <p>许多高频故障类根植于<b>过程与开发缺陷</b>（浅层架构设计 → 资源分配故障；对开发环境不熟 → 异常处理故障），改过程/环境即可减少。改进多反馈到<b>未来产品</b>，有时能直接反馈进当前开发。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.6</span>质量团队的组织</h3>
+    <p>质量计划必须把角色与职责<b>分配给人</b>：战略层（测试与分析策略、组织结构、外部要求如认证机构）与战术层（测试与分析计划）。战术层要平衡各时段工作量、管理人际互动、确保质量任务不被轻易忽略、<b>鼓励对质量的客观判断</b>（不被进度压力劫持）、培养共享的质量承诺与知识。</p>
+    <table class="tbx">
+      <caption>团队结构选项：冲突在哪，对策就在哪</caption>
+      <tr><th style="width:26%">结构</th><th>冲突来源</th><th>对策</th></tr>
+      <tr><td>开发者兼测试者<br>（同一人双角色）</td><td><b>角色冲突</b>：按期交付单元 vs 集成测试发现自己拖期的故障</td><td>XP 的 test-first + 结对编程正是为守住这种风险而设</td></tr>
+      <tr><td>分设不同个人</td><td><b>人际冲突</b>：开发与测试者不共享「按期交付高质量产品」的动机</td><td>计划中内置完成性检查（如质量组核查模块测试是否完备）</td></tr>
+      <tr><td>独立测试组/独立组织</td><td><b>目标冲突</b>：独立质量组 vs 开发组；项目经理无法绕过质量活动、抽调人员或推迟质量活动——这正是独立性的价值</td><td>共享目标与沟通：测试组不是替开发者卸责，也不能对进度压力无感；需要成熟过程（精确规格、可控测试环境、版本配置明确、故障跨版本跟踪）</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 外包测试的错误动机</span>
+      <p>「测试技术门槛低、可以交给低薪低技能的人」——<b>错在混淆了测试执行（简单）与测试分析/设计（与设计和编程同样难）</b>。正确动机：<b>最大化独立性</b>，降低成本只是副产品。计划必须定义外包活动的里程碑与交付、以及<b>双向</b>的交付质量检查。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">20.7</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>规划三件事</b>排期+资源+里程碑；监控=度量关键属性；可见性是好计划的必要条件。</div>
+        <div class="c" data-n="2"><b>策略 vs 计划</b>组织级/慢演化 vs 项目级/快演化；计划结构由策略规定；拆任务把设计移出关键路径。</div>
+        <div class="c" data-n="3"><b>ODC vs RCA</b>ODC 多类趋势比较（类型×活动、触发器×时间、年龄、类别）；RCA 聚焦少数重要类，连问六次为什么，Pareto 80/20。</div>
+        <div class="c" data-n="4"><b>团队组织</b>同人之争=角色冲突，异人之争=人际冲突，独立组=目标冲突；外包的正确动机是独立性。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc3" id="l26">
+  <div class="hd">
+    <div class="no">26</div>
+    <div>
+      <h2>ISO 29119-3：测试文档示例</h2>
+      <p class="en">ISO/IEC/IEEE 29119-3 Test Documentation — Two Worked Examples</p>
+    </div>
+  </div>
+  <div class="tags"><span>29119-3</span><span>完全符合 vs 裁剪符合</span><span>敏捷文档化</span><span>风险驱动</span><span>Test Plan</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">说出 29119-3 规定的<b>三层测试文档</b>（组织级 / 测试管理 / 动态测试）各自记录什么</li>
+      <li data-k="B">区分<b>完全符合</b>与<b>裁剪（tailored）符合</b>两条一致性路径</li>
+      <li data-k="C">把测试计划、状态报告、完成报告的<b>标准条款映射到敏捷实践</b>（故事卡 · 迭代 · TDD）</li>
+    </ul>
+  </div>
+  <p class="guide">标准正文只给条款清单；29119-3 的附录用两个虚构公司把条款「演」出来——传统瀑布的全量符合 vs 敏捷的风险驱动裁剪。课程细讲敏捷线：看同一份文档模板如何装进迭代节奏（传统线请自行阅读附录 C–G）。</p>
+
+  <div class="ss">
+    <h3><span class="n">26.1</span>两个示例：全量符合 vs 风险裁剪</h3>
+    <ul class="dot">
+      <li><b>Traditional Ltd（传统线）</b>：为农业行业制造先进分析设备的小公司，部分产品<b>安全关键</b>——错误的分析结果可能导致错误的施肥剂量（过多或过少）。因此须按国际标准组织生产，<b>留存测试行为正确的证据</b>，并具备扎实的测试计划、追溯性与报告。示例项目：UV/TRT-14 33a 型分析仪的 PC 端软件——PC 用户界面经无线连接测量系统，测量土壤样本中的肥料成分与浓度。</li>
+      <li><b>敏捷线</b>：示范「<b>裁剪式符合</b>」（tailored conformance）——<b>按风险决定</b>纳入哪些条款、舍弃哪些。</li>
+    </ul>
+    <table class="tbx">
+      <caption>两条符合路径的对比</caption>
+      <tr><th style="width:22%"></th><th>完全符合 Full conformance</th><th>裁剪符合 Tailored conformance</th></tr>
+      <tr><td>生命周期</td><td>瀑布型</td><td>敏捷迭代</td></tr>
+      <tr><td>取舍依据</td><td>条款全量执行</td><td>风险驱动：高风险多文档、低风险轻文档</td></tr>
+      <tr><td>典型场景</td><td>安全关键 · 认证审计</td><td>快速交付 · 需求多变</td></tr>
+    </table>
+    <p>29119-3 规定测试文档的<b>三大块</b>（章节号）：<b>§6 组织级测试过程文档</b>——测试政策 Test Policy 与组织级测试实践 Organizational Test Practices，为下层所有文档提供框架（呼应 L24 的「组织级策略」）；<b>§7 测试管理过程文档</b>——本讲主角；<b>§8 动态测试过程文档</b>。§7 的文档先以<b>通用术语</b>描述，附录 E–G 再分别按传统与敏捷生命周期展开。</p>
+    <div class="tip"><span class="lb">考点 · Tailoring 裁剪</span>
+      <p>「裁剪」是 29119 系列的核心机制：<b>符合标准 ≠ 全量文档</b>。组织可依据风险对条款增删——这正是敏捷项目也能宣称「符合 29119」的机制，也是两个示例对比的考点所在。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">26.2</span>管理文档三件套：条款清单</h3>
+    <table class="tbx">
+      <caption>§7 测试管理过程文档的构成要素（先记清单，再看敏捷怎么填）</caption>
+      <tr><th style="width:26%">文档</th><th>条款要素</th></tr>
+      <tr><td>7.2 测试计划<br>Test Plan</td><td>测试背景 Context of Testing · 假设与约束 · 干系人 Stakeholders · 测试沟通 · 风险登记册 Risk Register · 测试策略 Test Strategy · 测试活动与估算 · 人员配置 Staffing · 进度安排 Schedule</td></tr>
+      <tr><td>7.3 测试状态报告<br>Test Status Report</td><td>测试状态 · 报告期 Reporting Period · 对照计划的进展 · 阻碍进展的因素 · 测试度量 Test measures · 新增与变化的风险 · 计划中的测试</td></tr>
+      <tr><td>7.3 测试完成报告<br>Test Completion Report</td><td>已执行测试的摘要 · 与计划的偏差 · 测试完成评估 · 阻碍因素 · 测试度量 · <b>残余风险 Residual risks</b> · 测试交付物 · 可复用测试资产 · 经验教训 Lessons learned</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">26.3</span>敏捷怎么填测试计划</h3>
+    <table class="tbx">
+      <caption>Test Plan 条款 → 敏捷实践映射（示例的精华所在）</caption>
+      <tr><th style="width:26%">条款</th><th>敏捷落地</th></tr>
+      <tr><td>测试背景</td><td>测试类型与层级记在公司需求库的<b>故事卡</b>上</td></tr>
+      <tr><td>干系人</td><td>产品负责人 PO 与交付负责人 delivery lead 为关键干系人，含向更上层的升级路径</td></tr>
+      <tr><td>测试沟通</td><td>列出团队（交付负责人、开发者、业务分析师、用户代表、测试、PO）＋汇报安排</td></tr>
+      <tr><td>风险登记册</td><td>风险记在故事卡与全局风险登记册——方法论通常遵循 ISO 16085 或 NIST 风险管理框架一类的标准</td></tr>
+      <tr><td>测试策略</td><td>迭代初估算必要工作量（含 backlog）；用 <b>TDD</b> 先行创建并自动化单元/集成测试，再建系统与验收测试；对可能受变更影响的特性做<b>回归测试</b>；设计用例时兼顾「便于验收」与「特性失效的风险」</td></tr>
+      <tr><td>完成判据</td><td>标记故事 DONE 的条件：<b>无致命/严重缺陷</b>；遗留缺陷转成新故事加入 backlog</td></tr>
+      <tr><td>进度与人员</td><td>遵循敏捷过程与策略层的安排；<b>每日站会</b>同步进展、识别阻塞；测试与脚本全部入<b>中央仓库</b>；迭代末发布测试结果简报</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">26.4</span>状态报告与完成报告：敏捷版</h3>
+    <h4>测试状态报告（每周 · 贴在团队 wiki）</h4>
+    <ul class="dot">
+      <li><b>对照计划进展</b>：按「在玩」的用户故事汇报（例：8 个 DONE、2 个未完）；聚焦高风险故事；给出覆盖数据、按严重度的风险画像、自动化进展；</li>
+      <li><b>阻碍因素</b>：如 UI 变更导致的延误、以及如何解决（追加人力……）；</li>
+      <li><b>测试度量</b>：为新故事开发的 session sheet（探会记录单），并对单上的测试想法做评估；</li>
+      <li><b>新增/变化的风险</b> 与 <b>下周计划</b>。</li>
+    </ul>
+    <h4>测试完成报告（通常对应一次发布）</h4>
+    <ul class="dot">
+      <li><b>与计划的偏差</b>：由敏捷过程本身覆盖——测试随 TDD 的需要而演化；<b>阻碍因素</b>：已记录在既往迭代的日志中；<b>度量</b>：内建于敏捷过程；</li>
+      <li><b>完成评估</b>：所有高风险故事标记 DONE，<b>残余风险由产品负责人接受</b>；残余风险记在故事卡与风险登记册；</li>
+      <li><b>测试交付物</b>：发布所涉故事全部通过<b>系统集成测试 SIT</b> 与<b>用户验收测试 UAT</b>；代码质量与覆盖度量、测试通过情况；遗留缺陷及其转入下一迭代的方式（新故事）；PO 与用户的批准；其他特性（可访问性、资源使用、伦理……）；</li>
+      <li><b>可复用资产</b>：测试保存在仓库中，可复用、可改造；<b>经验教训</b>：改进资源配置与估算、测试技术创新、识别对用户数据的需求（含必要的隐私保护措施）。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 发布门禁</span>
+      <p>敏捷版的完成评估三条件：<b>高风险故事全部 DONE ＋ 残余风险被 PO 接受 ＋ 全部故事通过 SIT 与 UAT</b>。风险驱动思想从计划（风险登记册）一路贯穿到收尾（残余风险接受）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">26.5</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>三层文档</b>§6 组织级（政策+实践）· §7 管理（计划/状态/完成）· §8 动态测试。</div>
+        <div class="c" data-n="2"><b>两条路径</b>完全符合=瀑布全量条款；裁剪符合=风险驱动取舍——tailoring 是标准的核心机制。</div>
+        <div class="c" data-n="3"><b>敏捷三招</b>故事卡承载背景与风险；TDD 先行出单元/集成测试；迭代节奏+每日站会替代传统排期表。</div>
+        <div class="c" data-n="4"><b>发布门禁</b>高风险故事全 DONE · 残余风险 PO 接受 · SIT+UAT 全通过；遗留缺陷转新故事。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc3" id="l05">
+  <div class="hd">
+    <div class="no">05</div>
+    <div>
+      <h2>有限模型</h2>
+      <p class="en">Finite Models · Pezzè &amp; Young Ch.5</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 5</span><span>CFG</span><span>Call Graph</span><span>FSM</span><span>抽象函数</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释有限状态抽象与原系统的关系，及模型近似原系统时的推论</li>
+      <li data-k="B">用<b>图</b>建模程序控制流</li>
+      <li data-k="C">用<b>调用图</b>建模软件系统结构</li>
+      <li data-k="D">用<b>有限状态机</b>建模有限状态行为</li>
+    </ul>
+  </div>
+  <p class="guide">模型是「简化到刚好够用」的制品：四性质——<b>紧凑</b>（compact）、<b>可预测</b>（predictive，能区分好坏结果）、<b>语义有意义</b>（能诊断失败原因）、<b>足够通用</b>（够用于目标领域）。没有单一模型对所有分析都有用。</p>
+
+  <div class="ss">
+    <h3><span class="n">5.1</span>图与控制流图（CFG）</h3>
+    <p>有向图 = 节点集 N + 边集 E（N 上的关系）；节点可标注其代表的实体（如代码区域 <code>x = y + z;</code>）。</p>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Basic Block 基本块 &amp; CFG</div>
+      <div class="d"><b>基本块</b>：只有单一入口点和单一出口点的最大程序区域。CFG 的<b>节点</b> = 代码区域（常把语句合并成块以求紧凑；有时反过来把单条语句拆成多个节点以建模语句内控制流）；<b>有向边</b> = 执行可以从一个区域的末尾直接进入另一区域开头<b>的可能性</b>。过程内的 CFG 也称 intraprocedural control flow graph。</div>
+    </div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture05_p09.png" alt="collapseNewlines 的控制流图"></div>
+      <div class="cap"><b>示例 CFG：Java 方法 <code>collapseNewlines</code></b>（折叠连续换行符）——for 循环、if 条件与两个赋值构成的基本块及回边。<span class="src">图源：Lecture 05, slide 9</span></div>
+    </div>
+    <p><b>LCSAJ</b>（Linear Code Sequence and Jump）：CFG 中从一个分支到另一个分支的子路径序列（Entry→b₁b₂b₃→jX 等），本质是「从一个跳转到下一个跳转」的直线代码段。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">5.2</span>调用图：过程间的近似</h3>
+    <ul class="dot">
+      <li><b>Call graph</b>：节点=过程（方法、C 函数…），边=调用关系——过程间控制流图的基础。</li>
+      <li><b>静态调用图高估调用关系</b>：包含经动态绑定而实际从不发生的调用。例：<code>C.cFactory("S")</code> 返回子类 S 实例，静态图包含 C.foo() 与 S.foo() 两条边，运行时只走 S.foo()。</li>
+      <li><b>上下文不敏感（context-insensitive）</b>：每个过程一个节点，<code>foo(3)</code> 与 <code>bar(17)</code> 都汇入同一个 <code>depends</code>——快但混淆调用来源。</li>
+      <li><b>上下文敏感（context-sensitive)</b>：按调用上下文复制节点（<code>depends(int,a,2)</code> 与 <code>depends(int,a,16)</code> 分开）——代价是<b>指数级增长</b>：每层 if 分支使调用上下文翻倍（1→2→4→8→16……）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">5.3</span>有限状态机（FSM）与抽象函数</h3>
+    <p>FSM = 有限状态集（节点）+ 状态间转换集（边）。Mealy 机的表格表示：行=状态，列=输入（如 LF / CR / EOF / other），单元格 = 新状态/动作（如 <code>e/emit</code>、<code>w/append</code>）。</p>
+    <div class="term"><div class="lb">TERM · 核心概念</div><div class="w">Abstraction Function 抽象函数</div>
+      <div class="d">抑制程序执行的某些细节，把「仅在被抑制细节上不同、其余一致」的执行状态<b>归并</b>（lump together）为一个抽象状态。模型之所以有限，正因为抽象函数把无限的具体状态折叠成有限的抽象状态。</div>
+    </div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture05_p18.png" alt="transduce 的抽象函数与状态转换表"></div>
+      <div class="cap"><b>案例：C 函数 <code>transduce()</code>（行转换器）</b>——抽象状态 e（空缓冲）/ w（行内）/ l（等待 LF）/ d（完成）对应具体状态（行号 × atCR × pos 的取值区间）；右侧为输入字符（LF/CR/EOF/other）驱动的状态转换表，每格「新状态/动作」。<span class="src">图源：Lecture 05, slide 18 · Pezzè &amp; Young</span></div>
+    </div>
+    <h4>用模型推理系统性质：三重信任</h4>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture05_p17.png" alt="模型-程序-性质三角"></div>
+      <div class="cap"><b>模型位于「性质」与「程序」之间</b>，三重条件缺一不可：① <b>模型满足规格</b>（Required Properties ⊨ FSM Model）② 模型<b>语法良构、一致且完备</b> ③ 模型<b>准确表示程序</b>（FSM Model ≈ Program，如双检锁单例的并发行为）。任何一环断裂，模型的结论都不能转移到程序上。<span class="src">图源：Lecture 05, slide 17</span></div>
+    </div>
+    <div class="tip"><span class="lb">考点</span>
+      <p>FSM 可在软件存在<b>之前</b>构建（记录预期行为、探索设计），也可从代码导出（抽象函数）；CFG 只能从软件构建。工具生态：状态图（statecharts，参见 statecharts.dev）以 FSM 为基础。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">5.4</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>模型四性质</b>紧凑 / 可预测 / 语义有意义 / 足够通用。</div>
+        <div class="c" data-n="2"><b>CFG</b>节点=基本块（单入口单出口最大区域）；边=执行可能性。</div>
+        <div class="c" data-n="3"><b>调用图近似</b>静态高估（动态绑定）；上下文敏感 = 精确但指数。</div>
+        <div class="c" data-n="4"><b>抽象函数</b>把无限具体状态折叠为有限抽象状态；Mealy 表 = 状态×输入→新状态/动作。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc3" id="l21">
+  <div class="hd">
+    <div class="no">21</div>
+    <div>
+      <h2>集成与基于构件的测试</h2>
+      <p class="en">Integration and Component-Based Testing · Pezzè &amp; Young Ch.21</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 21</span><span>驱动与桩</span><span>大爆炸/自顶向下/自底向上</span><span>线程</span><span>COTS</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">识别集成测试的问题：区分<b>集成故障</b>与本应在单元测试中消灭的故障；能预防并检测集成故障</li>
+      <li data-k="B">运用<b>构造与测试的排序策略</b>：增量组装、持续集成，以降低工作量、控制风险</li>
+      <li data-k="C">识别基于构件系统测试的挑战并运用相应方法</li>
+    </ul>
+  </div>
+  <p class="guide">本讲的格言：<b>单元测试是地基，集成测试永远无法补偿糟糕的单元测试</b>。集成测试关注的是模块之间的<b>交互与兼容性</b>——以及把集成测试当作单元测试质量的「过程检查」。</p>
+
+  <div class="ss">
+    <h3><span class="n">21.1</span>三级测试对照：单元 / 集成 / 系统</h3>
+    <table class="tbx">
+      <caption>Module vs Integration vs System Test——开篇定位表</caption>
+      <tr><th style="width:16%"></th><th>模块（单元）测试</th><th>集成测试</th><th>系统测试</th></tr>
+      <tr><td>规格来源</td><td>模块接口规格</td><td>接口规格 + 模块分解</td><td>需求规格</td></tr>
+      <tr><td>可见结构</td><td>编码细节</td><td>模块结构（软件架构）</td><td>——（黑盒）</td></tr>
+      <tr><td>所需脚手架</td><td>一些</td><td>常常大量</td><td>一些</td></tr>
+      <tr><td>寻找的故障</td><td>模块内部</td><td><b>交互、兼容性</b></td><td>系统功能性</td></tr>
+    </table>
+    <p><b>持续集成（CI）</b>视角下：架构缓慢浮现、接口与交互复杂度随系统成长；由于模块的上下文由（可能另一支团队的）真实代码同步开发，<b>脚手架需求可能下降</b>——真实代码直接取代桩；但观测模块间交互仍可能有困难，且<b>重构</b>可能重新需要脚手架。集成测试的双重角色：</p>
+    <ul class="dot">
+      <li><b>地基论</b>：单元级拥有最大的可控性与可见性；集成测试<b>无法补偿</b>不足的单元测试；</li>
+      <li><b>过程检查论</b>：集成期暴露<b>模块内</b>故障 = 单元测试不足的信号；模块各自正确却在接口上出故障 → 错误可追溯到<b>模块分解与接口规格</b>。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">21.2</span>集成故障的六种典型 + 一个真实案例</h3>
+    <table class="tbx">
+      <tr><th style="width:36%">故障类型</th><th>教材示例</th></tr>
+      <tr><td>参数/值的不一致解释</td><td>火星探测器混用单位（米/码）——NASA Mars Climate Orbiter 事故</td></tr>
+      <tr><td>违反值域、容量或大小限制</td><td>缓冲区溢出</td></tr>
+      <tr><td>对参数或资源的副作用</td><td>在（未规定的）临时文件上冲突</td></tr>
+      <tr><td>遗漏或误解的功能</td><td>对「web hits」的统计口径不一致</td></tr>
+      <tr><td>非功能属性</td><td>未预期的性能问题</td></tr>
+      <tr><td>动态失配</td><td>不兼容的多态方法调用</td></tr>
+    </table>
+    <h4>案例：Apache 2.0.48 的内存泄漏</h4>
+    <p>HTTPS 端口上的普通页面请求：函数 <code>ssl_io_filter_disable</code> 只把指针置 <code>NULL</code>，缺了 <code>SSL_free(inctx-&gt;ssl)</code>。泄漏的结构在别处定义与创建、只能通过<b>不透明指针</b>访问——正常使用时缓慢泄漏，被用于 DoS 攻击时迅速耗尽。<b>单元测试几乎不可能发现</b>（模块本身行为正确，是跨模块的交互协议被破坏）；检视与某些动态技术本可以发现。</p>
+    <div class="ask">
+      <span class="lb">课堂吐槽 · 也许你听过</span>
+      <p class="q">"Yes, I implemented ⟨module A⟩, but I didn't test it thoroughly yet. It will be tested along with ⟨module B⟩ when that's ready."（A 我写好了但还没细测，等 B 好了一起测就行。）</p>
+      <p class="hint">翻译过来就是：<b>我完全没想过测试策略</b>——没为可测试性设计 A，也没考虑 A、B 构建与测试的最佳顺序。集成测试不是单元测试的兜底。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">21.3</span>集成策略：从大爆炸到关键模块</h3>
+    <p>集成测试计划与项目<b>构建计划</b>互相驱动，二者都源自<b>系统架构</b>——这是架构与项目计划的关键特征。</p>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Driver / Stub</div>
+      <div class="d">系统中一个模块会被「要求做事」，也会「要求别的模块做事」。测试单个模块时两者都未必存在，于是需要：<b>驱动（driver）</b>——代行上层模块对被测模块发出的调用；<b>桩（stub）</b>——近似模拟被测模块所调用的下层模块的行为。</div>
+    </div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture21_p15.png" alt="驱动与桩示意"></div>
+      <div class="cap"><b>驱动与桩</b>：Driver 在上方调用「Module Under Test」，Stub 1 / Stub 2 在下方被其调用——分别替代「还缺的上下文」与「还缺的下层」。<span class="src">图源：Lecture 21, slide 16</span></div>
+    </div>
+    <table class="tbx">
+      <caption>集成策略一览</caption>
+      <tr><th style="width:22%">策略</th><th style="width:20%">方向/依据</th><th>脚手架</th><th>要点</th></tr>
+      <tr><td>Big Bang 大爆炸</td><td>全部集成完再测</td><td>不需要</td><td>「绝望之举」：可观测性/可诊断性/反馈最差、修复成本最高——唯一的借口（还很差）是不用搭脚手架</td></tr>
+      <tr><td>Top-down 自顶向下</td><td>结构：从顶层沿「使用」关系向下</td><td>桩（下层未就位）</td><td>若从顶层界面（GUI/CLI/Web）驱动则<b>无需驱动</b>；逐个用真模块换桩，测试越来越彻底</td></tr>
+      <tr><td>Bottom-up 自底向上</td><td>结构：从「使用」层次的叶子开始</td><td>驱动（上层未就位）</td><td><b>永不需要桩</b>；真模块逐个取代驱动；叶子层可并行分多个子系统推进</td></tr>
+      <tr><td>Sandwich 三明治</td><td>结构：从两端向中间</td><td>更少</td><td>结合自顶向下与自底向上，驱动与桩都可减少</td></tr>
+      <tr><td>Thread 线程</td><td>功能：若干模块组成一个<b>用户可见功能</b></td><td>可减少</td><td>一条线程一条线程地集成，最大化<b>对用户的可见性</b></td></tr>
+      <tr><td>Critical module 关键模块</td><td>风险：<b>先做最危险的模块</b></td><td>视情况</td><td>风险评估先行（技术风险/过程风险）；战术上类似线程或三明治；集成测试 = <b>尽早送出坏消息</b>的风险削减活动</td></tr>
+    </table>
+    <div class="fig duo">
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture21_p16.png" alt="自顶向下集成"></div>
+        <div class="cap"><b>自顶向下</b>：主模块就位，为子模块 11、12、2、3 准备桩。<span class="src">图源：Lecture 21, slide 17</span></div>
+      </div>
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture21_p17.png" alt="自底向上集成"></div>
+        <div class="cap"><b>自底向上</b>：从叶子模块开始，用驱动模拟上层调用者，逐层替换。<span class="src">图源：Lecture 21, slide 18</span></div>
+      </div>
+    </div>
+    <div class="tip"><span class="lb">考点 · 如何选策略</span>
+      <p>功能导向策略（线程/关键模块）<b>需要更多规划</b>，但在复杂系统中提供更好的<b>过程可见性</b>；结构导向策略（自顶向下/自底向上/三明治）更简单，适合较小的组件与子系统。可以组合：小规模用结构策略，<b>较大子系统常用线程 + 关键模块的组合</b>。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">21.4</span>基于构件的测试</h3>
+    <div class="term"><div class="lb">TERM · 工作定义</div><div class="w">Component 构件</div>
+      <div class="d"><b>可复用的部署与组装单元</b>：被多次部署、多次集成（通常由不同团队）；<b>生产者 ≠ 使用者</b>；以<b>接口或契约</b>为特征——描述访问点、参数、全部功能与非功能行为及使用条件；通常<b>拿不到源码</b>等其他访问途径；粒度常大于对象或包（一个完整的数据库系统可以是构件）。相关概念：<b>框架</b>=应用的骨架/微架构（可打包为带「钩子/插槽」的构件）；<b>设计模式</b>=逻辑设计片段（框架是具体的，模式是抽象的）；<b>构件系统</b>=主要由（常为 COTS 商用现成）构件组装 + 应用专属<b>胶水代码</b>。</div>
+    </div>
+    <p><b>接口契约</b>比 API 签名大得多：API 与实现分离（如 XML 的 DOM 接口有多种实现）；契约包含使用构件所需知道的一切——非功能特性（性能、容量、安全）以及对其他构件的依赖。</p>
+    <ul class="dot">
+      <li><b>构件开发者的挑战</b>：不可能预知构件的所有用法；难以识别并规格化所有重要性质与依赖；</li>
+      <li><b>构件使用者的挑战</b>：构件内部<b>不可见</b>；难以判断对特定用途与上下文的适配性。</li>
+    </ul>
+    <table class="tbx">
+      <caption>构件测试：生产者视角 vs 使用者视角</caption>
+      <tr><th style="width:20%"></th><th>生产者视角</th><th>使用者视角</th></tr>
+      <tr><td>首要目标</td><td>彻底的单元/子系统测试（含基于 API 的彻底功能测试）</td><td><b>不是找构件的故障</b>，而是回答「它适配这个应用吗？」</td></tr>
+      <tr><td>方法</td><td>基于<b>预期使用场景</b>的彻底验收测试；含压力与容量测试</td><td>关注适配风险：未预期的依赖/环境交互、性能容量上限、功能缺失或 API 误解</td></tr>
+      <tr><td>经验法则</td><td>可复用构件在设计、实现、测试上的投入<b>至少是一次性子系统的两倍</b>；找出并文档化适用边界</td><td>风险在使用首次时最高 → <b>尽早试验性集成</b>：远在正式集成前就写驱动测试典型场景</td></tr>
+    </table>
+    <p>应用常通过<b>适配器（adaptor）</b>访问构件——测试驱动（或访问桩的标准途径）同样可以走这个适配器，让「为测试留门」成为架构的一部分。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">21.5</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>定位</b>集成测试找「交互与兼容性」故障；模块故障在集成期冒头 = 单元测试不足的过程信号。</div>
+        <div class="c" data-n="2"><b>六类集成故障</b>参数解释 / 值域容量 / 副作用 / 遗漏误解 / 非功能 / 动态失配（Apache SSL 泄漏=跨模块协议破坏，单测难发现）。</div>
+        <div class="c" data-n="3"><b>策略</b>自顶向下=只要桩、自底向上=只要驱动、三明治=两端夹击、线程=用户可见、关键模块=风险优先；大爆炸只省脚手架，代价最大。</div>
+        <div class="c" data-n="4"><b>构件</b>契约=使用所需的一切（含非功能与依赖）；生产者双倍投入+场景验收；使用者问适配性、早做试验集成。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TUTORIAL T2 · LO2 ============ -->
+<article class="tut lc3" id="t2">
+  <div class="hd">
+    <div class="no">T2</div>
+    <div>
+      <h3>教程卡 · 规划分析与测试</h3>
+      <p class="en">Tutorial LO2 · Planning Analysis and Test · Weeks 4–5</p>
+    </div>
+  </div>
+  <div class="tags"><span>第 4 周个人准备</span><span>第 5 周导师课</span><span>Reading: 重访 Ch4 · Ch17 脚手架 · Ch20</span></div>
+  <div class="quot">“Design and implement comprehensive test plans with instrumented code.”<small>LO2 —— 设计并实现带插桩代码的全面测试计划。承接 LO1 选定的需求，产出一份测试计划文档。</small></div>
+
+  <div class="ss">
+    <h3><span class="n">✎</span>准备周任务：写一份测试计划（1–2 页即可）</h3>
+    <ul class="dot">
+      <li>需求的<b>优先级</b>，以及充分测试各自需要什么；</li>
+      <li>测试所需的<b>脚手架与插桩</b>（scaffolding / instrumentation）；</li>
+      <li>测试活动<b>插入所选生命周期</b>（从 Ch20 讲过的几种里选）的位置。</li>
+    </ul>
+    <p style="font-size:13px;color:var(--ink2)">若采用 TDD 要注明——计划随开发显著演化是正常现象。LEARN 的 LO2 区有活动 slideset 与样例测试计划文档。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">2.1–2.4</span>评分标准（每项 0–5 分）</h3>
+    <table class="tbx">
+      <tr><th style="width:30%">子标准</th><th>要交付什么</th></tr>
+      <tr><td>2.1 测试计划的构建</td><td>计划文档写清每个需求的测试落在所选生命周期的哪个位置——作为「能为更大需求集合做规划」的证据。</td></tr>
+      <tr><td>2.2 计划质量的评估</td><td>指出计划的<b>遗漏与脆弱点</b>，评估它能否保证充分测试。</td></tr>
+      <tr><td>2.3 代码的插桩</td><td>说明需要什么 instrumentation / scaffolding，并论证其充分性。</td></tr>
+      <tr><td>2.4 插桩的评估</td><td>插桩够好吗？能否改进以更充分地测试需求？</td></tr>
+    </table>
+    <div class="tip"><span class="lb">作品集提示</span>
+      <p>计划文档<b>不需要长</b>：只考虑少数需求、一两页足够。作品集引用计划文档，并说明评估的彻底程度即可。</p>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== LO3 · WEEKS 6-7 ==================== -->
+<section class="part pt4" id="lo3">
+  <div class="rn">Ⅳ</div>
+  <div class="bd">
+    <div class="wk">WEEKS 6–7 · LEARNING OUTCOME 3</div>
+    <h2>技术与方法</h2>
+    <p class="en">Techniques and Methods — “Apply a wide variety of testing techniques and compute test coverage and yield.”</p>
+    <div class="ls"><span>L10 功能测试</span><span>L11 组合测试</span><span>L12 结构测试</span><span>L14 基于模型</span><span>T3 教程</span></div>
+  </div>
+</section>
+
+<article class="lec lc4" id="l10">
+  <div class="hd">
+    <div class="no">10</div>
+    <div>
+      <h2>功能测试</h2>
+      <p class="en">Functional Testing · Pezzè &amp; Young Ch.10</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 10</span><span>黑盒</span><span>等价类划分</span><span>边界值</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释系统性（非随机）选择测试用例的理由</li>
+      <li data-k="B">解释划分测试的原理与底层假设</li>
+      <li data-k="C">解释功能测试为何是基线技术：规格驱动的划分为何能选出有价值的用例</li>
+      <li data-k="D">把功能测试与其他系统性测试技术区分开</li>
+    </ul>
+  </div>
+  <p class="guide">Functional 指<b>信息的来源</b>（规格），不是被测对象——来自规格（specification-based）、不看代码（black-box）。它是所有粒度、所有项目阶段都可用的<b>基线技术</b>。</p>
+
+  <div class="ss">
+    <h3><span class="n">10.1</span>为什么不用随机测试？</h3>
+    <table class="tbx">
+      <caption>Random vs Systematic</caption>
+      <tr><th style="width:28%" style="width:28%">方式</th><th>做法</th><th style="width:34%">问题 / 优势</th></tr>
+      <tr><td>Random（均匀）</td><td>等可能地抽取输入</td><td>避免设计师偏差（同一人设计程序与测试会犯同样的错）——但把所有输入当作同等有价值</td></tr>
+      <tr><td>Systematic（非均匀）</td><td>选「特别有价值」的输入，通常是容易失败或根本不会失败的类的代表</td><td>功能测试属于系统性测试</td></tr>
+    </table>
+    <p><b>失败在输入空间是稀疏的</b>——针在大干草堆里。例：求二次方程根的 Java 类 <code>roots</code>，实现逻辑不完整：未正确处理 <code>b²−4ac = 0 且 a = 0</code>；失败取值在输入空间极稀疏，随机采样几乎不可能恰好抽中 <code>a=0.0 且 b=0.0</code>。</p>
+    <div class="tip"><span class="lb">考点 · 何时该用随机？</span>
+      <p>取决于测试目的：<b>估计针的比例</b>（可靠性估计需要无偏样本做有效统计）→ 随机；<b>找出针并移除</b> → 系统性搜索。除非针很多，随机采样找针低效；要利用一切关于针的知识（更重？会沉底？）来设计搜索。</p>
+    </div>
+    <h4>划分原理（The Partition Principle）</h4>
+    <p>失败在整个空间稀疏，<b>但可能在某些区域稠密</b>。若某故障导致的失败在某个输入类中稠密（易找到），则从每类采样至少一个输入即可揭示该故障。这一理想情形很少保证——依赖<b>经验性启发式</b>。<em>Quasi-</em>partition：各类的并覆盖整个空间，但<b>类可以重叠</b>。功能测试就是「画粉线把大干草堆切成小堆，在针可能集中的小堆里系统性翻找」。</p>
+    <div class="fig duo">
+      <div class="fcell"><div class="imgw"><img src="notes-assets/Lecture10_p09.png" alt="ISO 29119-2 等价类划分示例（测试基础与完成准则）"></div>
+        <div class="cap"><b>ISO 29119-2 的划分示例</b>：保险报价系统的测试基础片段与完成准则。<span class="src">Lecture 10, slide 9</span></div>
+      </div>
+      <div class="fcell"><div class="imgw"><img src="notes-assets/Lecture10_p10.png" alt="ISO 29119-2 保险系统测试模型"></div>
+        <div class="cap"><b>保险系统测试模型</b>：输入处理 / 内部处理 / 输出处理三段等价划分，年龄输入分有效/无效类，对应接受、拒绝、超额警告等输出。<span class="src">Lecture 10, slide 10</span></div>
+      </div>
+    </div>
+    <h4>课堂练习：Pill Dronz 的 extend 特性</h4>
+    <p>测试基础：「extend 功能生成新路径，或生成失败」——接受路径 r 与点 p，返回端点为 p、倒数第二端点为 r 之端点的新路径 r′，条件是：r 端点到 p 距离不过长、且跨越步不穿越禁飞区；否则报错。<b>测试完成准则：100% 等价类覆盖且全部通过</b>。练习：找出等价类（环境含禁飞数据库），仿照保险例子画分区图，写出测试用例规格与具体测试。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">10.2</span>四步法：从规格到测试用例</h3>
+    <div class="arrowlist"><span>① 分解规格 → 独立可测特性</span><i>→</i><span>② 选代表值 / 代表行为</span><i>→</i><span>③ 组合成测试规格</span><i>→</i><span>④ 生成并执行具体测试</span></div>
+    <p><b>ZIP 邮编查询例子</b>（输入 5 位美国邮编，输出城市列表）——注意代表值中<b>边界值与错误情形占大头</b>：</p>
+    <ul class="dot">
+      <li>正确邮编：对应 0 个 / 1 个 / 多个城市；</li>
+      <li>畸形邮编：空串；1–4 位；6 位；超长；含非数字字符；非字符数据。</li>
+    </ul>
+    <p>规格即划分线索：roots 程序的规格本身就暗示了 0 / 1 / 2 个实根的划分——<b>测试每一类以及类间边界</b>；经验表明失败常落在边界上。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">10.3</span>为什么功能测试是基线？</h3>
+    <table class="tbx">
+      <tr><th style="width:22%">维度</th><th>理由</th></tr>
+      <tr><td>Timely 及时</td><td>写代码前即可设计；还能在早期暴露规格含糊与不一致、评估可测试性、改善进度与预算；XP 极端情形下<b>测试即规格</b></td></tr>
+      <tr><td>Effective 有效</td><td>能找到其他方法漏掉的故障类——尤其<b>缺失逻辑（missing logic）</b></td></tr>
+      <tr><td>Widely applicable<br>适用面广</td><td>任何充当规格的行为描述、任何粒度（模块→系统）</td></tr>
+      <tr><td>Economical 经济</td><td>设计与执行通常比结构化（基于代码的）测试便宜</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · Functional vs Structural：故障类型与粒度</span>
+      <p><b>缺失逻辑故障只有功能测试能抓</b>——结构测试永远不会去测「不存在的代码」！反之，满足结构覆盖准则的套件可能漏掉功能准则能抓的<b>缺路径故障</b>（典型如哈希冲突处理：接口规格里不可见，一条规格由多段代码实现）。粒度：功能测试适用于单元/集成/系统/回归全部级别；结构测试只适合单元与集成。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">10.4</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>Functional = 信息来源</b>来自规格、不看代码；不是只测「功能」。</div>
+        <div class="c" data-n="2"><b>准划分</b>失败整体稀疏、局部稠密；类可重叠（quasi-）。</div>
+        <div class="c" data-n="3"><b>四步法</b>分解特性 → 选代表 → 组合规格 → 执行；边界+错误占大头。</div>
+        <div class="c" data-n="4"><b>missing logic</b>功能测试的独门故障类；结构测试测不到不存在的代码。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc4" id="l11">
+  <div class="hd">
+    <div class="no">11</div>
+    <div>
+      <h2>组合测试</h2>
+      <p class="en">Combinatorial Testing · Pezzè &amp; Young Ch.11</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 11</span><span>Category-Partition</span><span>Pairwise</span><span>Catalog-Based</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释系统性组合测试的原理与基本方法</li>
+      <li data-k="B">应用代表性方法：<b>分类划分（category-partition）</b>、<b>成对组合（pairwise）</b>、<b>目录驱动（catalog-based）</b></li>
+      <li data-k="C">解释各方法的异同与适用领域</li>
+    </ul>
+  </div>
+  <p class="guide">基本思想：识别数据/环境/配置中<b>可独立变化的属性</b>（如浏览器 × 操作系统），系统性地生成组合——要「多样」并覆盖 corner cases。三种方法解决三个痛点：手工选值、组合爆炸、经验复用。</p>
+
+  <div class="ss">
+    <h3><span class="n">11.1</span>Category-Partition（分类划分测试）</h3>
+    <p>核心分工：<b>手工</b>识别刻画输入空间的值（创造性步骤） + <b>自动</b>生成组合（机械步骤）。三步流程：</p>
+    <div class="arrowlist"><span>Step 1 分解规格 → 特性/参数/环境元素 → 分类 (categories)</span><i>→</i><span>Step 2 为每类识别值 (choices)</span><i>→</i><span>Step 3 引入约束 (constraints)</span></div>
+    <h4>案例：check-configuration（检查计算机配置）</h4>
+    <p>参数 <b>Model</b>（型号：必选槽/可选槽数量决定约束）与 <b>Set of Components</b>（槽-组件对；组件间可互不兼容，如 RodentOS 移动服务器版要求 ≥30GB 硬盘）；环境元素 <b>Product database</b>。</p>
+    <ul class="dot">
+      <li><b>Step 1 选分类没有硬性规则</b>——反映测试设计师对「哪些值类可能被实现区别对待」的判断；需要领域与架构知识，要看出规格表面之下的<b>隐藏特征</b>（如 #DBM 数据库中型号数、槽数等）。</li>
+      <li><b>Step 2 值的来源</b>：边界值测试（类内极值、类外紧邻值、类内内部值）+ 错误条件测试（正常域之外的值）。例：Model number ∈ {Malformed, Not in database, Valid}；#SMRS ∈ {0, 1, Many}；0 和 1 是<b>特殊值</b>，可能单独或与其他参数组合引发未预期行为。</li>
+      <li><b>Step 3 约束</b>（关键省钱步骤）：<b>全部组合 314,928 个</b>，大多不可能（如「0 槽」配「至少一个不兼容槽」）：</li>
+    </ul>
+    <table class="tbx">
+      <caption>三种约束把 314,928 个用例缩到 69 个</caption>
+      <tr><th style="width:24%">约束</th><th>语义</th><th style="width:26%">效果</th></tr>
+      <tr><td><code>[error]</code></td><td>错误值类只需试一次（假设处理错误会绕过其余逻辑）</td><td>314,928 → 2,711</td></tr>
+      <tr><td><code>[property] [if-property]</code></td><td>把单参数的值按性质分组，限制跨参数可组合的值</td><td>2,711 → 908</td></tr>
+      <tr><td><code>[single]</code></td><td>非错误但只想测一次的值类（如 some default）</td><td>908 → <b>69</b></td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · single vs error</span>
+      <p>两者效果相同（都只测一次），但<b>理由不同</b>：error 是「错误处理绕过其他逻辑」的假设，single 是纯粹的数量控制。分开记录对<b>文档与回归测试</b>很重要——语义不同的约束，回归时的处理也不同。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">11.2</span>Pairwise（成对组合测试）</h3>
+    <p>分类划分适用于直觉约束能把组合压小的场合；约束少时组合数失控。<b>Pairwise</b>：不穷举，而是高效覆盖所有<b>值对</b>（n-way 覆盖三元组…）。理由：<b>大多数非预期交互只涉及两个或少数几个参数</b>——覆盖对（三元组…）能以少得多的用例揭示大部分故障。</p>
+    <div class="formula">显示控制例子：3 × 4 × 3 × 4 × 3 = 432 全组合 <span class="cm">Display Mode × Language × Fonts × Color × Screen size</span><span class="cm">——全部成对组合只需 <b>17</b> 个测试用例</span></div>
+    <p>带约束的处理：简单约束（monochrome 与 laptop/full-size 不兼容）可<b>分表</b>处理——手持屏一张表、大屏一张表，各表内做 pairwise。<b>注意</b>：成对覆盖不会导致乘法式增长，但类多了手工做不动，需工具（如正交表 / IPOG 算法类工具）。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">11.3</span>Catalog-Based（目录驱动测试）</h3>
+    <p>解决「Step 1–2 太靠个人经验」：把组织/领域的测试设计经验沉淀成<b>目录（catalog）</b>——每种可能的变量类型列出重要取值，加速设计、例行化决策、加速培训、减少人为失误。</p>
+    <div class="formula">整数变量目录：L−1 · L · 区间内部值 · U · U+1<span class="cm">下界前一元素 / 下界 / 内部 / 上界 / 上界后一元素</span></div>
+    <p>三步流程：① 分析规格找出<b>简单元素</b>（pre-conditions、post-conditions、definitions、variables、operations）→ ② 从前置/后置/定义导出初始测试规格 → ③ 顺序扫描目录补全并<b>删除冗余</b>。</p>
+    <h4>案例：cgi_decode（完整走一遍）</h4>
+    <p>功能：把 CGI 编码串还原为 ASCII——<code>+</code> 映射为空格、<code>%xy</code>（x,y 为十六进制位）映射为对应 ASCII 字符、字母数字原样复制；成功返回 0，输入畸形返回 1。</p>
+    <ul class="dot">
+      <li><b>Step 1 元素</b>：PRE1（假定：null 结尾）、PRE2（已验证：CGI 项序列）、POST1–6（复制/替换/返回值）、VAR1–3、DEF1–3（十六进制字符范围、%xy、CGI 项）、OP1（Scan encoded）；</li>
+      <li><b>Step 2 初始测试</b>：简单前置条件 → 满足/不满足两类；<b>复合前置（AND/OR）→ 应用 MC/DC</b>；假定前置只对「OR 前置」用 MC/DC；条件型后置当作已验证前置处理。如 TC-PRE2-1/2、TC-POST1-1/2……</li>
+      <li><b>Step 3 目录扫描</b>：<code>Boolean</code>（true/false，已被覆盖）→ <code>Enumeration</code>（每个枚举值+集合外值 → 生成 TC-POST5-2/3/4：以 %x 结尾、%ky、%xk）→ <code>Range</code>（十六进制位：'/'、':'、0、9、@、G、A、F、}、g、a、f 及内部值 → 30 个新用例）→ <code>Constant</code>（+ 与 %，全冗余）→ <code>Sequence</code>（空、单元素、多元素、超长、错误终止……6 个非冗余）→ <code>Scan</code>（P 在开头/中间/结尾、PP 连续、不出现、前缀陷阱……17 生成 10 非冗余）。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点</span>
+      <p>目录法精髓：<b>从规格的语法元素反查目录</b>，让「想取值」变成「查表+去冗余」。最终 cgi_decode 得到约 70 个测试用例规格——数量可观但<b>每一条都可追溯到规格元素或目录条目</b>。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">11.4</span>三法对比与小结</h3>
+    <table class="tbx">
+      <caption>三种组合方法的分工</caption>
+      <tr><th style="width:26%">方法</th><th>贡献</th><th style="width:30%">遗留问题</th></tr>
+      <tr><td>Category-Partition</td><td>手工识别（分类+值+约束）与自动生成分离</td><td>套件规模随分类数暴涨</td></tr>
+      <tr><td>Pairwise / n-way</td><td>即使无约束也能得到小得多的套件</td><td>没有覆盖 100% 组合的理论保证</td></tr>
+      <tr><td>Catalog-Based</td><td>把「识别显著值」的经验例行化、可复用</td><td>目录本身需要持续维护</td></tr>
+    </table>
+    <p>三者<b>可以组合</b>：目录帮 Step 1–2 更系统，pairwise 压 Step 3 的组合数。自然语言的灵活性是自动分析的障碍——组合方法把蛮力分解为「可量化、可监控、可部分工具化」的分步分析与合成。</p>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>CP 三步</b>分类 → 值 → 约束；check-config: 314,928→2,711→908→69。</div>
+        <div class="c" data-n="2"><b>三种约束</b>error / property+if / single——语义不同，回归处理不同。</div>
+        <div class="c" data-n="3"><b>Pairwise</b>432→17；大多数故障由 1–2 个参数交互触发。</div>
+        <div class="c" data-n="4"><b>目录五条目</b>Boolean / Enumeration / Range / Constant / Sequence / Scan；复合前置用 MC/DC。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc4" id="l12">
+  <div class="hd">
+    <div class="no">12</div>
+    <div>
+      <h2>结构测试</h2>
+      <p class="en">Structural Testing · Pezzè &amp; Young Ch.12</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 12</span><span>白盒覆盖</span><span>MC/DC</span><span>Subsumption 层级</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释结构测试的原理；说明它如何<b>补充</b>功能测试</li>
+      <li data-k="B">识别并区分基本术语：<b>adequacy / coverage</b></li>
+      <li data-k="C">识别并区分常见结构准则的特征</li>
+      <li data-k="D">解释结构测试的实践用途与局限</li>
+    </ul>
+  </div>
+  <p class="guide">结构测试 = 以<b>程序自身的结构</b>判断套件的彻底性（white-box / glass-box / code-based）。注意：结构测试测的仍是产品功能对规格——<b>改变的只是彻底性的度量方式</b>。</p>
+
+  <div class="ss">
+    <h3><span class="n">12.1</span>为什么需要结构测试？</h3>
+    <ul class="dot">
+      <li>回答「测试套件缺什么」：某段代码没被任何用例执行 → 其中的故障无法暴露。「部分」通常指控制流元素：语句（CFG 节点）、分支（CFG 边）、条件、路径；</li>
+      <li>与功能测试互补：功能规格看不见的地方（一条规格由多段代码实现——哈希冲突处理）；</li>
+      <li><b>无保证</b>：执行了所有控制流元素 ≠ 找到所有故障——执行出错语句不一定破坏状态（取决于数据），破坏了状态也不一定传播到失败。</li>
+    </ul>
+    <h4>实践套路</h4>
+    <p>先做功能套件，再测结构覆盖找缺口；解读未覆盖元素：可能是规格与实现的<b>自然差异</b>，也可能是规格不完备、编码严重偏离规格、功能套件不足。覆盖率自动化方便，常被当作<b>完成判据</b>——慎用：不保证套件有效。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">12.2</span>从语句到分支</h3>
+    <div class="formula">Statement Coverage = 已执行语句数 ÷ 语句总数<span class="cm">基本块（basic block）覆盖 / 节点覆盖与语句覆盖：100% 时等价，100% 以下数值不同但方向一致</span></div>
+    <p>案例 <code>cgi_decode</code>（C 版）：用例组 T₀ = {"", "test", "test+case%1Dadequacy"} 达 17/18 = 94%；T₂ = {"%3D", "%A", "a+b", "test"} 达 18/18 = 100%。<b>覆盖 ≠ 规模</b>：T₁ 覆盖高于 T₀ 但基数更小；小套件诊断更容易——最小化套件很少是目标。</p>
+    <p><b>100% 语句覆盖可能漏分支</b>：若 else 分支 F 缺失（T₃ = {"", "+%0D+%4J"} 达 100% 语句覆盖但 D→L 的假分支从未走过）→ 需要 <b>Branch Coverage</b>：</p>
+    <div class="formula">Branch Coverage = 已执行分支数 ÷ 分支总数<span class="cm">T₃: 100% 语句 + 88% 分支 (7/8)；T₂: 100% + 100% (8/8)</span></div>
+    <div class="tip"><span class="lb">考点 · 蕴含与不蕴含</span>
+      <p>遍历所有边必经过所有节点 ⇒ <b>分支覆盖 subsumes 语句覆盖</b>；反之不成立（T₃ 即反例）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">12.3</span>条件测试与 MC/DC</h3>
+    <p>分支覆盖只检查「程序员把计算分解成情形」的大框架，把同结果的情形<b>归并</b>了。故障例子：<code>digit_high == -1 || digit_low == -1</code> 漏写取反（应为 <code>digit_high == 1</code>）——只变 <code>digit_low</code> 就能同时满足分支覆盖，坏的那个子表达式<b>从未真正影响过结果</b>。</p>
+    <table class="tbx">
+      <caption>条件类准则一览</caption>
+      <tr><th style="width:30%">准则</th><th>要求</th><th style="width:30%">关键事实</th></tr>
+      <tr><td>Basic condition<br>基本条件覆盖</td><td>每个原子条件取真、假各一次</td><td>覆盖 = 真值数 ÷ (2 × 条件数)；<b>与分支覆盖互不蕴含</b>（T₄ 满足条件不满足分支）</td></tr>
+      <tr><td>Branch + condition</td><td>所有条件 + 所有判定</td><td>两者简单叠加</td></tr>
+      <tr><td>Compound condition<br>复合条件覆盖</td><td>复合条件的所有求值组合（决策树全分支）</td><td><b>指数复杂度</b>：(((a||b)&amp;&amp;c)||d)&amp;&amp;e 需 13+ 用例；短路求值常能减少但不总是</td></tr>
+      <tr><td><b>MC/DC</b><br>修正条件/判定覆盖</td><td>每个基本条件 C 都<b>独立影响</b>判定结果：存在两个用例，除 C 外所有已求值条件相同，整体判定一真一假</td><td><b>N+1 个用例测 N 个条件</b>（线性复杂度）；RTCA/DO-178B 航空标准要求</td></tr>
+    </table>
+    <p>MC/DC 的构成：基本条件覆盖（C）+ 分支覆盖（DC）+ 独立影响（M）。被复合条件覆盖 subsumes，并 subsumes 前述所有准则——<b>彻底性与套件规模的平衡点，故广泛使用</b>。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">12.4</span>路径类准则（实用化）</h3>
+    <ul class="dot">
+      <li><b>Path adequacy</b>：每条路径至少执行一次——含循环的程序路径数<b>无界</b>，通常不可满足；可行做法是把无限路径集划分成有限类：限制循环遍数、路径长度、路径间依赖。</li>
+      <li><b>Boundary-interior path testing</b>：沿 CFG 追到<b>第一个重复节点</b>为止的子路径集合（把循环体内差异的路径归并）。局限：N 个顺序 if 仍产生 2ᴺ 条子路径；为特定路径构造输入可能极难（条件不独立时甚至不可能）。</li>
+      <li><b>Loop boundary adequacy</b>：每个循环体执行 <b>0 次 / 1 次 / 多次</b> 各至少一个用例——对应循环正确性证明会考虑的情形。</li>
+      <li><b>LCSAJ</b>（Linear Code Sequence and Jump）：从分支到分支的顺序子路径。<code>TER₁</code>=语句覆盖、<code>TER₂</code>=分支覆盖、<code>TERₙ₊₂</code>=n 个连续 LCSAJ 的覆盖。</li>
+      <li><b>Cyclomatic adequacy</b>：圈复杂度 = CFG 的<b>独立路径数</b>；<code>V(G) = e − n + 2</code>（CFG）/ <code>e − n + c</code>（一般图）。度量已执行的独立路径数占圈复杂度的比例。</li>
+    </ul>
+    <h4>Subsumption 层级图（必背）</h4>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture12_p35.png" alt="覆盖准则包含关系层级图"></div>
+      <div class="cap"><b>覆盖准则的 subsumption 关系</b>：上半区为理论准则（Path testing 最强；Boundary-interior 次之），下半区为实用准则。关键链条：Path ⊃ Boundary-interior ⊃ {Cyclomatic, LCSAJ, Loop boundary} ⊃ Branch ⊃ Statement；右链：Compound condition ⊃ MC/DC ⊃ Branch and condition ⊃ {Branch, Basic condition} ⊃ Statement。<span class="src">图源：Lecture 12, slide 35 · Pezzè &amp; Young</span></div>
+    </div>
+    <div class="tip"><span class="lb">考点 · 准则可能不可满足</span>
+      <p>防御式编程（不可达语句）、代码复用（比应用所需更通用的代码→化石代码 fossil code）、相互依赖的条件/判定都会让 100% 不可达。对策：<b>设定低于 100% 的覆盖目标 + 对未覆盖元素要求书面说明</b>（DO-178B/ED-12B 对 MC/DC 即如此）。大量化石代码本身是可维护性警报。另记：<b>充分性准则不是测试设计技术</b>；「逆推输入」通常很难（深层 CFG 元素如何被输入触及？可能需要符号执行等自动支持）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">12.5</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>两大基本覆盖</b>语句 ⊂ 分支；100% 语句可漏分支（T₃ 反例）。</div>
+        <div class="c" data-n="2"><b>MC/DC</b>每条件独立影响判定；N+1 用例；DO-178B 要求；性价比之王。</div>
+        <div class="c" data-n="3"><b>循环三连</b>0 次 / 1 次 / 多次 = loop boundary；圈复杂度 e−n+2。</div>
+        <div class="c" data-n="4"><b>准则 ≠ 设计技术</b>覆盖率是代理度量；目标可 &lt;100% 但需说明未覆盖项。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc4" id="l14">
+  <div class="hd">
+    <div class="no">14</div>
+    <div>
+      <h2>基于模型的测试</h2>
+      <p class="en">Model-Based Testing · Pezzè &amp; Young Ch.14</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 14</span><span>FSM 覆盖</span><span>判定表</span><span>流图</span><span>文法测试</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释模型在测试用例设计中的角色；功能/结构/模型驱动准则的共同原理</li>
+      <li data-k="B">讲解若干代表性模型驱动技术</li>
+      <li data-k="C">能将基本思路<b>迁移</b>到其他模型上设计并精化新技术</li>
+    </ul>
+  </div>
+  <p class="guide">规格/设计模型自带<b>结构</b>——对模型而言「区别对待的行为」就应被彻底的套件逐一尝试。结构覆盖盖的是代码，模型覆盖盖的是（抽象后的）行为。四种模型四套打法：FSM、判定表、流图、文法。</p>
+
+  <div class="ss">
+    <h3><span class="n">14.1</span>FSM 驱动测试</h3>
+    <p>教材主线案例：<b>产品维护（Maintenance）流程</b>的非形式规格（保修内电话/网站报修→上门取件；合同号无效→按无保修处理；无保修只能送站并先报价；小毛病站点直修，不行送区域/总部；缺件暂停；修好寄回……）→ 抽象为 10 状态 FSM：</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture14_p06.png" alt="维护流程的有限状态模型"></div>
+      <div class="cap"><b>维护流程 FSM（状态 0–9）</b>：No Maintenance → 请求 → 等待取件/报价/缺件/站点维修/区域总部/总部维修 → 修复寄回 → 回到 No Maintenance，构成闭环。实现中的「状态」会用更丰富的数据记录，但<b>抽象行为骨架</b>不变。<span class="src">图源：Lecture 14, slide 6</span></div>
+    </div>
+    <p>由此生成测试序列（状态路径）：TC1 = 0→2→4→1→0；TC2 = 0→5→2→4→5→6→0；TC3 = 0→3→5→9→6→0；TC4 = 0→3→5→7→5→8→7→8→9→6→0。<b>这个套件彻底吗？如何判断？</b>——用覆盖准则：</p>
+    <table class="tbx">
+      <caption>FSM 覆盖准则</caption>
+      <tr><th style="width:30%">准则</th><th>要求</th></tr>
+      <tr><td>State coverage 状态覆盖</td><td>模型中每个状态至少被一个用例访问</td></tr>
+      <tr><td>Transition coverage<br>转换覆盖</td><td>每个状态转换至少被遍历一次——<b>最常用</b>；转换可视为（前置条件, 后置条件）对</td></tr>
+      <tr><td>Single state path coverage</td><td>遍历「每个状态至多到达一次」的每条子路径（路径敏感准则）</td></tr>
+      <tr><td>Single transition path coverage</td><td>同理，每条转换至多经过一次</td></tr>
+      <tr><td>Boundary-interior loop coverage</td><td>每个不同环路分别执行最少次、中间次、最大/多次——<b>路径敏感准则中唯一常用</b>的</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 路径敏感准则的基本假设</span>
+      <p>「状态完全概括历史」——到达某状态的路径无关紧要。设计良好的状态机模型应满足此假设；若违反（同一状态、不同历史、不同行为），才需要路径敏感准则。这与 L05「抽象函数」一脉相承。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">14.2</span>判定表驱动测试</h3>
+    <p>案例：<b>定价（Pricing）</b>规格——计划价 = 型号价 + 组件价；三套价格/折扣表（Business / Educational / Individual）；教育账户良好信誉 → 教育计划价且不再打折；特价不可折扣配置 → 取「特价」与「常规折扣价」中<b>较低者</b>。非形式规格 → <b>判定表</b>（行=基本条件，列=组合，末行=结果）：</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture14_p12.png" alt="定价判定表"></div>
+      <div class="cap"><b>定价判定表</b>：EduAc / BusAc / CP&gt;CT1 / YP&gt;YT1 / CP&gt;CT2 / YP&gt;YT2 / SP&lt;Sc / SP&lt;T1 / SP&lt;T2 → 输出 Edu SP / ND SP / T1 SP / T2 SP（"-" 为无关项）。<span class="src">图源：Lecture 14, slide 12</span></div>
+    </div>
+    <p><b>约束</b>（去掉矛盾列）：at-most-one(EduAc, BusAc)；at-most-one(YP&lt;YT1, YP&gt;YT2) 且 YP&gt;YT2 → YP&gt;YT1；CP、SP 同理。</p>
+    <ul class="dot">
+      <li><b>基本条件覆盖</b>：表中每列一个测试用例规格；</li>
+      <li><b>复合条件准则</b>：基本条件真值的所有组合各一列；</li>
+      <li><b>MC/DC</b>：每列一个规格，再<b>翻转某一输入行</b>生成成对列（C.1a/C.1b），要求结果与源列不同，然后与既有列合并（merge compatible columns）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">14.3</span>流图驱动测试</h3>
+    <p>规格/模型兼有<b>判定与顺序逻辑</b>时（不只是平行条件组合），像对待源代码一样做分支覆盖。案例：<b>Process shipping order</b>（处理货运订单）——货物价值 &lt; MinOrder 则无效；地址（姓名/地址/城市/邮编/国家）+ 国内（陆运/加急陆运/隔夜空运）或国际（空运/加急空运）；运费由地址×方式×客户类型（个人/企业/教育）计算；个人只能信用卡，企业/教育可选信用卡或发票；卡信息无效可重填或中止；输出 validity / total charge / payment status。</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture14_p20.png" alt="货运订单流图"></div>
+      <div class="cap"><b>货运订单流图</b>：条件常引用函数参数，转换由数据上的条件决定；与 FSM 不同，这里的「状态」<b>未必完全概括历史</b>。<span class="src">图源：Lecture 14, slide 20</span></div>
+    </div>
+    <p><b>分支测试</b>得到 9 个测试用例（TC-1 国内空运 ×2 …… TC-8 卡无效-中止、TC-9 卡无效-不中止），每列覆盖流图的一条不同分支路径。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">14.4</span>文法驱动测试</h3>
+    <p>复杂输入常可用<b>上下文无关文法</b>描述——擅长表达：大小可变/无界的输入、递归结构、边界条件（复杂文本输入、树结构（XML/HTML 即文本形式的树）、程序结构）。</p>
+    <ul class="dot">
+      <li><b>测试用例 = 从文法生成的字符串</b>；</li>
+      <li><b>产生式覆盖（production coverage）</b>：每个产生式至少用于生成一段测试用例；</li>
+      <li><b>边界条件</b>：给每个递归产生式标注最小/最大应用次数，生成 min、min+1、max−1、max 四档。</li>
+    </ul>
+    <p>案例：check-configuration 的文法——<code>&lt;Model&gt; ::= &lt;modelNumber&gt; &lt;compSequence&gt; &lt;optCompSequence&gt;</code>，递归产生式 <code>&lt;compSequence&gt;</code> 标注 [0,16]。生成策略两极：<b>先展开非终结符右侧的</b> → 少量大用例（"Mod000 (Comp000,Val000) (OptComp000)"）；<b>先展开终结符右侧的</b> → 大量小用例。</p>
+    <table class="tbx">
+      <caption>文法 vs 组合测试</caption>
+      <tr><th style="width:26%"></th><th>组合测试</th><th>文法测试</th></tr>
+      <tr><td>擅长</td><td>「基本独立」的参数；少量约束</td><td>序列与嵌套结构</td></tr>
+      <tr><td>短板</td><td>复杂约束难表示难使用，常需「分解压平」（把槽集合拆成槽数+槽内容谓词）</td><td>不同部分间的关系（如组件与槽的兼容性）难描述难系统行使</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">14.5</span>小结与速记</h3>
+    <p>大图景：模型是有用的抽象——强调关键特征、抑制细节，帮助我们思考与沟通。若模型把行为划分为类，我们大概率想把<b>每一类都测到</b>。常见技术基于状态机、判定结构与文法，但同一思路可推广到任何模型。</p>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>FSM 覆盖</b>状态 ⊂ 转换（最常用）；路径敏感准则仅在「状态不完全概括历史」时需要。</div>
+        <div class="c" data-n="2"><b>判定表</b>列=组合；约束去矛盾列；MC/DC = 翻转一行生成成对列再合并。</div>
+        <div class="c" data-n="3"><b>流图</b>规格带顺序逻辑时按分支覆盖；状态未必概括历史。</div>
+        <div class="c" data-n="4"><b>文法</b>产生式覆盖 + 递归边界 min/min+1/max−1/max；先非终结=少大用例。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TUTORIAL T3 · LO3 ============ -->
+<article class="tut lc4" id="t3">
+  <div class="hd">
+    <div class="no">T3</div>
+    <div>
+      <h3>教程卡 · 技术与方法</h3>
+      <p class="en">Tutorial LO3 · Techniques and Methods · Weeks 6–7</p>
+    </div>
+  </div>
+  <div class="tags"><span>第 6 周个人准备</span><span>第 7 周导师课</span><span>Reading: Ch10–11（黑盒）· Ch12 / Ch14（结合结构）</span></div>
+  <div class="quot">“Apply a wide variety of testing techniques and compute test coverage and yield according to a variety of criteria.”<small>LO3 —— 应用多种测试技术，并按多种准则计算覆盖率与产出。比 LO2 好写：总结测试的实践结果与评估方案。</small></div>
+
+  <div class="ss">
+    <h3><span class="n">✎</span>准备周任务：MVP 证据攻防（角色扮演）</h3>
+    <ul class="dot">
+      <li><b>15 分钟</b>：选定产品（如 PillDrone）；描述 MVP 长什么样；选一个关键需求，想清楚<b>客户需要什么证据</b>才会相信 MVP 可行、你打算怎么生成这些证据；</li>
+      <li><b>供应商角色</b>：写简短 pitch，论证 MVP 对客户可行并出示证据（PillDrone 的客户可设为英国药师联合会分会）；</li>
+      <li><b>客户角色</b>：反驳——MVP 在哪达不到预期？证据为什么不充分？给出现实的改进建议；</li>
+      <li><b>收尾 5 分钟</b>：列出你会用哪些测试方法来生成这些证据。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 软件还没写完怎么办</span>
+      <p>测试可能尚未开始——没关系：记录<b>软件与测试的共同演化</b>（测试既暴露代码的问题，也暴露测试自身的问题）；时间有限，<b>能识别弱点本身就是成果</b>。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">3.1–3.4</span>评分标准（每项 0–5 分）</h3>
+    <table class="tbx">
+      <tr><th style="width:30%">子标准</th><th>要交付什么</th></tr>
+      <tr><td>3.1 技术的范围</td><td>实际测试 vs 计划的对照；简述所选技术及适用理由。</td></tr>
+      <tr><td>3.2 充分性的评估准则</td><td>为每种方法的选择给出动机，并与需求挂钩——技术如何建立「软件满足需求」的信心。</td></tr>
+      <tr><td>3.3 测试的结果</td><td>结果概览 + 指向更详细的材料；重点在<b>有效呈现</b>。</td></tr>
+      <tr><td>3.4 结果的评估</td><td>应用所选的评估技术，并有效呈现评估结果。</td></tr>
+    </table>
+  </div>
+</article>
+
+<!-- ==================== LO4 · WEEKS 8-9 ==================== -->
+<section class="part pt5" id="lo4">
+  <div class="rn">Ⅴ</div>
+  <div class="bd">
+    <div class="wk">WEEKS 8–9 · LEARNING OUTCOME 4</div>
+    <h2>方法的评估与局限</h2>
+    <p class="en">Evaluation and Limitations — “Evaluate the limitations of a given testing process, using statistical methods where appropriate.”</p>
+    <div class="ls"><span>L09 充分性准则</span><span>L16 基于缺陷</span><span>L22 系统验收回归</span><span>T4 教程</span></div>
+  </div>
+</section>
+
+<article class="lec lc5" id="l09">
+  <div class="hd">
+    <div class="no">09</div>
+    <div>
+      <h2>测试用例选择与充分性准则</h2>
+      <p class="en">Test Case Selection and Adequacy Criteria · Pezzè &amp; Young Ch.9</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 9</span><span>Test Obligation</span><span>Subsumes</span><span>覆盖率</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">定义测试充分性准则并解释其局限</li>
+      <li data-k="B">解释测试选择与充分性的术语体系</li>
+      <li data-k="C">使用定义充分性准则的常见信息来源</li>
+      <li data-k="D">实际运用测试选择与充分性准则</li>
+    </ul>
+  </div>
+  <p class="guide">我们想要的充分性（「通过充分测试集 ⇒ 程序必然正确」）被证明<b>不可判定</b>。于是退而求其次：把充分性准则当作<b>设计规则</b>——不保证好设计，但能暴露明显不足。</p>
+
+  <div class="ss">
+    <h3><span class="n">9.1</span>术语体系（必背）</h3>
+    <table class="tbx">
+      <caption>从测试用例到充分性准则</caption>
+      <tr><th style="width:30%">术语</th><th>定义</th></tr>
+      <tr><td>Test case 测试用例</td><td>一组输入、执行条件，外加一个通过/失败判据</td></tr>
+      <tr><td>Test case specification<br>测试用例规格</td><td>要求由一个或多个测试用例来满足的需求</td></tr>
+      <tr><td>Test obligation<br>测试义务</td><td>部分测试用例规格——要求某个被认为对彻底测试重要的性质</td></tr>
+      <tr><td>Test suite 测试套件</td><td>一组测试用例</td></tr>
+      <tr><td>Test execution 测试执行</td><td>执行测试用例并评估结果的活动</td></tr>
+      <tr><td>Adequacy criterion<br>充分性准则</td><td>关于 ⟨程序, 测试套件⟩ 二元组真假的一个谓词</td></tr>
+    </table>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Adequacy Criterion = 一组测试义务</div>
+      <div class="d">测试套件 S 满足关于程序 P 的充分性准则 ⟺ ① S 中所有测试都通过，<b>且</b> ② 准则中的每个测试义务都至少被 S 中一个测试用例满足。例：语句覆盖准则 = 「P 中每个可执行语句都至少被一个测试执行」+ 全部通过。</div>
+    </div>
+    <h4>测试义务的四大来源</h4>
+    <table class="tbx">
+      <tr><th style="width:30%">来源</th><th>信息基础</th><th style="width:36%">示例</th></tr>
+      <tr><td>Functional 功能性<br>（黑盒/基于规格）</td><td>软件规格</td><td>规格要求断电后健壮恢复 → 义务应包含「模拟断电」</td></tr>
+      <tr><td>Structural 结构性<br>（白盒/玻璃盒）</td><td>代码</td><td>遍历每个程序循环一次或多次</td></tr>
+      <tr><td>Model-based 基于模型</td><td>系统模型（规格/设计用，或从代码导出）</td><td>覆盖通信协议模型的全部转换</td></tr>
+      <tr><td>Fault-based 基于缺陷</td><td>假设的（常见）故障</td><td>用超大输入检查缓冲区溢出处理</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">9.2</span>不可满足性与覆盖率</h3>
+    <p>有时没有任何测试套件能满足某准则——例如防御式编程的「不可能发生」检查：<code>if (z &lt; 0) throw new LogicError(...)</code>，若程序正确则该分支永不可达，语句覆盖不可能 100%。两种应对：</p>
+    <ul class="dot">
+      <li><b>Approach A</b>：从准则中剔除不可满足的义务（修改语句覆盖为只要求「可执行」语句）——但我们无法确知哪些可执行（不可判定！）；</li>
+      <li><b>Approach B</b>：度量<b>接近</b>准则的程度——满足 100 个义务中的 85 个 = 85% 覆盖率。<b>准则满足与否是布尔值；覆盖率度量是分数。</b></li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · Coverage: Useful or Harmful?</span>
+      <p>覆盖率是有用的<b>进度指标</b>（离彻底还有多远、哪里是薄弱点），也是危险的<b>诱惑</b>——它只是彻底性的代理：提升覆盖率数字比设计好测试容易得多。<b>唯一真正重要的度量是（成本）有效性</b>。类比建筑规范（building codes）：达到规范 ≠ 好房子，但违反规范足以让你警惕；规范有时过严，可豁免但需满足其他要求。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">9.3</span>比较准则：Subsumes 关系</h3>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">A subsumes B（A 包含 B）</div>
+      <div class="d">当且仅当：对每个程序 P，每个满足 A（关于 P）的测试套件也满足 B（关于 P）。例：分支覆盖 subsumes 语句覆盖。</div>
+    </div>
+    <p>两种比较路径：<b>经验法</b>（研究工业实践中不同测试方法的有效性——最重要，但依赖情境、难泛化）与<b>解析法</b>（证明一个准则在何种条件下严格强于另一个——subsumes 是其中之一，只是整体「有效性」问题的一块拼图）。用途：从易到难逐级工作；<b>不是</b>质量的直接指标。</p>
+    <h4>准则的两大用途</h4>
+    <ul class="dot">
+      <li><b>测试选择</b>：指导设计彻底的测试套件（如基于规格的准则提示覆盖代表性取值组合）；</li>
+      <li><b>事后分析（post hoc）</b>：揭示可能遗漏了什么——典型组合拳：先按规格设计功能测试，再用结构准则（如分支覆盖）照亮遗漏的逻辑。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">9.4</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>充分性不可判定</b>「通过即正确」是理想；现实只有暴露不足的设计规则。</div>
+        <div class="c" data-n="2"><b>准则 = 义务集合</b>满足 = 全部通过 + 全部义务被覆盖。</div>
+        <div class="c" data-n="3"><b>四来源</b>功能 / 结构 / 模型 / 缺陷——后续四讲各展开一个。</div>
+        <div class="c" data-n="4"><b>Subsumes</b>解析比较准则强弱；分支 ⊃ 语句是第一例。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc5" id="l16">
+  <div class="hd">
+    <div class="no">16</div>
+    <div>
+      <h2>基于缺陷的测试</h2>
+      <p class="en">Fault-Based Testing · Pezzè &amp; Young Ch.16</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 16</span><span>变异测试</span><span>种子缺陷</span><span>等价变异体</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释基于缺陷测试的基本思想：用故障模型创造测试、评判用例质量</li>
+      <li data-k="B">辨别有效与无效的使用方式</li>
+      <li data-k="C">讲解并运用<b>变异测试</b></li>
+    </ul>
+  </div>
+  <p class="guide">一个弹珠思想实验贯穿全讲：往一碗弹珠里混入 100 颗黑色弹珠、搅匀、随机抽 100 颗、其中 20 颗黑——可以估计碗中原有多少弹珠。<b>把「程序」与「种子缺陷」代入这个公式，就是变异测试。</b></p>
+
+  <div class="ss">
+    <h3><span class="n">16.1</span>用种子缺陷评估测试套件</h3>
+    <p>把 100 个新缺陷（假设与真实缺陷<b>各方面都一样</b>）逐个植入程序的 100 个副本，跑测试套件：揭示 20 个 → 推断套件对同类真实缺陷的检出率约 20%。<b>有效性取决于种子缺陷对真实缺陷的代表性</b>——不必完全相同（黑弹珠 ≠ 透明弹珠），但差异不能影响「选择」：若混入钢珠再用磁铁捞出，你对碗里有几颗弹珠一无所获。</p>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Mutant / Mutation / Killed</div>
+      <div class="d"><b>变异体（mutant）</b>：带一个变异的程序副本；<b>变异（mutation）</b>：一处语法改动（植入的缺陷），如把 <code>(i &lt; 0)</code> 改为 <code>(i &lt;= 0)</code>；变异体在<b>至少一个测试用例上失败</b>即称被<b>杀死（killed）</b>。杀死大量变异体 → 推断套件对真实缺陷也有效。</div>
+    </div>
+    <h4>两大基本假设（必须能复述+批评）</h4>
+    <table class="tbx">
+      <tr><th style="width:36%">假设</th><th>内容</th></tr>
+      <tr><td>Competent Programmer Hypothesis<br>胜任程序员假设</td><td>程序<b>接近正确</b>，真实缺陷只是正确程序的<b>小变异</b> ⇒ 变异体是真实缺陷程序的合理模型</td></tr>
+      <tr><td>Coupling Effect Hypothesis<br>耦合效应假设</td><td>能发现<b>简单</b>缺陷的测试也能发现<b>复杂</b>缺陷 ⇒ 即使变异体不完美代表真实缺陷，杀变异体的套件也擅长抓真缺陷</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">16.2</span>变异算子与存活变异体</h3>
+    <p>变异算子 = 从合法程序到合法程序的语法改动，<b>与语言绑定</b>（C++ 的算子不能用于 Java/Python）。三例：</p>
+    <ul class="dot">
+      <li><b>crp</b>（constant for constant replacement）：把 <code>(x &lt; 5)</code> 改成 <code>(x &lt; 12)</code>，新常数取自程序文本中出现的常数；</li>
+      <li><b>ror</b>（relational operator replacement）：<code>(x &lt;= 5)</code> → <code>(x &lt; 5)</code>；</li>
+      <li><b>vie</b>（variable initialization elimination）：<code>int x = 5;</code> → <code>int x;</code>。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 存活变异体的两种解释</span>
+      <p>100 个变异体杀死 94 个、存活 6 个——每个存活者只有两种解释：① <b>等价变异体（equivalent mutant）</b>：改动根本不影响输出，「假缺陷」，判定等价性在最坏情况下<b>不可判定</b>；② <b>套件不足</b>：本可杀死却没杀。<b>陷阱题</b>：「为这个存活变异体加一个测试」是<b>错误</b>策略——我们在乎真实缺陷，不在乎假弹珠！正确姿势：分析存活者暴露的<b>模式</b>，改进整体测试设计。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">16.3</span>两种省钱的变体</h3>
+    <p>问题：变异体数量随程序规模<b>平方级</b>增长，逐个跑完太贵。</p>
+    <table class="tbx">
+      <tr><th style="width:26%">变体</th><th>做法</th></tr>
+      <tr><td>Weak mutation<br>弱变异</td><td>运行「元变异体（meta-mutant，植入多个缺陷）」与原程序<b>同步执行</b>，一发现<b>中间状态差异</b>立即标记该缺陷被杀死，不必等程序跑完；每次 kill 后换新的变异选择重启</td></tr>
+      <tr><td>Statistical mutation<br>统计变异</td><td>只<b>随机抽样</b>一部分变异体——评估套件同样够用；前提是<b>不能为杀特定变异体而设计测试</b>（那等于专挑黑弹珠，统计失效）</td></tr>
+    </table>
+    <h4>现实地位</h4>
+    <ul class="dot">
+      <li>半导体制造业的成功先例：良好的制造故障模型（如晶体管 stuck-at-one），但<b>设计错误</b>的故障模型（软件的情形）难得多；</li>
+      <li>工业界不普遍使用变异测试，但它是<b>测试研究</b>中比较技术有效性的标准手段；</li>
+      <li>Stryker（JS）、Mutatest（Python）、PIT（Java）等工具正使其更易落地；</li>
+      <li><b>用故障模型设计测试</b>这件事本身重要且被广泛实践（区别于「跑变异体」）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">16.4</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>弹珠模型</b>种子缺陷 ≈ 黑弹珠；代表性是统计推断的命门（磁铁反例）。</div>
+        <div class="c" data-n="2"><b>两大假设</b>胜任程序员（缺陷=小变异）+ 耦合效应（抓简单=抓复杂）。</div>
+        <div class="c" data-n="3"><b>存活者二分</b>等价变异体（不可判定）或套件不足；别为杀特定变异体加用例。</div>
+        <div class="c" data-n="4"><b>省钱两招</b>弱变异（中间态即杀）/ 统计变异（随机抽样）。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc5" id="l22">
+  <div class="hd">
+    <div class="no">22</div>
+    <div>
+      <h2>系统、验收与回归测试</h2>
+      <p class="en">System, Acceptance and Regression Testing · Pezzè &amp; Young Ch.22</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 22</span><span>IV&amp;V</span><span>运行剖面</span><span>可用性</span><span>回归选择</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">区分<b>系统测试</b>与<b>验收测试</b>——它们彼此之间、与单元/集成测试之间的差异</li>
+      <li data-k="B">解释定量评估（可靠性、性能……）的基本方法</li>
+      <li data-k="C">阐述可用性与可访问性中<b>validation 与 verification 的交织</b>：从早期设计到交付持续监控</li>
+      <li data-k="D">论证基本的<b>回归测试</b>方法：防意外变更、检查更新版本</li>
+    </ul>
+  </div>
+  <p class="guide">开篇一张三列对照表统领全讲：<b>System = verification，Acceptance = validation，Regression = 变更后的 verification</b>。其余内容都是这三者的展开。</p>
+
+  <div class="ss">
+    <h3><span class="n">22.1</span>三种测试对照</h3>
+    <table class="tbx">
+      <caption>System vs Acceptance vs Regression——本讲总纲</caption>
+      <tr><th style="width:14%"></th><th>系统测试</th><th>验收测试</th><th>回归测试</th></tr>
+      <tr><td>测什么</td><td>正确性、完备性</td><td>有用性、满意度</td><td>意外变更 / 更新版本</td></tr>
+      <tr><td>谁来测</td><td>开发方测试组</td><td>用户（配合测试组）</td><td>开发方测试组</td></tr>
+      <tr><td>性质</td><td><b>Verification</b></td><td><b>Validation</b></td><td><b>Verification</b></td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">22.2</span>系统测试</h3>
+    <p><b>关键特征</b>：覆盖全面（整个系统、整个规格）；基于<b>可观测行为</b>的规格——是对需求规格的 <b>verification</b>，不是 validation、不是个人意见；<b>独立于设计与实现</b>——避免把软件的设计错误复制进系统测试设计。</p>
+    <ul class="dot">
+      <li><b>独立 V&amp;V（IV&amp;V）</b>：系统/验收测试由<b>另一组织</b>执行，与开发方组织隔离（没有「说 OK」的压力）；安全关键系统有时外包——<b>为独立判断而外包，不为省钱</b>；可以是追加而非替代内部 V&amp;V；若仍受开发组织控制，就不独立；</li>
+      <li><b>不换人也能提升独立性</b>：尽早开发系统测试用例——作为需求规格的一部分，在重大设计决策之前；敏捷 test-first 与传统 V 模型都是「先设计系统测试、后设计实现」的例子；也是 design for test 的机会；</li>
+      <li><b>增量式系统测试</b>：系统测试套件覆盖全部特性与使用场景，随项目推进通过的用例越来越多 → 成为进度度量；前提是「线程式」增量构建计划；</li>
+      <li><b>全局属性</b>：性能、时延、可靠性等本质上全局——早测/增量测只能给出<b>估计</b>；系统测试是对照实际系统规格验证全局属性的唯一机会，尤其用于发现未预期效应（如意外的性能瓶颈）。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 上下文依赖属性 与 运行包络</span>
+      <p>有些属性取决于<b>系统上下文与使用方式</b>：性能取决于环境与配置；隐私既取决于系统也取决于使用方式（医疗记录系统既要防未授权访问，授权又只能按需给）；安全取决于<b>威胁画像</b>——而威胁会变！测试只是应对的一部分。当属性随使用参数化（每秒请求数、数据库规模……），就要做<b>极限/压力测试</b>：在包络内、边界附近、<b>以及超出边界</b>系统性地变参，目标是得到「属性如何随参数变化」的良理解模型——敏感度如何？包络的边缘在哪？超出包络会怎样？压力测试常需大量模拟执行环境、消耗比常规用例更多人力机器——与常规特性测试分开、低频执行、手动控制多，还要诊断与预期的偏差（可能牵出潜伏故障的艰难调试）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">22.3</span>验收测试：用统计估计依赖性</h3>
+    <p>验收测试在<b>度量质量</b>，而不是搜寻故障——与系统化测试目标根本不同。定量的依赖性目标是统计量（可靠性、可用性、MTTF），需要从<b>运行剖面（operational profile）</b>抽取有效统计样本：</p>
+    <ul class="dot">
+      <li>有效的运行剖面：来自旧版本系统，或运行环境（嵌入式控制器）；<b>敏感性测试</b>揭示哪些参数重要、哪些可以粗略估计；</li>
+      <li>对被测对象的<b>清晰精确定义</b>：故障率按会话、按小时还是按操作计？（呼应 L01 的「可靠性取决于度量单位」）</li>
+      <li>大量的随机样本——可靠性要求越高，所需样本越多。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点 · 统计测试值得吗？</span>
+      <p>安全关键系统、基础设施等<b>必需</b>；但当运行剖面拿不到或只是猜测（常见于涉及人机交互的新功能）时很难做——可把<b>关键功能从整体使用中剥离</b>、只为关键性质建模；可靠性要求极高时，所需样本量可能要<b>几年的测试执行</b>——<b>超可靠性几乎无法靠测试证明</b>（ultra-reliability can seldom be demonstrated by testing）。</p>
+    </div>
+    <p><b>基于过程的度量</b>（不如统计测试严格）：依靠与既往项目的相似性。系统测试过程有「预期的故障发现-解决史」；<b>Alpha 测试</b>（真实用户、受控环境）与 <b>Beta 测试</b>（真实用户、真实不受控环境）——可以按<b>用户</b>而非按使用抽样；同样有预期的故障报告史。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">22.4</span>可用性与可访问性</h3>
+    <p>可用的产品：学得快、让用户高效工作、用得愉悦。客观判据：完成任务的时间与操作数、<b>用户出错频率</b>（把用户错误归咎于产品！），加上整体的主观满意度。</p>
+    <table class="tbx">
+      <caption>可用性的分解：validation 定标准，verification 查落实</caption>
+      <tr><th style="width:26%"></th><th>Validation（可用性实验室）</th><th>Verification（开发者、测试者）</th></tr>
+      <tr><td>做什么</td><td>可用性测试建立<b>可用性检查清单</b>（适用于产品线/领域）；早期用「纸板原型/样机」做可用性测试 → 产出界面设计</td><td>检视把可用性检查清单应用到<b>规格与设计</b>；行为对照界面设计被<b>客观验证</b>（如测试）</td></tr>
+      <tr><td>意义</td><td colspan="2">把可用性测试「因式分解」进过程可见性：validation 建立的判据，由整个项目周期的 testing / analysis / inspection 来 verification</td></tr>
+    </table>
+    <ul class="dot">
+      <li><b>三种可用性测试</b>：探索性（研究用户心智模型，早期指导界面设计）、比较性（评估具体界面选项，观测并度量不同交互模式）、可用性验证（整体定量+定性评估：出错率、完成时间）；</li>
+      <li><b>典型测试协议</b>：从 1–4 个用户群各选 3–5 名<b>有代表性的用户</b>（问卷核验群组归属）→ 请其执行有代表性的任务序列 → <b>只观察不干涉</b>（对开发者最难的是不出手帮忙；专业可用性测试用单向镜）→ 度量（点击、眼动、时间……）+ 事后问卷；</li>
+      <li><b>可访问性测试</b>：残障人士（盲/低视力、聋、色盲……）的可用性。直接对全部相关人群做可用性测试通常不现实——对照<b>可访问性指南</b>检查是可行的且常能暴露问题，如 <b>W3C WCAG</b>（Web Content Accessibility Guidelines）：部分可自动检查，但仍需人工检查（如图片的 <code>alt</code> 标签是否有意义）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">22.5</span>回归测试</h3>
+    <p>"Yesterday it worked, today it doesn't." —— 修 X 时顺手弄坏了 Y；那个 bug 修好了，现在又回来了。<b>任何变更后都要重跑测试</b>：加新功能、适配新环境、修复其他 bug。回归测试可能是软件维护的<b>主要成本</b>——有时远超做变更本身。</p>
+    <table class="tbx">
+      <caption>回归测试的两大基本问题</caption>
+      <tr><th style="width:26%">问题</th><th>内容与对策</th></tr>
+      <tr><td>测试套件的维护</td><td>特性 X 变了 → 用到 X 的用例要改（<b>不可避免的维护</b>）；但琐碎的界面/文件格式变更不应作废大量用例（<b>应避免的维护</b>）→ 套件要<b>模块化</b>、避免不必要的耦合；从测试用例<b>规格</b>生成具体用例可有帮助</td></tr>
+      <tr><td>重测的成本</td><td>常与<b>产品规模</b>而非<b>变更规模</b>成正比；手动测试时是大问题；自动化也有问题——套件与执行时间增长到超过几小时就麻烦</td></tr>
+    </table>
+    <div class="term"><div class="lb">TERM · 一对易混概念</div><div class="w">Obsolete vs Redundant Test Case</div>
+      <div class="d"><b>过时用例</b>：不再有效（测的是被修改/替换/移除的特性），<b>应从套件移除</b>；<b>冗余用例</b>：与别的用例无显著差异，不太可能发现被相似用例漏掉的故障——重执行有人力机器成本、维护有人力成本（往往更高），视成本<b>可删可留</b>。</div>
+    </div>
+    <h4>选择 与 优先级</h4>
+    <p>要整个套件重跑吗、按什么顺序？若午休时间就能全自动重跑，不用纠结。<b>选择</b>在用例昂贵时重要（专用设备、长运行时间、无法全自动）；<b>优先级</b>在超大套件无法每天跑完时重要。四条路线：</p>
+    <table class="tbx">
+      <tr><th style="width:30%">路线</th><th>机制</th></tr>
+      <tr><td>基于代码的选择</td><td>观察：<b>用例不可能在它不执行的代码里发现故障</b> → 只重跑覆盖了改动/新增代码的用例</td></tr>
+      <tr><td>控制流/数据流选择</td><td>同一思路的结构化版：改动元素=控制流节点与边、或数据流的 def-use 对；工具记录每个用例触及的元素（存入回归用例库），标记程序变化，查重叠</td></tr>
+      <tr><td>基于规格的选择</td><td>挑测试新增/变更功能的用例；但<b>不保证独立性</b>——不是「为 X 而写」的用例也可能发现 X 的 bug → 典型做法是<b>优先级</b>：全跑，但变更相关的先跑</td></tr>
+      <tr><td>优先轮转 prioritized rotating</td><td>最终跑完一切、只是有先有后：<b>轮转</b>（最久未跑的优先）、<b>战绩</b>（以前发现过故障的优先——它们大概执行了高故障密度代码）、<b>结构</b>（最久未被执行的元素优先；可粗粒度到特性/方法/文件）</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">22.6</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>三分法</b>System=对规格的 V；Acceptance=用户的 V alidation；Regression=变更后的再验证（开发方测）。</div>
+        <div class="c" data-n="2"><b>统计验收</b>有效运行剖面+明确度量单位+大量随机样本；超可靠性难以靠测试证明；alpha=受控环境、beta=真实环境。</div>
+        <div class="c" data-n="3"><b>可用性</b>validation（可用性实验室建清单）+ verification（全程对照清单检视验证）；3–5 人/群、只看不动手；可访问性走 WCAG 指南。</div>
+        <div class="c" data-n="4"><b>回归</b>过时必删、冗余酌情；选择=只跑碰到改动代码的用例；优先=轮转/战绩/结构。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TUTORIAL T4 · LO4 ============ -->
+<article class="tut lc5" id="t4">
+  <div class="hd">
+    <div class="no">T4</div>
+    <div>
+      <h3>教程卡 · 评估与局限</h3>
+      <p class="en">Tutorial LO4 · Evaluation and Limitations · Weeks 8–9</p>
+    </div>
+  </div>
+  <div class="tags"><span>第 8 周个人活动</span><span>第 9 周导师课</span><span>Reading: Ch09 · Ch16（+ Ch12 / Ch14 结构方法）</span></div>
+  <div class="quot">“Evaluate the limitations of a given testing process, using statistical methods where appropriate, and summarise outcomes.”<small>LO4 —— 评估给定测试过程的局限（适当使用统计方法）并总结结果。承接 LO3，对整个测试过程做总评。</small></div>
+
+  <div class="ss">
+    <h3><span class="n">✎</span>准备周三连问</h3>
+    <ul class="dot">
+      <li>选一条<b>功能需求</b>：需求 / 实现它的代码 / 计划的测试——测试有明显缺陷吗？怎么改进？怎么<b>系统地评估</b>测试的好坏？</li>
+      <li>选一个<b>可度量属性</b>：测量方法有什么缺陷？如何评估针对它的测试？</li>
+      <li>对比两组缺陷：相似还是不同？为什么？测试套件的评估能自动化到什么程度？</li>
+    </ul>
+    <p style="font-size:13px;color:var(--ink2)">核心认知：除最平凡的需求外，<b>需求与测试所能达成的东西之间永远有缝隙</b>——识别缝隙正是本 LO 的任务。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">4.1–4.4</span>评分标准（每项 0–5 分）</h3>
+    <table class="tbx">
+      <tr><th style="width:30%">子标准</th><th>要交付什么</th></tr>
+      <tr><td>4.1 识别缺口与遗漏</td><td>时间与预算所限的<b>显著缺失清单</b>（缺数据 / 工具 / 算力 / 人力…）及补救方式。</td></tr>
+      <tr><td>4.2 设定目标水平</td><td>为各测试环节设定<b>目标覆盖 / 性能水平</b>并充分论证——功能需求与可度量属性都要覆盖。</td></tr>
+      <tr><td>4.3 实际 vs 目标</td><td>讨论达成情况与偏离原因；目标要「现实」——反映合理资源下应有的预期。</td></tr>
+      <tr><td>4.4 达标需要什么</td><td>针对已识别的缺失，提出达到或超过目标水平的路线。</td></tr>
+    </table>
+    <div class="tip"><span class="lb">作品集提示</span>
+      <p>样板做法：对一小撮需求做<b>详细分析</b> + 对整套件给出<b>概要评估</b>。能识别局限——即使来不及全部修复——本身就是重要的评估成果。</p>
+    </div>
+  </div>
+</article>
+
+<!-- ==================== LO5 · WEEKS 10-11 ==================== -->
+<section class="part pt6" id="lo5">
+  <div class="rn">Ⅵ</div>
+  <div class="bd">
+    <div class="wk">WEEKS 10–11 · LEARNING OUTCOME 5</div>
+    <h2>评审、检查与测试自动化</h2>
+    <p class="en">Reviews, Inspections and Test Automation — “Conduct reviews and inspections and design and implement automated testing processes.”</p>
+    <div class="ls"><span>L23 工具支持</span><span>L24 测试文档</span><span>L27 自动化与评审</span><span>T5 教程</span></div>
+  </div>
+</section>
+
+<!-- ============ LECTURE 23 ============ -->
+<article class="lec lc6" id="l23">
+  <div class="hd">
+    <div class="no">23</div>
+    <div>
+      <h2>工具支持：自动化分析与测试</h2>
+      <p class="en">Tool Support for Testing · Pezzè &amp; Young Ch.23</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 23</span><span>自动化策略</span><span>度量与代理指标</span><span>圈复杂度</span><span>DevOps 工具生态</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释自动化软件分析与测试的主要目的</li>
+      <li data-k="B">识别哪些活动可以完全或部分自动化</li>
+      <li data-k="C">用成本/收益权衡决定自动化的取舍</li>
+      <li data-k="D">在商业 A&amp;T 工具的宣传中区分营销话术与真正重要的特性</li>
+    </ul>
+  </div>
+  <p class="guide">本讲不推销任何具体工具，而是回答一个决策问题：<b>哪些活动值得自动化、投入多少算合理？</b>主线从自动化的四种角色出发，经三维评估与度量（圈复杂度登场），走到工具谱系与 DevOps 生态，最后收在策略层的结论。</p>
+
+  <div class="ss">
+    <h3><span class="n">23.1</span>自动化的角色与三维评估</h3>
+    <p><b>自动化扮演四种角色</b>——判断一个工具属于哪一种，是评估的第一步：</p>
+    <table class="tbx">
+      <caption>Potential Roles of Automation</caption>
+      <tr><th style="width:26%">角色</th><th>含义与例子</th></tr>
+      <tr><td>引入任务的<b>必要条件</b></td><td>没有工具这任务根本做不了——如<b>覆盖工具</b>使「度量测试套件的结构覆盖率」成为可能。</td></tr>
+      <tr><td>降低成本</td><td>捕获-重放（capture &amp; replay）工具大幅降低重新执行测试套件的成本。</td></tr>
+      <tr><td>提升（人的）生产力</td><td>软件检查（inspection）本身是手工活动，但组织与呈现信息、管理沟通的工具能提高人的效率。</td></tr>
+      <tr><td>CI/CD 的<b>本质前提</b></td><td>持续集成/部署的每一步都须自动触发——没有自动化就没有 DevOps。</td></tr>
+    </table>
+    <p><b>三个（不正交的）评估维度</b>：① 活动的价值与当前成本；② 活动在多大程度上需要自动化（或能被自动化变得便宜）；③ 获取或构建工具的成本。再叠加技术的影响、成熟度、成本与范围，以及与组织和过程的<b>契合度</b>，决定自动化的优先顺序。</p>
+    <div class="tip"><span class="lb">考点 · 自动化成本的两极</span>
+      <p>有些工具简单到收益平平也值得做——如「从 FSM 模型生成测试用例」；有些工具价值巨大却<b>原理上不可能</b>——如精确识别「永不可执行的代码」（不可判定问题）。<b>范围</b>也影响成本：通用工具（如面向所有 Windows 应用的捕获-重放）只比项目专用版贵一点，投资可跨项目摊销；大项目里自建工具（如让各子系统能独立测试的模拟器）常是好投资。</p>
+    </div>
+    <p><b>聚焦自动化最划算的地方</b>：简单重复的任务——人做重复任务既慢又易错；而<b>判断与创造性问题求解留在自动化范围之外</b>。人极擅长识别「对应测试用例规格的相关执行场景」，却极不擅长批量生成用例、或在回归测试的海量输出里找出错误结果。把任务中重复的部分自动化，降本的同时还提高准确性。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">23.2</span>过程管理中的自动化：计划与监控</h3>
+    <h4>策略层 vs 项目层</h4>
+    <ul class="dot">
+      <li><b>策略层（strategy）</b>：为质量过程的关键环节规定工具，可按项目特征（应用领域、语言、规模、质量要求）推荐不同工具。常入策略的：组织测试设计与执行、生成质量文档、收集度量、管理回归套件；<b>较少</b>入策略的：测试用例生成、动态分析。</li>
+      <li><b>项目层（project）</b>：A&amp;T 计划列出继承自策略的工具 + 本项目增选的工具；新增/定制工具必须写清<b>成本（含培训）、隐含活动、潜在风险</b>，并把工具安放进开发过程与方法论。反例：覆盖率工具便宜简单，但若不与用途结合，就只是产出无人使用的数据的<b>烦扰</b>。</li>
+    </ul>
+    <h4>经典计划工具与配置管理</h4>
+    <p>经典计划工具按资源与时间约束排任务，可特化为 A&amp;T 管理：识别某产物已交付 → 调度对应测试套件执行 → 把结果通知测试设计者 → 记录活动实际耗时 → 向质量经理标记进度偏离。<b>版本与配置管理</b>工具把大量产物的版本关联起来，触发一致性检查——例如每次软件修改自动触发相应测试套件重跑；但它们<b>提升的是良序过程的效率，不能替代组织本身</b>。监控同理：集成质量追踪改善良序过程的效率，无法让混乱自行变有序；进度要看<b>日程</b>（实际工时与完成时间 vs 计划）与<b>质量水平</b>两条线。</p>
+    <h4>代理度量：LOC 与检出故障数</h4>
+    <p>最终产品的质量在完成前无法直接测量，只能用<b>代理度量（proxy measures）</b>尽早捕捉偏离期望——必须早算，且解释方式要避免误导结论或扭曲激励：</p>
+    <ul class="dot">
+      <li><b>代码行数 LOC</b>：生产力的粗糙代理——解读不当会同时制造「鼓励啰嗦」与「打击有效复用」的扭曲激励；</li>
+      <li><b>检出故障数</b>：偏离常态的信号——<b>异常低与异常高同样值得警惕</b>（低可能意味着没在找，高说明过程有病）；</li>
+      <li>数据的<b>收集、汇总、呈现可以自动化；设计与解读不能</b>（正交缺陷分类 ODC 见 L20）。</li>
+    </ul>
+    <h4>管理沟通</h4>
+    <p>软件工程师的大量时间花在沟通上；通用工具（邮件、聊天、论坛）要在<b>同步与异步之间求平衡</b>：打断过多拖慢进度就转异步；交流碎成许多小段、总在等回复就转同步。沟通在各方<b>即时可及相关信息</b>时最有效——任务专用工具（如分布式评审工具：受管理的产物呈现 + 对应检查单片段 + 自动分析结果）能进一步提效。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">23.3</span>度量：尺寸、复杂度与圈复杂度</h3>
+    <p>度量进展与结果是管理过程的必需品，但我们真正关心的（对目标的实际进展、剩余工作量、预期可靠性…）往往测不到——所以一切度量都是<b>需要按本地条件校准的代理</b>。<b>静态度量</b>中最基本的是<b>尺寸</b>：与日程和成本强相关；粗颗粒计数（模块、接口、函数、形参）也常用，而更精巧的度量在判断工作量上并不比 LOC 更好（或更糟）。</p>
+    <h4>圈复杂度 Cyclomatic Complexity</h4>
+    <p>直觉：若能度量程序（或其部件）有多复杂，就能把测试与分析<b>聚焦到最易出错的部位</b>、做出更好的计划、或考虑重构过复杂的子系统。但真正的<b>逻辑复杂度无法直接度量</b>——<b>控制流复杂度是代理</b>。在众多复杂度尝试中，只有圈复杂度沿用至今：</p>
+    <div class="formula">V(G) = 控制流图中独立路径的条数 = e − n + 2<span class="cm">e = 边数，n = 节点数（edges − nodes + 2）</span></div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture23_p23.png" alt="圈复杂度：控制流图与独立路径"></div>
+      <div class="cap"><b>圈复杂度的图上解释</b>——数控制流图里的独立路径<span class="src">Pezzè &amp; Young Ch.23 · Slide 23</span></div>
+    </div>
+    <table class="tbx">
+      <caption>Interpreting Cyclomatic Complexity</caption>
+      <tr><th style="width:20%">V(G)</th><th style="width:34%">判读</th><th>含义</th></tr>
+      <tr><td>&lt; 20</td><td>低到中等</td><td>简单程序</td></tr>
+      <tr><td>&gt; 20</td><td>高</td><td>复杂程序</td></tr>
+      <tr><td>&gt; 50</td><td>非常高</td><td>难以或<b>不可能彻底测试</b>的程序</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点</span>
+      <p>圈复杂度只是<b>复杂控制流结构</b>的信号，<b>不捕捉</b>其他会导致测试困难的逻辑复杂度——「相关」而非「等同」。V(G) 同时是全路径数的下界，基本路径测试据此选 V(G) 条独立路径（呼应 L12 路径类准则）。</p>
+    </div>
+    <h4>度量与质量标准：ISO/IEC 9126</h4>
+    <p>质量标准可能由合同规定或自愿采纳；像 ISO/IEC 9126 这样的标准<b>要求</b>度量用户可感知的质量，却<b>不说怎么测</b>——实现时必须为每项质量找到客观指标（metrics）：</p>
+    <table class="tbx">
+      <caption>ISO/IEC 9126 · Level-1 Quality Characteristics</caption>
+      <tr><th style="width:26%">特性</th><th>定义</th></tr>
+      <tr><td>Functionality</td><td>满足显式与隐式功能需求的能力</td></tr>
+      <tr><td>Reliability</td><td>在适当条件下使用时维持所需服务水平的能力</td></tr>
+      <tr><td>Usability</td><td>易于理解、教学与使用</td></tr>
+      <tr><td>Efficiency</td><td>给定条件下保证所需性能的能力</td></tr>
+      <tr><td>Maintainability</td><td>可被更新、纠正与修改的能力</td></tr>
+      <tr><td>Portability</td><td>可在不同环境执行并与其他软件互操作的能力</td></tr>
+    </table>
+    <p>宽泛的质量特性必须<b>精化并映射到客观可度量的属性</b>——这句话是整个「度量」话题的纲领。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">23.4</span>测试生成、执行与静态分析的自动化</h3>
+    <p>测试用例的<b>设计与实例化执行</b>占整体 A&amp;T 成本的大头，临近交付时还会成为调度瓶颈。设计测试套件需要人的创造力；而<b>实例化与执行是重复且乏味的任务</b>，可以大幅自动化——降本的同时加速测试循环。三个阶段要领：</p>
+    <ul class="dot">
+      <li><b>把创造性工作尽量前推</b>：如把功能测试套件的设计当作规格过程的一部分——从系统需求、架构接口到模块接口，逐级进行；</li>
+      <li><b>与产品一起建造脚手架</b>（scaffolding）；</li>
+      <li><b>自动化实例化与执行</b>——不让它成为瓶颈，且可反复执行多次。</li>
+    </ul>
+    <h4>静态分析与证明</h4>
+    <ul class="dot">
+      <li><b>快速廉价</b>的简单性质检查：如数据流分析识别异常模式；</li>
+      <li>关键性质所需的<b>昂贵检查</b>：如用有限状态验证工具找同步故障；</li>
+      <li><b>为验证而设计（Design for Verification）</b>：分解验证问题——设计上把安全关键性质封装进一个小的<b>安全内核（safety kernel）</b>；验证上对内核证明安全性质，再<b>便宜地自动检查</b>所有安全相关动作都经内核中介。</li>
+    </ul>
+    <div class="ask">
+      <span class="lb">思考题 · THINK</span>
+      <p class="q">"哪些工具会误报，哪些工具会漏报，哪些工具需要专家伺候？"</p>
+      <p class="hint"><b>数据流分析器</b>报异常模式，可能<b>误报</b>（false alarms）；<b>bug finder</b> 避免误报但可能<b>漏检</b>真实违例；<b>模型检查器</b>完全自动，但把模型与性质形式化通常要反复数轮；<b>定理证明器</b>需要强数学背景的专家交互引导选择证明策略——重量级工具的代价是「人的技能」。</p>
+    </div>
+    <p><b>简单分析工具</b>只查固定的简单性质、无需额外规格：<b>类型检查器</b>（语法层面的良构规则，违例易诊断易修复，但规则常比希望的更严）、<b>数据流分析器</b>（对控制流与数据流敏感，识别的是异常而非明确故障）、<b>领域专用检查器</b>（如网站链接检查器）。复杂分析工具则分两档：基于定理证明的验证器（性质面宽、需大量人工交互）与有限状态验证工具（焦点受限、完全自动执行）。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">23.5</span>认知辅助：评审、可视化与调试工具</h3>
+    <p>评审复杂产物（需求陈述、程序代码、测试日志…）时，两类问题拖累人的效能：<b>非局部性</b>（nonlocality——跟进一个引用要把注意力跳到另一处，制造出错机会）与<b>信息杂乱</b>（clutter——关键信息被大量无关细节淹没）。对策是<b>自动聚焦与抽象</b>：浏览与可视化辅助、美化打印与程序切片、图表化表示——常嵌入其他工具并针对任务定制。</p>
+    <div class="fig duo">
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture23_p38.png" alt="CodeCrawler 类层次可视化"></div>
+        <div class="cap"><b>CodeCrawler</b>——用颜色、宽、高汇总类层次中各类的特征<span class="src">Ch.23 · Slide 38</span></div>
+      </div>
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture23_p39.png" alt="Sourcetrail 代码结构探索"></div>
+        <div class="cap"><b>Sourcetrail</b>——更现代的交互式代码结构探索<span class="src">Ch.23 · Slide 39</span></div>
+      </div>
+    </div>
+    <h4>版本控制与调试</h4>
+    <ul class="dot">
+      <li><b>版本控制</b>：记录演化系统中各部分的版本与发布——从简单的 CVS/SVN 到复杂的配置管理系统；测试产物（计划、用例、日志）随产品一起版本化；与过程支持集成：改动可触发重测、提交基线前可强制通过测试；历史信息用于跨版本追溯故障、积累过程改进数据。</li>
+      <li><b>调试 ≠ 测试</b>：测试=发现故障的<b>存在</b>；调试=定位、诊断并修复故障。两者常由不同的人负责。调试从测试用例出发——<b>一个必然失败的小而简单的用例，远比一个时好时坏的复杂场景有价值</b>；大量单一用途的小用例胜过少量综合性的大用例。</li>
+      <li><b>运行时调试工具</b>：断点（选定位置）/ 观察点（条件发生）/ 步数暂停、程序状态检查、源码级显示与控制；专业化支持含可视化（性能调试）、数据结构动画、<b>差分调试</b>（differential debugging——把一组失败执行与不失败执行做对比）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">23.6</span>DevOps 工具生态与自动化策略</h3>
+    <p>自 Y&amp;P 成书以来，DevOps 的兴起催生了庞大的工具生态：基本技术仍在 Y&amp;P 框架内，但<b>由编排多种工具的平台承载、自动化程度高得多</b>。</p>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture23_p45.png" alt="DevOps 工具生态全景图"></div>
+      <div class="cap"><b>典型 DevOps 环境的工具版图</b>——规划、编码、构建、测试、发布、部署、运维、监控环环相扣<span class="src">Image: blazemeter.com · Ch.23 Slide 45</span></div>
+    </div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture23_p46.png" alt="AI 赋能的 DevOps 自愈流水线"></div>
+      <div class="cap"><b>AI 赋能的 DevOps</b>——自愈流水线（self-healing pipelines）把机器学习引入工具链<span class="src">Image: dzone.com · Ch.23 Slide 46</span></div>
+    </div>
+    <h4>选型与集成的策略结论</h4>
+    <ul class="dot">
+      <li><b>工具必须契合</b>开发组织、过程与应用领域。简单规则：先找出自动化中显著的成本（金钱或进度）。同一工具在不同过程里价值相反：<b>自动模块测试</b>对用 Cleanroom 过程的组织几乎无用、对用 XP 的组织不可或缺；安全关键软件的组织能摊销昂贵的规格/设计验证工具投资；快速演化的大众市场应用更需要好的<b>自动回归测试</b>支持。</li>
+      <li>还要考虑<b>本身就要求自动化</b>的活动——它们会被「当前测试成本分析」漏掉。</li>
+      <li><b>战略性思考</b>：评估自动化投资要超越单个项目、超越质量团队；跨项目复用工具可降低采购安装成本、学习成本与进度冲击；<b>全局思考</b>——质量工具的成本与效益常落在软件组织的其他部门。</li>
+    </ul>
+    <p><b>本讲总结</b>：自动化能提高某些质量活动的效率、是另一些活动的<b>必要条件</b>，但<b>永远不能替代理性、组织良好的质量过程</b>；它能让过程渐进改进、把人力资源用在刀刃上；每笔投入都要仔细权衡成本与收益——<b>持续集成与部署依赖良好的自动化来支撑质量过程</b>。</p>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>四种自动化角色</b>必要（覆盖率工具）/降本（捕获-重放）/提效（评审辅助）/CI-CD 的前提。</div>
+        <div class="c" data-n="2"><b>三维评估</b>活动价值与成本 · 对自动化的依赖 · 工具获取成本；重复的自动化、创造的留给人。</div>
+        <div class="c" data-n="3"><b>圈复杂度 V(G)=e−n+2</b>独立路径数；&gt;20 复杂、&gt;50 几乎无法彻底测试；只刻画控制流复杂度。</div>
+        <div class="c" data-n="4"><b>代理度量双例</b>LOC（防激励扭曲）· 检出故障数（异常低也要警惕）；收集可自动化，设计与解读不能。</div>
+        <div class="c" data-n="5"><b>调试 ≠ 测试</b>测试发现存在、调试定位修复；必然失败的小用例最有利于调试。</div>
+        <div class="c" data-n="6"><b>自动化不是替代品</b>再好的工具也替代不了良序的质量过程；CI/CD 以自动化为地基。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc6" id="l24">
+  <div class="hd">
+    <div class="no">24</div>
+    <div>
+      <h2>文档化分析与测试</h2>
+      <p class="en">Documenting Analysis and Test · Pezzè &amp; Young Ch.24</p>
+    </div>
+  </div>
+  <div class="tags"><span>Ch 24</span><span>文档三类</span><span>命名规范</span><span>元数据</span><span>测试计划</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">解释文档的<b>目的与重要性</b></li>
+      <li data-k="B">识别<b>关键质量文档</b>及其相互关系</li>
+      <li data-k="C">能为关键质量文档搭建结构、提供内容</li>
+      <li data-k="D">体会文档<b>自动生成与管理</b>的需要与机会</li>
+    </ul>
+  </div>
+  <p class="guide">成熟软件过程为所有活动（含测试与分析）制定<b>文档标准</b>。文档支撑过程可见性、监控与标准化；核心方法论只有一句：<b>永远知道文档的用途，从用途倒推内容</b>——绝不为没人用的文档花力气。</p>
+
+  <div class="ss">
+    <h3><span class="n">24.1</span>为什么写、写哪三类</h3>
+    <p><b>目的</b>：监控与评估过程（对内：过程可见性；对外：认证、审计）；改进过程（维护跨项目复用的知识体、汇总数据供过程改进）；提升测试套件等制品在项目内外的<b>可复用性</b>。三大类文档：</p>
+    <table class="tbx">
+      <tr><th style="width:24%">类别</th><th>内容</th></tr>
+      <tr><td>规划类 Planning</td><td>描述质量过程的组织方式：组织级策略、项目计划</td></tr>
+      <tr><td>规格类 Specification</td><td>描述测试套件与测试用例（及其他质量任务制品）：测试设计规格、测试用例规格、检查清单、分析过程规格</td></tr>
+      <tr><td>报告类 Reporting</td><td>分析与测试结果的细节与汇总</td></tr>
+    </table>
+    <p><b>元数据</b>（便于管理）：批准人（对文档负责的人）、文档历史、目录、摘要（相关性与可能的用途）、目标（谁该读、为什么）、所需文档与引用（理解与利用本文档所需的制品）、术语表。<b>命名规范</b>帮助快速识别文档，典型命名包含：总体范围（项目与部分）、文档类型、具体标识、版本：</p>
+    <div class="formula">W·B·XX–YY.ZZ
+      <span class="cm">示例 W B 12–22.04 = Web 项目 · 业务逻辑子系统 · 第 12–22 号文档（第三方软件组件质量监控程序）· 第 4 版</span>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">24.2</span>关键文档逐个看</h3>
+    <ul class="dot">
+      <li><b>测试与分析策略（组织级）</b>：为一组项目（通常是整个公司）描述质量指南；要素：跨产品的公共质量需求——取决于业务条件（安全关键厂商须满足认证机构规定的最低依赖性；嵌入式部门须保证跨产品线可移植）；对其他质量文档提出要求；</li>
+      <li><b>测试与分析计划（项目级）</b>：标准化结构；总体质量计划由若干<b>个体计划</b>组成，每个指明待验证项（待检视的文档、待分析/测试的代码……）；可面向整个系统或子系统/一组单元；可以不覆盖质量活动的所有方面，<b>但必须写明被排除的特性</b>——<b>遗漏测试是大项目失败的主因</b>（GUI 计划只管功能、不管可用性——因为另有团队负责——可以，但要写出来）；</li>
+      <li><b>测试设计规格</b>：与其他设计文档同目的（指导后续开发、为维护做准备）；描述<b>完整的测试套件</b>，可按粒度分（单元/集成/系统/验收）或按目标分（功能/结构/性能）；包含初始选择测试用例与长期维护套件所需的全部信息：待验证特性（交叉引用规格/设计文档）、测试过程与通过/失败判据（引用脚手架与预言）、（逻辑上的）用例清单；</li>
+      <li><b>测试用例规格</b>：单个用例的完整设计——定义测试输入、所需环境条件、执行过程、期望输出；指明被测项（引用设计文档）、对其他用例执行的依赖；<b>唯一标识</b>；</li>
+      <li><b>测试与分析报告</b>：服务于开发者（定位未解决故障、安排修复与修订）与测试设计者（评估并精化自己的方法，呼应 Ch20）；核心是<b>按优先级排列的未解决故障清单</b>；失效报告必须整合、分类（系统性管理修复投入）、排优先级（合理分配投入、不遗漏）；</li>
+      <li><b>汇总报告与详细日志</b>：汇总报告跟踪进度与状态——可以只是「构建-测试循环成功运行」的确认，也可为关注点导航；汇总表包含：执行的套件、失效数量、失效的分解（先前已出现过的 / 新增 / 以前失败现在通过的）；可能由认证机构规定格式。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">24.3</span>「这么多文档，值得吗？」</h3>
+    <p>值得，但有三个前提：</p>
+    <ul class="dot">
+      <li><b>手工产出的每样东西都要真的被用</b>——永远知道文档的目的，绝不为没人用的文档花力气；</li>
+      <li><b>能自动化的部分交给机器</b>——人负责做决定并解释决定，其余交给机器；</li>
+      <li><b>从用途倒推</b>：从用途 → 输出 → 输入 反向设计；考虑组织与项目的特点；在<b>最便宜、最省事</b>的点上捕获决定及其理由，避免重复。</li>
+    </ul>
+    <div class="tip"><span class="lb">考点</span>
+      <p>文档可以被<b>检视</b>，以验证进度是否符合进度表与质量目标、识别问题——文档支撑过程可见性、监控与标准化，这正是它与 L20「可见性」的连接点。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">24.4</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>三类文档</b>规划（策略+计划）/ 规格（设计+用例）/ 报告（结果+汇总）。</div>
+        <div class="c" data-n="2"><b>计划必写排除项</b>遗漏测试是大项目失败的主因——不做可以，不写出来不行。</div>
+        <div class="c" data-n="3"><b>用例规格五要素</b>输入、环境、过程、期望输出、唯一标识（+被测项与依赖）。</div>
+        <div class="c" data-n="4"><b>方法论</b>从用途倒推内容；人做决定、机器干杂活；在最便宜的点捕获决定。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="lec lc6" id="l27">
+  <div class="hd">
+    <div class="no">27</div>
+    <div>
+      <h2>测试自动化与代码评审</h2>
+      <p class="en">Test Automation and Code Review · after Ian Sommerville &amp; GitLab CI</p>
+    </div>
+  </div>
+  <div class="tags"><span>Sommerville</span><span>可执行测试</span><span>AAA</span><span>测试金字塔</span><span>TDD</span><span>安全测试</span><span>代码评审</span><span>CI/CD</span></div>
+  <div class="lo">
+    <div class="t">LEARNING OBJECTIVES · 学习目标</div>
+    <ul>
+      <li data-k="A">把测试写成<b>可执行制品</b>：输入＋期望结果＋检查，按 Arrange–Action–Assert 组织</li>
+      <li data-k="B">用<b>测试金字塔</b>与「API 优先」规划自动化的层次与成本</li>
+      <li data-k="C">描述 <b>TDD 循环</b>及其收益与问题；理解「测试即规格」</li>
+      <li data-k="D">描述<b>代码评审</b>的过程与检查清单，说明评审与测试为何互补；理解持续集成</li>
+    </ul>
+  </div>
+  <p class="guide">收官一讲换视角（Sommerville ＋ GitLab CI 实践）：测试不仅是活动，更是可以版本化、自动化、持续运行的制品流——从单个可执行测试，一路讲到 CI 流水线。</p>
+
+  <div class="ss">
+    <h3><span class="n">27.1</span>可执行测试与 AAA 三段式</h3>
+    <div class="term"><div class="lb">TERM · 核心定义</div><div class="w">Executable Test 可执行测试</div>
+      <div class="d">包含<b>被测单元的输入数据</b>、<b>期望结果</b>、以及<b>单元是否返回期望结果的检查</b>的测试——运行后，单元返回期望结果则测试通过。一个软件产品通常应开发<b>成百上千</b>个可执行测试（或至少自动化其生产）。</div>
+    </div>
+    <div class="arrowlist">
+      <span>可执行测试文件</span><i>→</i><span>测试运行器 Test runner</span><i>→</i><span>测试报告</span>
+      <i>&nbsp;（运行器装载&nbsp;</i><span>被测代码 + 测试框架</span><i>&nbsp;协同工作）</i>
+    </div>
+    <p>典型执行形态：环境已预先搭好（如含订单与用户数据的数据库）→ 自动化测试设置参数 → 执行被测函数 → 期望特定返回值。功能测试的良好实践是分三段组织：</p>
+    <table class="tbx">
+      <caption>AAA 结构</caption>
+      <tr><th style="width:26%">段</th><th>做什么</th></tr>
+      <tr><td>Arrange 布置</td><td>搭好待测系统：定义测试参数；必要时创建 <b>mock 对象</b>模拟尚未开发代码的功能（部分环境跨多个测试复用）</td></tr>
+      <tr><td>Action 动作</td><td>以测试参数<b>调用被测单元</b></td></tr>
+      <tr><td>Assert 断言</td><td>对「单元成功执行后应成立的事实」做<b>断言</b></td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 与 L10 呼应</span>
+      <p>若用<b>分类划分（category partition）</b>规格化测试，理想情况下<b>每个分区</b>都应派生若干自动化测试——<b>正确输入与错误输入都要覆盖</b>。测试运行器按包描述中的脚本跑全部测试（JavaScript 项目示例：Jest）。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.2</span>测试金字塔与 API 优先</h3>
+    <div class="fig">
+      <div class="imgw"><svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" style="width:100%;height:auto;display:block">
+        <defs><marker id="pa27" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A8272"/></marker></defs>
+        <polygon points="230,14 300,92 160,92" fill="#24518C"/>
+        <text x="230" y="56" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff">系统测试</text>
+        <text x="230" y="74" text-anchor="middle" font-size="9.5" fill="#C9DAEE">量少 · 最昂贵</text>
+        <polygon points="156,96 304,96 364,164 96,164" fill="#5B84B4"/>
+        <text x="230" y="127" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff">特性测试</text>
+        <text x="230" y="145" text-anchor="middle" font-size="9.5" fill="#EAF0F8">经 API 直达特性</text>
+        <polygon points="92,168 368,168 420,226 40,226" fill="#E2EAF3" stroke="#24518C" stroke-width="1.2"/>
+        <text x="230" y="197" text-anchor="middle" font-size="12.5" font-weight="800" fill="#24518C">单元测试</text>
+        <text x="230" y="215" text-anchor="middle" font-size="9.5" fill="#4A6484">量大 · 最廉价 · 全自动（AAA）</text>
+        <line x1="512" y1="36" x2="512" y2="212" stroke="#8A8272" stroke-width="1.4" marker-end="url(#pa27)"/>
+        <text x="548" y="124" font-size="10.5" fill="#5C564A" text-anchor="middle" transform="rotate(90 548 124)">自动化程度递增 · 成本递减</text>
+      </svg></div>
+      <div class="cap"><b>测试金字塔（据 Sommerville Fig. 9.5 重绘）</b>：底层数量庞大的单元测试全自动、成本最低；中层特性测试经 API 执行；顶层系统测试最少且最昂贵——「自动化程度递增、成本递减」沿箭头指向金字塔底部。<span class="src">图源改编：Lecture 27, slide 6</span></div>
+    </div>
+    <ul class="dot">
+      <li><b>为什么 API 优先</b>：用户通常经 GUI 访问特性，但 <b>GUI 测试的自动化很昂贵</b>——应把系统设计成特性可经 <b>API 直接访问</b>，而非只有 UI 一条路。测试即可绕过 GUI 直达特性；额外收益是<b>关注点分离</b>：可以重实现 GUI 而不动功能构件。</li>
+      <li><b>系统测试</b>：验证系统需求、模拟用户行为，找<b>特性间交互</b>引发的问题、导致崩溃的<b>动作序列</b>。手工重复执行既枯燥又易错；动作<b>时序</b>有时至关重要、人工几乎无法一致复现——于是用<b>录制-回放</b>工具：录制 UI 手势，需要时自动重放，把重复劳动交给机器。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.3</span>测试驱动开发（TDD）</h3>
+    <p><b>定义</b>：先为代码写可执行测试、再写代码——<b>测试即一种规格</b>。由极限编程（XP）早期倡导者提出，但可用于任何增量开发方式；<b>最适合单个程序单元</b>，系统测试与 GUI 场景难以应用（连最坚定的倡导者也承认）。</p>
+    <div class="arrowlist">
+      <span>识别部分实现<br>（拆成 mini-unit）</span><i>→</i><span>写 mini-unit 测试</span><i>→</i><span>写注定失败的代码桩</span><i>→</i><span>跑全部测试<br>（旧的过 · 新的败）</span><i>→</i><span>实现代码<br>让测试通过</span><i>→</i><span>跑全部测试（全过）</span><i>→</i><span>重构（如需要）</span><i>→</i><span>功能完整？</span>
+    </div>
+    <table class="tbx">
+      <caption>TDD 的收益与问题（两边都可能考简答）</caption>
+      <tr><th style="width:50%">收益 Benefits</th><th>问题 Problems</th></tr>
+      <tr><td><b>系统化</b>：测试与程序代码段清晰挂钩；有信心测试<b>覆盖全部代码</b>、无未测区段</td><td><b>抑制激进变更</b>：大改=大量失败测试；若开发者被「通过数」激励，会回避制造失败</td></tr>
+      <tr><td><b>测试即书面规格</b>：读测试就应能看懂程序做什么</td><td><b>表达力不足</b>：有些事难以测试——把测试当规格会限制能规格化什么</td></tr>
+      <tr><td><b>失效定位简化</b>：失效可立即关联到最近一次加入的增量</td><td><b>全是代码，难有全局视野</b>：聚焦让测试通过/失败的细节，抑制大规模修订</td></tr>
+      <tr><td><b>鼓励更简单的代码</b>：程序员常同时写单元测试，代码趋向可测</td><td><b>难写「坏数据」测试</b>：脏数据/不完整数据的问题无法全部预知、更难提前写测试</td></tr>
+    </table>
+    <div class="tip"><span class="lb">考点 · 三个「规格」的汇合</span>
+      <p>TDD 的「测试即规格」、29119 的「测试依据 test basis」（L25）、L24 的「从用途倒推文档」一脉相承——<b>先写测试就是先写可执行的规格</b>，这是全课程「测试前置」思想的第三次出场。</p>
+    </div>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.4</span>安全测试：风险驱动的样板</h3>
+    <p><b>目标</b>：发现可能被攻击者利用的<b>漏洞</b>，并提供「系统足够安全」的令人信服的<b>证据</b>——应能抵抗对<b>可用性</b>的攻击、<b>恶意软件注入</b>、以及对用户<b>数据与身份</b>的窃取与破坏。全面的安全测试需要漏洞与攻击方法的专业知识——但永远存在 unknown unknowns（未知的未知）。</p>
+    <h4>典型安全危害（节选）</h4>
+    <ul class="dot">
+      <li>未授权攻击者用<b>合法凭据</b>进入系统；认证系统未能识别攻击者；</li>
+      <li>授权个人访问<b>越权</b>资源；或访问合法资源后<b>外泄</b>给未授权者；</li>
+      <li><b>SQL 注入</b>（poisoning）攻击数据库；HTTP 会话管理不当；会话 cookie 泄露；</li>
+      <li>机密数据未加密；加密密钥泄露给潜在攻击者。</li>
+    </ul>
+    <h4>危害分析 Hazard Analysis</h4>
+    <div class="arrowlist">
+      <span>识别危害 hazard</span><i>→</i><span>分析成因<br>（弱口令 · 未开 2FA · 社会工程）</span><i>→</i><span>估计可能性 × 严重度<br>= 风险 risk</span><i>→</i><span>排优先级 · 缓解<br>（如加生物特征认证）</span><i>→</i><span>用测试进一步刻画风险</span>
+    </div>
+    <p>例：攻击者获得凭据的可能成因——使用了可猜测的<b>弱口令</b>、用户<b>未开启两步验证</b>、攻击者经<b>社会工程</b>套取合法用户凭据。分析完成后估计可能性与严重度得到风险，再决定先缓解什么、用什么测试进一步刻画风险。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.5</span>代码评审：与测试互补</h3>
+    <p><b>定义</b>：一人或多人检查代码以发现错误与异常，并与开发者讨论问题；发现问题后由<b>开发者负责</b>修改。许多软件公司强制要求：所有代码必须经代码评审才能并入产品代码库。评审<b>擅长发现两类测试难覆盖的缺陷</b>——<b>误解类缺陷</b>（对需求/接口理解错误）与<b>仅由罕见代码序列触发</b>的缺陷。</p>
+    <div class="arrowlist">
+      <span>评审准备<br>安排评审 · 备好并注明意图 · 分发代码/测试</span><i>→</i><span>评审检查<br>对照理解系统检查 · 写评审报告</span><i>→</i><span>评审讨论<br>议定解决行动</span><i>→</i><span>跟进<br>列 to-do 清单 · 修改代码</span>
+    </div>
+    <table class="tbx">
+      <caption>评审检查清单 Checklist（五问）</caption>
+      <tr><th style="width:34%">问题</th><th>为什么问</th></tr>
+      <tr><td>变量/函数命名有意义吗？</td><td>有意义的命名让程序易读易理解</td></tr>
+      <tr><td>所有数据错误都考虑并写测试了吗？</td><td>常见用例易写，但<b>错误数据</b>下程序不应失败同样重要</td></tr>
+      <tr><td>所有异常都显式处理了吗？</td><td>未处理的异常可能导致系统崩溃</td></tr>
+      <tr><td>类型使用一致吗？</td><td>有类型系统的语言应遵守使用约定（如命名）</td></tr>
+      <tr><td>代码排版规范吗？</td><td>避免混乱展示引发的常见阅读困难</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.6</span>持续集成 Continuous Integration</h3>
+    <p class="guide">「这个项目已经开发了两三年，目前正在集成——并且已经集成了好几个月。带我的向导说，没人知道还要集成多久。」——Martin Fowler：集成是<b>漫长而不可预测</b>的过程。CI 的解法是<b>频繁集成</b>：每次提交自动构建、自动跑全部测试，把集成从「不可预测的阶段」变成「每天都在发生的日常」。</p>
+    <div class="fig duo">
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture27_p24.png" alt="GitLab 中的持续集成"></div>
+        <div class="cap"><b>持续集成 in GitLab</b>：提交/合并请求自动触发流水线，构建、测试、报告一体化。<span class="src">图源：Lecture 27, slide 24</span></div>
+      </div>
+      <div class="fcell">
+        <div class="imgw"><img src="notes-assets/Lecture27_p25.png" alt="DevOps 中的持续集成"></div>
+        <div class="cap"><b>持续集成在 DevOps 中的位置</b>：开发与运维的闭环里，CI 是每次变更的质量门禁。<span class="src">图源：Lecture 27, slide 25</span></div>
+      </div>
+    </div>
+    <div class="fig">
+      <div class="imgw"><img src="notes-assets/Lecture27_p26.png" alt="CI 流水线"></div>
+      <div class="cap"><b>CI Pipeline 流水线</b>：阶段（stage）与作业（job）的自动执行序列；测试失败即阻断流水线——集成问题在提交当场暴露，而不是数月后的集成阶段。<span class="src">图源：Lecture 27, slide 26</span></div>
+    </div>
+    <p>本讲四句话总结：<b>在人工交互价值低的地方尽量自动化</b>；<b>风险驱动</b>的方法很有用（如安全测试）；<b>评审与测试互补</b>；如今已有相当完备的自动化工具链（如 GitLab）。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">27.7</span>小结与速记</h3>
+    <div class="memo">
+      <div class="t">MEMO · 本讲速记</div>
+      <div class="grid">
+        <div class="c" data-n="1"><b>可执行测试</b>输入+期望结果+检查；AAA=Arrange/Action/Assert；运行器跑全量出报告。</div>
+        <div class="c" data-n="2"><b>金字塔</b>越往底部（单元）越自动、越廉价、数量越多；特性测试走 API 绕开 GUI；系统测试用录制-回放。</div>
+        <div class="c" data-n="3"><b>TDD</b>先测后码、测试即规格；收益=覆盖信心+定位+简单代码；代价=抑制大改+难测坏数据+缺全局视野。</div>
+        <div class="c" data-n="4"><b>评审+CI</b>评审补测试（误解类+罕见序列缺陷）；检查清单五问；CI 把集成从阶段变成日常。</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TUTORIAL T5 · LO5 ============ -->
+<article class="tut lc6" id="t5">
+  <div class="hd">
+    <div class="no">T5</div>
+    <div>
+      <h3>教程卡 · 评审与自动化</h3>
+      <p class="en">Tutorial LO5 · Reviews and Automation · Weeks 10–11</p>
+    </div>
+  </div>
+  <div class="tags"><span>第 10 周准备</span><span>第 11 周导师课</span><span>Reading: Ch18（评审与检查）· Ch23（测试自动化）</span></div>
+  <div class="quot">“Conduct reviews and inspections and design and implement automated testing processes.”<small>LO5 —— 开展评审与检查，设计并实现自动化测试过程。工作量已酌情减免：CI 流水线只需设计，不要求真的搭建。</small></div>
+
+  <div class="ss">
+    <h3><span class="n">✎</span>准备周任务：给测试找「测试补不上的洞」</h3>
+    <ul class="dot">
+      <li>选一条<b>功能需求</b>：需求 / 实现代码 / 计划的测试——哪些缺陷<b>加再多测试也难以改善</b>？什么样的<b>代码检查</b>能补上？</li>
+      <li>选一个<b>可度量属性</b>：评审或检查能否提升「代码达到目标水平」的信心？</li>
+    </ul>
+    <p style="font-size:13px;color:var(--ink2)">评审走的是与测试不同的路——<b>基于专业知识的质量保证</b>，因此能对「测试够不着」的部分给出额外信心。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">5.1–5.4</span>评分标准（每项 0–5 分，已按减免后的要求）</h3>
+    <table class="tbx">
+      <tr><th style="width:30%">子标准</th><th>要交付什么</th></tr>
+      <tr><td>5.1 应用评审准则</td><td>为选定代码识别合适的评审技术并实际应用，指出评审发现的问题。</td></tr>
+      <tr><td>5.2 设计 CI 流水线</td><td>描述<b>设计思路</b>——你会怎么搭建；不要求真的建出来。</td></tr>
+      <tr><td>5.3 自动化部分测试</td><td>测试如何嵌入流水线；CI 环境需要什么水平的测试。</td></tr>
+      <tr><td>5.4 论证流水线有效</td><td>指出流水线能抓到哪类问题，举例说明这些问题会被如何识别。</td></tr>
+    </table>
+    <div class="tip"><span class="lb">作品集提示</span>
+      <p>LO5 建立在 LO3 / LO4 之上：好的证据 = 理解测试套件的<b>局限</b> + 说明评审与自动化如何补足信心。对小子集做详细分析、对全套件做概要即可。</p>
+    </div>
+  </div>
+</article>
+
+<section id="cheat">
+  <h2>考前速查表</h2>
+  <p class="sub">Cheat Sheet · 19 讲浓缩——最可能进考卷的链条、层级与清单</p>
+
+  <div class="ss">
+    <h3><span class="n">C1</span>全课程主线：从需求到回归</h3>
+    <div class="arrowlist">
+      <span>需求 / 规格</span><i>→</i><span>测试依据 Test basis</span><i>→</i><span>测试模型</span><i>→</i><span>覆盖项</span><i>→</i><span>测试用例</span><i>→</i><span>测试规程</span><i>→</i><span>测试套件</span><i>→</i><span>执行 → 失效报告</span><i>→</i><span>修复</span><i>→</i><span>回归测试</span>
+    </div>
+    <p style="font-size:13px;color:var(--ink2)">前三个词决定「测什么、测多全」（L02 框架 · L09 充分性 · L25 测试模型），后面的词决定「怎么跑、怎么闭环」（L20 过程 · L23 工具 · L22 回归 · L27 自动化）。</p>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">C2</span>覆盖准则的 subsumption 链（L09 · L12）</h3>
+    <ul class="dot">
+      <li><b>理论链</b>：路径 Path ⊃ 边界-内部 Boundary-interior ⊃ {圈复杂度 · LCSAJ · 循环边界} ⊃ 分支 Branch ⊃ 语句 Statement</li>
+      <li><b>实用链</b>：条件组合 Compound condition ⊃ MC/DC ⊃ 分支+条件 Branch and condition ⊃ 分支 / 基本条件 ⊃ 语句</li>
+      <li><b>数据流链</b>：all-defs ⊂ all-C-uses / all-P-uses ⊂ all-uses ⊂ all-DU-paths</li>
+      <li><b>易错点</b>：分支覆盖与基本条件覆盖<b>互不蕴含</b>；MC/DC = 基本条件 + 分支 + <b>独立影响</b>——彻底性与套件规模的平衡点</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">C3</span>三张高频对照表</h3>
+    <table class="tbx">
+      <caption>① 测试层级与 V&amp;V 性质（L02 · L22）</caption>
+      <tr><th style="width:18%">层级</th><th style="width:46%">测什么</th><th>性质</th></tr>
+      <tr><td>单元 / 集成</td><td>模块内逻辑（结构/数据流覆盖）；接口与构件协作</td><td>Verification（开发者）</td></tr>
+      <tr><td>系统</td><td>整机对照系统规格；特性交互、全局属性、压力测试</td><td>Verification（可独立 V&amp;V）</td></tr>
+      <tr><td>验收</td><td>用户价值与依赖性；α 受控 · β 真实环境 · 统计测试</td><td>Validation</td></tr>
+      <tr><td>回归</td><td>变更后重验；选择与优先级；套件维护</td><td>再次 Verification</td></tr>
+    </table>
+    <table class="tbx">
+      <caption>② 集成策略（L21）</caption>
+      <tr><th style="width:24%">策略</th><th style="width:40%">思路</th><th>要点</th></tr>
+      <tr><td>大爆炸</td><td>一次性全部拼装</td><td>尽量避免</td></tr>
+      <tr><td>自顶向下</td><td>从主模块沿使用关系向下</td><td>需<b>桩</b>；顶层 UI 驱动则免驱动</td></tr>
+      <tr><td>自底向上</td><td>从叶子模块向上</td><td>需<b>驱动</b>、永不需要桩；可并行</td></tr>
+      <tr><td>三明治</td><td>从两端向中间</td><td>驱动与桩都更少</td></tr>
+      <tr><td>线程</td><td>端到端功能切片</td><td>最早可运行的子集</td></tr>
+      <tr><td>关键模块</td><td>风险最高的模块先行</td><td>集成=尽早送出坏消息</td></tr>
+    </table>
+    <table class="tbx">
+      <caption>③ 回归测试的选择与优先（L22）</caption>
+      <tr><th style="width:28%">路线</th><th>机制</th></tr>
+      <tr><td>基于代码的选择</td><td>用例不可能在它不执行的代码里发现故障 → 只重跑覆盖改动代码的用例</td></tr>
+      <tr><td>基于规格的选择</td><td>挑测新增/变更功能的用例；不保证独立性 → 通常转为<b>优先级</b>：全跑但相关的先跑</td></tr>
+      <tr><td>优先轮转</td><td>轮转（最久未跑优先）· 战绩（曾发现故障的优先）· 结构（最久未覆盖的元素优先）</td></tr>
+    </table>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">C4</span>必背要点</h3>
+    <ul class="dot">
+      <li><b>测试 vs 调试</b>：测试暴露失效（failure）；调试定位并修复故障（fault）——目标是发现并消除故障（L01 · L23）。</li>
+      <li><b>充分性准则</b>：套件 T 满足 C ⟺ T 覆盖 C 规定的覆盖项集；subsumes 用于比较强弱，<b>不是</b>质量的直接指标（L09）。</li>
+      <li><b>变异测试</b>：变异得分 = 杀死变体数 ÷ 非等价变体数；<b>等价变体</b>不可能被杀死（L16）。</li>
+      <li><b>组合测试</b>：成对 pairwise 覆盖任意两参数的全部取值组合；base-choice 每次只变一个参数（L11）。</li>
+      <li><b>ODC / RCA</b>：ODC=检出记录（活动/触发器/影响）+修复记录（目标/类型/来源/年龄）看趋势；RCA 聚焦少数关键故障，<b>连问六次为什么</b>，Pareto 80/20（L20）。</li>
+      <li><b>可用性测试</b>：每群 3–5 名<b>有代表性的用户</b>、只观察不干涉；可访问性对照 <b>W3C WCAG</b> 指南（L22）。</li>
+      <li><b>统计测试</b>：有效运行剖面 + 明确度量单位 + 大样本随机执行；<b>超可靠性几乎无法靠测试证明</b>（L22）。</li>
+      <li><b>29119 五部分</b>：1 概念定义 · 2 测试过程 · 3 测试文档 · 4 测试技术 · 5 关键字驱动；-3 三层文档：§6 组织级 · §7 管理 · §8 动态（L25/L26）。</li>
+      <li><b>两条符合路径</b>：完全符合（瀑布全量）vs 裁剪符合（风险驱动 · 敏捷示例）（L26）。</li>
+      <li><b>发布门禁（敏捷）</b>：高风险故事全 DONE + 残余风险 PO 接受 + SIT/UAT 全通过（L26）。</li>
+      <li><b>AAA 与金字塔</b>：Arrange–Action–Assert；单元多而廉、系统少而贵、特性测试走 API（L27）。</li>
+      <li><b>TDD 循环</b>：写失败测试 → 桩 → 实现 → 全绿 → 重构；测试即规格（L27）。</li>
+      <li><b>评审检查清单五问</b>：命名有意义？数据错误都测了？异常都处理？类型一致？格式规范？（L27）。</li>
+      <li><b>圈复杂度</b>：V(G) = e − n + 2 = 独立路径数；&gt;20 复杂、&gt;50 几乎无法彻底测试；只刻画控制流复杂度，不代表全部逻辑复杂度（L23）。</li>
+      <li><b>自动化决策</b>：角色四分（必要 / 降本 / 提效 / CI-CD 前提）× 三维评估（活动价值成本 · 依赖程度 · 工具成本）；重复任务自动化、判断与创造留给人（L23）。</li>
+    </ul>
+  </div>
+
+  <div class="ss">
+    <h3><span class="n">C5</span>术语快闪</h3>
+    <div class="gloss">
+      <div class="g"><b>Verification vs Validation</b><span>对照规格「正确地构建产品」/ 对照真实需要「构建了正确的产品」。</span></div>
+      <div class="g"><b>Failure / Fault / Error</b><span>失效=偏离预期行为；故障=失效的代码级原因；错误=人的失误。</span></div>
+      <div class="g"><b>Test case</b><span>输入 + 期望输出 + oracle + 唯一标识（+环境与依赖）。</span></div>
+      <div class="g"><b>Oracle</b><span>判定被测行为是否通过的过程；oracle 问题是测试的根本难题。</span></div>
+      <div class="g"><b>Partition / 等价类</b><span>把输入域切成「应揭示同一故障」的子域；理想等价关系未必存在。</span></div>
+      <div class="g"><b>Category partition</b><span>参数→类别→选择，加约束传播，生成测试框架（L10/L11）。</span></div>
+      <div class="g"><b>MC/DC</b><span>每个原子条件都能独立影响判定结果；航空等安全关键领域的要求。</span></div>
+      <div class="g"><b>Du-pair / all-uses</b><span>定义-使用对；数据流覆盖家族的基本覆盖项。</span></div>
+      <div class="g"><b>Mutant / 变异得分</b><span>注入微小变异的程序；杀死比例度量套件的缺陷检测能力。</span></div>
+      <div class="g"><b>Driver / Stub</b><span>驱动=模拟上层调用者；桩=模拟被调用的下层构件（L21）。</span></div>
+      <div class="g"><b>Operational profile</b><span>使用模式及其概率分布——统计测试抽样的基础。</span></div>
+      <div class="g"><b>Obsolete / Redundant 用例</b><span>过时用例必删；冗余用例视成本取舍（L22）。</span></div>
+      <div class="g"><b>Session sheet</b><span>探索式测试的记录单，敏捷状态报告中的测试度量来源（L26）。</span></div>
+      <div class="g"><b>Tailoring</b><span>按风险裁剪标准条款；敏捷项目符合 29119 的方式。</span></div>
+      <div class="g"><b>Test pyramid</b><span>单元（多、廉、全自动）→ 特性 → 系统（少、贵）。</span></div>
+      <div class="g"><b>TDD / CI</b><span>先写测试再写码；频繁提交 + 自动构建测试流水线。</span></div>
+      <div class="g"><b>Cyclomatic complexity</b><span>圈复杂度 V(G)=e−n+2；控制流图独立路径数（L23）。</span></div>
+      <div class="g"><b>Proxy measure</b><span>代理度量——测得到且与所关心量相关的指标，需本地校准（L23）。</span></div>
+      <div class="g"><b>Nonlocality / Clutter</b><span>非局部性与信息杂乱——认知辅助要解决的两类问题（L23）。</span></div>
+      <div class="g"><b>ISO/IEC 9126</b><span>六大质量特性：功能性 · 可靠性 · 易用性 · 效率 · 可维护性 · 可移植性（L23）。</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>软件测试 · 课程笔记 —— 整理自 19 讲课件：Pezzè &amp; Young《Software Testing and Analysis》+ ISO/IEC/IEEE 29119 + Sommerville &amp; GitLab CI</p>
+  <p>Week 1 + LO1–LO5 · Lecture 01–27 · Discussion · Tutorials T1–T5 · 2026-10 · 仅供个人复习</p>
+</footer>
+
+</div>
+
+<div id="top" title="回到顶部">↑</div>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar'),
+      topBtn=document.getElementById('top'),
+      chips=[].slice.call(document.querySelectorAll('#chips .chip[data-t]')),
+      targets=chips.map(function(c){return document.getElementById(c.dataset.t)}).filter(Boolean);
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      var t=document.getElementById(c.dataset.t);
+      if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+  topBtn.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'});});
+  function onScroll(){
+    var h=document.documentElement,st=h.scrollTop;
+    bar.style.width=(st/(h.scrollHeight-h.clientHeight)*100)+'%';
+    topBtn.classList.toggle('show',st>700);
+    var cur=0;
+    targets.forEach(function(t,i){if(t.getBoundingClientRect().top<=150)cur=i;});
+    chips.forEach(function(c,i){c.classList.toggle('on',i===cur);});
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "overloaded_supply"
+title = "补给过载"
+body = "补给箱里的源石装置过热了，箱盖边缘已经烫到变色。里面还有能用的电池、线路和几枚封装件，但拆错一步就会烧坏整箱东西。\n\n要么取走最稳的能量补给，要么拆出高风险线路，要么按规程处理掉。"
+options = Array[Dictionary]([{
+"label": "拿走能量补给",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "energy_potion_2"}]),
+"reward_cards": PackedStringArray("bloodline_casting"),
+"reward_cards_exusiai": PackedStringArray("ex_b06_burst_entry"),
+"result": "工程干员只取走最稳的一组电池。它不华丽，但下一场战斗会派上用场。"
+}, {
+"label": "抽取透支牌",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "pain_for_power"}]),
+"reward_cards": PackedStringArray("black_ring_method","controlled_overload"),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_u03_reload_plan"}]),
+"reward_cards_exusiai": PackedStringArray("ex_c22_rapid_reload", "ex_r11_angelic_storm"),
+"result": "过载线路被硬拆出来，装进战术终端。它能榨出更多火力，也会让牌组变得更危险。"
+}, {
+"label": "安全处理",
+"effects": Array[Dictionary]([{"type": "add_gold", "amount": 25}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "装置被放空、冷却、回收。没有额外风险，只剩一小笔还能用的材料费。"
+}])

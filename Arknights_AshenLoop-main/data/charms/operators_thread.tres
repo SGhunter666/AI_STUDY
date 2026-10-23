@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharmData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CharmData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "operators_thread"
+display_name = "干员系绳"
+description = "你的第二张 支援 每回合， 下一张 牌 费用 1 减少。"
+slot_type = "charm"

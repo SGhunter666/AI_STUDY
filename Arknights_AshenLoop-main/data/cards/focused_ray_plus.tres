@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 12
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 6
+target = "enemy"
+condition = "player_will_gte:3"
+
+[resource]
+script = ExtResource("1")
+id = "focused_ray_plus"
+display_name = "聚焦射线+"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts")
+description = "造成 12 点法术伤害。若意志 >= 3，额外造成 6 点。"
+rarity = "Basic"
+effects = [SubResource("1"), SubResource("2")]

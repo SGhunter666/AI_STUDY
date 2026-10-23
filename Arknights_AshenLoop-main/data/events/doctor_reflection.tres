@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "doctor_reflection"
+title = "博士的回声"
+body = "行动日志弹出一条旧记录：博士之前问过，你想优先保护什么。现在这个问题不再停在纸面上。\n\n前方小队遭遇伏击，医疗、火力和突围三套方案都已经列好。你可以延续之前的路线，也可以为了眼前局面改选另一条。"
+conditions = PackedStringArray("any:doctor_ideal,doctor_efficiency,doctor_burden")
+options = Array[Dictionary]([{
+"label": "治疗优先方案",
+"effects": Array[Dictionary]([{
+"type": "heal",
+"amount": 15
+}, {
+"type": "add_card",
+"card_id": "medical_evac_route"
+}, {
+"type": "set_flag",
+"flag": "support_upgrade_credit"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "heal",
+"amount": 12
+}, {
+"type": "add_card",
+"card_id": "ex_u19_pl_cover_screen"
+}, {
+"type": "set_flag",
+"flag": "support_upgrade_credit"
+}]),
+"reward_cards": PackedStringArray("rescue_corridor", "stabilize_line"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop", "ex_u22_air_cover"),
+"result": "医疗队先接上，伏击点的伤员被拖回掩体后。小队稳住了，支援链也有了继续运转的余地。"
+}, {
+"label": "精确打击方案",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "precise_break"
+}, {
+"type": "set_flag",
+"flag": "legendary_offer_next_reward"
+}, {
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_c10_precision_puncture"
+}, {
+"type": "set_flag",
+"flag": "legendary_offer_next_reward"
+}, {
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}]),
+"reward_cards": PackedStringArray("final_directive", "last_argument"),
+"reward_cards_exusiai": PackedStringArray("ex_r09_terminal_lock", "ex_u11_headline_rhythm"),
+"result": "火力方案很快打穿伏击线。敌人也因此看清了你的打法，下一场会更难，但奖励窗口被打开了。"
+}, {
+"label": "全力突围方案",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 8
+}, {
+"type": "add_card",
+"card_id": "pain_for_power"
+}, {
+"type": "add_card",
+"card_id": "burn_will"
+}, {
+"type": "set_flag",
+"flag": "double_next_reward"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 8
+}, {
+"type": "add_card",
+"card_id": "ex_c17_burst_order"
+}, {
+"type": "add_card",
+"card_id": "ex_c22_rapid_reload"
+}, {
+"type": "set_flag",
+"flag": "double_next_reward"
+}]),
+"reward_cards": PackedStringArray("crisis_surge", "reckless_invocation"),
+"reward_cards_exusiai": PackedStringArray("ex_r14_endless_chain", "ex_u17_combo_rhythm", "ex_r11_angelic_storm"),
+"result": "突围成功得很快，也很疼。小队用生命值换出一条路，后续奖励会补偿这次冒险。"
+}])

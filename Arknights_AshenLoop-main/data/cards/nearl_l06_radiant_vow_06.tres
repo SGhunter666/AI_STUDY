@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "gain_radiance"
+amount = 1
+amount_2 = 0
+target = "self"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "block"
+amount = 12
+amount_2 = 0
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "nearl_l06_radiant_vow_06"
+display_name = "不灭誓约"
+cost = 3
+card_type = "Power"
+tags = PackedStringArray("Vow","Radiance","Shield")
+description = "获得 1 层光耀。获得 12 点护盾。"
+rarity = "Legendary"
+exhausts = false
+upgraded_id = "nearl_l06_radiant_vow_06_plus"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

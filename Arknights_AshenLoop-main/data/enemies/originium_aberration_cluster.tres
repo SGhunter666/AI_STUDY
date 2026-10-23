@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "originium_aberration_cluster"
+display_name = "源石畸变聚合体"
+max_hp = 176
+gold_reward = 105
+tags = PackedStringArray("Boss","Originium")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "apply_curse",
+"curse": "mental_noise",
+"value": 1,
+"label": "畸变噪音"
+}, {
+"type": "attack",
+"value": 13,
+"label": "畸变脉冲 13"
+}, {
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "核心再生"
+}])

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "reunion_scout"
+display_name = "整合运动侦察兵"
+max_hp = 32
+gold_reward = 14
+tags = PackedStringArray("Reunion")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 7,
+"label": "突进 7"
+}, {
+"type": "attack",
+"value": 9,
+"label": "劈砍 9"
+}])

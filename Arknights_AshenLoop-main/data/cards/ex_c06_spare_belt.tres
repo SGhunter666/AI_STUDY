@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "queue_reload"
+amount = 3
+timing = "turn_end"
+target = "self"
+
+[resource]
+script = ExtResource("1")
+id = "ex_c06_spare_belt"
+display_name = "备用弹链"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("AmmoGain", "Reload")
+description = "回合结束时恢复 3 弹药。"
+rarity = "Common"
+upgraded_id = "ex_c06_spare_belt_plus"
+effects = [SubResource("1")]
+conditional_effects = []

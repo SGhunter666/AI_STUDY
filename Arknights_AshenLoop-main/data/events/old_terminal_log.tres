@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "old_terminal_log"
+title = "残破的终端日志"
+body = "一台还能启动的终端在角落里闪烁，屏幕上滚动着断断续续的日志。\n\n这是某个撤离小队留下的记录。最后几行提到了一处隐藏的物资点和一种未知的战术协议。你可以尝试解码，也可以直接读取，或者切断电源避免暴露位置。"
+options = Array[Dictionary]([{
+"label": "尝试解码完整日志",
+"effects": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "rhodes_tactical_console"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_module",
+"module_id": "ex_m05_penguin_invoice"
+}]),
+"reward_cards": PackedStringArray("tactical_briefing","discipline_note"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop","ex_c27_team_callout"),
+"result": "你花了二十分钟破译加密段。日志提到一种罗德岛战术控制台协议，你成功复现了它。"
+}, {
+"label": "快速浏览关键信息",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 18
+}, {
+"type": "upgrade_random_card"
+}]),
+"reward_cards": PackedStringArray("focus_pulse"),
+"reward_cards_exusiai": PackedStringArray("ex_c14_tagged_signal"),
+"result": "你跳过加密段，只看了明文部分。找到了一些物资坐标和一条能优化现有卡组的战术建议。"
+}, {
+"label": "切断电源保持隐蔽",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("stabilize_line"),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload"),
+"result": "你拔掉了终端的电源。位置没有暴露，下一场战斗的开局会更平稳。"
+}])

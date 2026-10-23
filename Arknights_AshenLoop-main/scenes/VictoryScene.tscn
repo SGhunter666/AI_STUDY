@@ -1,0 +1,241 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/victory_menu.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/victory_bg.png" id="2"]
+
+[node name="VictoryScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundShade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.06, 0.62)
+
+[node name="Layout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Layout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="Content" type="VBoxContainer" parent="Layout/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="HeaderBox" type="VBoxContainer" parent="Layout/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Layout/Margin/Content/HeaderBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(1.0, 0.84, 0.46, 1.0)
+text = "行动成功"
+
+[node name="Body" type="Label" parent="Layout/Margin/Content/HeaderBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.94, 0.92, 0.86, 0.94)
+text = "阿米娅带领小队完成了这次远征。"
+
+[node name="ReviewScroll" type="ScrollContainer" parent="Layout/Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 320)
+
+[node name="ReviewMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ReviewBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="OverviewPanel" type="PanelContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox"]
+layout_mode = 2
+
+[node name="OverviewMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/OverviewPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="OverviewBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/OverviewPanel/OverviewMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="OverviewHeader" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/OverviewPanel/OverviewMargin/OverviewBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.42, 0.34, 0.18, 1.0)
+text = "行动概览"
+
+[node name="OverviewLabel" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/OverviewPanel/OverviewMargin/OverviewBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.20, 0.16, 0.10, 0.96)
+text = ""
+
+[node name="StatsPanel" type="PanelContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox"]
+layout_mode = 2
+
+[node name="StatsMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/StatsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="StatsBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/StatsPanel/StatsMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="StatsHeader" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/StatsPanel/StatsMargin/StatsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.18, 0.42, 0.30, 1.0)
+text = "战绩"
+
+[node name="StatsLabel" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/StatsPanel/StatsMargin/StatsBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.18, 0.16, 0.12, 0.96)
+text = ""
+
+[node name="DeckPanel" type="PanelContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox"]
+layout_mode = 2
+
+[node name="DeckMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/DeckPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="DeckBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/DeckPanel/DeckMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="DeckHeader" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/DeckPanel/DeckMargin/DeckBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.20, 0.32, 0.52, 1.0)
+text = "最终卡组"
+
+[node name="DeckLabel" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/DeckPanel/DeckMargin/DeckBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.18, 0.16, 0.14, 0.94)
+text = ""
+
+[node name="CharmsPanel" type="PanelContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox"]
+layout_mode = 2
+
+[node name="CharmsMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/CharmsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="CharmsBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/CharmsPanel/CharmsMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="CharmsHeader" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/CharmsPanel/CharmsMargin/CharmsBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.58, 0.42, 0.10, 1.0)
+text = "护符"
+
+[node name="CharmsLabel" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/CharmsPanel/CharmsMargin/CharmsBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.18, 0.16, 0.14, 0.94)
+text = ""
+
+[node name="ModulesPanel" type="PanelContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox"]
+layout_mode = 2
+
+[node name="ModulesMargin" type="MarginContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/ModulesPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="ModulesBox" type="VBoxContainer" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/ModulesPanel/ModulesMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ModulesHeader" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/ModulesPanel/ModulesMargin/ModulesBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.18, 0.42, 0.26, 1.0)
+text = "模块"
+
+[node name="ModulesLabel" type="Label" parent="Layout/Margin/Content/ReviewScroll/ReviewMargin/ReviewBox/ModulesPanel/ModulesMargin/ModulesBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.18, 0.16, 0.14, 0.94)
+text = ""
+
+[node name="Back" type="Button" parent="Layout/Margin/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 28
+text = "返回主菜单"

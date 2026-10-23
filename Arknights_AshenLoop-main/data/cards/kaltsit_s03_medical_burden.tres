@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_value"
+amount = 3
+amount_2 = 0
+target = "self"
+status_id = "medical_burden_penalty"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_s03_medical_burden"
+display_name = "医疗负荷"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse","Medical")
+description = "本回合第一张医疗牌效果 -3。消耗。"
+rarity = "Curse"
+exhausts = true
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

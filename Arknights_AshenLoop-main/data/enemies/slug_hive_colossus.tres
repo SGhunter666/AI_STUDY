@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "slug_hive_colossus"
+display_name = "源石虫群聚合体"
+max_hp = 82
+gold_reward = 64
+tags = PackedStringArray("Elite","Originium","Slug")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "shuffle_and_debuff",
+"value": 1,
+"label": "召唤源石虫群"
+}, {
+"type": "attack",
+"value": 13,
+"label": "虫巢碾压 13"
+}])

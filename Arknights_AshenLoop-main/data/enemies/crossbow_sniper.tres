@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EnemyData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "crossbow_sniper"
+display_name = "弩手狙击兵"
+max_hp = 30
+gold_reward = 18
+tags = PackedStringArray("Reunion","Ranged")
+ai_profile = "basic"
+moves = Array[Dictionary]([{
+"type": "attack",
+"value": 10,
+"label": "狙击 10"
+}, {
+"type": "attack",
+"value": 7,
+"label": "齐射 7"
+}])

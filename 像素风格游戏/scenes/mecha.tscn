@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/mecha.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/mecha/blue_torso.png" id="2_torso"]
+[ext_resource type="Texture2D" path="res://assets/mecha/blue_arm.png" id="3_arm"]
+[ext_resource type="Texture2D" path="res://assets/mecha/blue_leg.png" id="4_leg"]
+[ext_resource type="Texture2D" path="res://assets/mecha/blue_shield.png" id="5_shield"]
+[ext_resource type="Texture2D" path="res://assets/mecha/blue_blade.png" id="6_blade"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(14, 34)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_blade"]
+blend_mode = 1
+
+[node name="Mecha" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="LegBack" type="Sprite2D" parent="Visual"]
+position = Vector2(-2, -14)
+offset = Vector2(0, 7)
+texture = ExtResource("4_leg")
+
+[node name="ArmBack" type="Sprite2D" parent="Visual"]
+position = Vector2(-3, -30)
+offset = Vector2(0, 7)
+texture = ExtResource("3_arm")
+
+[node name="Torso" type="Sprite2D" parent="Visual"]
+position = Vector2(0, -14)
+offset = Vector2(0, -11)
+texture = ExtResource("2_torso")
+
+[node name="LegFront" type="Sprite2D" parent="Visual"]
+position = Vector2(2, -14)
+offset = Vector2(0, 7)
+texture = ExtResource("4_leg")
+
+[node name="ArmFront" type="Sprite2D" parent="Visual"]
+position = Vector2(1, -30)
+offset = Vector2(0, 7)
+texture = ExtResource("3_arm")
+
+[node name="Muzzle" type="Marker2D" parent="Visual/ArmFront"]
+position = Vector2(4, 13)
+
+[node name="Blade" type="Sprite2D" parent="Visual"]
+visible = false
+offset = Vector2(9, 0)
+material = SubResource("CanvasItemMaterial_blade")
+texture = ExtResource("6_blade")
+
+[node name="Shield" type="Sprite2D" parent="Visual"]
+visible = false
+position = Vector2(2, -26)
+offset = Vector2(0, 9)
+texture = ExtResource("5_shield")

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_at_turn_start_if_hp_50_heal_2"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_c22_auto_infusion"
+display_name = "自动补液"
+cost = 1
+card_type = "Power"
+tags = PackedStringArray("Medical","Protocol")
+description = "回合开始时，若生命不高于 50%，治疗 2 点生命。"
+rarity = "Common"
+exhausts = false
+upgraded_id = "kaltsit_c22_auto_infusion_plus"
+effects = [SubResource("1")]
+conditional_effects = []

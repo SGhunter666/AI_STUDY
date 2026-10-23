@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m10_broken_shield_counter"
+display_name = "碎盾回击"
+rarity = "Uncommon"
+description = "每回合第一次护盾被击破时，本回合获得反击 3。"

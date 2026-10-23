@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m13_counter_heal"
+display_name = "暖光回响"
+rarity = "Rare"
+description = "每回合第一次反击后恢复 1 点生命。"

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "originium_echo_corridor"
+title = "源石回声走廊"
+body = "长廊两侧的墙体里嵌着源石结晶。每走一步，声音都会从前后两个方向回弹，侦测器上的波形也跟着重复。\n\n这里不适合久留，但很适合做一次调试。你可以给牌写入新的波形词条，压低一张牌的费用，或者取走墙体里还能稳定工作的锚定装置。"
+options = Array[Dictionary]([{
+"label": "写入波形词条",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "tune_resonance_apply"}]),
+"reward_cards": PackedStringArray("feedback_loop"),
+"effects_exusiai": Array[Dictionary]([{"type": "set_flag", "flag": "support_upgrade_credit"}]),
+"reward_cards_exusiai": PackedStringArray("ex_u08_wide_tagging"),
+"result": "一张牌被写入新的波形词条。之后它不只是打出去，还会替你铺下一段后续。"
+}, {
+"label": "压低一张牌的费用",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "tune_cost_pending"}]),
+"reward_cards": PackedStringArray("phase_tap"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan"),
+"result": "牌的执行结构被压缩。下一场战斗打出的第一张牌会便宜一点，走廊里的回声也随之弱了下去。"
+}, {
+"label": "拿走锚定装置",
+"effects": Array[Dictionary]([{"type": "add_module", "module_id": "resonance_anchor"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_module", "module_id": "ex_m04_target_scope"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_c14_tagged_signal"),
+"result": "锚定装置被拆下并接入终端。之后挂在敌人身上的层数会更难白白散掉。"
+}])

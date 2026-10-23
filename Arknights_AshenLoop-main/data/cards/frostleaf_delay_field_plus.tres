@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "apply_status"
+amount = 3
+status_id = "slow"
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 1
+target = "self"
+condition = "target_has_resonance"
+
+[resource]
+script = ExtResource("1")
+id = "frostleaf_delay_field_plus"
+display_name = "霜叶·迟滞领域+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Support", "Tactic")
+description = "对一名敌人施加 3 层迟滞；若目标有共振，抽 1 张牌。"
+rarity = "Uncommon"
+effects = [SubResource("1"), SubResource("2")]

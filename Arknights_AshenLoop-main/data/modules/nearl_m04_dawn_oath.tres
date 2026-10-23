@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nearl_m04_dawn_oath"
+display_name = "黎明誓约"
+rarity = "Common"
+description = "战斗第一回合开始时获得 1 层光耀。"

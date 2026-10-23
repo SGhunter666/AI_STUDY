@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "draw"
+amount = 3
+target = "self"
+condition = "any_enemy_has_resonance"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "apply_resonance"
+amount = 3
+target = "random_enemy"
+condition = "not_any_enemy_has_resonance"
+
+[resource]
+script = ExtResource("1")
+id = "resonant_insight_plus"
+display_name = "共振洞察+"
+cost = 1
+card_type = "Skill"
+tags = PackedStringArray("Resonance")
+description = "若 敌人 共振， 抽 3 张牌； 否则 施加 3 共振 对一个 随机 敌人。"
+rarity = "Common"
+effects = [SubResource("1"), SubResource("2")]

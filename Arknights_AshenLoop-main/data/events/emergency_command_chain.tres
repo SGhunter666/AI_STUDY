@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "emergency_command_chain"
+title = "紧急指挥链"
+body = "前线同时传来三条请求：一队需要支援火力，一队报告敌方增援，还有一队等着你确认是否接入战术网络。\n\n时间不够全部处理。你的回复会决定这一层接下来的节奏：稳支援，赌高压奖励，或把一张战术网络直接加入牌组。"
+options = Array[Dictionary]([{
+"label": "强化本层支援",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "floor_first_support_double"}]),
+"reward_cards": PackedStringArray("command_overflow"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover", "ex_c27_team_callout"),
+"result": "支援优先级被重新排序。本层第一次支援会被额外放大，前线也知道该等哪一道信号。"
+}, {
+"label": "接受强化敌人与双倍奖励",
+"effects": Array[Dictionary]([{"type": "set_flag", "flag": "double_next_reward"}, {"type": "set_flag", "flag": "next_battle_enemy_strength"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_r20_skyline_call"),
+"result": "你批准了更激进的推进。敌人会被惊动，下一场更硬；但如果赢下来，回报也会翻倍。"
+}, {
+"label": "拿走战术网络",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "tactical_network"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_c27_team_callout"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_u11_headline_rhythm"),
+"result": "战术网络被写进终端。它不会替你做决定，但能让之后的出牌顺序更容易接上。"
+}])

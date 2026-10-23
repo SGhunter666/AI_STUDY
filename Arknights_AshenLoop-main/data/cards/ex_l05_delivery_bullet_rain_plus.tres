@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 4
+amount_2 = 10
+target = "enemy"
+condition = "player_ammo_gte:2"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "consume_ammo"
+amount = 2
+target = "self"
+condition = "player_ammo_gte:2"
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 3
+amount_2 = 2
+target = "enemy"
+condition = "played_support_this_turn_gte:1"
+
+[resource]
+script = ExtResource("1")
+id = "ex_l05_delivery_bullet_rain_plus"
+display_name = "速递火雨+"
+cost = 3
+card_type = "Attack"
+tags = PackedStringArray("Support", "Shot", "AOE", "MultiHit", "AmmoUse")
+description = "每次 4。"
+rarity = "Legendary"
+effects = [SubResource("1"), SubResource("2"), SubResource("3")]
+conditional_effects = []

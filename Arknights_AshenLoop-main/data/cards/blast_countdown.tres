@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "blast_countdown"
+display_name = "爆破倒计时"
+cost = 99
+card_type = "Curse"
+tags = PackedStringArray("Curse")
+description = "若 手牌 回合结束， 受到 8 伤害。"
+rarity = "Curse"
+ethereal = true

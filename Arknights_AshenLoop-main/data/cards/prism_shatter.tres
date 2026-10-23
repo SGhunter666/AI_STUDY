@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_resonant_all_consume"
+amount = 6
+amount_2 = 1
+target = "all_enemies"
+
+[resource]
+script = ExtResource("1")
+id = "prism_shatter"
+display_name = "棱镜破裂"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Arts", "Resonance", "AOE")
+description = "对所有有共振的敌人造成 6 点术式伤害， 然后 消耗 1 共振。"
+rarity = "Uncommon"
+upgraded_id = "prism_shatter_plus"
+effects = [SubResource("1")]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ModuleData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "pain_converter"
+display_name = "痛觉换流器"
+rarity = "Rare"
+description = "每次失去生命后，本回合下一张术式牌伤害 +1，可叠加。"

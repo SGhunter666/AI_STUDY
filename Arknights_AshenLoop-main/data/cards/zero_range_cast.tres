@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 14
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage"
+amount = 6
+target = "enemy"
+condition = "target_supported_this_turn"
+
+[resource]
+script = ExtResource("1")
+id = "zero_range_cast"
+display_name = "零距施法"
+cost = 1
+card_type = "Attack"
+tags = PackedStringArray("Arts")
+description = "造成 14 点术式伤害。 若 目标 受到过 支援 伤害 本回合， 造成 6 更多。"
+rarity = "Rare"
+upgraded_id = "zero_range_cast_plus"
+effects = [SubResource("1"), SubResource("2")]

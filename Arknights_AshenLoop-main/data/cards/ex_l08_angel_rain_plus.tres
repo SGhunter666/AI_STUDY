@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_all_marked"
+amount = 10
+target = "enemy"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_random_hits"
+amount = 10
+amount_2 = 1
+target = "enemy"
+condition = "player_has_burst"
+
+[resource]
+script = ExtResource("1")
+id = "ex_l08_angel_rain_plus"
+display_name = "天使坠雨+"
+cost = 3
+card_type = "Attack"
+tags = PackedStringArray("Shot", "Burst", "Mark", "AmmoUse", "Finisher")
+description = "每次 10。"
+rarity = "Legendary"
+effects = [SubResource("1"), SubResource("2")]
+conditional_effects = []

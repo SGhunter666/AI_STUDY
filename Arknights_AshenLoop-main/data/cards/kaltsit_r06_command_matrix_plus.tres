@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "set_meta_flag"
+amount = 1
+amount_2 = 0
+target = "self"
+status_id = "kaltsit_every_second_command_each_turn_m"
+
+[resource]
+script = ExtResource("1")
+id = "kaltsit_r06_command_matrix_plus"
+display_name = "指令矩阵+"
+cost = 2
+card_type = "Power"
+tags = PackedStringArray("Mon3tr","Command","Protocol")
+description = "升级：数值提高至 11。"
+rarity = "Rare"
+exhausts = false
+upgraded_id = ""
+effects = [SubResource("1")]
+conditional_effects = []

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "old_operation_record"
+title = "旧作战记录"
+body = "一块旧终端卡在办公桌抽屉里，屏幕裂了，但还能读出几段过去的行动记录。记录不完整，时间戳也缺失，只剩战斗片段和几条简短批注。\n\n它不能告诉你真相，但能给当前牌组一个方向：研究高压牌、研究战术轮换，或者干脆把终端留下继续用。"
+options = Array[Dictionary]([{
+"label": "研究高压牌",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "mind_pressure"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_b06_burst_entry"}]),
+"reward_cards": PackedStringArray("crowned_resolve","thought_acceleration"),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm","ex_u17_combo_rhythm"),
+"result": "你选出几段高压作战记录。它们被整理成新的牌，适合把资源转成爆发。"
+}, {
+"label": "研究战术牌",
+"effects": Array[Dictionary]([{"type": "add_card", "card_id": "strategic_rotation"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_card", "card_id": "ex_b03_quick_reload"}]),
+"reward_cards": PackedStringArray("tactical_network","command_overflow"),
+"reward_cards_exusiai": PackedStringArray("ex_u22_air_cover","ex_u03_reload_plan"),
+"result": "你把旧记录里的调度方式抄进终端。之后的战术轮换会顺手得多。"
+}, {
+"label": "保存记录",
+"effects": Array[Dictionary]([{"type": "add_module", "module_id": "worn_terminal"}]),
+"effects_exusiai": Array[Dictionary]([{"type": "add_module", "module_id": "ex_m16_heaven_circuit"}]),
+"reward_cards": PackedStringArray(),
+"reward_cards_exusiai": PackedStringArray("ex_r20_skyline_call"),
+"result": "终端被修好一半，作为模块挂进系统。它旧是旧，但还能替你多看一段路。"
+}])

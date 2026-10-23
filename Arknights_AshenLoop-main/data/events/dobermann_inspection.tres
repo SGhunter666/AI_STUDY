@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "dobermann_inspection"
+title = "杜宾的检阅"
+body = "杜宾把牌组记录摊在弹药箱上，一张一张往旁边拨。她没有提高音量，只问了三个问题：这张牌在什么时候打？谁负责接它后面的行动？如果情况失控，它还能不能用？\n\n有几张牌答不上来。杜宾把它们单独推出来，意思很明确：现在改，下一场少吃亏。"
+options = Array[Dictionary]([{
+"label": "接受训练，删去负重",
+"effects": Array[Dictionary]([{
+"type": "remove_card",
+"card_id": "barrier_formula"
+}]),
+"reward_cards": PackedStringArray("focus_pulse","signal_relay"),
+"effects_exusiai": Array[Dictionary]([{
+"type": "remove_card",
+"card_id": "ex_b02_cover_step"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_b03_quick_reload", "ex_c14_tagged_signal"),
+"result": "训练很不客气，但问题确实少了。牌组薄了一点，下一次抽到关键牌的机会也更高。"
+}, {
+"label": "强化进攻适应",
+"effects": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "overclock_arts"
+}]),
+"reward_cards": PackedStringArray(),
+"effects_exusiai": Array[Dictionary]([{
+"type": "add_card",
+"card_id": "ex_c10_precision_puncture"
+}]),
+"reward_cards_exusiai": PackedStringArray("ex_c17_burst_order"),
+"result": "你没有缩牌，而是把空出的训练时间交给进攻。杜宾不算满意，但这套打法现在更敢抢节奏。"
+}, {
+"label": "结束检阅继续前进",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "soft_start_next_battle"
+}]),
+"reward_cards": PackedStringArray("discipline_note"),
+"reward_cards_exusiai": PackedStringArray("ex_c25_pl_supply_drop"),
+"result": "检阅没有继续拖下去。杜宾把记录还给你，只留下一句：下一次别让同一个问题出现第二遍。"
+}])

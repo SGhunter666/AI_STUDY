@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/EventData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "originium_cache"
+title = "源石矿脉储藏点"
+body = "墙后透出淡淡的蓝色光晕——一处未被开采的源石矿脉露头。\n\n源石是双刃剑：它能强化术式，但接触过量会加速感染。你可以冒险采集，可以用稳定的方式提取，也可以封锁现场避免风险。"
+options = Array[Dictionary]([{
+"label": "冒险大量采集",
+"effects": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 7
+}, {
+"type": "add_module",
+"module_id": "ashen_thread"
+}]),
+"effects_exusiai": Array[Dictionary]([{
+"type": "lose_hp",
+"amount": 7
+}, {
+"type": "add_module",
+"module_id": "ex_m11_storm_permit"
+}]),
+"reward_cards": PackedStringArray("absolute_resonance","sevenfold_echo"),
+"reward_cards_exusiai": PackedStringArray("ex_r11_angelic_storm","ex_r14_endless_chain"),
+"result": "你徒手敲下几块高纯度源石。皮肤传来灼烧感，但获得了一枚强化术式的模块。"
+}, {
+"label": "用工具稳定提取",
+"effects": Array[Dictionary]([{
+"type": "gain_gold",
+"amount": 25
+}, {
+"type": "heal_percent",
+"amount": 15
+}]),
+"reward_cards": PackedStringArray("pulse_scan","focus_pulse"),
+"reward_cards_exusiai": PackedStringArray("ex_u03_reload_plan","ex_c14_tagged_signal"),
+"result": "你用专业工具小心翼翼地提取表层矿化物。没有受伤，还换到了一笔可观的报酬和一次休整。"
+}, {
+"label": "封锁现场",
+"effects": Array[Dictionary]([{
+"type": "set_flag",
+"flag": "next_battle_enemy_strength"
+}, {
+"type": "gain_gold",
+"amount": 10
+}]),
+"reward_cards": PackedStringArray("tactical_calm"),
+"reward_cards_exusiai": PackedStringArray("ex_c27_team_callout"),
+"result": "你封住了入口，防止矿脉被敌人利用。路过时顺手捡了些散落的物资。下一场敌人会因为你的谨慎准备而变弱。"
+}])

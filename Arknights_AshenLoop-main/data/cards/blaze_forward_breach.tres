@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/CardData.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/EffectData.gd" id="2"]
+
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
+effect_type = "damage_all"
+amount = 9
+target = "all_enemies"
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
+effect_type = "damage_all"
+amount = 4
+target = "all_enemies"
+condition = "lost_hp_this_turn"
+
+[resource]
+script = ExtResource("1")
+id = "blaze_forward_breach"
+display_name = "煌·前突突破"
+cost = 2
+card_type = "Attack"
+tags = PackedStringArray("Support", "AOE")
+description = "对所有敌人造成 9 点伤害。 若 生命 本回合， 造成 13 改为。"
+rarity = "Uncommon"
+upgraded_id = "blaze_forward_breach_plus"
+effects = [SubResource("1"), SubResource("2")]
