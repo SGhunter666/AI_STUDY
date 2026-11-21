@@ -6,6 +6,15 @@
   <meta name="theme-color" content="#f2f6fc">
   <meta name="description" content="吴恩达新版机器学习专项课中文配套笔记。按 3 门课程、10 周、151 个视频条目编排，含手算、互动与 Python。">
   <title>吴恩达机器学习 · 中文课程笔记</title>
+  <script>
+    try {
+      if (localStorage.getItem("andrew-ng-course-notes-theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+      }
+    } catch {
+      // Keep the default theme if browser storage is unavailable.
+    }
+  </script>
   <style>:root {
   color-scheme: light;
   --paper: #ffffff;
@@ -18,7 +27,64 @@
   --soft: #edf4ff;
   --pale: #f7faff;
   --shadow: 0 12px 36px #16355e0c;
+  --topbar: #fbfdff;
+  --hero-start: #dbe9ff;
+  --hero-middle: #edf5ff;
+  --hero-end: #f8fbff;
+  --course-card: #ffffffbd;
+  --course-shadow: #18448613;
+  --menu-shadow: #15365b23;
+  --accent-line: #3e72c3;
+  --selected: #e4efff;
+  --selected-line: #9bbbe9;
+  --primary: #153b77;
+  --primary-hover: #2456a3;
+  --on-primary: #fff;
+  --success: #087456;
+  --code-inline: #f0f5fd;
+  --code-ink: #143761;
+  --code-block: #10223e;
+  --code-block-ink: #e7f1ff;
+  --plot-grid: #b5c6df;
+  --plot-blue: #255fbc;
+  --plot-orange: #9a410b;
   --round: 18px;
+}
+@media screen {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #121f34;
+    --bg: #0b1425;
+    --ink: #e5edff;
+    --muted: #afc0db;
+    --border: #334661;
+    --blue: #95c0ff;
+    --deep: #bed8ff;
+    --soft: #1c3150;
+    --pale: #162641;
+    --shadow: 0 12px 36px #03081255;
+    --topbar: #101b2e;
+    --hero-start: #1c3a65;
+    --hero-middle: #152746;
+    --hero-end: #101b30;
+    --course-card: #14233a;
+    --course-shadow: #03081255;
+    --menu-shadow: #030812aa;
+    --accent-line: #79a8ed;
+    --selected: #213b60;
+    --selected-line: #587db5;
+    --primary: #aed0ff;
+    --primary-hover: #c7dfff;
+    --on-primary: #0d2143;
+    --success: #77dbb5;
+    --code-inline: #1b3456;
+    --code-ink: #c7e0ff;
+    --code-block: #0b1628;
+    --code-block-ink: #e7f1ff;
+    --plot-grid: #4c6386;
+    --plot-blue: #86b7ff;
+    --plot-orange: #ffc58a;
+  }
 }
 * { box-sizing: border-box; }
 html { scroll-padding-top: 79px; }
@@ -31,13 +97,13 @@ body {
 a { color: var(--blue); text-underline-offset: .19em; }
 a:hover { color: var(--deep); }
 button, input { font: inherit; }
-:where(button, a, summary, input):focus-visible { outline: 3px solid #3e7ddd; outline-offset: 3px; }
+:where(button, a, summary, input):focus-visible { outline: 3px solid var(--accent-line); outline-offset: 3px; }
 a, button, summary { -webkit-tap-highlight-color: transparent; }
 [hidden] { display: none !important; }
-.skip { position: absolute; left: 20px; top: -80px; z-index: 12; padding: 8px 16px; background: white; }
+.skip { position: absolute; left: 20px; top: -80px; z-index: 12; padding: 8px 16px; background: var(--paper); }
 .skip:focus { top: 12px; }
 .wrap { width: min(1440px, calc(100% - 72px)); margin-inline: auto; }
-.topbar { position: sticky; top: 0; z-index: 7; border-bottom: 1px solid var(--border); background: #fbfdff; }
+.topbar { position: sticky; top: 0; z-index: 7; border-bottom: 1px solid var(--border); background: var(--topbar); }
 .topbar-inner {
   min-height: 68px;
   display: flex;
@@ -60,12 +126,14 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   border-radius: 8px;
   display: grid;
   place-items: center;
-  background: var(--deep);
-  color: white;
+  background: var(--primary);
+  color: var(--on-primary);
   font: 700 14px/1 system-ui, sans-serif;
 }
 .header-actions { display: flex; align-items: center; gap: 16px; min-width: 0; }
 .source-link { text-decoration: none; white-space: nowrap; font-size: 14px; font-weight: 650; }
+.theme-toggle { flex-shrink: 0; gap: 6px; white-space: nowrap; }
+.theme-icon { width: 1em; text-align: center; font: 17px/1 system-ui, sans-serif; }
 .search { position: relative; width: min(33vw, 300px); }
 .search input {
   width: 100%;
@@ -90,7 +158,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 12px;
-  box-shadow: 0 16px 38px #15365b23;
+  box-shadow: 0 16px 38px var(--menu-shadow);
 }
 .search-results.open { display: block; }
 .search-results p { margin: 0 7px 5px; color: var(--muted); font-size: 13px; }
@@ -105,7 +173,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .search-results a:hover, .search-results a:focus-visible { background: var(--soft); }
 .search-results small { display: block; margin-top: 3px; color: var(--muted); }
 .masthead {
-  background: radial-gradient(ellipse at 90% 0, #dbe9ff 0, #edf5ff 48%, #f8fbff 92%);
+  background: radial-gradient(ellipse at 90% 0, var(--hero-start) 0, var(--hero-middle) 48%, var(--hero-end) 92%);
   border-bottom: 1px solid var(--border);
 }
 .masthead-inner { padding: 35px 0 26px; }
@@ -125,16 +193,16 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   min-height: 108px;
   color: var(--ink);
   text-decoration: none;
-  border: 1px solid #cbdbef;
+  border: 1px solid var(--border);
   border-radius: 14px;
-  background: #ffffffbd;
+  background: var(--course-card);
 }
 .course-tab:hover, .course-tab[aria-current] {
   background: var(--paper);
-  border-color: #3e72c3;
-  box-shadow: 0 5px 16px #18448613;
+  border-color: var(--accent-line);
+  box-shadow: 0 5px 16px var(--course-shadow);
 }
-.course-tab[aria-current] { box-shadow: inset 0 3px #2c63bb, 0 5px 16px #18448613; }
+.course-tab[aria-current] { box-shadow: inset 0 3px var(--accent-line), 0 5px 16px var(--course-shadow); }
 .course-tab .ordinal { display: block; font: 680 12px/1.8 system-ui, sans-serif; color: var(--blue); grid-row: span 2; }
 .course-tab strong { align-self: center; font-size: 16px; line-height: 1.5; }
 .course-tab small { grid-column: 2; font-size: 12px; color: var(--muted); line-height: 1.38; }
@@ -152,7 +220,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 8px 12px;
-  background: #f8fbff;
+  background: var(--pale);
   color: var(--ink);
   text-decoration: none;
   font-size: 14px;
@@ -160,7 +228,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 }
 .week-tab b { color: var(--blue); margin-right: 5px; font-size: 12px; }
 .week-tab small { display: block; color: var(--muted); margin-top: 3px; font-size: 11px; }
-.week-tab:hover, .week-tab[aria-current] { background: #e4efff; border-color: #9bbbe9; }
+.week-tab:hover, .week-tab[aria-current] { background: var(--selected); border-color: var(--selected-line); }
 .week { margin-top: 21px; }
 .week-layout { display: grid; grid-template-columns: 288px minmax(0, 1fr); align-items: start; gap: 23px; }
 .lesson-menu {
@@ -194,7 +262,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .lesson-menu small { grid-column: 2; color: var(--muted); font-size: 11px; }
 .lesson-menu a:hover, .lesson-menu a[aria-current] { background: var(--soft); color: var(--deep); }
 .lesson-menu a[aria-current] .label { font-weight: 760; }
-.lesson-menu a.seen .index-num { color: #087456; font-weight: 760; }
+.lesson-menu a.seen .index-num { color: var(--success); font-weight: 760; }
 .lesson-menu .overview-link { display: block; background: var(--pale); color: var(--deep); font-weight: 650; }
 .week-reading { min-width: 0; }
 .sheet {
@@ -213,12 +281,12 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .original-title .duration { white-space: nowrap; font-size: 12px; font-weight: 670; color: var(--blue); }
 .reading p { max-width: 74ch; margin: 0 0 14px; }
 .reading .lead { font-size: 18px; }
-.route { margin: 18px 0; color: #2f527e; font-size: 14px; }
+.route { margin: 18px 0; color: var(--deep); font-size: 14px; }
 .example {
   margin: 20px 0;
   padding: 13px 17px;
   background: var(--soft);
-  border-left: 3px solid #4e81cb;
+  border-left: 3px solid var(--accent-line);
   border-radius: 0 10px 10px 0;
 }
 .example h3, .example p:last-child { margin: 0; }
@@ -239,14 +307,14 @@ details.expand {
 .prose .exercise { padding: 8px 0; }
 .math, code {
   font-family: "SFMono-Regular", Consolas, "Cascadia Mono", monospace;
-  background: #f0f5fd;
-  color: #143761;
+  background: var(--code-inline);
+  color: var(--code-ink);
   border-radius: 5px;
   padding: 1px 4px;
   font-size: .92em;
   overflow-wrap: anywhere;
 }
-pre { padding: 13px 16px; background: #10223e; color: #e7f1ff; border-radius: 9px; overflow: auto; line-height: 1.55; }
+pre { padding: 13px 16px; background: var(--code-block); color: var(--code-block-ink); border-radius: 9px; overflow: auto; line-height: 1.55; }
 pre code { padding: 0; color: inherit; background: transparent; border-radius: 0; overflow-wrap: normal; }
 .table-wrap { overflow-x: auto; margin: 12px 0 14px; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -268,10 +336,10 @@ th { color: var(--deep); background: var(--soft); }
 }
 .action { cursor: pointer; }
 .arrow:hover, .action:hover, .action[aria-pressed="true"] { background: var(--soft); }
-.primary { background: var(--deep); color: white; border-color: var(--deep); }
-.primary:hover { background: #2456a3; color: white; }
+.primary { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.primary:hover { background: var(--primary-hover); color: var(--on-primary); }
 .wide { width: 100%; }
-.lab { padding: 15px 17px; border-radius: 12px; border: 1px solid #cbdef7; background: var(--pale); margin: 17px 0 6px; }
+.lab { padding: 15px 17px; border-radius: 12px; border: 1px solid var(--border); background: var(--pale); margin: 17px 0 6px; }
 .lab h3 { margin: 0 0 4px; font-size: 17px; color: var(--deep); }
 .lab p { margin-bottom: 9px; font-size: 14px; color: var(--muted); }
 .slider-row { display: grid; grid-template-columns: minmax(100px, 1fr) auto; gap: 0 13px; align-items: center; }
@@ -279,9 +347,9 @@ th { color: var(--deep); background: var(--soft); }
 .slider-row .current { color: var(--blue); font-weight: 750; font-variant-numeric: tabular-nums; }
 .slider-row input { grid-column: 1 / -1; width: 100%; height: 28px; margin: 1px 0 6px; accent-color: var(--blue); }
 .readouts { display: flex; flex-wrap: wrap; gap: 5px 9px; margin: 8px 0 0; }
-.readouts span { background: #e6f0ff; border-radius: 6px; font-size: 13px; padding: 3px 8px; color: var(--deep); }
+.readouts span { background: var(--selected); border-radius: 6px; font-size: 13px; padding: 3px 8px; color: var(--deep); }
 .meter { display: grid; grid-template-columns: minmax(47px, auto) 1fr minmax(52px, auto); gap: 8px; align-items: center; font-size: 12px; margin: 4px 0; }
-.meter progress { width: 100%; height: 13px; accent-color: #2f69be; }
+.meter progress { width: 100%; height: 13px; accent-color: var(--blue); }
 .sources-list { padding-left: 24px; }
 .sources-list li { margin-bottom: 8px; }
 #sources { margin-block: 24px 48px; }
@@ -301,7 +369,10 @@ noscript p { background: var(--soft); border-radius: 9px; padding: 12px; }
   .source-link { display: none; }
   .wordmark { font-size: 14px; gap: 6px; }
   .mark { width: 27px; height: 27px; }
-  .search { width: min(49vw, 230px); }
+  .header-actions { gap: 6px; }
+  .search { width: min(47vw, 230px); min-width: 0; }
+  .theme-toggle { padding-inline: 8px; }
+  .theme-icon { display: none; }
   .masthead-inner { padding: 24px 0 16px; }
   .masthead p { font-size: 14px; margin-bottom: 14px; }
   .courses { gap: 5px; }
@@ -336,7 +407,7 @@ noscript p { background: var(--soft); border-radius: 9px; padding: 12px; }
   width: min(100%, 640px);
   height: auto;
   margin-top: 8px;
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 8px;
 }
@@ -355,6 +426,10 @@ noscript p { background: var(--soft); border-radius: 9px; padding: 12px; }
             aria-controls="search-results" aria-expanded="false">
           <div id="search-results" class="search-results" aria-live="polite"></div>
         </div>
+        <button id="theme-toggle" type="button" class="action theme-toggle only-interactive"
+          aria-label="切换到深色模式" title="切换到深色模式">
+          <span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">深色</span>
+        </button>
       </div>
     </div>
   </header>
@@ -4773,6 +4848,11 @@ for done in (False, True):
   const sources = document.getElementById("sources");
   const search = document.getElementById("search");
   const searchResults = document.getElementById("search-results");
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeLabel = themeToggle.querySelector(".theme-label");
+  const themeIcon = themeToggle.querySelector(".theme-icon");
+  const themeRoot = document.documentElement;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
   const pageTitle = document.title;
   const storageKey = "andrew-ng-course-notes-completed-v1";
   const navigation = [...document.querySelectorAll("a[data-route]")];
@@ -4780,6 +4860,29 @@ for done in (False, True):
   const lessonIds = new Set(lessons.map(lesson => lesson.id));
   let currentWeek = null;
   let printDetails = [];
+
+  function syncThemeButton() {
+    const dark = themeRoot.dataset.theme === "dark";
+    const next = dark ? "浅色" : "深色";
+    const label = "切换到" + next + "模式";
+    themeLabel.textContent = next;
+    themeIcon.textContent = dark ? "☀\uFE0E" : "☾";
+    themeToggle.setAttribute("aria-label", label);
+    themeToggle.title = label;
+    themeColor.content = getComputedStyle(themeRoot).getPropertyValue("--bg").trim();
+  }
+
+  syncThemeButton();
+  themeToggle.addEventListener("click", () => {
+    const theme = themeRoot.dataset.theme === "dark" ? "light" : "dark";
+    themeRoot.dataset.theme = theme;
+    syncThemeButton();
+    try {
+      localStorage.setItem("andrew-ng-course-notes-theme", theme);
+    } catch {
+      // The theme still applies to the current page.
+    }
+  });
 
   function loadCompleted() {
     try {
@@ -5033,10 +5136,13 @@ for done in (False, True):
       "J(w) = (w−3)²"]);
     const ctx = chart(result, "第 0 到 5 步的代价：" + points.map(x => format(x)).join("、"));
     if (!ctx) return;
+    const palette = getComputedStyle(ctx.canvas);
+    const muted = palette.getPropertyValue("--muted").trim();
+    const blue = palette.getPropertyValue("--plot-blue").trim();
     const max = Math.max(...points);
     const scaleDigits = max >= 100 ? 0 : 1;
-    ctx.strokeStyle = "#cad9ef";
-    ctx.fillStyle = "#4c6480";
+    ctx.strokeStyle = palette.getPropertyValue("--plot-grid").trim();
+    ctx.fillStyle = muted;
     ctx.font = "13px sans-serif";
     for (let i = 0; i <= 3; i++) {
       const y = 143 - i * 38;
@@ -5050,14 +5156,14 @@ for done in (False, True):
     ctx.beginPath();
     coordinates.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
     ctx.lineWidth = 3;
-    ctx.strokeStyle = "#255fbc";
+    ctx.strokeStyle = blue;
     ctx.stroke();
     coordinates.forEach(([x, y], i) => {
-      ctx.fillStyle = "#255fbc";
+      ctx.fillStyle = blue;
       ctx.beginPath();
       ctx.arc(x, y, 4, 0, 2 * Math.PI);
       ctx.fill();
-      ctx.fillStyle = "#4c6480";
+      ctx.fillStyle = muted;
       ctx.fillText(String(i), x - 3, 165);
     });
   }
@@ -5077,8 +5183,9 @@ for done in (False, True):
     const ctx = chart(result, "样本 1、2 分到 A，8、10 分到 B。中心位置：" + centers.join("、"));
     if (!ctx) return;
     const xPosition = value => 39 + value * 52;
-    const colors = ["#245cb6", "#9a410b"];
-    ctx.strokeStyle = "#b5c6df";
+    const palette = getComputedStyle(ctx.canvas);
+    const colors = ["--plot-blue", "--plot-orange"].map(name => palette.getPropertyValue(name).trim());
+    ctx.strokeStyle = palette.getPropertyValue("--plot-grid").trim();
     ctx.beginPath();
     ctx.moveTo(35, 85);
     ctx.lineTo(611, 85);
@@ -5161,6 +5268,7 @@ for done in (False, True):
     };
     slider.addEventListener("input", update);
     update();
+    if (result.querySelector(".plot")) themeToggle.addEventListener("click", update);
   }
 })();
 </script>
